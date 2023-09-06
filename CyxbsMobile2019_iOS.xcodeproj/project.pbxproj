@@ -24,6 +24,10 @@
 		14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DCF2AA6FA8900D8D1E1 /* Constants.swift */; };
 		14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */; };
 		14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DD42AA825F300D8D1E1 /* CacheManager.swift */; };
+		14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DDA2AA8303800D8D1E1 /* CurriculumModel.swift */; };
+		14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */; };
+		14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */; };
+		14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
@@ -67,6 +71,10 @@
 		14622DCF2AA6FA8900D8D1E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Cyxbs.swift"; sourceTree = "<group>"; };
 		14622DD42AA825F300D8D1E1 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		14622DDA2AA8303800D8D1E1 /* CurriculumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurriculumModel.swift; sourceTree = "<group>"; };
+		14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStudentModel.swift; sourceTree = "<group>"; };
+		14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCalModel.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -198,6 +206,49 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		14622DD62AA8287100D8D1E1 /*  Curriculum */ = {
+			isa = PBXGroup;
+			children = (
+				14622DD92AA8287200D8D1E1 /* ViewController */,
+				14622DD82AA8287200D8D1E1 /* View */,
+				14622DE42AA8567B00D8D1E1 /* Filter */,
+				14622DD72AA8287200D8D1E1 /* Model */,
+			);
+			path = " Curriculum";
+			sourceTree = "<group>";
+		};
+		14622DD72AA8287200D8D1E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */,
+				14622DDA2AA8303800D8D1E1 /* CurriculumModel.swift */,
+				14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14622DD82AA8287200D8D1E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14622DD92AA8287200D8D1E1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14622DE42AA8567B00D8D1E1 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +284,7 @@
 				14622DC72AA6DC7400D8D1E1 /* Finder */,
 				14622DC62AA6DC7400D8D1E1 /* Mine */,
 				14622DC52AA6DC7400D8D1E1 /* QA */,
+				14622DD62AA8287100D8D1E1 /*  Curriculum */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				143F70192AA165C10048E264 /* AppDelegate.swift */,
 				14622DC22AA6CF4E00D8D1E1 /* LaunchScreen.storyboard */,
@@ -513,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */,
+				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
@@ -522,11 +575,14 @@
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
+				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
+				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
+				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
 				14622DB62AA6098300D8D1E1 /* DarkTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

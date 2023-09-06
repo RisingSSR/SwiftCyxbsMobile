@@ -16,6 +16,17 @@ open class TabBarController: UITabBarController {
         
         setupTabBar()
         setupViewControllers()
+        
+        CacheManager.shared.create(rootPath: .document, file: "a/b/c/dddd")
+        
+        ScheduleModel.request(sno: "2021215154") { response in
+            switch response {
+            case .success(let model):
+                break
+            case .failure(let netError):
+                break
+            }
+        }
     }
     
     open override func viewWillAppear(_ animated: Bool) {

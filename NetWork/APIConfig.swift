@@ -44,7 +44,7 @@ struct APIConfig {
     
     static func askCloud(success: @escaping (Environment) -> Void) {
         AF.request("https://be-prod.redrock.team/cloud-manager/check").ry_JSON { response in
-            if let value = response.value {
+            if case let .success(value) = response {
                 if let base_url = value.dictionary?["base_url"]?.string {
                     success(.CLOUD(base_url))
                     return

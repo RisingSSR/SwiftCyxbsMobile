@@ -11,6 +11,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'SDWebImage'
 	pod 'ProgressHUD'
 	pod 'MJRefresh'
+  pod 'KakaJSON'
   
   pod 'UMCommon'
   pod 'UMDevice'

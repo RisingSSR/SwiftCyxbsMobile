@@ -23,7 +23,30 @@ class SessionManager: Session {
 extension DataRequest {
     
     @discardableResult
-    func ry_JSON(decoder: DataDecoder = JSONDecoder(), completionHandler: @escaping (AFDataResponse<JSON>) -> Void) -> Self {
-        responseDecodable(of: JSON.self, decoder: decoder, completionHandler: completionHandler)
+    func ry_JSON(decoder: DataDecoder = JSONDecoder(), completionHandler: @escaping (RYResponse<JSON>) -> Void) -> Self {
+        responseDecodable(of: JSON.self, decoder: decoder) { response in
+            if let value = response.value {
+                completionHandler(.success(value))
+            } else {
+                let error = NetError(request: response.request, response: response.response, error: response.error)
+                completionHandler(.failure(error))
+            }
+        }
     }
+}
+
+struct NetError: Error {
+    
+    let request: URLRequest?
+
+    let response: HTTPURLResponse?
+    
+    let error: AFError?
+}
+
+enum RYResponse<Model> {
+    
+    case success(Model)
+    
+    case failure(NetError)
 }
