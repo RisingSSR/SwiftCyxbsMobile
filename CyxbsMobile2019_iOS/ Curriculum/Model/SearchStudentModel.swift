@@ -41,7 +41,7 @@ extension SearchStudentModel {
 
 extension SearchStudentModel {
     
-    static func request(info: String, handle: @escaping (RYResponse<[SearchStudentModel]>) -> Void) {
+    static func request(info: String, handle: @escaping (NetResponse<[SearchStudentModel]>) -> Void) {
         HttpManager.shared.magipoke_text_search_people(stu: info).ry_JSON { response in
             switch response {
             case .success(let model):

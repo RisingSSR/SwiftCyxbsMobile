@@ -22,14 +22,27 @@ class SessionManager: Session {
 
 extension DataRequest {
     
+    static var error_500_count = 0
+    
     @discardableResult
-    func ry_JSON(decoder: DataDecoder = JSONDecoder(), completionHandler: @escaping (RYResponse<JSON>) -> Void) -> Self {
+    func ry_JSON(decoder: DataDecoder = JSONDecoder(), completionHandler: @escaping (NetResponse<JSON>) -> Void) -> Self {
         responseDecodable(of: JSON.self, decoder: decoder) { response in
             if let value = response.value {
                 completionHandler(.success(value))
             } else {
                 let error = NetError(request: response.request, response: response.response, error: response.error)
                 completionHandler(.failure(error))
+            }
+            
+            if let code = response.error?.responseCode {
+                if (500..<600).contains(code) {
+                    DataRequest.error_500_count += 1
+                    if DataRequest.error_500_count >= 5 {
+                        APIConfig.askCloud { enviroment in
+                            APIConfig.environment = enviroment
+                        }
+                    }
+                }
             }
         }
     }
@@ -44,7 +57,7 @@ struct NetError: Error {
     let error: AFError?
 }
 
-enum RYResponse<Model> {
+enum NetResponse<Model> {
     
     case success(Model)
     

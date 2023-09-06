@@ -52,7 +52,7 @@ extension ScheduleModel {
 
 extension ScheduleModel {
     
-    static func request(sno: String, handle: @escaping (RYResponse<ScheduleModel>) -> Void) {
+    static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
         
         let group = DispatchGroup()
         var scheduleModel = ScheduleModel()

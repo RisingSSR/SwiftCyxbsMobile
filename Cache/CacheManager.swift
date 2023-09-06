@@ -120,4 +120,3 @@ extension CacheManager.RootPath {
     
     static let document: Self = .init(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "")
 }
-
