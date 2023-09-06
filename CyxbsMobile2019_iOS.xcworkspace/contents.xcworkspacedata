@@ -4,6 +4,10 @@
    <FileRef
       location = "group:CyxbsMobile2019_iOS.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:New Group"
+      name = "New Group">
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
