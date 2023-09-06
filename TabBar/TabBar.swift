@@ -46,9 +46,6 @@ class TabBar: UITabBar {
         } else {
             createMoreTopBezierPath.stroke()
         }
-        
-        let btn = UIButton()
-        
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {

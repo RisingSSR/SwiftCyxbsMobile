@@ -17,8 +17,6 @@ open class TabBarController: UITabBarController {
         setupTabBar()
         setupViewControllers()
         
-        
-        
         ScheduleModel.request(sno: "2021215154") { response in
             switch response {
             case .success(let model):

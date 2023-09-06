@@ -56,7 +56,6 @@ extension ScheduleModel {
         
         let group = DispatchGroup()
         var scheduleModel = ScheduleModel()
-        
         group.enter()
         SearchStudentModel.request(info: sno) { response in
             switch response {

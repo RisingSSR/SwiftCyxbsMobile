@@ -16,7 +16,7 @@ struct CacheManager {
     static let cleanInNextVersion: Bool = true
     
     private init() {
-        if let version = UserDefaults.standard.object(forKey: "VERSION") as? String {
+        if let version = UserDefualtsManager.shared.systemVersion {
             if version != Constants.systemVersion {
                 delete(path: FilePath(rootPath: .document, file: ""))
             }
@@ -47,7 +47,7 @@ extension CacheManager {
         try? FileManager.default.contentsOfDirectory(atPath: path).forEach { perPath in
             try? FileManager.default.removeItem(atPath: perPath)
         }
-        UserDefaults.standard.set(object: Constants.systemVersion, forKey: "VERSION")
+        UserDefualtsManager.shared.systemVersion = Constants.systemVersion
     }
 }
 

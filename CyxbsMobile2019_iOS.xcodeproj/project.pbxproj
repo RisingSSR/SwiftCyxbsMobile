@@ -28,6 +28,7 @@
 		14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */; };
 		14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */; };
 		14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */; };
+		14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
@@ -75,6 +76,7 @@
 		14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStudentModel.swift; sourceTree = "<group>"; };
 		14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCalModel.swift; sourceTree = "<group>"; };
+		14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefualtsManager.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				14622DD42AA825F300D8D1E1 /* CacheManager.swift */,
+				14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
+				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
 				14622DB62AA6098300D8D1E1 /* DarkTheme.swift in Sources */,
 			);
