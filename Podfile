@@ -4,19 +4,26 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 platform :ios,'11.0'
 use_frameworks!
 
+inhibit_all_warnings!
+
+def share_pods
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+end
+
 target 'CyxbsMobile2019_iOS' do
-	pod 'TZImagePickerController'
-	pod 'YBImageBrowser', :inhibit_warnings => true
-	pod 'NudeIn'
+  share_pods
+  
+	# pod 'TZImagePickerController'
+	# pod 'YBImageBrowser'
 	pod 'SDWebImage'
-	pod 'ProgressHUD'
+  pod 'MBProgressHUD'
 	pod 'MJRefresh'
-  pod 'KakaJSON'
   
   pod 'UMCommon'
   pod 'UMDevice'
   pod 'UMVerify'
-  pod 'UMCCommonLog',  :configurations => ['Debug']
+  pod 'UMCCommonLog',           :configurations => ['Debug']
   pod 'UMShare/Social/WeChat'
   pod 'UMShare/Social/QQ'
   
@@ -31,10 +38,7 @@ target 'CyxbsMobile2019_iOS' do
   
 	pod 'IQKeyboardManager'
 	pod 'Bugly'
-	pod 'LookinServer', :configurations => ['Debug']
-  
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
+	pod 'LookinServer',           :configurations => ['Debug']
   pod 'FluentDarkModeKit'
   
   pod 'RYTransitioningDelegateSwift'
@@ -46,7 +50,8 @@ target 'CyxbsMobile2019_iOS' do
       config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
       config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
       config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
+      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
     end
   end
-  
+
 end

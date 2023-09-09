@@ -31,6 +31,7 @@ extension DataRequest {
                 completionHandler(.success(value))
             } else {
                 let error = NetError(request: response.request, response: response.response, error: response.error)
+                print(error)
                 completionHandler(.failure(error))
             }
             
@@ -48,13 +49,34 @@ extension DataRequest {
     }
 }
 
-struct NetError: Error {
+struct NetError: Error, CustomStringConvertible {
     
     let request: URLRequest?
 
     let response: HTTPURLResponse?
     
     let error: AFError?
+    
+    var description: String {
+        var description = ""
+        if let code = error?.responseCode {
+            description += "[\(code)] "
+        } else {
+            description += "[未知响应] "
+        }
+        
+        if let url = response?.url {
+            description += "\(url) "
+        } else {
+            description += "未知URL "
+        }
+        
+        if let error {
+            description += "AF: \(error)"
+        }
+        
+        return description
+    }
 }
 
 enum NetResponse<Model> {

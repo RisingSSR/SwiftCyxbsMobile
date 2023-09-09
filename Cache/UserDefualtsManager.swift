@@ -8,11 +8,11 @@
 
 import Foundation
 
-class UserDefualtsManager {
+class UserDefaultsManager {
     
-    static let shared = UserDefualtsManager()
+    static let shared = UserDefaultsManager()
     
-    static let widget = UserDefualtsManager("group.com.mredrock.cyxbs.widget")
+    static let widget = UserDefaultsManager(Constants.widgetGroupID)
     
     private init(_ suiteName: String? = nil) {
         if let suiteName {
@@ -25,7 +25,7 @@ class UserDefualtsManager {
     private let userDefaults: UserDefaults
 }
 
-extension UserDefualtsManager {
+extension UserDefaultsManager {
     
     private func set(_ obj: Any?, forKey key: String) {
         userDefaults.set(obj, forKey: key)
@@ -36,12 +36,12 @@ extension UserDefualtsManager {
     }
 }
 
-extension UserDefualtsManager {
+extension UserDefaultsManager {
     
-    /// 系统版本（用于不同版本迭代时判断）
-    var systemVersion: String? {
-        set { set(newValue, forKey: "SYSTEM_VERSION") }
-        get { get(key: "SYSTEM_VERSION") as? String }
+    /// 获取当前包版本（用于App软更新时判断）
+    var bundleShortVersion: String? {
+        set { set(newValue, forKey: "BUNDLE_SHORT_VERSION") }
+        get { get(key: "BUNDLE_SHORT_VERSION") as? String }
     }
     
     /// 上次打开App时间（用于不同天打开App时判断）
@@ -49,10 +49,22 @@ extension UserDefualtsManager {
         set { set(newValue, forKey: "LATEST_OPEN_APP") }
         get { get(key: "LATEST_OPEN_APP") as? Date }
     }
+}
+
+extension UserDefaultsManager {
     
     /// 主学生学号（用于一级缓存）
     var mainStudentSno: String? {
         set { set(newValue, forKey: "MAIN_STUDENT_SNO") }
         get { get(key: "MAIN_STUDENT_SNO") as? String }
     }
+        
+    /// 上一次请求主学号时间（用于一级缓存）
+    func cache(latestRequest date: Date, sno: String) {
+        set(date, forKey: "LATEST_REQUEST_SNO_\(sno)")
+    }
+    func latestRequest(sno: String) -> Date? {
+        get(key: "LATEST_REQUEST_SNO__\(sno)") as? Date
+    }
+    
 }

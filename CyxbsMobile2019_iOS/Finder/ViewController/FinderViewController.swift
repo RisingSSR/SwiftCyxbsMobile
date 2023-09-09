@@ -15,6 +15,4 @@ class FinderViewController: UIViewController {
         
         view.backgroundColor = .ry.backgroundColorForPlace_p1
     }
-    
-    
 }

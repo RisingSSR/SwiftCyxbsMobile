@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct CacheManager {
     
@@ -16,30 +15,41 @@ struct CacheManager {
     static let cleanInNextVersion: Bool = true
     
     private init() {
-        if let version = UserDefualtsManager.shared.systemVersion {
-            if version != Constants.systemVersion {
-                delete(path: FilePath(rootPath: .document, file: ""))
-            }
-        } else {
-            delete(path: FilePath(rootPath: .document, file: ""))
+        print("[document] \(RootPath.document.rawValue)")
+        print("[widget] \(RootPath.widget.rawValue)")
+        if !CacheManager.cleanInNextVersion { return }
+        if let bundleShortVersion = UserDefaultsManager.shared.bundleShortVersion, bundleShortVersion == Constants.bundleShortVersion {
+            return
         }
+        delete(path: FilePath(rootPath: .document, file: ""))
+        
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+            print("Unable to retrieve bundle identifier.")
+            return
+        }
+        UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+        UserDefaultsManager.shared.bundleShortVersion = Constants.bundleShortVersion
     }
 }
 
 extension CacheManager {
     
-    @discardableResult
-    func create(rootPath: RootPath, file: String) -> FilePath {
-        FilePath(rootPath: rootPath, file: file)
+    func fileExists(file: FilePath) -> Bool {
+        FileManager.default.fileExists(atPath: file.rawValue)
     }
     
-    private func create(path: String) {
-        if FileManager.default.fileExists(atPath: path) { return }
+    @discardableResult
+    func create(file: FilePath) -> FilePath {
+        let rawValue = file.rawValue
+        if FileManager.default.fileExists(atPath: rawValue) { return file }
+        let ary = rawValue.components(separatedBy: "/")
+        let path = ary[0..<ary.count - 1].joined(separator: "/")
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true)
         } catch {
             print("Failed to create dicrectory at path: \(error)")
         }
+        return file
     }
     
     func delete(path: FilePath) {
@@ -47,13 +57,94 @@ extension CacheManager {
         try? FileManager.default.contentsOfDirectory(atPath: path).forEach { perPath in
             try? FileManager.default.removeItem(atPath: perPath)
         }
-        UserDefualtsManager.shared.systemVersion = Constants.systemVersion
     }
 }
 
 extension CacheManager {
     
+    func cache(codable: Codable, in path: FilePath) {
+        create(file: path)
+        let fullPath = path.rawValue
+        do {
+            let jsonData = try JSONEncoder().encode(codable)
+            do {
+                try jsonData.write(to: URL(fileURLWithPath: fullPath))
+            } catch {
+                print("Failed to write Data to File: \(error)")
+            }
+        } catch {
+            print("Failed to encode Codable to Data: \(error)")
+        }
+    }
+    
+    func getCodable<T: Decodable>(_ decode: T.Type, in path: FilePath) -> T? {
+        if !fileExists(file: path) { return nil }
+        let fullPath = path.rawValue
+        do {
+            let data = try NSData(contentsOfFile: fullPath) as Data
+            do {
+                return try JSONDecoder().decode(decode, from: data)
+            } catch {
+                print("Failed to convert Data to JSON: \(error)")
+            }
+        } catch {
+            print("Failed to get Data from URL: \(error)")
+        }
+        return nil
+    }
+}
+
+extension CacheManager {
+    
+    struct RootPath {
+        
+        var rawValue: String
+        
+        init(_ rawValue: String) {
+            self.rawValue = rawValue
+        }
+    }
+    
+    struct FilePath {
+        
+        let rawValue: String
+
+        init(rootPath: RootPath, file: String) {
+            var file = file
+            if file.prefix(1) != "/" {
+                file = "/" + file
+            }
+            rawValue = rootPath.rawValue + file
+        }
+    }
+}
+
+extension CacheManager.RootPath {
+    
+    func append(fileName: String) -> String {
+        var file = fileName
+        if file.prefix(1) != "/" {
+            file = "/" + file
+        }
+        return rawValue + file
+    }
+    
+    static let document: Self = .init(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "")
+    
+    static let widget: Self = {
+        if let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.widgetGroupID)?.path {
+            return .init(path)
+        }
+        return document
+    }()
+}
+
+/* not accessible, use Codable
+ 
+extension CacheManager {
+    
     func cache(json: JSON, in path: FilePath) {
+        create(file: path)
         let fullPath = path.rawValue
         do {
             let data = try json.rawData(options: .sortedKeys)
@@ -68,55 +159,19 @@ extension CacheManager {
     }
     
     func getJOSN(in path: FilePath) -> JSON? {
+        if !fileExists(file: path) { return nil }
         let fullPath = path.rawValue
-        if let url = URL(string: fullPath) {
+        do {
+            let data = try NSData(contentsOfFile: fullPath) as Data
             do {
-                let data = try Data(contentsOf: url)
-                do {
-                    return try JSON(data: data)
-                } catch {
-                    print("Failed to convert Data to JSON: \(error)")
-                }
+                return try JSON(data: data)
             } catch {
-                print("Failed to get Data from URL: \(error)")
+                print("Failed to convert Data to JSON: \(error)")
             }
+        } catch {
+            print("Failed to get Data from URL: \(error)")
         }
         return nil
     }
 }
-
-extension CacheManager {
-    
-    struct FilePath {
-        
-        let rawValue: String
-
-        init(rootPath: RootPath, file: String, create: Bool = true) {
-            var file = file
-            if file.prefix(1) != "/" {
-                file = "/" + file
-            }
-            rawValue = rootPath.rawValue + file
-            
-            if !create { return }
-            if FileManager.default.fileExists(atPath: rawValue) { return }
-            let ary = rawValue.components(separatedBy: "/")
-            let root = ary[0..<ary.count - 1].joined(separator: "/")
-            CacheManager.shared.create(path: root)
-        }
-    }
-    
-    struct RootPath {
-        
-        var rawValue: String
-        
-        init(_ rawValue: String) {
-            self.rawValue = rawValue
-        }
-    }
-}
-
-extension CacheManager.RootPath {
-    
-    static let document: Self = .init(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "")
-}
+ */

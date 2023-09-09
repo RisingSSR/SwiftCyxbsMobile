@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct CurriculumModel {
+struct CurriculumModel: Codable {
     
     var inWeek: Int = 0
     
@@ -43,7 +43,7 @@ extension CurriculumModel {
         
         let location = json["begin_lesson"].intValue
         let lenth = json["period"].intValue
-        period = location...(location + lenth)
+        period = location...(location + lenth - 1)
         
         course = json["course"].stringValue
         classRoom = json["classroom"].stringValue

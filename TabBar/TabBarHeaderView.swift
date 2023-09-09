@@ -43,12 +43,14 @@ class TabBarHeaderView: UIView {
         titleLab.stop()
         titleLab.removeAll()
         titleLab.add(title)
+        titleLab.walk()
         
         timeLab.text = time
         
         placeLab.stop()
         placeLab.removeAll()
         placeLab.add(place)
+        placeLab.walk()
         
         updateUI()
     }
@@ -82,7 +84,7 @@ class TabBarHeaderView: UIView {
     
     lazy var bar: UIView = {
         let bar = UIView()
-        bar.frame = CGRect(x: 0, y: 684, width: 27, height: 5)
+        bar.frame = CGRect(x: 0, y: 4, width: 27, height: 5)
         bar.center.x = bounds.width / 2
         bar.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
         bar.backgroundColor = .ry.backgroundColorForPlace_p0

@@ -17,20 +17,63 @@ open class TabBarController: UITabBarController {
         setupTabBar()
         setupViewControllers()
         
-        ScheduleModel.request(sno: "2021215154") { response in
-            switch response {
-            case .success(let model):
-                break
-            case .failure(let netError):
-                break
-            }
-        }
+        Constants.mainSno = "2021215154"
+        reloadData()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        (tabBar as? TabBar)?.headerView.handle_viewWillAppear()
+        tabBar.ryTabBar?.headerView.handle_viewWillAppear()
+    }
+}
+
+extension TabBarController {
+    
+    func reloadData() {
+        if let sno = Constants.mainSno,
+           var scheduleModel = ScheduleModel.getFromCache(sno: sno) {
+            
+            let date = UserDefaultsManager.shared.latestRequest(sno: sno) ?? Date()
+            let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
+            scheduleModel.nowWeek += days
+            
+            reloadWith(scheduleModel: scheduleModel)
+        } else {
+            request()
+        }
+    }
+    
+    func request() {
+        if let sno = Constants.mainSno {
+            ScheduleModel.request(sno: sno) { response in
+                switch response {
+                case .success(let model):
+                    UserDefaultsManager.shared.cache(latestRequest: Date(), sno: sno)
+                    model.toCache()
+                    self.reloadWith(scheduleModel: model)
+                case .failure(_):
+                    self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")
+                }
+            }
+        }
+    }
+    
+    func reloadWith(scheduleModel: ScheduleModel) {
+        let calModels = scheduleModel.calModels
+        if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
+            reloadTabBarData(title: cur.curriculum.course, time: cur.time, place: cur.curriculum.classRoom)
+        } else {
+            reloadTabBarData(title: "今天已经没课了", time: "好好休息吧", place: "明天新一天")
+        }
+        
+        let group = ScheduleGroupModel(name: scheduleModel.sno)
+        group.group(with: scheduleModel, prepare: calModels)
+        print(group.mapPage)
+    }
+    
+    func reloadTabBarData(title: String?, time: String?, place: String?) {
+        tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
     }
 }
 
@@ -103,5 +146,11 @@ extension TabBarController {
             tabBar.reloadInputViews()
             tabBar.sizeToFit()
         }
+    }
+}
+
+extension UIViewController {
+    var ryTabBarController: TabBarController {
+        tabBarController as! TabBarController
     }
 }

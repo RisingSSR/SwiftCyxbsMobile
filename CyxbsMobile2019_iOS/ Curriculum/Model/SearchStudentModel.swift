@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct SearchStudentModel {
+struct SearchStudentModel: Codable {
     
     var stunum: String = ""
     

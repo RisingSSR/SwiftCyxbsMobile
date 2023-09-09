@@ -29,6 +29,10 @@
 		14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */; };
 		14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */; };
 		14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */; };
+		14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */; };
+		14622E022AAAF8F000D8D1E1 /* ScheduleGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E012AAAF8F000D8D1E1 /* ScheduleGroupModel.swift */; };
+		14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */; };
+		14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E052AAC05B500D8D1E1 /* ScheduleViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
@@ -77,6 +81,10 @@
 		14622DE02AA844B100D8D1E1 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCalModel.swift; sourceTree = "<group>"; };
 		14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefualtsManager.swift; sourceTree = "<group>"; };
+		14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Cyxbs.swift"; sourceTree = "<group>"; };
+		14622E012AAAF8F000D8D1E1 /* ScheduleGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGroupModel.swift; sourceTree = "<group>"; };
+		14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		14622E052AAC05B500D8D1E1 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,8 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				143F701C2AA170030048E264 /* TabBarController.swift */,
-				143F702E2AA4980C0048E264 /* TabBar.swift */,
 				143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */,
+				143F702E2AA4980C0048E264 /* TabBar.swift */,
 				14622DCC2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift */,
 			);
 			path = TabBar;
@@ -196,6 +204,7 @@
 			children = (
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
+				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -233,6 +242,7 @@
 		14622DD82AA8287200D8D1E1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,6 +250,7 @@
 		14622DD92AA8287200D8D1E1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				14622E052AAC05B500D8D1E1 /* ScheduleViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 		14622DE42AA8567B00D8D1E1 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				14622E012AAAF8F000D8D1E1 /* ScheduleGroupModel.swift */,
 				14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */,
 			);
 			path = Filter;
@@ -569,15 +581,18 @@
 			files = (
 				14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */,
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
+				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
 				14622DB42AA5ED7400D8D1E1 /* WhiteTheme.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
+				14622E022AAAF8F000D8D1E1 /* ScheduleGroupModel.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
+				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
@@ -585,6 +600,7 @@
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
+				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
 				14622DB62AA6098300D8D1E1 /* DarkTheme.swift in Sources */,
