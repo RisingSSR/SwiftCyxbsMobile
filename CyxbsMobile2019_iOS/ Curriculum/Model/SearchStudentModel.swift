@@ -26,6 +26,29 @@ struct SearchStudentModel: Codable {
     var major: String = ""
 }
 
+extension SearchStudentModel: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(stunum)
+        hasher.combine(name)
+        hasher.combine(gender)
+        hasher.combine(classnum)
+        hasher.combine(depart)
+        hasher.combine(grade)
+        hasher.combine(major)
+    }
+
+    static func == (lhs: SearchStudentModel, rhs: SearchStudentModel) -> Bool {
+        return lhs.stunum == rhs.stunum &&
+            lhs.name == rhs.name &&
+            lhs.gender == rhs.gender &&
+            lhs.classnum == rhs.classnum &&
+            lhs.depart == rhs.depart &&
+            lhs.grade == rhs.grade &&
+            lhs.major == rhs.major
+    }
+}
+
 extension SearchStudentModel {
     
     init(json: JSON) {

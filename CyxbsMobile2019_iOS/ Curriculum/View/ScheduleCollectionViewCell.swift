@@ -52,13 +52,10 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        contentView.addSubview(backImgView)
+        contentView.addSubview(multyView)
         
-        print(reuseIdentifier)
-        if reuseIdentifier == ScheduleCollectionViewCell.curriculumReuseIdentifier {
-            initCurriculum()
-        } else if reuseIdentifier == ScheduleCollectionViewCell.supplementaryReuseIdentifier {
-            initSupplementary()
-        }
         contentView.addSubview(titleLab)
         contentView.addSubview(contentLab)
         updateFrame()
@@ -125,14 +122,16 @@ extension ScheduleCollectionViewCell {
         drawType = .curriculum(.morning)
         titleLab.font = .systemFont(ofSize: 10, weight: .regular)
         contentLab.font = .systemFont(ofSize: 10, weight: .regular)
-        contentView.addSubview(backImgView)
-        contentView.addSubview(multyView)
+        backImgView.isHidden = false
+        multyView.isHidden = false
     }
     
     func initSupplementary() {
         drawType = .supplementary(.normal)
         titleLab.font = .systemFont(ofSize: 12, weight: .regular)
         contentLab.font = .systemFont(ofSize: 11, weight: .regular)
+        backImgView.isHidden = true
+        multyView.isHidden = true
     }
 }
 
@@ -140,17 +139,48 @@ extension ScheduleCollectionViewCell {
 
 extension ScheduleCollectionViewCell {
     
-    func set(curriculumType: DrawType.CurriculumType, title: String?, content: String?, isMultiple: Bool) {
+    func set(curriculumType: DrawType.CurriculumType, title: String?, content: String?, isMultiple: Bool, isTitleOnly: Bool = false) {
         drawType = .curriculum(curriculumType)
-        isTitleOnly = false
+        initCurriculum()
+        self.isTitleOnly = isTitleOnly
         titleLab.text = title
         contentLab.text = content
         backImgView.isHidden = (curriculumType != .custom)
+        switch curriculumType {
+            
+        case .morning:
+            contentView.backgroundColor = .ry.color(light: .hex("#F9E7D8"), dark: .hex("#FFCCA126"))
+            titleLab.textColor = .ry.color(light: .hex("#FF8015"), dark: .hex("#F0F0F2CC"))
+            contentLab.textColor = titleLab.textColor
+            multyView.backgroundColor = titleLab.textColor
+            
+        case .afternoon:
+            contentView.backgroundColor = .ry.color(light: .hex("#F9E3E4"), dark: .hex("#FF979B26"))
+            titleLab.textColor = .ry.color(light: .hex("#FF6262"), dark: .hex("#F0F0F2CC"))
+            contentLab.textColor = titleLab.textColor
+            multyView.backgroundColor = titleLab.textColor
+            
+        case .night:
+            contentView.backgroundColor = .ry.color(light: .hex("#DDE3F8"), dark: .hex("#9BB2FB26"))
+            titleLab.textColor = .ry.color(light: .hex("#4066EA"), dark: .hex("#F0F0F2CC"))
+            contentLab.textColor = titleLab.textColor
+            multyView.backgroundColor = titleLab.textColor
+            
+        case .others:
+            contentView.backgroundColor = .ry.color(light: .hex("#DFF3FC"), dark: .hex("#90DBFB26"))
+            titleLab.textColor = .ry.color(light: .hex("#06A3FC"), dark: .hex("#F0F0F2CC"))
+            contentLab.textColor = titleLab.textColor
+            multyView.backgroundColor = titleLab.textColor
+            
+        case .custom:
+            break
+        }
         updateFrame()
     }
     
     func set(supplementaryType: DrawType.SupplementaryType, title: String?, content: String?, isTitleOnly: Bool) {
         drawType = .supplementary(supplementaryType)
+        initSupplementary()
         self.isTitleOnly = isTitleOnly
         titleLab.text = title
         contentLab.text = content
@@ -161,15 +191,23 @@ extension ScheduleCollectionViewCell {
         switch drawType {
         case .curriculum(_):
             let space: CGFloat = 8
-            titleLab.frame.origin = CGPoint(x: space, y: space)
+            titleLab.frame.origin = CGPoint(x: space, y: 10)
             titleLab.frame.size.width = bounds.width - 2 * space
             titleLab.sizeToFit()
             titleLab.center.x = bounds.width / 2
             
             contentLab.frame.size.width = bounds.width - 2 * space
-            contentLab.frame.origin.y = bounds.height - contentLab.bounds.height - space
             contentLab.sizeToFit()
+            contentLab.frame.origin.y = bounds.height - contentLab.bounds.height - space
             contentLab.center.x = bounds.width / 2
+            
+            if isTitleOnly {
+                titleLab.center.y = bounds.height / 2
+                contentLab.isHidden = true
+            } else {
+                titleLab.frame.origin.y = 6
+                contentLab.isHidden = false
+            }
             
         case .supplementary(_):
             titleLab.sizeToFit()

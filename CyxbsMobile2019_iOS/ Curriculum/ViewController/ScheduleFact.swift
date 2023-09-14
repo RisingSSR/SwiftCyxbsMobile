@@ -1,0 +1,156 @@
+//
+//  ScheduleFact.swift
+//  CyxbsMobile2019_iOS
+//
+//  Created by SSR on 2023/9/11.
+//  Copyright © 2023 Redrock. All rights reserved.
+//
+
+import UIKit
+
+class ScheduleFact: NSObject {
+    
+    let mappy = ScheduleMaping()
+    
+    private var scrollViewStartPosPoint: CGPoint = .zero
+    
+    private var scrollDirection: Int = 0
+}
+
+extension ScheduleFact {
+    
+    @objc
+    func createCollectionView() -> UICollectionView {
+        let layout = ScheduleCollectionViewLayout()
+        layout.lineSpaceing = 2
+        layout.columnSpacing = 2
+        layout.widthForLeadingSupplementaryView = 30
+        layout.heightForHeaderSupplementaryView = 58
+        layout.dataSource = self
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.isDirectionalLockEnabled = true
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.decelerationRate = .fast
+        collectionView.register(ScheduleCollectionViewCell.self, forCellWithReuseIdentifier: ScheduleCollectionViewCell.curriculumReuseIdentifier)
+        let elementKinds: [UICollectionView.ElementKindSection] =
+        [.header, .leading]
+        for elementKind in elementKinds {
+            collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: elementKind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
+        }
+        return collectionView
+    }
+    
+    func data(of indexPath: IndexPath) -> ScheduleMaping.Collection {
+        mappy.datas[indexPath.section][indexPath.item]
+    }
+}
+
+// MARK: UICollectionViewDataSource
+
+extension ScheduleFact: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        mappy.datas.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        mappy.datas[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data = data(of: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.curriculumReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
+        
+        var drawType: ScheduleCollectionViewCell.DrawType.CurriculumType = .morning
+        
+        if data.location <= 4 {
+            drawType = .morning
+        } else if data.location <= 8 {
+            drawType = .afternoon
+        } else {
+            drawType = .night
+        }
+        
+        cell.set(curriculumType: drawType, title: data.cal.curriculum.course, content: data.cal.curriculum.classRoom, isMultiple: false)
+        
+        return cell
+    }
+}
+
+// MARK: ScheduleCollectionViewLayoutDataSource
+
+extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, columnOfItemAtIndexPath indexPath: IndexPath) -> Int {
+        data(of: indexPath).cal.curriculum.inWeek
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, lineOfItemAtIndexPath indexPath: IndexPath) -> Int {
+        data(of: indexPath).location
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, lenthOfItemAtIndexPath indexPath: IndexPath) -> Int {
+        data(of: indexPath).lenth
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, numberOfSupplementaryOfKind kind: String, inSection section: Int) -> Int {
+        guard let kind = UICollectionView.ElementKindSection(rawValue: kind) else { return 0 }
+        switch kind {
+        case .header:
+            return 8
+        case .leading:
+            return 12
+        case .placeHolder:
+            return 0
+        case .pointHolder:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, persentOfPointAtIndexPath indexPath: IndexPath) -> CGFloat {
+        1
+    }
+}
+
+// MARK: UICollectionViewDelegate
+ 
+extension ScheduleFact: UICollectionViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        let layout = scrollView.collectionView.collectionViewLayout.ry_layout
+        layout.pageCalculation = Int(scrollView.contentOffset.x / scrollView.bounds.size.width) * layout.pageShows
+        scrollViewStartPosPoint = scrollView.contentOffset
+        scrollDirection = 0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollDirection == 0 {
+            if abs(scrollViewStartPosPoint.x - scrollView.contentOffset.x) <
+                abs(scrollViewStartPosPoint.y - scrollView.contentOffset.y) {
+                
+                scrollDirection = 1     // Vertical Scrolling
+            } else {
+                scrollDirection = 2     // Horitonzal Scrolling
+            }
+        }
+        // Update scroll position of the scrollview according to detected direction.
+        if scrollDirection == 1 {
+            scrollView.contentOffset = CGPoint(x: scrollViewStartPosPoint.x, y: scrollView.contentOffset.y)
+        } else {
+            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: scrollViewStartPosPoint.y)
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { scrollDirection = 0 }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollDirection = 0
+    }
+}

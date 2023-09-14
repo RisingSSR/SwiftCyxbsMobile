@@ -26,29 +26,11 @@ struct Constants {
     }()
     
     static var safeDistanceTop: CGFloat {
-        if #available(iOS 13.0, *) {
-            let scene = UIApplication.shared.connectedScenes.first
-            guard let windowScene = scene as? UIWindowScene else { return 0 }
-            guard let window = windowScene.windows.first else { return 0 }
-            return window.safeAreaInsets.top
-        } else if #available(iOS 11.0, *) {
-            guard let window = UIApplication.shared.windows.first else { return 0 }
-            return window.safeAreaInsets.top
-        }
-        return 0
+        keyWindow?.safeAreaInsets.top ?? 0
     }
     
     static var safeDistanceBottom: CGFloat {
-        if #available(iOS 13.0, *) {
-            let scene = UIApplication.shared.connectedScenes.first
-            guard let windowScene = scene as? UIWindowScene else { return 0 }
-            guard let window = windowScene.windows.first else { return 0 }
-            return window.safeAreaInsets.bottom
-        } else if #available(iOS 11.0, *) {
-            guard let window = UIApplication.shared.windows.first else { return 0 }
-            return window.safeAreaInsets.bottom
-        }
-        return 0
+        keyWindow?.safeAreaInsets.bottom ?? 0
     }
     
     static var statusBarHeight: CGFloat {

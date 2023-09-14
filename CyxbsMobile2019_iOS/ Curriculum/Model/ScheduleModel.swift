@@ -11,7 +11,7 @@ import SwiftyJSON
 
 struct ScheduleModel: Codable {
     
-    enum CustomType: Codable {
+    enum CustomType: Codable, Hashable {
         
         case system
         

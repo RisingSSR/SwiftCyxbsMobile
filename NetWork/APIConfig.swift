@@ -22,15 +22,19 @@ struct APIConfig {
         
         case CLOUD(String)   // 容灾环境
         
-        var url: String {
+        var host: String {
             switch self {
             case .BE_PROD:
-                return "https://be-prod.redrock.cqupt.edu.cn"
+                return "be-prod.redrock.cqupt.edu.cn"
             case .BE_DEV:
-                return "https://be-dev.redrock.cqupt.edu.cn"
+                return "be-dev.redrock.cqupt.edu.cn"
             case .CLOUD(let base_url):
-                return "https://\(base_url)"
+                return base_url
             }
+        }
+        
+        var url: String {
+            "https://\(host)"
         }
     }
     
@@ -55,6 +59,9 @@ struct APIConfig {
     }
     
     static func api(_ api: String) -> String {
+        let host = AliyunConfig.ip(byHost: environment.host) ?? environment.host
+        let url = "https://" + host + api
+        print("url: \(url)")
         return environment.url + api
     }
 }

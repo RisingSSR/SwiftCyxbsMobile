@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         setupWindow()
+        setupAlicloudSDK()
         
         return true
     }
@@ -29,5 +30,9 @@ extension AppDelegate {
         window = UIWindow()
         window?.rootViewController = rootVC
         window?.makeKeyAndVisible()
+    }
+    
+    func setupAlicloudSDK() {
+        AliyunConfig.setup()
     }
 }

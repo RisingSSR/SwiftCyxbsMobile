@@ -20,6 +20,8 @@ struct ScheduleCalModel {
     
     let curriculum: CurriculumModel
     
+    let customType: ScheduleModel.CustomType
+    
     let startCal: Date?
     
     let endCal: Date?
@@ -34,7 +36,7 @@ struct ScheduleCalModel {
         }
     }
     
-    init(sno: String, start: Date?, inSection: Int, stu: SearchStudentModel?, curriculum: CurriculumModel) {
+    init(sno: String, start: Date?, inSection: Int, stu: SearchStudentModel?, curriculum: CurriculumModel, customType: ScheduleModel.CustomType = .system) {
         self.sno = sno
         self.start = start
         self.inSection = inSection
@@ -47,8 +49,30 @@ struct ScheduleCalModel {
         }
         startCal = ScheduleCalModel.start(of: day, in: curriculum.period.lowerBound)
         endCal = ScheduleCalModel.end(of: day, in: curriculum.period.upperBound)
+        self.customType = customType
     }
 }
+
+extension ScheduleCalModel: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(sno)
+        hasher.combine(inSection)
+        hasher.combine(stu)
+        hasher.combine(curriculum)
+        hasher.combine(customType)
+    }
+
+    static func == (lhs: ScheduleCalModel, rhs: ScheduleCalModel) -> Bool {
+        return lhs.sno == rhs.sno &&
+            lhs.inSection == rhs.inSection &&
+            lhs.stu == rhs.stu &&
+            lhs.curriculum == rhs.curriculum &&
+            lhs.customType == rhs.customType
+    }
+}
+
+// MARK: time
 
 extension ScheduleCalModel {
     
@@ -68,6 +92,8 @@ extension ScheduleCalModel {
         min(max(index - 1, 0), CourseCalComponents.all.count - 1)
     }
 }
+
+// MARK: ~.CourseCalComponents
 
 extension ScheduleCalModel {
     
@@ -106,16 +132,20 @@ func - (lhs: DateComponents, rhs: DateComponents) -> ScheduleCalModel.CourseCalC
     .init(start: lhs, end: rhs)
 }
 
+// MARK: creater
+
 extension ScheduleCalModel {
     
     static func create(with model: ScheduleModel) -> [ScheduleCalModel] {
         model.curriculum.flatMap { course in
-            course.inSections.map { inSection in
-                ScheduleCalModel(sno: model.sno,
-                                 start: model.start,
-                                 inSection: inSection,
-                                 stu: model.student,
-                                 curriculum: course)
+            (course.inSections + [0])
+                .map { inSection in
+                    ScheduleCalModel(sno: model.sno,
+                                     start: model.start,
+                                     inSection: inSection,
+                                     stu: model.student,
+                                     curriculum: course,
+                                     customType: model.customType)
             }
         }
     }

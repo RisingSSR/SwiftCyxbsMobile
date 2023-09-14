@@ -1,6 +1,19 @@
 PODS:
   - Alamofire (5.8.0)
+  - AlicloudHTTPDNS (2.1.0):
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUtils
+  - AlicloudSender (1.0.0.3):
+    - AlicloudUTDID
+    - EMASRest
+  - AlicloudUT (5.2.0.16):
+    - AlicloudUTDID
+  - AlicloudUTDID (1.5.0.94)
+  - AlicloudUtils (1.4.1):
+    - AlicloudUTDID
   - Bugly (2.5.93)
+  - EMASRest (11.1.1.2)
   - FluentDarkModeKit (1.0.4)
   - IQKeyboardManager (6.5.12)
   - JXBanner (0.3.6):
@@ -79,6 +92,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlicloudHTTPDNS
+  - AlicloudUtils
   - Bugly
   - FluentDarkModeKit
   - IQKeyboardManager
@@ -104,6 +119,13 @@ DEPENDENCIES:
   - UMVerify
 
 SPEC REPOS:
+  https://github.com/aliyun/aliyun-specs.git:
+    - AlicloudHTTPDNS
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUTDID
+    - AlicloudUtils
+    - EMASRest
   https://github.com/CocoaPods/Specs.git:
     - FluentDarkModeKit
     - MBProgressHUD
@@ -130,7 +152,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  AlicloudHTTPDNS: fc256d8741c8163a8f3171d63fec30e5b5cf410d
+  AlicloudSender: 1f468b6bd962a099ffc19d45e3608b0fe98f259d
+  AlicloudUT: 6d1cf30d57d096b7e9bb4b069dd0ba6ad59a3338
+  AlicloudUTDID: 7323c443dcdf9a73e2224dc6ce51703671d7a765
+  AlicloudUtils: 873a76615bebcee8b1996f20820d366e433c3eab
   Bugly: b8715e6ec4004b7f7fbffab0643ba80545aee3da
+  EMASRest: 8df6f87836767a9415ad5cc4af739bc9d215b475
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   JXBanner: 348dbef856e786494cbf30fb45d6b84826f2d3c5
@@ -151,6 +179,6 @@ SPEC CHECKSUMS:
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: 7ace8b8c8fec9f077d1e638172343c433dc4c3af
+PODFILE CHECKSUM: d771ac759dba4dc70da5e5b1427a3ac9bbfa2fa9
 
 COCOAPODS: 1.12.1

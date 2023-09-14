@@ -1,5 +1,6 @@
 source 'https://github.com/CocoaPods/specs'
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
 
 platform :ios,'11.0'
 use_frameworks!
@@ -40,6 +41,9 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
   pod 'FluentDarkModeKit'
+  
+  pod 'AlicloudHTTPDNS'
+  pod 'AlicloudUtils'
   
   pod 'RYTransitioningDelegateSwift'
   pod 'RYAngelWalker'

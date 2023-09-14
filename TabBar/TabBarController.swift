@@ -8,6 +8,7 @@
 
 import UIKit
 import SwifterSwift
+import RYTransitioningDelegateSwift
 
 open class TabBarController: UITabBarController {
 
@@ -26,18 +27,24 @@ open class TabBarController: UITabBarController {
         
         tabBar.ryTabBar?.headerView.handle_viewWillAppear()
     }
+    
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        reloadData()
+    }
 }
+
+// MARK: data
 
 extension TabBarController {
     
     func reloadData() {
         if let sno = Constants.mainSno,
            var scheduleModel = ScheduleModel.getFromCache(sno: sno) {
-            
+
             let date = UserDefaultsManager.shared.latestRequest(sno: sno) ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
             scheduleModel.nowWeek += days
-            
+
             reloadWith(scheduleModel: scheduleModel)
         } else {
             request()
@@ -66,10 +73,6 @@ extension TabBarController {
         } else {
             reloadTabBarData(title: "今天已经没课了", time: "好好休息吧", place: "明天新一天")
         }
-        
-        let group = ScheduleGroupModel(name: scheduleModel.sno)
-        group.group(with: scheduleModel, prepare: calModels)
-        print(group.mapPage)
     }
     
     func reloadTabBarData(title: String?, time: String?, place: String?) {
@@ -77,10 +80,16 @@ extension TabBarController {
     }
 }
 
+// MARK: setup
+
 extension TabBarController {
     
     func setupTabBar() {
         let tabBar = TabBar()
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
+        tabBar.headerView.addGestureRecognizer(pan)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(response(tap:)))
+        tabBar.headerView.addGestureRecognizer(tap)
         setValue(tabBar, forKey: "tabBar")
     }
     
@@ -94,6 +103,8 @@ extension TabBarController {
         viewControllers = vcs
     }
 }
+
+// MARK: creater
 
 extension TabBarController {
     
@@ -138,6 +149,46 @@ extension TabBarController {
     }
 }
 
+// MARK: interaction
+
+extension TabBarController {
+    
+    @objc
+    func response(tap: UITapGestureRecognizer) {
+        presentSchedule()
+    }
+    
+    @objc
+    func response(pan: UIPanGestureRecognizer) {
+        if pan.state == .began {
+            presentSchedule(pan: pan)
+        }
+    }
+    
+    func presentSchedule(pan: UIPanGestureRecognizer? = nil, completion: ((UIViewController) -> Void)? = nil) {
+        if let presentedViewController {
+            completion?(presentedViewController)
+            return
+        }
+        
+        let transitionDelegate = RYTransitioningDelegate()
+        transitionDelegate.panInsetsIfNeeded = UIEdgeInsets(top: Constants.statusBarHeight, left: 0, bottom: tabBar.bounds.height, right: 0)
+        transitionDelegate.supportedTapOutsideBackWhenPresent = false
+        transitionDelegate.panGestureIfNeeded = pan
+        
+        let vc = ScheduleViewController()
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = transitionDelegate
+        present(vc, animated: true) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 30)) {
+                completion?(vc)
+            }
+        }
+    }
+}
+
+// MARK: UITabBarDelegate
+
 extension TabBarController {
     
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -148,6 +199,8 @@ extension TabBarController {
         }
     }
 }
+
+// MARK: extension
 
 extension UIViewController {
     var ryTabBarController: TabBarController {
