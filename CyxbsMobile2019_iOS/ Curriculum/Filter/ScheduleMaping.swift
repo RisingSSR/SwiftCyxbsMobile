@@ -23,6 +23,10 @@ class ScheduleMaping {
         }
     }
     
+    var name: String? = nil
+    
+    var start: Date? = nil
+    
     // if you don't want to have a diffirent views, set it to false
     // otherwise, your time complexity will approach O(n ^ 3)
     var checkPriority: Bool = true
@@ -85,6 +89,9 @@ extension ScheduleMaping {
     
     // map a ScheduleModel on mapTable, O(n + m), n: section, m: lenth
     func maping(_ model: ScheduleModel, prepare cals: [ScheduleCalModel]? = nil, priority: Priority = .mainly) {
+        if model.customType == .system {
+            start = model.start
+        }
         didFinished = false
         scheduleModelMap[priority] = model
         let cals = cals ?? model.calModels

@@ -11,27 +11,50 @@ import FluentDarkModeKit
 
 extension UIColor {
     
-    class func hex(_ hexString: String, alpha: CGFloat = 1) -> UIColor {
-        var hString = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        if hString.count < 6 {
-            return UIColor.clear
+    convenience init?(hexString: String) {
+        var str = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if str.hasPrefix("#") {
+            str = String(str.dropFirst())
+        } else if str.hasPrefix("0X") {
+            str = String(str.dropFirst(2))
         }
-        if hString.hasPrefix("#") {
-            hString = hString.components(separatedBy: "#").last ?? ""
-        } else if hString.hasPrefix("0X") {
-            hString = hString.components(separatedBy: "0X").last ?? ""
+
+        let length = str.count
+        guard length == 3 || length == 4 || length == 6 || length == 8 else {
+            return nil
         }
-        if hString.count != 6 {
-            return UIColor.clear
+
+        var rgba: (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 1)
+
+        if length < 5 {
+            rgba.0 = hexStrToInt(String(str.prefix(1))) / 255.0
+            rgba.1 = hexStrToInt(String(String(str.prefix(2)).suffix(1))) / 255.0
+            rgba.2 = hexStrToInt(String(str.suffix(1))) / 255.0
+            if length == 4 {
+                rgba.3 = hexStrToInt(String(str.suffix(1))) / 255.0
+            }
+        } else {
+            rgba.0 = hexStrToInt(String(str.prefix(2))) / 255.0
+            rgba.1 = hexStrToInt(String(String(str.prefix(4)).suffix(2))) / 255.0
+            rgba.2 = hexStrToInt(String(String(str.prefix(6)).suffix(2))) / 255.0
+            if length == 8 {
+                rgba.3 = hexStrToInt(String(str.suffix(2))) / 255.0
+            }
         }
-        let rString = String(hString.prefix(2))
-        let gString = String(hString.dropFirst(2).prefix(2))
-        let bString = String(hString.suffix(2))
-        var r: UInt64 = 0, g: UInt64 = 0, b: UInt64 = 0
-        Scanner(string: rString).scanHexInt64(&r)
-        Scanner(string: gString).scanHexInt64(&g)
-        Scanner(string: bString).scanHexInt64(&b)
-        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
+
+        self.init(red: rgba.0, green: rgba.1, blue: rgba.2, alpha: rgba.3)
+        
+        func hexStrToInt(_ str: String) -> CGFloat {
+            var result: UInt32 = 0
+            let scanner = Scanner(string: str)
+            scanner.scanHexInt32(&result)
+            return CGFloat(result)
+        }
+    }
+    
+    class func hex(_ hexString: String) -> UIColor {
+        UIColor(hexString: hexString) ?? .clear
     }
     
     static let ry = _ry()

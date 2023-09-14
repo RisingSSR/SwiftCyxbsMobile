@@ -39,6 +39,7 @@
 		14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14622E1C2AB1F14600D8D1E1 /* AliyunEmasServices-Info.plist */; };
 		14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 14622E212AB2850900D8D1E1 /* AliyunConfig.m */; };
 		14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E232AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift */; };
+		14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
@@ -99,6 +100,7 @@
 		14622E202AB2850900D8D1E1 /* AliyunConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunConfig.h; sourceTree = "<group>"; };
 		14622E212AB2850900D8D1E1 /* AliyunConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunConfig.m; sourceTree = "<group>"; };
 		14622E232AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInteractionFact.swift; sourceTree = "<group>"; };
+		14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationEX.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
+				14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 			files = (
 				14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */,
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
+				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,

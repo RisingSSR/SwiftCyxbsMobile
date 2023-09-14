@@ -184,6 +184,19 @@ extension ScheduleCollectionViewCell {
         self.isTitleOnly = isTitleOnly
         titleLab.text = title
         contentLab.text = content
+        switch supplementaryType {
+            
+        case .normal:
+            contentView.backgroundColor = .clear
+            titleLab.textColor = .ry.color(light: .hex("#15315B"), dark: .hex("#F0F0F2"))
+            contentLab.textColor = .ry.color(light: .hex("#606E8A"), dark: .hex("#868686"))
+            
+        case .select:
+            contentView.backgroundColor = .ry.color(light: .hex("#2A4E84"), dark: .hex("#5A5A5ACC"))
+            titleLab.textColor = .ry.color(light: .hex("#FFFFFF"), dark: .hex("#F0F0F2"))
+            contentLab.textColor = .ry.color(light: .hex("#FFFFFF64"), dark: .hex("#868686"))
+            
+        }
         updateFrame()
     }
     
@@ -220,11 +233,10 @@ extension ScheduleCollectionViewCell {
             
             if isTitleOnly {
                 titleLab.center.y = bounds.height / 2
-                contentLab.isHidden = true
             } else {
                 titleLab.frame.origin.y = 6
-                contentLab.isHidden = false
             }
+            contentLab.isHidden = isTitleOnly
             contentLab.frame.origin.y = bounds.height - contentLab.bounds.height - 3
         }
     }

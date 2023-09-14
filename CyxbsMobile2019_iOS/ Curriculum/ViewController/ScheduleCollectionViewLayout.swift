@@ -82,7 +82,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
     
     open var widthForLeadingSupplementaryView: CGFloat = 30
     
-    open var heightForHeaderSupplementaryView: CGFloat = 58
+    open var heightForHeaderSupplementaryView: CGFloat = 50
     
     open var pageCalculation: Int = 0
     
@@ -171,8 +171,14 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         guard let elementKindSection = UICollectionView.ElementKindSection(rawValue: elementKind) else { return nil }
         guard let elementKindAttributes = supplementaryAttributes[elementKind] else { return nil }
         let attributes = elementKindAttributes[indexPath] ?? UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, with: indexPath)
+        setupSupplementaryAttributes(attributes, elementKindSection: elementKindSection)
         supplementaryAttributes[elementKind]?[indexPath] = attributes
+        return attributes
+    }
+    
+    func setupSupplementaryAttributes(_ attributes :UICollectionViewLayoutAttributes, elementKindSection: UICollectionView.ElementKindSection) {
         
+        let indexPath = attributes.indexPath
         let pageWidth = ry_collectionView.bounds.width / CGFloat(pageShows)
         
         switch elementKindSection {
@@ -211,8 +217,6 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
             let persent = dataSource?.collectionView(ry_collectionView, layout: self, persentOfPointAtIndexPath: indexPath) ?? 0
             print("todo")
         }
-        
-        return attributes
     }
     
     // MARK: others
@@ -221,12 +225,19 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         calculateLayoutIfNeeded()
     }
     
+    open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        true
+    }
+    
     open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
         if context.invalidateDataSourceCounts {
             itemAttributes.removeAll(keepingCapacity: true)
             for key in supplementaryAttributes {
                 supplementaryAttributes[key.key]?.removeAll(keepingCapacity: true)
             }
+        }
+        supplementaryAttributes[UICollectionView.ElementKindSection.header.rawValue]?.forEach { entry in
+            self.setupSupplementaryAttributes(entry.value, elementKindSection: .header)
         }
     }
     

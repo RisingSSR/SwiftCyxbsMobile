@@ -41,6 +41,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
   pod 'FluentDarkModeKit'
+  pod 'TagListView'
   
   pod 'AlicloudHTTPDNS'
   pod 'AlicloudUtils'
