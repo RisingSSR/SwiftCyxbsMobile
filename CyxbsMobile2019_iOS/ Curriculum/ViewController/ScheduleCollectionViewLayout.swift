@@ -76,7 +76,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
     
     open weak var dataSource: ScheduleCollectionViewLayoutDataSource?
     
-    open var lineSpaceing: CGFloat = 2
+    open var lineSpacing: CGFloat = 2
     
     open var columnSpacing: CGFloat = 2
     
@@ -159,7 +159,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         let attribute = itemAttributes[indexPath] ?? UICollectionViewLayoutAttributes(forCellWith: indexPath)
         attribute.frame = CGRect(
             x: CGFloat(indexPath.section) * ry_collectionView.bounds.width + widthForLeadingSupplementaryView + CGFloat(columnOfItem - 1) * (itemSize.width + columnSpacing),
-            y: heightForHeaderSupplementaryView + CGFloat(lineOfItem - 1) * (itemSize.height + lineSpaceing) + lineSpaceing,
+            y: heightForHeaderSupplementaryView + CGFloat(lineOfItem - 1) * (itemSize.height + lineSpacing) + lineSpacing,
             width: itemSize.width,
             height: CGFloat(lenthOfItem) * itemSize.height + CGFloat(lenthOfItem - 1) * columnSpacing)
         itemAttributes[indexPath] = attribute
@@ -196,7 +196,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         case .leading:
             attributes.frame = CGRect(
                 x: CGFloat(indexPath.section) * ry_collectionView.width,
-                y: heightForHeaderSupplementaryView + CGFloat(indexPath.item) * (lineSpaceing + itemSize.height),
+                y: heightForHeaderSupplementaryView + CGFloat(indexPath.item) * (lineSpacing + itemSize.height),
                 width: widthForLeadingSupplementaryView,
                 height: itemSize.height)
             
@@ -228,6 +228,36 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                 supplementaryAttributes[key.key]?.removeAll(keepingCapacity: true)
             }
         }
+    }
+    
+    open override var collectionViewContentSize: CGSize {
+        let itemCount = 13
+        let sections = collectionView?.dataSource?.numberOfSections?(in: ry_collectionView) ?? 0
+        return CGSize(
+            width: CGFloat(sections) * ry_collectionView.bounds.width,
+            height: heightForHeaderSupplementaryView + CGFloat(itemCount) * (itemSize.height + lineSpacing))
+    }
+    
+    open override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        
+        let toTime = Int(ry_collectionView.contentOffset.y / (itemSize.height + lineSpacing) + 0.5)
+        let toY = (itemSize.height + lineSpacing) * CGFloat(toTime)
+        
+        var index = Int(proposedContentOffset.x / ry_collectionView.bounds.width + 0.5)
+        let remainder = proposedContentOffset.x - CGFloat(index) * ry_collectionView.bounds.width
+        
+        if velocity.x > 0.6 || (velocity.x > 0.3 && remainder > ry_collectionView.bounds.width / 3) {
+            index += 1
+        }
+        if velocity.x < -0.6 || (velocity.x < -0.3 && remainder < ry_collectionView.bounds.width / 3) {
+            index -= 1
+        }
+        index = max(index, pageCalculation - 1)
+        index = min(index, pageCalculation + 1)
+        
+        let toX = ry_collectionView.bounds.width * CGFloat(index)
+        
+        return CGPoint(x: toX, y: toY)
     }
     
     // MARK: private

@@ -22,7 +22,7 @@ extension ScheduleFact {
     @objc
     func createCollectionView() -> UICollectionView {
         let layout = ScheduleCollectionViewLayout()
-        layout.lineSpaceing = 2
+        layout.lineSpacing = 2
         layout.columnSpacing = 2
         layout.widthForLeadingSupplementaryView = 30
         layout.heightForHeaderSupplementaryView = 58
