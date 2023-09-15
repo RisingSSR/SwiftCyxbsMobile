@@ -122,9 +122,10 @@ extension TabBarController {
                          imageName: "TabBar_find_defualt",
                          selectedImageName: "TabBar_find_select"),
             
-            createTabBar(title: "邮问",
-                         imageName: "TabBar_ask_defualt",
-                         selectedImageName: "TabBar_ask_select", needMoreSpaceToShow: false),
+            createTabBar(title: "邮乐场",
+                         imageName: "TabBar_carnie_defualt",
+                         selectedImageName: "TabBar_carnie_select",
+                         needMoreSpaceToShow: false),
             
             createTabBar(title: "我的",
                          imageName: "TabBar_mine_defualt",
@@ -132,8 +133,16 @@ extension TabBarController {
         ]
     }
     
+    
+    
     var finderViewController: UIViewController {
         let vc = FinderViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
+    }
+    
+    var carnieViewController: UIViewController {
+        let vc = CarnieViewController()
         let nav = UINavigationController(rootViewController: vc)
         return nav
     }
@@ -197,6 +206,23 @@ extension TabBarController {
             tabBar.reloadInputViews()
             tabBar.sizeToFit()
         }
+    }
+}
+
+// MARK: RYTransitioningAnimationDelegate
+
+extension TabBarController: RYTransitioningAnimationDelegate {
+    
+    public func prepare(_ transitioningDelegate: RYTransitioningDelegate, withAnimatedTransitioning animatedTransitioning: RYAnimatedTransitioning, forPresented context: UIViewControllerContextTransitioning) {
+        
+        guard let from = context.viewController(forKey: .from) as? UITabBarController else {
+            animatedTransitioning.prepare(context: context)
+            return
+        }
+        
+        let tabBarCopy = from.tabBar.copyByKeyedArchiver
+        
+        
     }
 }
 

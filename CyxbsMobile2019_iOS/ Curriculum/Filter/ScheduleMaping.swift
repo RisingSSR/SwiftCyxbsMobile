@@ -85,16 +85,6 @@ class ScheduleMaping {
     private var didFinished: Bool = false
 }
 
-// MARK: search back
-
-extension ScheduleMaping {
-    
-    // search priority on scheduleModelMap, O(n)
-    func getPriority(for sno: String, customType: ScheduleModel.CustomType) -> Priority? {
-        scheduleModelMap.first { $0.key.sno == sno && $0.key.customType == customType }?.value
-    }
-}
-
 // MARK: mapping
 
 extension ScheduleMaping {
@@ -170,6 +160,11 @@ extension ScheduleMaping {
             old.count += 1
         }
     }
+}
+
+// MARK: finish
+
+extension ScheduleMaping {
     
     // finished mapTable to finalData
     func finish() {
@@ -204,5 +199,18 @@ extension ScheduleMaping {
                 oldValue = newValue
             }
         }
+    }
+}
+
+// MARK: clean
+
+extension ScheduleMaping {
+    
+    func clean() {
+        scheduleModelMap = [:]
+        mapTable = [:]
+        oldValues = []
+        finalData = [[]]
+        didFinished = false
     }
 }

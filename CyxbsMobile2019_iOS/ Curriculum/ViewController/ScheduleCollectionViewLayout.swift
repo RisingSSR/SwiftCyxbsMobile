@@ -82,7 +82,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
     
     open var widthForLeadingSupplementaryView: CGFloat = 30
     
-    private var heightForHeaderSupplementaryView: CGFloat = 0
+    private(set) var heightForHeaderSupplementaryView: CGFloat = 0
 
     open var aspectRatio: CGFloat = 46.0 / 50.0
     

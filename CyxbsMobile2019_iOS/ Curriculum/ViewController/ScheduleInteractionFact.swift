@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class ScheduleInteractionFact: ScheduleFact {
     
@@ -14,9 +15,27 @@ class ScheduleInteractionFact: ScheduleFact {
     
     override func createCollectionView() -> UICollectionView {
         let collectionView = super.createCollectionView()
+        
+        let header = MJRefreshGifHeader {
+            self.mappy.clean()
+            self.request(sno: "2021215154")
+        }
+        .autoChangeTransparency(true)
+        .set_refresh_sports()
+        .ignoredScrollView(contentInsetTop: -58)
+        .link(to: collectionView)
+        
+        header.isCollectionViewAnimationBug = true
+        header.endRefreshingAnimationBeginAction = {
+            collectionView.collectionViewLayout.finalizeLayoutTransition()
+        }
+        
         self.collectionView = collectionView
         return collectionView
     }
+}
+
+extension ScheduleInteractionFact {
     
     func request(sno: String) {
         ScheduleModel.request(sno: sno) { response in
@@ -27,6 +46,15 @@ class ScheduleInteractionFact: ScheduleFact {
             case .failure(let error):
                 print("error \(error)")
             }
+            self.collectionView.mj_header?.endRefreshing()
         }
+    }
+}
+
+extension ScheduleInteractionFact {
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        super.scrollViewDidScroll(scrollView)
+        scrollView.mj_header?.frame.origin.x = scrollView.contentOffset.x
     }
 }

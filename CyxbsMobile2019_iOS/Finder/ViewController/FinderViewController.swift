@@ -15,4 +15,11 @@ class FinderViewController: UIViewController {
         
         view.backgroundColor = .ry.backgroundColorForPlace_p1
     }
+    
+    lazy var contentScrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: view.bounds)
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        scrollView.backgroundColor = .clear
+        return scrollView
+    }()
 }
