@@ -74,8 +74,7 @@ extension ScheduleFact: UICollectionViewDataSource {
         } else {
             drawType = .night
         }
-        
-        cell.set(curriculumType: drawType, title: data.cal.curriculum.course, content: data.cal.curriculum.classRoom, isMultiple: false)
+        cell.set(curriculumType: drawType, title: data.cal.curriculum.course, content: data.cal.curriculum.classRoom, isMultiple: data.count > 1)
         
         return cell
     }
@@ -88,8 +87,10 @@ extension ScheduleFact: UICollectionViewDataSource {
         switch kind {
             
         case .header:
+            let startModay = mappy.start ?? Calendar.current.date(bySetting: .weekday, value: 2, of: Date()) ?? Date()
+            
             let isTitleOnly = (indexPath.section == 0 || indexPath.item == 0 || mappy.start == nil)
-            let currenDay = Calendar.current.date(byAdding: .day, value: (indexPath.section - 1) * 7 + indexPath.item - 1, to: mappy.start ?? Date()) ?? Date()
+            let currenDay = Calendar.current.date(byAdding: .day, value: (indexPath.section - 1) * 7 + indexPath.item - 1, to: startModay) ?? Date()
             let isToday = Calendar.current.isDateInToday(currenDay)
             
             var title: String? = nil
@@ -103,12 +104,13 @@ extension ScheduleFact: UICollectionViewDataSource {
                 title = currenDay.string(locale: .cn, format: "EEE")
             }
             
-            var content = currenDay.string(locale: .cn, format: "d日")
+            let content = currenDay.string(locale: .cn, format: "d日")
             
             cell.set(supplementaryType: isToday ? .select : .normal, title: title, content: content, isTitleOnly: isTitleOnly)
+            cell.backgroundColor = collectionView.backgroundColor
             
         case .leading:
-            let title = "\(indexPath.item)"
+            let title = "\(indexPath.item + 1)"
             
             cell.set(supplementaryType: .normal, title: title, content: nil, isTitleOnly: true)
             

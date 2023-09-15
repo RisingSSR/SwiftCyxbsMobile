@@ -143,6 +143,7 @@ extension ScheduleCollectionViewCell {
         drawType = .curriculum(curriculumType)
         initCurriculum()
         self.isTitleOnly = isTitleOnly
+        self.isMultiple = isMultiple
         titleLab.text = title
         contentLab.text = content
         backImgView.isHidden = (curriculumType != .custom)
@@ -182,6 +183,7 @@ extension ScheduleCollectionViewCell {
         drawType = .supplementary(supplementaryType)
         initSupplementary()
         self.isTitleOnly = isTitleOnly
+        self.isMultiple = false
         titleLab.text = title
         contentLab.text = content
         switch supplementaryType {
@@ -201,6 +203,7 @@ extension ScheduleCollectionViewCell {
     }
     
     func updateFrame() {
+        multyView.isHidden = !isMultiple
         switch drawType {
         case .curriculum(_):
             let space: CGFloat = 8

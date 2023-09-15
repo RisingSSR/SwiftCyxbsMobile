@@ -156,11 +156,11 @@ extension ScheduleMaping {
         firm_and_unshakable(old: &ary[location]!)
         
         func abandon_the_old_for_the_new(old: Collection? = nil) {
+            var new = pCal
             if let old {
                 oldValues.append(old)
+                new.count += 1
             }
-            var new = pCal
-            new.count += 1
             ary[location] = new
             mapTable[indexPath] = ary
         }
@@ -192,7 +192,8 @@ extension ScheduleMaping {
                 let newValue = each.value[newIndex]
                 if oldValue != newValue {
                     if let newValue {
-                        let collection = Collection(cal: newValue.cal, location: newIndex, priority: newValue.priority)
+                        var collection = Collection(cal: newValue.cal, location: newIndex, priority: newValue.priority)
+                        collection.count = newValue.count
                         finalData[each.key[0]].append(collection)
                     }
                 } else {
