@@ -237,7 +237,7 @@ extension ScheduleCollectionViewCell {
                 titleLab.frame.origin.y = 6
             }
             contentLab.isHidden = isTitleOnly
-            contentLab.frame.origin.y = bounds.height - contentLab.bounds.height - 3
+            contentLab.frame.origin.y = bounds.height - contentLab.bounds.height - 6
         }
     }
 }

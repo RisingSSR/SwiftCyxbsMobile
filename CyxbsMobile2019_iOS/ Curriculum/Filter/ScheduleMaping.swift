@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ScheduleMaping {
+// MARK: ~.Priority
+
+extension ScheduleMaping {
     
     enum Priority: Int, Comparable {
         
@@ -22,6 +24,39 @@ class ScheduleMaping {
             lhs.rawValue < rhs.rawValue
         }
     }
+}
+
+// MARK: ~.Collection
+
+extension ScheduleMaping {
+    
+    struct Collection: Equatable {
+        
+        let cal: ScheduleCalModel
+        
+        let location: Int
+        
+        var lenth: Int = 1
+        
+        let priority: Priority
+        
+        var count: Int = 1
+        
+        init(cal: ScheduleCalModel, location: Int, priority: Priority) {
+            self.cal = cal
+            self.location = location
+            self.priority = priority
+        }
+        
+        static func == (lhs: ScheduleMaping.Collection, rhs: ScheduleMaping.Collection) -> Bool {
+            lhs.cal === rhs.cal
+        }
+    }
+}
+
+// MARK: ScheduleMaping
+
+class ScheduleMaping {
     
     var name: String? = nil
     
@@ -31,14 +66,13 @@ class ScheduleMaping {
     // otherwise, your time complexity will approach O(n ^ 3)
     var checkPriority: Bool = true
     
-    // .mainly -> {2021215154, system, ...}
-    private var scheduleModelMap: [Priority: ScheduleModel] = [:]
+    // {2021215154, .system} -> .mainly
+    private var scheduleModelMap: [ScheduleModel: Priority] = [:]
     
     // (section, week) -> {ScheduleCalModel, ScheduleCalModel, nil, ...}
-    private var mapTable: [IndexPath: [ScheduleCalModel?]] = [:]
+    private var mapTable: [IndexPath: [Collection?]] = [:]
     
-    // if checkPriority is enable, oldTable will cache unused cal in which location it should to stay
-    private var oldTable: [(m: ScheduleCalModel, l: Int)] = []
+    private var oldValues: [Collection] = []
     
     // the final data to show on view
     private var finalData: [[Collection]] = [[]]
@@ -57,29 +91,7 @@ extension ScheduleMaping {
     
     // search priority on scheduleModelMap, O(n)
     func getPriority(for sno: String, customType: ScheduleModel.CustomType) -> Priority? {
-        scheduleModelMap.first { $0.value.sno == sno && $0.value.customType == customType }?.key
-    }
-}
-
-// MARK: ~.Collection
-
-extension ScheduleMaping {
-    
-    class Collection {
-        
-        let cal: ScheduleCalModel
-        
-        var location: Int
-        
-        var lenth: Int = 1
-        
-        var priority: Priority
-        
-        init(cal: ScheduleCalModel, location: Int, priority: Priority) {
-            self.cal = cal
-            self.location = location
-            self.priority = priority
-        }
+        scheduleModelMap.first { $0.key.sno == sno && $0.key.customType == customType }?.value
     }
 }
 
@@ -92,19 +104,20 @@ extension ScheduleMaping {
         if model.customType == .system {
             start = model.start
         }
+        if scheduleModelMap[model] != nil { return }
         didFinished = false
-        scheduleModelMap[priority] = model
+        scheduleModelMap[model] = priority
         let cals = cals ?? model.calModels
         for cal in cals {
             for idx in cal.curriculum.period {
-                map(cal: cal, in: idx)
+                let pointCal = Collection(cal: cal, location: idx, priority: priority)
+                map(pCal: pointCal, in: idx)
             }
         }
     }
     
-    // map a ScheduleCalModel on a locate of mapTable
-    private func map(cal: ScheduleCalModel, in location: Int, with priority: Priority = .mainly) {
-        let indexPath = IndexPath(indexes: [cal.inSection, cal.curriculum.inWeek])
+    private func map(pCal: Collection, in location: Int) {
+        let indexPath = IndexPath(indexes: [pCal.cal.inSection, pCal.cal.curriculum.inWeek])
         var ary = mapTable[indexPath] ?? []
         if ary.count <= location {
             for _ in ary.count ... location {
@@ -119,43 +132,42 @@ extension ScheduleMaping {
             return
         }
         
-        // abandon the old for the new
+        // if is old exist
         
         guard let old = ary[location] else {
             abandon_the_old_for_the_new()
             return
         }
         
-        guard let oldPriority = getPriority(for: old.sno, customType: old.customType) else {
+        // abandon the old for the new
+        
+        if pCal.priority < old.priority {
             abandon_the_old_for_the_new(old: old)
             return
         }
         
-        if priority < oldPriority {
-            abandon_the_old_for_the_new(old: old)
-            return
-        }
-        
-        if priority == oldPriority {
-            if cal.curriculum.period.count >= old.curriculum.period.count {
+        if pCal.priority == old.priority {
+            if pCal.cal.curriculum.period.count >= old.cal.curriculum.period.count {
                 abandon_the_old_for_the_new(old: old)
+                return
             }
         }
         
-        // firm and unshakable
+        firm_and_unshakable(old: &ary[location]!)
         
-        firm_and_unshakable()
-        
-        // Private function
-        
-        func abandon_the_old_for_the_new(old: ScheduleCalModel? = nil) {
-            if let old { oldTable.append((m: old, l: location)) }
-            ary[location] = cal
+        func abandon_the_old_for_the_new(old: Collection? = nil) {
+            if let old {
+                oldValues.append(old)
+            }
+            var new = pCal
+            new.count += 1
+            ary[location] = new
             mapTable[indexPath] = ary
         }
         
-        func firm_and_unshakable() {
-            oldTable.append((m: cal, l: location))
+        func firm_and_unshakable(old: inout Collection) {
+            oldValues.append(pCal)
+            old.count += 1
         }
     }
     
@@ -180,13 +192,12 @@ extension ScheduleMaping {
                 let newValue = each.value[newIndex]
                 if oldValue != newValue {
                     if let newValue {
-                        let priority = getPriority(for: newValue.sno, customType: newValue.customType) ?? .mainly
-                        let collection = Collection(cal: newValue, location: newIndex, priority: priority)
+                        let collection = Collection(cal: newValue.cal, location: newIndex, priority: newValue.priority)
                         finalData[each.key[0]].append(collection)
                     }
                 } else {
-                    if newValue != nil {
-                        finalData[each.key[0]].last?.lenth += 1
+                    if newValue != nil, finalData[each.key[0]].count > 0 {
+                        finalData[each.key[0]][finalData[each.key[0]].count - 1].lenth += 1
                     }
                 }
                 oldValue = newValue

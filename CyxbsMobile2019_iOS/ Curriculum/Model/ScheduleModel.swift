@@ -9,7 +9,9 @@
 import Foundation
 import SwiftyJSON
 
-struct ScheduleModel: Codable {
+// MARK: ~.CustomType
+
+extension ScheduleModel {
     
     enum CustomType: Codable, Hashable {
         
@@ -17,8 +19,13 @@ struct ScheduleModel: Codable {
         
         case custom
     }
+}
+
+// MARK: ScheduleModel
+
+struct ScheduleModel: Codable {
     
-    var sno: String = ""
+    var sno: String
     
     var customType: CustomType = .system
     
@@ -46,7 +53,22 @@ struct ScheduleModel: Codable {
     var student: SearchStudentModel? = nil
     
     var curriculum: [CurriculumModel] = []
+    
+    init(sno: String, customType: CustomType = .system) {
+        self.sno = sno
+        self.customType = customType
+    }
 }
+
+extension ScheduleModel: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(sno)
+        hasher.combine(customType)
+    }
+}
+
+// MARK: request
 
 extension ScheduleModel {
     
@@ -65,7 +87,7 @@ extension ScheduleModel {
     static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
         
         let group = DispatchGroup()
-        var scheduleModel = ScheduleModel()
+        var scheduleModel = ScheduleModel(sno: sno)
         group.enter()
         SearchStudentModel.request(info: sno) { response in
             switch response {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ScheduleCalModel {
+class ScheduleCalModel {
     
     let sno: String
     
@@ -50,25 +50,6 @@ struct ScheduleCalModel {
         startCal = ScheduleCalModel.start(of: day, in: curriculum.period.lowerBound)
         endCal = ScheduleCalModel.end(of: day, in: curriculum.period.upperBound)
         self.customType = customType
-    }
-}
-
-extension ScheduleCalModel: Hashable {
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(sno)
-        hasher.combine(inSection)
-        hasher.combine(stu)
-        hasher.combine(curriculum)
-        hasher.combine(customType)
-    }
-
-    static func == (lhs: ScheduleCalModel, rhs: ScheduleCalModel) -> Bool {
-        return lhs.sno == rhs.sno &&
-            lhs.inSection == rhs.inSection &&
-            lhs.stu == rhs.stu &&
-            lhs.curriculum == rhs.curriculum &&
-            lhs.customType == rhs.customType
     }
 }
 

@@ -32,7 +32,6 @@
 		14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */; };
 		14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */; };
 		14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E052AAC05B500D8D1E1 /* ScheduleViewController.swift */; };
-		14622E082AAC53F600D8D1E1 /* ScheduleTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E072AAC53F600D8D1E1 /* ScheduleTitleCollectionViewCell.swift */; };
 		14622E0C2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E0B2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift */; };
 		14622E0E2AAF1B9000D8D1E1 /* ScheduleFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E0D2AAF1B9000D8D1E1 /* ScheduleFact.swift */; };
 		14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E0F2AB0478500D8D1E1 /* ScheduleMaping.swift */; };
@@ -91,7 +90,6 @@
 		14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Cyxbs.swift"; sourceTree = "<group>"; };
 		14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
 		14622E052AAC05B500D8D1E1 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
-		14622E072AAC53F600D8D1E1 /* ScheduleTitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		14622E0B2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewLayout.swift; sourceTree = "<group>"; };
 		14622E0D2AAF1B9000D8D1E1 /* ScheduleFact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFact.swift; sourceTree = "<group>"; };
 		14622E0F2AB0478500D8D1E1 /* ScheduleMaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleMaping.swift; sourceTree = "<group>"; };
@@ -263,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */,
-				14622E072AAC53F600D8D1E1 /* ScheduleTitleCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -616,7 +613,6 @@
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
-				14622E082AAC53F600D8D1E1 /* ScheduleTitleCollectionViewCell.swift in Sources */,
 				14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */,
 				14622E0C2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift in Sources */,
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,

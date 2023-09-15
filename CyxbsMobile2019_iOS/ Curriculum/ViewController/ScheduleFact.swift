@@ -25,7 +25,6 @@ extension ScheduleFact {
         layout.lineSpacing = 2
         layout.columnSpacing = 2
         layout.widthForLeadingSupplementaryView = 30
-        layout.heightForHeaderSupplementaryView = 58
         layout.dataSource = self
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -77,6 +76,48 @@ extension ScheduleFact: UICollectionViewDataSource {
         }
         
         cell.set(curriculumType: drawType, title: data.cal.curriculum.course, content: data.cal.curriculum.classRoom, isMultiple: false)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
+        
+        let kind = UICollectionView.ElementKindSection(rawValue: kind) ?? .header
+        
+        switch kind {
+            
+        case .header:
+            let isTitleOnly = (indexPath.section == 0 || indexPath.item == 0 || mappy.start == nil)
+            let currenDay = Calendar.current.date(byAdding: .day, value: (indexPath.section - 1) * 7 + indexPath.item - 1, to: mappy.start ?? Date()) ?? Date()
+            let isToday = Calendar.current.isDateInToday(currenDay)
+            
+            var title: String? = nil
+            if indexPath.item == 0 {
+                if indexPath.section == 0 {
+                    title = "学期"
+                } else {
+                    title = currenDay.string(locale: .cn, format: "M月")
+                }
+            } else {
+                title = currenDay.string(locale: .cn, format: "EEE")
+            }
+            
+            var content = currenDay.string(locale: .cn, format: "d日")
+            
+            cell.set(supplementaryType: isToday ? .select : .normal, title: title, content: content, isTitleOnly: isTitleOnly)
+            
+        case .leading:
+            let title = "\(indexPath.item)"
+            
+            cell.set(supplementaryType: .normal, title: title, content: nil, isTitleOnly: true)
+            
+        case .placeHolder:
+            break
+            
+        case .pointHolder:
+            break
+        }
         
         return cell
     }

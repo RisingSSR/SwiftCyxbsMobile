@@ -82,7 +82,11 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
     
     open var widthForLeadingSupplementaryView: CGFloat = 30
     
-    open var heightForHeaderSupplementaryView: CGFloat = 50
+    private var heightForHeaderSupplementaryView: CGFloat = 0
+
+    open var aspectRatio: CGFloat = 46.0 / 50.0
+    
+    open var heightForHeader: CGFloat = 50
     
     open var pageCalculation: Int = 0
     
@@ -275,6 +279,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
     
     private func calculateLayoutIfNeeded() {
         let width = (ry_collectionView.bounds.width - widthForLeadingSupplementaryView) / 7 - columnSpacing
-        itemSize = CGSize(width: width, height: width / 46 * 50)
+        itemSize = CGSize(width: width, height: width / aspectRatio)
+        heightForHeaderSupplementaryView = width / aspectRatio
     }
 }
