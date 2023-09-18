@@ -59,9 +59,7 @@ struct APIConfig {
     }
     
     static func api(_ api: String) -> String {
-        let host = AliyunConfig.ip(byHost: environment.host) ?? environment.host
-        let url = "https://" + host + api
-        print("url: \(url)")
-        return environment.url + api
+        let url = environment.url + api
+        return url
     }
 }

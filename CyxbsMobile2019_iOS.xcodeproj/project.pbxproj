@@ -42,6 +42,7 @@
 		14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E2B2AB4295C00D8D1E1 /* PodEX.swift */; };
 		14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */; };
 		14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */; };
+		14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4C2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
@@ -105,6 +106,7 @@
 		14622E2B2AB4295C00D8D1E1 /* PodEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodEX.swift; sourceTree = "<group>"; };
 		14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnieViewController.swift; sourceTree = "<group>"; };
 		14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderHeaderView.swift; sourceTree = "<group>"; };
+		14622E4C2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresentationViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */,
 				143F702E2AA4980C0048E264 /* TabBar.swift */,
 				14622DCC2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift */,
+				14622E4C2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
+				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
 				14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,

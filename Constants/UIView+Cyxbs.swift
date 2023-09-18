@@ -48,7 +48,7 @@ extension UIView {
 
 extension UIScrollView {
     
-    var collectionView: UICollectionView {
-        self as! UICollectionView
+    var as_collectionView: UICollectionView? {
+        self as? UICollectionView
     }
 }

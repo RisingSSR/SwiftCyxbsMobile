@@ -20,6 +20,7 @@ class TabBar: UITabBar {
         didSet {
             headerView.isHidden = isHeaderViewHidden
             line.isHidden = isHeaderViewHidden
+            sizeToFit()
         }
     }
     
@@ -34,7 +35,7 @@ class TabBar: UITabBar {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     // MARK: override (UIView)

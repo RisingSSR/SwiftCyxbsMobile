@@ -165,7 +165,7 @@ extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
 extension ScheduleFact: UICollectionViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        let layout = scrollView.collectionView.collectionViewLayout.ry_layout
+        guard let layout = scrollView.as_collectionView?.ry_layout else { return }
         layout.pageCalculation = Int(scrollView.contentOffset.x / scrollView.bounds.size.width) * layout.pageShows
         scrollViewStartPosPoint = scrollView.contentOffset
         scrollDirection = 0

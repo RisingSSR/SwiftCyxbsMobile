@@ -17,6 +17,7 @@ target 'CyxbsMobile2019_iOS' do
   
 	# pod 'TZImagePickerController'
 	# pod 'YBImageBrowser'
+  # pod 'IQKeyboardManager'
 	pod 'SDWebImage'
   pod 'MBProgressHUD'
 	pod 'MJRefresh'
@@ -37,7 +38,6 @@ target 'CyxbsMobile2019_iOS' do
   pod 'SwifterSwift/Foundation'
   pod 'SwifterSwift/UIKit'
   
-	pod 'IQKeyboardManager'
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
   pod 'FluentDarkModeKit'

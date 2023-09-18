@@ -10,7 +10,16 @@ import Alamofire
 
 struct HttpManager {
     
-    static let shared = HttpManager()
+    static var shared: HttpManager {
+        if let ip = AliyunConfig.ip(byHost: APIConfig.environment.host) {
+            shared_p.session.add(host: ip)
+        }
+        return shared_p
+    }
+    
+    private static let shared_p = HttpManager()
+    
+    private let session = SessionManager.shared
     
     private init() { }
 }
@@ -25,7 +34,7 @@ extension HttpManager {
         let parameters: [String: String] = [
             "stu_num": stu_num
         ]
-        return SessionManager.shared.request(APIConfig.api("/magipoke-jwzx/kebiao"), method: .post, parameters: parameters)
+        return session.request(APIConfig.api("/magipoke-jwzx/kebiao"), method: .post, parameters: parameters)
     }
     
     /// 查询同学信息
@@ -34,6 +43,6 @@ extension HttpManager {
         let parameters: [String: String] = [
             "stu": stu
         ]
-        return SessionManager.shared.request(APIConfig.api("/magipoke-text/search/people"), parameters: parameters)
+        return session.request(APIConfig.api("/magipoke-text/search/people"), parameters: parameters)
     }
 }

@@ -89,7 +89,7 @@ class ScheduleMaping {
 
 extension ScheduleMaping {
     
-    // map a ScheduleModel on mapTable, O(n + m), n: section, m: lenth
+    // map a ScheduleModel on mapTable, O(n * m), n: section, m: lenth
     func maping(_ model: ScheduleModel, prepare cals: [ScheduleCalModel]? = nil, priority: Priority = .mainly) {
         if model.customType == .system {
             start = model.start

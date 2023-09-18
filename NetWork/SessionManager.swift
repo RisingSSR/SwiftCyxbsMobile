@@ -18,6 +18,19 @@ class SessionManager: Session {
         sessionConfiguration.headers.add(.authorization(bearerToken: token))
         return self
     }
+    
+    @discardableResult
+    func add(host: String) -> Self {
+        sessionConfiguration.headers.add(.host(host))
+        return self
+    }
+}
+
+extension HTTPHeader {
+    
+    static func host(_ value: String) -> HTTPHeader {
+        HTTPHeader(name: "Host", value: value)
+    }
 }
 
 extension DataRequest {

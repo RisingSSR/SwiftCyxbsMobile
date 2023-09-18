@@ -61,10 +61,10 @@ extension UICollectionView {
     }
 }
 
-extension UICollectionViewLayout {
+extension UICollectionView {
     
-    var ry_layout: ScheduleCollectionViewLayout {
-        self as! ScheduleCollectionViewLayout
+    var ry_layout: ScheduleCollectionViewLayout? {
+        collectionViewLayout as? ScheduleCollectionViewLayout
     }
 }
 

@@ -184,8 +184,24 @@ extension TabBarController {
         transitionDelegate.panInsetsIfNeeded = UIEdgeInsets(top: Constants.statusBarHeight, left: 0, bottom: tabBar.bounds.height, right: 0)
         transitionDelegate.supportedTapOutsideBackWhenPresent = false
         transitionDelegate.panGestureIfNeeded = pan
+        transitionDelegate.present = { transition in
+            transition.prepareAnimationAction = { context in
+                guard let to = context.viewController(forKey: .to) else { return }
+                guard let copyHeader = self.ry_tabBar?.headerView.copyByKeyedArchiver else { return }
+                to.view.frame.origin.y = self.tabBar.frame.minY
+                to.view.frame.size.height = copyHeader.bounds.height
+                to.view.addSubview(copyHeader)
+            }
+            transition.finishAnimationAction = { context in
+                guard let to = context.viewController(forKey: .to) else { return }
+                let height = context.containerView.frame.maxY - Constants.statusBarHeight
+                to.view.frame.origin.y = context.containerView.frame.maxY - height
+                to.view.frame.size.height = height
+                to.view.subviews.last?.alpha = 0
+            }
+        }
         
-        let vc = ScheduleViewController()
+        let vc = TabBarPresentationViewController()
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transitionDelegate
         present(vc, animated: true) {
@@ -196,6 +212,13 @@ extension TabBarController {
     }
 }
 
+extension UITabBarController {
+    
+    var ry_tabBar: TabBar? {
+        tabBar as? TabBar
+    }
+}
+
 // MARK: UITabBarDelegate
 
 extension TabBarController {
@@ -203,33 +226,14 @@ extension TabBarController {
     open override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if let tabBar = tabBar as? TabBar {
             tabBar.isHeaderViewHidden = !item.needMoreSpaceToShow
-            tabBar.reloadInputViews()
-            tabBar.sizeToFit()
         }
-    }
-}
-
-// MARK: RYTransitioningAnimationDelegate
-
-extension TabBarController: RYTransitioningAnimationDelegate {
-    
-    public func prepare(_ transitioningDelegate: RYTransitioningDelegate, withAnimatedTransitioning animatedTransitioning: RYAnimatedTransitioning, forPresented context: UIViewControllerContextTransitioning) {
-        
-        guard let from = context.viewController(forKey: .from) as? UITabBarController else {
-            animatedTransitioning.prepare(context: context)
-            return
-        }
-        
-        let tabBarCopy = from.tabBar.copyByKeyedArchiver
-        
-        
     }
 }
 
 // MARK: extension
 
 extension UIViewController {
-    var ryTabBarController: TabBarController {
-        tabBarController as! TabBarController
+    var ryTabBarController: TabBarController? {
+        tabBarController as? TabBarController
     }
 }

@@ -15,7 +15,6 @@ PODS:
   - Bugly (2.5.93)
   - EMASRest (11.1.1.2)
   - FluentDarkModeKit (1.0.4)
-  - IQKeyboardManager (6.5.12)
   - JXBanner (0.3.6):
     - JXBanner/Banner (= 0.3.6)
     - JXBanner/PageControl (= 0.3.6)
@@ -59,7 +58,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
   - RYAngelWalker (0.1.0)
-  - RYTransitioningDelegateSwift (0.1.0)
+  - RYTransitioningDelegateSwift (0.2.0)
   - SDWebImage (5.18.0):
     - SDWebImage/Core (= 5.18.0)
   - SDWebImage/Core (5.18.0)
@@ -67,6 +66,7 @@ PODS:
   - SwifterSwift/SwiftStdlib (5.2.0)
   - SwifterSwift/UIKit (5.2.0)
   - SwiftyJSON (5.0.1)
+  - TagListView (1.4.1)
   - UMCCommonLog (2.0.2)
   - UMCommon (7.4.1):
     - UMDevice
@@ -96,7 +96,6 @@ DEPENDENCIES:
   - AlicloudUtils
   - Bugly
   - FluentDarkModeKit
-  - IQKeyboardManager
   - JXBanner
   - JXPageControl
   - JXPagingView
@@ -111,6 +110,7 @@ DEPENDENCIES:
   - SwifterSwift/SwiftStdlib
   - SwifterSwift/UIKit
   - SwiftyJSON
+  - TagListView
   - UMCCommonLog
   - UMCommon
   - UMDevice
@@ -131,10 +131,10 @@ SPEC REPOS:
     - MBProgressHUD
     - RYAngelWalker
     - RYTransitioningDelegateSwift
+    - TagListView
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - Alamofire
     - Bugly
-    - IQKeyboardManager
     - JXBanner
     - JXPageControl
     - JXPagingView
@@ -160,7 +160,6 @@ SPEC CHECKSUMS:
   Bugly: b8715e6ec4004b7f7fbffab0643ba80545aee3da
   EMASRest: 8df6f87836767a9415ad5cc4af739bc9d215b475
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
-  IQKeyboardManager: b1fd66ccf7a79095bdcc4a2735231586f744216e
   JXBanner: 348dbef856e786494cbf30fb45d6b84826f2d3c5
   JXPageControl: e9487b39e2e58fc17790833214f3b8e935bef98b
   JXPagingView: 90924b364a2ff7e94db534fad1fa50925ff69ee4
@@ -169,16 +168,17 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   RYAngelWalker: cb74daf62cf628394e7f843ba91d44e23de0aaf0
-  RYTransitioningDelegateSwift: 9389f8a8170cfff336b8e7828e111bb28d8f8795
+  RYTransitioningDelegateSwift: aff6f8cc0567cb4b4596cf7cf1d9bc2477a2459d
   SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
   SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
   UMCommon: 47e0b53f6a36568e958a5abd005ed7577fcac9ad
   UMDevice: 9ef8045b59e0479cff7062915c879a1af46fa094
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: d771ac759dba4dc70da5e5b1427a3ac9bbfa2fa9
+PODFILE CHECKSUM: eb090f58d8b61ad171a3e51cb8079495051b81ae
 
 COCOAPODS: 1.12.1

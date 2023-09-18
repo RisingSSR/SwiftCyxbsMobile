@@ -68,8 +68,6 @@ extension ScheduleModel: Hashable {
     }
 }
 
-// MARK: request
-
 extension ScheduleModel {
     
     static func filePath(rootPath: CacheManager.RootPath = .document, sno: String) -> CacheManager.FilePath {
@@ -82,6 +80,15 @@ extension ScheduleModel {
     
     func toCache(rootPath: CacheManager.RootPath = .document) {
         CacheManager.shared.cache(codable: self, in: ScheduleModel.filePath(rootPath: rootPath, sno: sno))
+    }
+}
+
+// MARK: request
+
+extension ScheduleModel {
+    
+    static func request(snos: [String], handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
+        
     }
     
     static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
