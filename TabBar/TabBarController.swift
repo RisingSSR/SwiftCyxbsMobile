@@ -174,11 +174,8 @@ extension TabBarController {
         }
     }
     
-    func presentSchedule(pan: UIPanGestureRecognizer? = nil, completion: ((UIViewController) -> Void)? = nil) {
-        if let presentedViewController {
-            completion?(presentedViewController)
-            return
-        }
+    func presentSchedule(pan: UIPanGestureRecognizer? = nil) {
+        if presentedViewController != nil { return }
         
         let transitionDelegate = RYTransitioningDelegate()
         transitionDelegate.panInsetsIfNeeded = UIEdgeInsets(top: Constants.statusBarHeight, left: 0, bottom: tabBar.bounds.height, right: 0)
@@ -191,6 +188,9 @@ extension TabBarController {
                 to.view.frame.origin.y = self.tabBar.frame.minY
                 to.view.frame.size.height = copyHeader.bounds.height
                 to.view.addSubview(copyHeader)
+                if let presentationVC = to as? TabBarPresentationViewController {
+                    presentationVC.scheduleVC.headerView.alpha = 0
+                }
             }
             transition.finishAnimationAction = { context in
                 guard let to = context.viewController(forKey: .to) else { return }
@@ -198,17 +198,17 @@ extension TabBarController {
                 to.view.frame.origin.y = context.containerView.frame.maxY - height
                 to.view.frame.size.height = height
                 to.view.subviews.last?.alpha = 0
+                if let presentationVC = to as? TabBarPresentationViewController {
+                    presentationVC.scheduleVC.headerView.alpha = 1
+                }
             }
         }
         
         let vc = TabBarPresentationViewController()
+        vc.tabBarFrame = tabBar.frame
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transitionDelegate
-        present(vc, animated: true) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 30)) {
-                completion?(vc)
-            }
-        }
+        present(vc, animated: true)
     }
 }
 

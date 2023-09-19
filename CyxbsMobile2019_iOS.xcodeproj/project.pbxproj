@@ -43,9 +43,12 @@
 		14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */; };
 		14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */; };
 		14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4C2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift */; };
+		14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */; };
+		14622E8D2AB823B900D8D1E1 /* CyxbsMobile2019_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E8C2AB823B900D8D1E1 /* CyxbsMobile2019_iOSTests.swift */; };
+		14622E8F2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E8E2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift */; };
+		14622E912AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E902AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift */; };
+		14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
-		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
-		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
 /* End PBXBuildFile section */
@@ -107,15 +110,16 @@
 		14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnieViewController.swift; sourceTree = "<group>"; };
 		14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderHeaderView.swift; sourceTree = "<group>"; };
 		14622E4C2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresentationViewController.swift; sourceTree = "<group>"; };
+		14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderCollectionViewCell.swift; sourceTree = "<group>"; };
+		14622E8C2AB823B900D8D1E1 /* CyxbsMobile2019_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsMobile2019_iOSTests.swift; sourceTree = "<group>"; };
+		14622E8E2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsMobile2019_iOSUITests.swift; sourceTree = "<group>"; };
+		14622E902AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsMobile2019_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSTests.m; sourceTree = "<group>"; };
-		1A9B7685235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSUITests.m; sourceTree = "<group>"; };
-		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AA0DEF692668C88D00284112 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; usesTabs = 0; };
@@ -264,7 +268,9 @@
 		14622DD82AA8287200D8D1E1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */,
 				14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */,
+				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -362,8 +368,7 @@
 		1A9B7682235F50A900725937 /* CyxbsMobile2019_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */,
-				1A9B7685235F50A900725937 /* Info.plist */,
+				14622E8C2AB823B900D8D1E1 /* CyxbsMobile2019_iOSTests.swift */,
 			);
 			path = CyxbsMobile2019_iOSTests;
 			sourceTree = "<group>";
@@ -371,8 +376,8 @@
 		1A9B768D235F50A900725937 /* CyxbsMobile2019_iOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */,
-				1A9B7690235F50A900725937 /* Info.plist */,
+				14622E8E2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift */,
+				14622E902AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift */,
 			);
 			path = CyxbsMobile2019_iOSUITests;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 					};
 					1A9B7689235F50A900725937 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1420;
 						TestTargetID = 1A9B7666235F50A600725937;
 					};
 				};
@@ -634,6 +640,7 @@
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
 				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
+				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
@@ -659,6 +666,7 @@
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
+				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
@@ -671,7 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
+				14622E8D2AB823B900D8D1E1 /* CyxbsMobile2019_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +687,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */,
+				14622E912AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift in Sources */,
+				14622E8F2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -967,6 +976,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -977,6 +987,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CyxbsMobile2019_iOS;
 			};
@@ -986,6 +998,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -996,6 +1009,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CyxbsMobile2019_iOS;
 			};

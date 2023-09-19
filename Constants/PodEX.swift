@@ -37,7 +37,7 @@ extension MJRefreshGifHeader {
         }
         let idleImages = [image_0, image_0] + images + [image_0, image_0]
         setImages(idleImages, for: .idle)
-        setImages(images, duration: 6, for: .refreshing)
+        setImages(images, for: .refreshing)
         lastUpdatedTimeLabel?.isHidden = true
         stateLabel?.isHidden = true
         return self

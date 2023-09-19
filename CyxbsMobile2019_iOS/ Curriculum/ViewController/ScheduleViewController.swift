@@ -11,19 +11,28 @@ import UIKit
 class ScheduleViewController: UIViewController {
     
     let fact = ScheduleInteractionFact()
+    
+    let heightForHeaderView: CGFloat = 64
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ry.backgroundColorForPlace_main
+        
+        view.addSubview(headerView)
         view.addSubview(collectionView)
         
         fact.request(sno: "2021215154")
     }
     
+    lazy var headerView: ScheduleHeaderView = {
+        let headerView = ScheduleHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: heightForHeaderView))
+        fact.handle(headerView: headerView)
+        return headerView
+    }()
+    
     lazy var collectionView: UICollectionView = {
         let collectionView = fact.createCollectionView()
-        let y: CGFloat = 64
-        collectionView.frame = CGRect(x: 0, y: y, width: view.bounds.width, height: view.bounds.height - y - Constants.statusBarHeight)
+        collectionView.frame = CGRect(x: 0, y: heightForHeaderView, width: view.bounds.width, height: view.bounds.height - heightForHeaderView)
         collectionView.contentInset.bottom = tabBarController?.tabBar.bounds.height ?? 0
         collectionView.backgroundColor = view.backgroundColor
         return collectionView

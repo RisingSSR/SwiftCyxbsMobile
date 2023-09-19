@@ -13,6 +13,8 @@ class ScheduleInteractionFact: ScheduleFact {
     
     private(set) var collectionView: UICollectionView!
     
+    weak var headerView: ScheduleHeaderView?
+    
     override func createCollectionView() -> UICollectionView {
         let collectionView = super.createCollectionView()
         
@@ -33,6 +35,11 @@ class ScheduleInteractionFact: ScheduleFact {
         self.collectionView = collectionView
         return collectionView
     }
+    
+    func handle(headerView: ScheduleHeaderView) {
+        self.headerView = headerView
+        self.headerView?.updateData(section: 0, isNowSection: false)
+    }
 }
 
 extension ScheduleInteractionFact {
@@ -51,10 +58,13 @@ extension ScheduleInteractionFact {
     }
 }
 
+// MARK: UIScrollViewDelegate
+
 extension ScheduleInteractionFact {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         super.scrollViewDidScroll(scrollView)
         scrollView.mj_header?.frame.origin.x = scrollView.contentOffset.x
+        
     }
 }

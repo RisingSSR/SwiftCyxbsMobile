@@ -34,12 +34,15 @@ extension ScheduleFact {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.decelerationRate = .fast
+        /* cell */
         collectionView.register(ScheduleCollectionViewCell.self, forCellWithReuseIdentifier: ScheduleCollectionViewCell.curriculumReuseIdentifier)
-        let elementKinds: [UICollectionView.ElementKindSection] =
-        [.header, .leading]
-        for elementKind in elementKinds {
-            collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: elementKind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
-        }
+        /* header */
+        collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: .header, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
+        /* leading */
+        collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: .leading, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
+        /* placeholder */
+        collectionView.register(PlaceholderCollectionViewCell.self, forElementKindSection: .placeHolder, withReuseIdentifier: PlaceholderCollectionViewCell.identifier)
+        
         return collectionView
     }
     
@@ -53,11 +56,12 @@ extension ScheduleFact {
 extension ScheduleFact: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        mappy.datas.count
+        max(mappy.datas.count, 24)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        mappy.datas[section].count
+        if section >= mappy.datas.count { return 0 }
+        return mappy.datas[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -80,13 +84,14 @@ extension ScheduleFact: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
         
-        let kind = UICollectionView.ElementKindSection(rawValue: kind) ?? .header
+        let elementKind = UICollectionView.ElementKindSection(rawValue: kind) ?? .header
         
-        switch kind {
+        switch elementKind {
             
         case .header:
+            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
+            
             let startModay = mappy.start ?? Calendar.current.date(bySetting: .weekday, value: 2, of: Date()) ?? Date()
             
             let isTitleOnly = (indexPath.section == 0 || indexPath.item == 0 || mappy.start == nil)
@@ -109,19 +114,33 @@ extension ScheduleFact: UICollectionViewDataSource {
             cell.set(supplementaryType: isToday ? .select : .normal, title: title, content: content, isTitleOnly: isTitleOnly)
             cell.backgroundColor = collectionView.backgroundColor
             
+            return cell
+            
         case .leading:
+            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
+            
             let title = "\(indexPath.item + 1)"
             
             cell.set(supplementaryType: .normal, title: title, content: nil, isTitleOnly: true)
             
+            return cell
+            
         case .placeHolder:
-            break
+            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlaceholderCollectionViewCell.identifier, for: indexPath) as! PlaceholderCollectionViewCell
+            
+            if mappy.datas.count <= 1 {
+                cell.placeholder(.boy_404, content: "暂时失联啦~")
+            } else {
+                cell.placeholder(.girl_door, content: "一片寂静")
+            }
+            
+            return cell
             
         case .pointHolder:
             break
         }
         
-        return cell
+        return UICollectionViewCell()
     }
 }
 
@@ -149,7 +168,8 @@ extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
         case .leading:
             return 12
         case .placeHolder:
-            return 0
+            if section >= mappy.datas.count { return 1 }
+            return (mappy.datas[section].count > 0) ? 0 : 1
         case .pointHolder:
             return 0
         }
@@ -162,7 +182,11 @@ extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
 
 // MARK: UICollectionViewDelegate
  
-extension ScheduleFact: UICollectionViewDelegate {
+extension ScheduleFact: UICollectionViewDelegate { }
+
+// MARK: UIScrollViewDelegate
+
+extension ScheduleFact: UIScrollViewDelegate {
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         guard let layout = scrollView.as_collectionView?.ry_layout else { return }

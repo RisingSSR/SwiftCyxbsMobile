@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RYTransitioningDelegateSwift
 
 class TabBarPresentationViewController: UIViewController {
+    
+    var tabBarFrame: CGRect = .zero
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -16,7 +19,7 @@ class TabBarPresentationViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     override func viewDidLoad() {
@@ -30,6 +33,9 @@ class TabBarPresentationViewController: UIViewController {
         view.clipsToBounds = true
         
         view.addSubview(scheduleVC.view)
+        scheduleVC.collectionView.frame.size.height -= Constants.statusBarHeight
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
+        scheduleVC.headerView.addGestureRecognizer(pan)
     }
     
     lazy var scheduleVC = ScheduleViewController()
@@ -37,4 +43,29 @@ class TabBarPresentationViewController: UIViewController {
 
 extension TabBarPresentationViewController {
     
+    @objc
+    func response(pan: UIPanGestureRecognizer) {
+        dismissSchedule(pan: pan)
+    }
+    
+    func dismissSchedule(pan: UIPanGestureRecognizer) {
+        let transitionDelegate = RYTransitioningDelegate()
+        transitionDelegate.panInsetsIfNeeded = UIEdgeInsets(top: Constants.statusBarHeight, left: 0, bottom: tabBarFrame.height, right: 0)
+        transitionDelegate.panGestureIfNeeded = pan
+        transitionDelegate.dismiss = { transition in
+            transition.finishAnimationAction = { context in
+                guard let from = context.viewController(forKey: .from) else { return }
+                guard let headerView = from.view.subviews.last else { return }
+                from.view.frame.origin.y = self.tabBarFrame.minY
+                from.view.frame.size.height = headerView.bounds.height
+                headerView.alpha = 1
+                if let presentationVC = from as? TabBarPresentationViewController {
+                    presentationVC.scheduleVC.headerView.alpha = 0
+                }
+            }
+        }
+        modalPresentationStyle = .custom
+        self.transitioningDelegate = transitionDelegate
+        dismiss(animated: true)
+    }
 }

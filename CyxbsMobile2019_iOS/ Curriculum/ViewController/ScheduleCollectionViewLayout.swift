@@ -213,7 +213,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         case .placeHolder:
             attributes.frame = CGRect(
                 x: CGFloat(indexPath.section) * pageWidth + widthForLeadingSupplementaryView,
-                y: ry_collectionView.contentOffset.y, // + heightForHeaderSupplementaryView
+                y: ry_collectionView.contentOffset.y + heightForHeaderSupplementaryView,
                 width: pageWidth - widthForLeadingSupplementaryView,
                 height: ry_collectionView.bounds.height - heightForHeaderSupplementaryView)
             

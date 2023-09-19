@@ -9,22 +9,91 @@
 import Alamofire
 import SwiftyJSON
 
-class SessionManager: Session {
+// MARK: TrustPlicyManager
+
+class TrustPlicyManager: ServerTrustManager {
     
-    static let shared = SessionManager()
-    
-    @discardableResult
-    func add(token: String) -> Self {
-        sessionConfiguration.headers.add(.authorization(bearerToken: token))
-        return self
+    class TrustEvaluator: ServerTrustEvaluating {
+        
+        public func evaluate(_ trust: SecTrust, forHost host: String) throws {
+            if let hostName = APIConfig.current.ipToHost[host] {
+                try trust.af.performValidation(forHost: hostName)
+            } else {
+                try trust.af.performDefaultValidation(forHost: host)
+            }
+        }
     }
     
-    @discardableResult
-    func add(host: String) -> Self {
-        sessionConfiguration.headers.add(.host(host))
-        return self
+    override func serverTrustEvaluator(forHost host: String) throws -> ServerTrustEvaluating? {
+        return TrustEvaluator()
     }
 }
+
+// MARK: BaseConvertible
+
+extension SessionManager {
+    
+    struct BaseConvertible: URLRequestConvertible, CustomStringConvertible {
+        let url: URLConvertible
+        let method: HTTPMethod
+        let parameters: Parameters?
+        let encoding: ParameterEncoding
+        var headers: HTTPHeaders
+        let requestModifier: RequestModifier?
+
+        func asURLRequest() throws -> URLRequest {
+            var request = try URLRequest(url: url, method: method, headers: headers)
+            try requestModifier?(&request)
+
+            return try encoding.encode(request, with: parameters)
+        }
+        
+        var description: String {
+            let url = try? url.asURL()
+            return """
+                   [\(method.rawValue)] \(url?.absoluteString ?? "未知URL")
+                   \t [headers] \(headers)
+                   \t [parameters] \(parameters ?? [:])
+                   """
+        }
+    }
+}
+
+// MARK: SessionManager
+
+class SessionManager: Session {
+    
+    static let shared = SessionManager(serverTrustManager: TrustPlicyManager(allHostsMustBeEvaluated: true, evaluators: [:]))
+    
+    var token: String?
+    
+    @discardableResult
+    open func ry_request(_ convertible: URLConvertible,
+                      method: HTTPMethod = .get,
+                      parameters: Parameters? = nil,
+                      encoding: ParameterEncoding = URLEncoding.default,
+                      headers: HTTPHeaders = [],
+                      interceptor: RequestInterceptor? = nil,
+                      requestModifier: RequestModifier? = nil) -> DataRequest {
+        var convertible = BaseConvertible(url: convertible,
+                                             method: method,
+                                             parameters: parameters,
+                                             encoding: encoding,
+                                             headers: headers,
+                                             requestModifier: requestModifier)
+        
+        convertible.headers.add(.host(APIConfig.current.environment.host))
+        
+        if let bearerToken = token {
+            convertible.headers.add(.authorization(bearerToken: bearerToken))
+        }
+
+        print("Request \(convertible)")
+        return request(convertible, interceptor: interceptor)
+    }
+}
+
+// MARK: HTTPHeader
 
 extension HTTPHeader {
     
@@ -33,6 +102,8 @@ extension HTTPHeader {
     }
 }
 
+// MARK: DataRequest
+
 extension DataRequest {
     
     static var error_500_count = 0
@@ -40,6 +111,12 @@ extension DataRequest {
     @discardableResult
     func ry_JSON(decoder: DataDecoder = JSONDecoder(), completionHandler: @escaping (NetResponse<JSON>) -> Void) -> Self {
         responseDecodable(of: JSON.self, decoder: decoder) { response in
+            if let urlResponse = response.response {
+                print("""
+                      Response [\(urlResponse.statusCode)] \(urlResponse.url?.absoluteString ?? "无URL")
+                      """)
+            }
+            
             if let value = response.value {
                 completionHandler(.success(value))
             } else {
@@ -52,8 +129,8 @@ extension DataRequest {
                 if (500..<600).contains(code) {
                     DataRequest.error_500_count += 1
                     if DataRequest.error_500_count >= 5 {
-                        APIConfig.askCloud { enviroment in
-                            APIConfig.environment = enviroment
+                        APIConfig.askHost { enviroment in
+                            APIConfig.current.environment = enviroment
                         }
                     }
                 }
@@ -61,6 +138,8 @@ extension DataRequest {
         }
     }
 }
+
+// MARK: NetError
 
 struct NetError: Error, CustomStringConvertible {
     
@@ -71,7 +150,7 @@ struct NetError: Error, CustomStringConvertible {
     let error: AFError?
     
     var description: String {
-        var description = ""
+        var description = "NetError "
         if let code = error?.responseCode {
             description += "[\(code)] "
         } else {

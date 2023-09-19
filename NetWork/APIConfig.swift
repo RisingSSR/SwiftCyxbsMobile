@@ -10,9 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-struct APIConfig {
-    
-    private init() { }
+extension APIConfig {
     
     enum Environment {
         
@@ -37,8 +35,17 @@ struct APIConfig {
             "https://\(host)"
         }
     }
+}
+
+class APIConfig {
     
-    static var environment: Environment = {
+    public static let current = APIConfig()
+    
+    private init() { }
+    
+    private(set) var ipToHost: [String: String] = [:]
+    
+    var environment: Environment = {
         #if DEBUG
         return .BE_DEV
         #else
@@ -46,7 +53,7 @@ struct APIConfig {
         #endif
     }()
     
-    static func askCloud(success: @escaping (Environment) -> Void) {
+    static func askHost(success: @escaping (Environment) -> Void) {
         AF.request("https://be-prod.redrock.team/cloud-manager/check").ry_JSON { response in
             if case let .success(value) = response {
                 if let base_url = value.dictionary?["base_url"]?.string {
@@ -58,7 +65,15 @@ struct APIConfig {
         }
     }
     
-    static func api(_ api: String) -> String {
+    func api(_ api: String) -> String {
+        
+        // IP 直连
+        if let ip = AliyunConfig.ip(byHost: environment.host) {
+            ipToHost[ip] = environment.host
+            return "https://" + ip + api
+        }
+        
+        // 原URL请求
         let url = environment.url + api
         return url
     }
