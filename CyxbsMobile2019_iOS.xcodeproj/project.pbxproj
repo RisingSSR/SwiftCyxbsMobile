@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,8 @@
 		14622E8F2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E8E2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift */; };
 		14622E912AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E902AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift */; };
 		14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */; };
+		1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147263392ABA867000FB9739 /* MineViewController.swift */; };
+		148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
@@ -115,6 +117,8 @@
 		14622E8E2AB8241800D8D1E1 /* CyxbsMobile2019_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsMobile2019_iOSUITests.swift; sourceTree = "<group>"; };
 		14622E902AB8249400D8D1E1 /* CyxbsMobile2019_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsMobile2019_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
+		147263392ABA867000FB9739 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
+		148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelectSectionHeaderView.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 		14622DC62AA6DC7400D8D1E1 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				147263372ABA866000FB9739 /* ViewController */,
+				147263382ABA866000FB9739 /* View */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */,
+				148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */,
 				14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */,
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 			);
@@ -313,6 +320,21 @@
 			sourceTree = "<group>";
 		};
 		14622E492AB47D0B00D8D1E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		147263372ABA866000FB9739 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				147263392ABA867000FB9739 /* MineViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		147263382ABA866000FB9739 /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -660,6 +682,7 @@
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
 				14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
+				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
 				14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */,
 				14622E0E2AAF1B9000D8D1E1 /* ScheduleFact.swift in Sources */,
@@ -667,6 +690,7 @@
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
+				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,

@@ -53,6 +53,9 @@ extension TabBarPresentationViewController {
         transitionDelegate.panInsetsIfNeeded = UIEdgeInsets(top: Constants.statusBarHeight, left: 0, bottom: tabBarFrame.height, right: 0)
         transitionDelegate.panGestureIfNeeded = pan
         transitionDelegate.dismiss = { transition in
+            transition.prepareAnimationAction = { context in
+                context.viewController(forKey: .from)?.view.subviews.last?.isHidden = false
+            }
             transition.finishAnimationAction = { context in
                 guard let from = context.viewController(forKey: .from) else { return }
                 guard let headerView = from.view.subviews.last else { return }

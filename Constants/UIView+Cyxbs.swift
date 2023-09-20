@@ -13,11 +13,6 @@ extension UIResponder {
     var latestViewController: UIViewController? {
         (next as? UIViewController) ?? next?.latestViewController
     }
-    
-    var latestNavigationController: UINavigationController? {
-        let latestViewController = latestViewController
-        return latestViewController?.navigationController ?? latestViewController?.latestNavigationController
-    }
 }
 
 extension UIView {
@@ -32,23 +27,15 @@ extension UIView {
         unArchiver?.requiresSecureCoding = false
         return unArchiver?.decodeObject(forKey: "view") as? UIView
     }
-    
-    var gradientLayer: CAGradientLayer {
-        let layer = CAGradientLayer()
-        layer.frame = bounds
-        layer.startPoint = CGPoint(x: 0, y: 0)
-        layer.endPoint = CGPoint(x: 1, y: 1)
-        layer.colors = [
-            UIColor.hex("#4841E2").cgColor,
-            UIColor.hex("#5D5DF7").cgColor
-        ]
-        return layer
-    }
 }
 
 extension UIScrollView {
     
     var as_collectionView: UICollectionView? {
         self as? UICollectionView
+    }
+    
+    var as_tableView: UITableView? {
+        self as? UITableView
     }
 }

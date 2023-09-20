@@ -62,8 +62,9 @@ class ScheduleMaping {
     
     var start: Date? = nil
     
+    var nowWeek: Int = 0
+    
     // if you don't want to have a diffirent views, set it to false
-    // otherwise, your time complexity will approach O(n ^ 3)
     var checkPriority: Bool = true
     
     // {2021215154, .system} -> .mainly
@@ -93,6 +94,7 @@ extension ScheduleMaping {
     func maping(_ model: ScheduleModel, prepare cals: [ScheduleCalModel]? = nil, priority: Priority = .mainly) {
         if model.customType == .system {
             start = model.start
+            nowWeek = model.nowWeek
         }
         if scheduleModelMap[model] != nil { return }
         didFinished = false

@@ -8,6 +8,7 @@
 
 import UIKit
 import MJRefresh
+import JXSegmentedView
 
 class ScheduleInteractionFact: ScheduleFact {
     
@@ -35,12 +36,22 @@ class ScheduleInteractionFact: ScheduleFact {
         self.collectionView = collectionView
         return collectionView
     }
+}
+
+extension ScheduleInteractionFact {
     
-    func handle(headerView: ScheduleHeaderView) {
-        self.headerView = headerView
-        self.headerView?.updateData(section: 0, isNowSection: false)
+    var currentPage: Int {
+        Int(collectionView.contentOffset.x / collectionView.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) + 0.5)
+    }
+    
+    func scroll(to section: Int, animated: Bool = true) {
+        let visibleSection = min(max(0, section), 23)
+        let pageWidth = collectionView.bounds.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) * CGFloat(visibleSection)
+        collectionView.setContentOffset(CGPoint(x: pageWidth, y: collectionView.contentOffset.y), animated: true)
     }
 }
+
+// MARK: request
 
 extension ScheduleInteractionFact {
     
@@ -58,6 +69,35 @@ extension ScheduleInteractionFact {
     }
 }
 
+// MARK: handle headerView
+
+extension ScheduleInteractionFact {
+    
+    func handle(headerView: ScheduleHeaderView) {
+        headerView.titleTapAction = { _ in
+            
+            guard let headerView = self.headerView else { return }
+            let selectView = ScheduleSelectSectionHeaderView(frame: headerView.frame)
+            selectView.segmentView.defaultSelectedIndex = self.currentPage
+            selectView.segmentView.listContainer = self
+            selectView.backTapAction = { view in
+                UIView.transition(from: view, to: headerView, duration: 0.3, options: .transitionCrossDissolve)
+            }
+            UIView.transition(from: headerView, to: selectView, duration: 0.3, options: .transitionCrossDissolve)
+        }
+        headerView.backBtnAction = { _ in
+            self.scroll(to: self.mappy.nowWeek)
+        }
+        self.headerView = headerView
+        self.headerView?.updateData(section: 0, isNowSection: false)
+    }
+    
+    func reloadHeaderView() {
+        let page = currentPage
+        headerView?.updateData(section: page, isNowSection: (mappy.nowWeek == page))
+    }
+}
+
 // MARK: UIScrollViewDelegate
 
 extension ScheduleInteractionFact {
@@ -65,6 +105,27 @@ extension ScheduleInteractionFact {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         super.scrollViewDidScroll(scrollView)
         scrollView.mj_header?.frame.origin.x = scrollView.contentOffset.x
-        
+        reloadHeaderView()
+    }
+}
+
+// MARK: JXSegmentedViewListContainer
+
+extension ScheduleInteractionFact: JXSegmentedViewListContainer {
+    var defaultSelectedIndex: Int {
+        get { currentPage }
+        set(newValue) {
+            scroll(to: newValue, animated: false)
+        }
+    }
+    
+    func contentScrollView() -> UIScrollView {
+        collectionView
+    }
+    
+    func reloadData() { }
+    
+    func didClickSelectedItem(at index: Int) {
+        scroll(to: index)
     }
 }

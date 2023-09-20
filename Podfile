@@ -49,14 +49,16 @@ target 'CyxbsMobile2019_iOS' do
   pod 'RYTransitioningDelegateSwift'
   pod 'RYAngelWalker'
 
-  post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
+#      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
+#      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+#      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
+#      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
     end
   end
-
 end

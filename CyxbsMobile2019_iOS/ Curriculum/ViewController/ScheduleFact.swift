@@ -56,7 +56,7 @@ extension ScheduleFact {
 extension ScheduleFact: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        max(mappy.datas.count, 24)
+        max(mappy.datas.count, 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

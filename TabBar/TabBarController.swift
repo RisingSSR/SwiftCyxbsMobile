@@ -111,8 +111,8 @@ extension TabBarController {
     var viewControllersForTabBar: [UIViewController] {
         [
             finderViewController,
-            UIViewController(),
-            UIViewController()
+            carnieViewController,
+            mineViewController
         ]
     }
     
@@ -143,6 +143,12 @@ extension TabBarController {
     
     var carnieViewController: UIViewController {
         let vc = CarnieViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
+    }
+    
+    var mineViewController: UIViewController {
+        let vc = MineViewController()
         let nav = UINavigationController(rootViewController: vc)
         return nav
     }
@@ -200,6 +206,11 @@ extension TabBarController {
                 to.view.subviews.last?.alpha = 0
                 if let presentationVC = to as? TabBarPresentationViewController {
                     presentationVC.scheduleVC.headerView.alpha = 1
+                }
+            }
+            transition.completionAnimationAction = { context in
+                if !context.transitionWasCancelled {
+                    context.viewController(forKey: .to)?.view.subviews.last?.isHidden = true
                 }
             }
         }

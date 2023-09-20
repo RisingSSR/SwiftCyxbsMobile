@@ -21,12 +21,12 @@ class ScheduleViewController: UIViewController {
         view.addSubview(headerView)
         view.addSubview(collectionView)
         
+        fact.handle(headerView: headerView)
         fact.request(sno: "2021215154")
     }
     
     lazy var headerView: ScheduleHeaderView = {
         let headerView = ScheduleHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: heightForHeaderView))
-        fact.handle(headerView: headerView)
         return headerView
     }()
     
