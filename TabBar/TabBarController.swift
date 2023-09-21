@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwifterSwift
 import RYTransitioningDelegateSwift
 
 open class TabBarController: UITabBarController {

@@ -9,8 +9,11 @@
 import UIKit
 import MJRefresh
 import JXSegmentedView
+import RYTransitioningDelegateSwift
 
 class ScheduleInteractionFact: ScheduleFact {
+    
+    weak var viewController: UIViewController?
     
     private(set) var collectionView: UICollectionView!
     
@@ -41,7 +44,7 @@ class ScheduleInteractionFact: ScheduleFact {
 extension ScheduleInteractionFact {
     
     var currentPage: Int {
-        Int(collectionView.contentOffset.x / collectionView.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) + 0.5)
+        Int(collectionView.contentOffset.x / collectionView.bounds.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) + 0.5)
     }
     
     func scroll(to section: Int, animated: Bool = true) {
@@ -95,6 +98,27 @@ extension ScheduleInteractionFact {
     func reloadHeaderView() {
         let page = currentPage
         headerView?.updateData(section: page, isNowSection: (mappy.nowWeek == page))
+    }
+}
+
+// MARK: UICollectionViewDelegate
+
+extension ScheduleInteractionFact {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = data(of: indexPath)
+        let cals = mappy.findCals(from: data)
+        
+        let transisionDelegate = RYTransitioningDelegate()
+        transisionDelegate.present = { transition in
+            transition.heightForPresented = 260
+        }
+        
+        let vc = ScheduleDetailsViewController(cals: cals)
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = transisionDelegate
+        
+        viewController?.present(vc, animated: true)
     }
 }
 

@@ -21,6 +21,7 @@ class ScheduleViewController: UIViewController {
         view.addSubview(headerView)
         view.addSubview(collectionView)
         
+        fact.viewController = self
         fact.handle(headerView: headerView)
         fact.request(sno: "2021215154")
     }

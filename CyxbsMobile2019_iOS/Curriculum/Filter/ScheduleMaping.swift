@@ -86,6 +86,19 @@ class ScheduleMaping {
     private var didFinished: Bool = false
 }
 
+extension ScheduleMaping {
+    
+    func findCals(from collection: Collection) -> [ScheduleCalModel] {
+        var cals = [collection.cal]
+        for oldValue in self.oldValues {
+            if (oldValue.location ..< (oldValue.location + oldValue.lenth)).contains(collection.location) {
+                cals.append(oldValue.cal)
+            }
+        }
+        return cals
+    }
+}
+
 // MARK: mapping
 
 extension ScheduleMaping {

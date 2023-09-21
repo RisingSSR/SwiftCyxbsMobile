@@ -50,6 +50,11 @@
 		14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */; };
 		1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147263392ABA867000FB9739 /* MineViewController.swift */; };
 		148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */; };
+		148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56912ABB26F1002FFE8A /* ScheduleDetailsViewController.swift */; };
+		148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56932ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift */; };
+		148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56952ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift */; };
+		148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56972ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift */; };
+		148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
@@ -119,6 +124,11 @@
 		14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleHeaderView.swift; sourceTree = "<group>"; };
 		147263392ABA867000FB9739 /* MineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
 		148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelectSectionHeaderView.swift; sourceTree = "<group>"; };
+		148F56912ABB26F1002FFE8A /* ScheduleDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsViewController.swift; sourceTree = "<group>"; };
+		148F56932ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailTableHeaderView.swift; sourceTree = "<group>"; };
+		148F56952ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		148F56972ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailMessageTableViewCell.swift; sourceTree = "<group>"; };
+		148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
+				148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
@@ -250,7 +261,7 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
-		14622DD62AA8287100D8D1E1 /*  Curriculum */ = {
+		14622DD62AA8287100D8D1E1 /* Curriculum */ = {
 			isa = PBXGroup;
 			children = (
 				14622DD92AA8287200D8D1E1 /* ViewController */,
@@ -258,7 +269,7 @@
 				14622DE42AA8567B00D8D1E1 /* Filter */,
 				14622DD72AA8287200D8D1E1 /* Model */,
 			);
-			path = " Curriculum";
+			path = Curriculum;
 			sourceTree = "<group>";
 		};
 		14622DD72AA8287200D8D1E1 /* Model */ = {
@@ -341,6 +352,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		148F568E2ABB26C9002FFE8A /* Curriculum Details */ = {
+			isa = PBXGroup;
+			children = (
+				148F56902ABB26C9002FFE8A /* ViewController */,
+				148F568F2ABB26C9002FFE8A /* View */,
+			);
+			path = "Curriculum Details";
+			sourceTree = "<group>";
+		};
+		148F568F2ABB26C9002FFE8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				148F56952ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift */,
+				148F56932ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift */,
+				148F56972ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		148F56902ABB26C9002FFE8A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				148F56912ABB26F1002FFE8A /* ScheduleDetailsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +414,8 @@
 				14622E422AB47C3D00D8D1E1 /* Carnie */,
 				14622DC72AA6DC7400D8D1E1 /* Finder */,
 				14622DC62AA6DC7400D8D1E1 /* Mine */,
-				14622DD62AA8287100D8D1E1 /*  Curriculum */,
+				14622DD62AA8287100D8D1E1 /* Curriculum */,
+				148F568E2ABB26C9002FFE8A /* Curriculum Details */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				143F70192AA165C10048E264 /* AppDelegate.swift */,
 				14622E1F2AB2850800D8D1E1 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
@@ -661,6 +700,7 @@
 				14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */,
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
 				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
+				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
@@ -677,6 +717,7 @@
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
+				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
@@ -684,12 +725,15 @@
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
+				148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */,
 				14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */,
 				14622E0E2AAF1B9000D8D1E1 /* ScheduleFact.swift in Sources */,
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
+				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
+				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,

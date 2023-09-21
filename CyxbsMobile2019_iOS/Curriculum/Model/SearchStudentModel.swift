@@ -26,6 +26,13 @@ struct SearchStudentModel: Codable, Equatable {
     var major: String = ""
 }
 
+extension SearchStudentModel: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(stunum)
+    }
+}
+
 extension SearchStudentModel {
     
     init(json: JSON) {

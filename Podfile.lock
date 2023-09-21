@@ -62,9 +62,6 @@ PODS:
   - SDWebImage (5.18.0):
     - SDWebImage/Core (= 5.18.0)
   - SDWebImage/Core (5.18.0)
-  - SwifterSwift/Foundation (5.2.0)
-  - SwifterSwift/SwiftStdlib (5.2.0)
-  - SwifterSwift/UIKit (5.2.0)
   - SwiftyJSON (5.0.1)
   - TagListView (1.4.1)
   - UMCCommonLog (2.0.2)
@@ -106,9 +103,6 @@ DEPENDENCIES:
   - RYAngelWalker
   - RYTransitioningDelegateSwift
   - SDWebImage
-  - SwifterSwift/Foundation
-  - SwifterSwift/SwiftStdlib
-  - SwifterSwift/UIKit
   - SwiftyJSON
   - TagListView
   - UMCCommonLog
@@ -142,7 +136,6 @@ SPEC REPOS:
     - LookinServer
     - MJRefresh
     - SDWebImage
-    - SwifterSwift
     - SwiftyJSON
     - UMCCommonLog
     - UMCommon
@@ -170,7 +163,6 @@ SPEC CHECKSUMS:
   RYAngelWalker: cb74daf62cf628394e7f843ba91d44e23de0aaf0
   RYTransitioningDelegateSwift: aff6f8cc0567cb4b4596cf7cf1d9bc2477a2459d
   SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
-  SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
@@ -179,6 +171,6 @@ SPEC CHECKSUMS:
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: 58b5d89462110f365f130535a981cd7eaecbcdd5
+PODFILE CHECKSUM: b4aa077fdbce401a904f63f5dd877c4db683f6ab
 
 COCOAPODS: 1.12.1

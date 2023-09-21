@@ -34,9 +34,9 @@ target 'CyxbsMobile2019_iOS' do
   pod 'JXPagingView'
   pod 'JXPageControl'
   
-  pod 'SwifterSwift/SwiftStdlib'
-  pod 'SwifterSwift/Foundation'
-  pod 'SwifterSwift/UIKit'
+  # pod 'SwifterSwift/SwiftStdlib'
+  # pod 'SwifterSwift/Foundation'
+  # pod 'SwifterSwift/UIKit'
   
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
@@ -57,8 +57,8 @@ post_install do |installer|
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
 #      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
 #      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-#      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-#      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
+      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
+      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
     end
   end
 end

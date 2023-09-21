@@ -89,6 +89,24 @@ extension ScheduleModel {
     
     static func request(snos: [String], handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
         
+        let group = DispatchGroup()
+        var modelAry = [ScheduleModel]()
+        for sno in snos {
+            group.enter()
+            request(sno: sno) { response in
+                switch response {
+                case .success(let model):
+                    modelAry.append(model)
+                case .failure(let netError):
+                    handle(.failure(netError))
+                }
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            handle(.success(modelAry))
+        }
     }
     
     static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {

@@ -117,7 +117,7 @@ class TabBarHeaderView: UIView {
         lab.sizeToFit()
         lab.frame.origin.x = timeImgView.frame.minX + 3
         lab.center.y = bounds.height / 2
-        lab.size.width = bounds.width / 3 * 2 - lab.frame.minX - spaceForItems
+        lab.frame.size.width = bounds.width / 3 * 2 - lab.frame.minX - spaceForItems
         lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
         return lab
     }()

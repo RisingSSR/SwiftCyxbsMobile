@@ -197,7 +197,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                     height: heightForHeaderSupplementaryView)
             } else {
                 attributes.frame = CGRect(
-                    x: CGFloat(indexPath.section) * ry_collectionView.width + widthForLeadingSupplementaryView + CGFloat(indexPath.item - 1) * (columnSpacing + itemSize.width),
+                    x: CGFloat(indexPath.section) * ry_collectionView.bounds.width + widthForLeadingSupplementaryView + CGFloat(indexPath.item - 1) * (columnSpacing + itemSize.width),
                     y: ry_collectionView.contentOffset.y,
                     width: itemSize.width,
                     height: heightForHeaderSupplementaryView)
@@ -205,7 +205,7 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
             
         case .leading:
             attributes.frame = CGRect(
-                x: CGFloat(indexPath.section) * ry_collectionView.width,
+                x: CGFloat(indexPath.section) * ry_collectionView.bounds.width,
                 y: heightForHeaderSupplementaryView + CGFloat(indexPath.item) * (lineSpacing + itemSize.height),
                 width: widthForLeadingSupplementaryView,
                 height: itemSize.height)

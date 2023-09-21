@@ -176,10 +176,14 @@ extension ScheduleHeaderView {
         } else {
             fullStr.append(NSAttributedString(string: " "))
         }
-        let to = NSAttributedString(string: ">", attributes: [
-            .font: UIFont.systemFont(ofSize: 16, weight: .regular),
-            .foregroundColor: UIColor.ry.titleColorForPlace_main
-        ])
+        
+        let toImgAtt = NSTextAttachment()
+        toImgAtt.image = UIImage(named: "direction_right")?
+            .tint(.ry.titleColorForPlace_main, blendMode: .destinationIn)
+            .scaled(toHeight: 12)
+        toImgAtt.bounds.size = toImgAtt.image?.size ?? .zero
+        let to = NSAttributedString(attachment: toImgAtt)
+    
         fullStr.append(to)
         return fullStr
     }

@@ -26,11 +26,19 @@ class ScheduleCalModel {
     
     let endCal: Date?
     
+    var inWeekStr: String? {
+        guard let startCal else { return nil }
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .cn
+        dateFormatter.dateFormat = "EEE"
+        return dateFormatter.string(from: startCal)
+    }
+    
     var time: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "H:mm"
+        dateFormatter.dateFormat = "HH:mm"
         if let startCal, let endCal {
-            return dateFormatter.string(from: startCal) + "-" + dateFormatter.string(from: endCal)
+            return dateFormatter.string(from: startCal) + " - " + dateFormatter.string(from: endCal)
         } else {
             return "No time! ! !"
         }

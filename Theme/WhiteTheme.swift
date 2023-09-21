@@ -46,8 +46,8 @@ struct WhiteTheme: ThemeProtocol {
     /// 描述灰
     var titleColorForPlace_p1: UIColor              { .hex("#F0F0F2") }
     
-    /// [T]7B8899
-    var titleColorForPlace_p2: UIColor              { .hex("#7B8899") }
+    /// [F]浅色
+    var titleColorForPlace_p2: UIColor              { .hex("#15315BB2") }
     
     /// [T]94A6C4
     var titleColorForPlaceholder: UIColor           { .hex("#94A6C4") }

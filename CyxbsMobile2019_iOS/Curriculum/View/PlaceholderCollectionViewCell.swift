@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwifterSwift
 
 class PlaceholderCollectionViewCell: UICollectionViewCell {
     
