@@ -37,8 +37,8 @@ class ScheduleSelectSectionHeaderView: UIView {
     lazy var dataSource: JXSegmentedTitleDataSource = {
         let dataSource = JXSegmentedTitleDataSource()
         dataSource.titles = titles
-        dataSource.titleSelectedColor = .ry.titleColorForPlace_main
-        dataSource.titleNormalColor = .ry.titleColorForPlace_main
+        dataSource.titleSelectedColor = .ry(light: "#15315B", dark: "#F0F0F2")
+        dataSource.titleNormalColor = .ry(light: "#15315B", dark: "#F0F0F2")
         dataSource.titleNormalFont = UIFont.systemFont(ofSize: 14)
         dataSource.titleSelectedZoomScale = 1.4
         dataSource.isTitleZoomEnabled = true

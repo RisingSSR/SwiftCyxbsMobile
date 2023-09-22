@@ -48,7 +48,7 @@ class ScheduleDetailTableHeaderView: UIView {
     lazy var courseLab: UILabel = {
         let lab = UILabel()
         lab.font = .systemFont(ofSize: 22, weight: .semibold)
-        lab.textColor = .ry.titleColorForPlace_main 
+        lab.textColor = .ry(light: "#112C54", dark: "#F0F0F2")
         return lab
     }()
     
@@ -60,7 +60,7 @@ class ScheduleDetailTableHeaderView: UIView {
     
     lazy var toImgView = 
     UIImageView(image: UIImage(named: "direction_right")?
-        .tint(.ry.titleColorForPlace_main, blendMode: .destinationIn)
+        .tint(.ry(light: "#112C54", dark: "#F0F0F2"), blendMode: .destinationIn)
         .scaled(toHeight: 10))
     
     lazy var editBtn: UIButton = {
@@ -73,7 +73,7 @@ class ScheduleDetailTableHeaderView: UIView {
     func createContentLab() -> UILabel {
         let lab = UILabel()
         lab.font = .systemFont(ofSize: 13, weight: .regular)
-        lab.textColor = .ry.titleColorForPlace_p2
+        lab.textColor = .ry(light: "#112C54", dark: "#F0F0F2")
         return lab
     }
 }

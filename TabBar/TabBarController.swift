@@ -85,6 +85,8 @@ extension TabBarController {
     
     func setupTabBar() {
         let tabBar = TabBar()
+        tabBar.bezierPathSetColor = .ry(light: "#E2EDFB", dark: "#7C7C7C")
+        tabBar.backgroundColor = .ry(light: "#FFFFFF", dark: "2D2D2D")
         let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
         tabBar.headerView.addGestureRecognizer(pan)
         let tap = UITapGestureRecognizer(target: self, action: #selector(response(tap:)))
@@ -156,8 +158,12 @@ extension TabBarController {
         let image = UIImage(named: imageName)?.scaled(toHeight: 25)?.withRenderingMode(.alwaysOriginal)
         let selectedImage = UIImage(named: selectedImageName)?.scaled(toHeight: 25)?.withRenderingMode(.alwaysOriginal)
         let tabBarItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
-        tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.ry.titleColorForTabBarUnselect], for: .normal)
-        tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.ry.titleColorForTabBarSelect], for: .selected)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.ry(light: "#AABCD8", dark: "#5A5A5A")
+        ], for: .normal)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.hex("#2923D2")
+        ], for: .selected)
         tabBarItem.needMoreSpaceToShow = needMoreSpaceToShow
         return tabBarItem
     }

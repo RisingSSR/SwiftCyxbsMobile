@@ -29,7 +29,7 @@ class ScheduleDetailMessageTableViewCell: UITableViewCell {
     lazy var leftLab: UILabel = {
         let lab = UILabel()
         lab.font = .systemFont(ofSize: 15, weight: .regular)
-        lab.textColor = .ry.titleColorForPlace_main
+//        lab.textColor = .ry.titleColorForPlace_main
         lab.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
         return lab
     }()
@@ -38,7 +38,7 @@ class ScheduleDetailMessageTableViewCell: UITableViewCell {
         let lab = UILabel()
         lab.font = .systemFont(ofSize: 15, weight: .semibold)
         lab.textAlignment = .right
-        lab.textColor = .ry.titleColorForPlace_main
+//        lab.textColor = .ry.titleColorForPlace_main
         lab.autoresizingMask = [.flexibleLeftMargin, .flexibleTopMargin, .flexibleBottomMargin]
         return lab
     }()

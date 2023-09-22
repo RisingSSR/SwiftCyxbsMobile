@@ -150,26 +150,26 @@ extension ScheduleCollectionViewCell {
         switch curriculumType {
             
         case .morning:
-            contentView.backgroundColor = .ry.color(light: .hex("#F9E7D8"), dark: .hex("#FFCCA126"))
-            titleLab.textColor = .ry.color(light: .hex("#FF8015"), dark: .hex("#F0F0F2CC"))
+            contentView.backgroundColor = .ry(light: "#F9E7D8", dark: "#FFCCA126")
+            titleLab.textColor = .ry(light: "#FF8015", dark: "#F0F0F2CC")
             contentLab.textColor = titleLab.textColor
             multyView.backgroundColor = titleLab.textColor
             
         case .afternoon:
-            contentView.backgroundColor = .ry.color(light: .hex("#F9E3E4"), dark: .hex("#FF979B26"))
-            titleLab.textColor = .ry.color(light: .hex("#FF6262"), dark: .hex("#F0F0F2CC"))
+            contentView.backgroundColor = .ry(light: "#F9E3E4", dark: "#FF979B26")
+            titleLab.textColor = .ry(light: "#FF6262", dark: "#F0F0F2CC")
             contentLab.textColor = titleLab.textColor
             multyView.backgroundColor = titleLab.textColor
             
         case .night:
-            contentView.backgroundColor = .ry.color(light: .hex("#DDE3F8"), dark: .hex("#9BB2FB26"))
-            titleLab.textColor = .ry.color(light: .hex("#4066EA"), dark: .hex("#F0F0F2CC"))
+            contentView.backgroundColor = .ry(light: "#DDE3F8", dark: "#9BB2FB26")
+            titleLab.textColor = .ry(light: "#4066EA", dark: "#F0F0F2CC")
             contentLab.textColor = titleLab.textColor
             multyView.backgroundColor = titleLab.textColor
             
         case .others:
-            contentView.backgroundColor = .ry.color(light: .hex("#DFF3FC"), dark: .hex("#90DBFB26"))
-            titleLab.textColor = .ry.color(light: .hex("#06A3FC"), dark: .hex("#F0F0F2CC"))
+            contentView.backgroundColor = .ry(light: "#DFF3FC", dark: "#90DBFB26")
+            titleLab.textColor = .ry(light: "#06A3FC", dark: "#F0F0F2CC")
             contentLab.textColor = titleLab.textColor
             multyView.backgroundColor = titleLab.textColor
             
@@ -190,13 +190,13 @@ extension ScheduleCollectionViewCell {
             
         case .normal:
             contentView.backgroundColor = .clear
-            titleLab.textColor = .ry.color(light: .hex("#15315B"), dark: .hex("#F0F0F2"))
-            contentLab.textColor = .ry.color(light: .hex("#606E8A"), dark: .hex("#868686"))
+            titleLab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
+            contentLab.textColor = .ry(light: "#606E8A", dark: "#868686")
             
         case .select:
-            contentView.backgroundColor = .ry.color(light: .hex("#2A4E84"), dark: .hex("#5A5A5ACC"))
-            titleLab.textColor = .ry.color(light: .hex("#FFFFFF"), dark: .hex("#F0F0F2"))
-            contentLab.textColor = .ry.color(light: .hex("#FFFFFF64"), dark: .hex("#868686"))
+            contentView.backgroundColor = .ry(light: "#2A4E84", dark: "#5A5A5ACC")
+            titleLab.textColor = .ry(light: "#FFFFFF", dark: "#F0F0F2")
+            contentLab.textColor = .ry(light: "#FFFFFF64", dark: "#868686")
             
         }
         updateFrame()

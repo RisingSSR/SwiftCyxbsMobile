@@ -164,13 +164,13 @@ extension ScheduleHeaderView {
     func create(title: String, content: String?) -> NSAttributedString {
         let titleStr = NSAttributedString(string: title, attributes: [
             .font: UIFont.systemFont(ofSize: 22, weight: .semibold),
-            .foregroundColor: UIColor.ry.titleColorForPlace_main
+            .foregroundColor: UIColor.ry(light: "#112C54", dark: "#F0F0F2")
         ])
         let fullStr = NSMutableAttributedString(attributedString: titleStr)
         if let content {
             let contentStr = NSAttributedString(string: content, attributes: [
                 .font: UIFont.systemFont(ofSize: 15, weight: .regular),
-                .foregroundColor: UIColor.ry.titleColorForPlace_main
+                .foregroundColor: UIColor.ry(light: "#112C54", dark: "#F0F0F2")
             ])
             fullStr.append(contentStr)
         } else {
@@ -179,7 +179,7 @@ extension ScheduleHeaderView {
         
         let toImgAtt = NSTextAttachment()
         toImgAtt.image = UIImage(named: "direction_right")?
-            .tint(.ry.titleColorForPlace_main, blendMode: .destinationIn)
+            .tint(.ry(light: "#112C54", dark: "#F0F0F2"), blendMode: .destinationIn)
             .scaled(toHeight: 12)
         toImgAtt.bounds.size = toImgAtt.image?.size ?? .zero
         let to = NSAttributedString(attachment: toImgAtt)

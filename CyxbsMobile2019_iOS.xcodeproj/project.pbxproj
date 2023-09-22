@@ -11,10 +11,7 @@
 		143F701D2AA170030048E264 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F701C2AA170030048E264 /* TabBarController.swift */; };
 		143F702F2AA4980C0048E264 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F702E2AA4980C0048E264 /* TabBar.swift */; };
 		143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */; };
-		14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DAF2AA5ECFC00D8D1E1 /* ThemeProtocol.swift */; };
 		14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */; };
-		14622DB42AA5ED7400D8D1E1 /* WhiteTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB32AA5ED7400D8D1E1 /* WhiteTheme.swift */; };
-		14622DB62AA6098300D8D1E1 /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB52AA6098300D8D1E1 /* DarkTheme.swift */; };
 		14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */; };
 		14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */; };
 		14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DC02AA6C8C100D8D1E1 /* APIConfig.swift */; };
@@ -82,10 +79,7 @@
 		143F701C2AA170030048E264 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		143F702E2AA4980C0048E264 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHeaderView.swift; sourceTree = "<group>"; };
-		14622DAF2AA5ECFC00D8D1E1 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
-		14622DB32AA5ED7400D8D1E1 /* WhiteTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteTheme.swift; sourceTree = "<group>"; };
-		14622DB52AA6098300D8D1E1 /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
 		14622DB72AA60FD700D8D1E1 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; };
 		14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
@@ -181,17 +175,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		14622DAE2AA5ECDD00D8D1E1 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				14622DAF2AA5ECFC00D8D1E1 /* ThemeProtocol.swift */,
-				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
-				14622DB32AA5ED7400D8D1E1 /* WhiteTheme.swift */,
-				14622DB52AA6098300D8D1E1 /* DarkTheme.swift */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
 		14622DBB2AA6BE6600D8D1E1 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +227,7 @@
 			children = (
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
 				148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */,
+				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
@@ -386,7 +370,6 @@
 				14622DCE2AA6FA6100D8D1E1 /* Constants */,
 				14622DBB2AA6BE6600D8D1E1 /* NetWork */,
 				14622DD32AA825DB00D8D1E1 /* Cache */,
-				14622DAE2AA5ECDD00D8D1E1 /* Theme */,
 				143F701B2AA16FE40048E264 /* TabBar */,
 				1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */,
 				1A9B7682235F50A900725937 /* CyxbsMobile2019_iOSTests */,
@@ -697,7 +680,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14622DB02AA5ECFC00D8D1E1 /* ThemeProtocol.swift in Sources */,
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
 				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
 				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
@@ -707,7 +689,6 @@
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
-				14622DB42AA5ED7400D8D1E1 /* WhiteTheme.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
@@ -739,7 +720,6 @@
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
-				14622DB62AA6098300D8D1E1 /* DarkTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,7 +889,7 @@
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "掌上重邮";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -972,7 +952,7 @@
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "掌上重邮";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

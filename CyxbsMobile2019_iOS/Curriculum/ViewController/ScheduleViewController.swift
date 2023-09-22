@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ry.backgroundColorForPlace_main
+        view.backgroundColor = .ry(light: "#FFFFFF", dark: "#1D1D1D")
         
         view.addSubview(headerView)
         view.addSubview(collectionView)

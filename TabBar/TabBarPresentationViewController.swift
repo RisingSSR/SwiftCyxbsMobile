@@ -25,12 +25,14 @@ class TabBarPresentationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.clipsToBounds = true
         view.backgroundColor = .clear
-        view.layer.cornerRadius = 16
-        view.layer.shadowRadius = view.layer.cornerRadius
-        view.layer.shadowColor = UIColor.ry.color(light: .lightGray, dark: .darkGray).cgColor
+        view.layer.shadowRadius = 16
+        view.layer.shadowColor = UIColor(light: .lightGray, dark: .darkGray).cgColor
         view.layer.shadowOpacity = 0.7
         view.layer.shadowOffset = CGSize(width: 0, height: -2)
+        
+        scheduleVC.view.layer.cornerRadius = 16
         
         view.addSubview(scheduleVC.view)
         scheduleVC.collectionView.frame.size.height -= Constants.statusBarHeight

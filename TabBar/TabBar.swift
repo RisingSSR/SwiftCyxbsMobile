@@ -14,7 +14,7 @@ class TabBar: UITabBar {
 
     var heightForMoreSpace: CGFloat = 58
     
-    var bezierPathSetColor: UIColor = .ry.backgroundColorForPlace_p1
+    var bezierPathSetColor: UIColor = .black
     
     var isHeaderViewHidden: Bool = false {
         didSet {
@@ -29,7 +29,6 @@ class TabBar: UITabBar {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.mask = shapeLayer
-        backgroundColor = .ry.backgroundColorForPlace_main
         addSubview(line)
         addSubview(headerView)
     }

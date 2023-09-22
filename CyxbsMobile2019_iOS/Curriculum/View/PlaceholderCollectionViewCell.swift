@@ -68,7 +68,7 @@ class PlaceholderCollectionViewCell: UICollectionViewCell {
     lazy var contentLab: UILabel = {
         let lab = UILabel()
         lab.font = .systemFont(ofSize: 12)
-        lab.textColor = .ry.color(light: .hex("#606E8A"), dark: .hex("#868686"))
+        lab.textColor = .ry(light: "#112C54", dark: "#F0F0F2")
         return lab
     }()
 }

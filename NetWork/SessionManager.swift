@@ -117,7 +117,7 @@ extension DataRequest {
                       """)
             }
             
-            if let value = response.value {
+            if let value = response.value, value["status"] == 10000 {
                 completionHandler(.success(value))
             } else {
                 let error = NetError(request: response.request, response: response.response, error: response.error)
