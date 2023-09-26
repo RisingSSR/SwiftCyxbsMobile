@@ -51,20 +51,21 @@ PODS:
   - JXPagingView/Pager (2.1.2)
   - JXPagingView/Paging (2.1.2)
   - JXSegmentedView (1.3.0)
-  - LookinServer (1.1.7):
-    - LookinServer/Core (= 1.1.7)
-  - LookinServer/Core (1.1.7)
-  - MBProgressHUD (1.2.0)
+  - LookinServer (1.2.2):
+    - LookinServer/Core (= 1.2.2)
+  - LookinServer/Core (1.2.2)
+  - MarkdownKit (1.7.1)
   - MJRefresh (3.7.5)
+  - ProgressHUD (13.7.2)
   - RYAngelWalker (0.1.0)
   - RYTransitioningDelegateSwift (0.2.0)
-  - SDWebImage (5.18.0):
-    - SDWebImage/Core (= 5.18.0)
-  - SDWebImage/Core (5.18.0)
+  - SDWebImage (5.18.2):
+    - SDWebImage/Core (= 5.18.2)
+  - SDWebImage/Core (5.18.2)
   - SwiftyJSON (5.0.1)
   - TagListView (1.4.1)
   - UMCCommonLog (2.0.2)
-  - UMCommon (7.4.1):
+  - UMCommon (7.4.2):
     - UMDevice
   - UMDevice (3.1.0)
   - UMShare/Core (6.10.7):
@@ -96,8 +97,9 @@ DEPENDENCIES:
   - JXPagingView
   - JXSegmentedView
   - LookinServer
-  - MBProgressHUD
+  - MarkdownKit
   - MJRefresh
+  - ProgressHUD (from `https://github.com/relatedcode/ProgressHUD.git`)
   - RYAngelWalker
   - RYTransitioningDelegateSwift
   - SDWebImage
@@ -119,11 +121,6 @@ SPEC REPOS:
     - AlicloudUtils
     - EMASRest
   https://github.com/CocoaPods/Specs.git:
-    - MBProgressHUD
-    - RYAngelWalker
-    - RYTransitioningDelegateSwift
-    - TagListView
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - Alamofire
     - Bugly
     - JXBanner
@@ -131,14 +128,27 @@ SPEC REPOS:
     - JXPagingView
     - JXSegmentedView
     - LookinServer
+    - MarkdownKit
     - MJRefresh
+    - RYAngelWalker
+    - RYTransitioningDelegateSwift
     - SDWebImage
     - SwiftyJSON
+    - TagListView
     - UMCCommonLog
     - UMCommon
     - UMDevice
     - UMShare
     - UMVerify
+
+EXTERNAL SOURCES:
+  ProgressHUD:
+    :git: https://github.com/relatedcode/ProgressHUD.git
+
+CHECKOUT OPTIONS:
+  ProgressHUD:
+    :commit: f2718187912629234cde17dfb910311fdf364e60
+    :git: https://github.com/relatedcode/ProgressHUD.git
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
@@ -153,20 +163,21 @@ SPEC CHECKSUMS:
   JXPageControl: e9487b39e2e58fc17790833214f3b8e935bef98b
   JXPagingView: 90924b364a2ff7e94db534fad1fa50925ff69ee4
   JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
-  LookinServer: 4ce0469b066871525611d009d8d16a7a50c23491
-  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  LookinServer: 3204eefff2f18e19fa546931fb5f1b88bc709a0b
+  MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  ProgressHUD: 093d24ca970f191744017bee2649e37d0cd1c5b9
   RYAngelWalker: cb74daf62cf628394e7f843ba91d44e23de0aaf0
   RYTransitioningDelegateSwift: aff6f8cc0567cb4b4596cf7cf1d9bc2477a2459d
-  SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
+  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
-  UMCommon: 47e0b53f6a36568e958a5abd005ed7577fcac9ad
+  UMCommon: 35b28c82a3a3be892f895628261edce11b6a9e3e
   UMDevice: 9ef8045b59e0479cff7062915c879a1af46fa094
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: 0f5da826368383bdca54c71ed8b1e4f02e87fa54
+PODFILE CHECKSUM: 323f5c148e6a50bdb38bd61e9a8619cda159fd6f
 
 COCOAPODS: 1.12.1

@@ -27,20 +27,24 @@ class TabBarPresentationViewController: UIViewController {
         
         view.clipsToBounds = true
         view.backgroundColor = .clear
-        view.layer.shadowRadius = 16
-        view.layer.shadowColor = UIColor(light: .lightGray, dark: .darkGray).cgColor
-        view.layer.shadowOpacity = 0.7
-        view.layer.shadowOffset = CGSize(width: 0, height: -2)
         
         scheduleVC.view.layer.cornerRadius = 16
-        
-        view.addSubview(scheduleVC.view)
         scheduleVC.collectionView.frame.size.height -= Constants.statusBarHeight
+        view.addSubview(scheduleVC.view)
+        
         let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
         scheduleVC.headerView.addGestureRecognizer(pan)
     }
     
-    lazy var scheduleVC = ScheduleViewController()
+    lazy var scheduleVC: ScheduleViewController = {
+        let vc = ScheduleViewController()
+        if let mainSno = Constants.mainSno {
+            vc.snoToPriority = [
+                mainSno: .mainly
+            ]
+        }
+        return vc
+    }()
 }
 
 extension TabBarPresentationViewController {

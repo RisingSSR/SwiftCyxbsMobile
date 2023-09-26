@@ -25,6 +25,8 @@ class UserDefaultsManager {
     private let userDefaults: UserDefaults
 }
 
+// MARK: common
+
 extension UserDefaultsManager {
     
     private func set(_ obj: Any?, forKey key: String) {
@@ -35,6 +37,18 @@ extension UserDefaultsManager {
         userDefaults.object(forKey: key)
     }
 }
+
+/* 模版
+ 
+ /// <#这个计算属性的作用#>
+ var <#计算属性#>: <#返回值类型#><#?#> {
+    set { set(newValue, forKey: "<#存储的Key值#>") }
+    get { get(key: "<#存储的Key值#>") as<#?#> <#返回值类型#> }
+ }
+ 
+ */
+
+// MARK: userDefaults
 
 extension UserDefaultsManager {
     
@@ -49,6 +63,33 @@ extension UserDefaultsManager {
         set { set(newValue, forKey: "LATEST_OPEN_APP") }
         get { get(key: "LATEST_OPEN_APP") as? Date }
     }
+    
+    /// 是否已经读过UserAgreement（如果为nil表示最新版本）
+    var didReadUserAgreementBefore: Bool? {
+       set { set(newValue, forKey: "DID_READ_USERAGREEMENT_BEFOR") }
+       get { get(key: "DID_READ_USERAGREEMENT_BEFOR") as? Bool }
+    }
+}
+
+extension UserDefaultsManager {
+    
+    /// 获取token信息
+    var token: String? {
+        set { set(newValue, forKey: "TOKEN") }
+        get { get(key: "TOKEN") as? String }
+    }
+    
+    /// 获取refresh的token
+    var refreshToken: String? {
+        set { set(newValue, forKey: "REFRESH_TOKEN") }
+        get { get(key: "REFRESH_TOKEN") as? String }
+    }
+    
+    /// 在打开app的时候，是否弹起schedule
+    var presentScheduleWhenOpenApp: Bool {
+       set { set(newValue, forKey: "PRSENT_SCHEDULE_WHEN_OPEN_APP") }
+       get { get(key: "PRSENT_SCHEDULE_WHEN_OPEN_APP") as? Bool ?? true }
+    }
 }
 
 extension UserDefaultsManager {
@@ -58,13 +99,10 @@ extension UserDefaultsManager {
         set { set(newValue, forKey: "MAIN_STUDENT_SNO") }
         get { get(key: "MAIN_STUDENT_SNO") as? String }
     }
-        
-    /// 上一次请求主学号时间（用于一级缓存）
-    func cache(latestRequest date: Date, sno: String) {
-        set(date, forKey: "LATEST_REQUEST_SNO_\(sno)")
-    }
-    func latestRequest(sno: String) -> Date? {
-        get(key: "LATEST_REQUEST_SNO__\(sno)") as? Date
-    }
     
+    /// 上一次请求主学号时间
+    var latestRequestDate: Date? {
+        set { set(newValue, forKey: "LATEST_REQUEST_DATE") }
+        get { get(key: "LATEST_REQUEST_DATE") as? Date }
+    }
 }

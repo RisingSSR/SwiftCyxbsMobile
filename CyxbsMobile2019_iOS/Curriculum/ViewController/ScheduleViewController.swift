@@ -12,6 +12,18 @@ class ScheduleViewController: UIViewController {
     
     let fact = ScheduleInteractionFact()
     
+    var isCustomEditEnable: Bool {
+        set { fact.isCustomEditEnable = newValue }
+        get { fact.isCustomEditEnable }
+    }
+    
+    var snoToPriority: [String: ScheduleMaping.Priority] {
+        set { fact.snoToPriority = newValue }
+        get { fact.snoToPriority }
+    }
+    
+    var nextRequestPriorities: Set<ScheduleMaping.Priority> = [.mainly, .custom, .others]
+    
     let heightForHeaderView: CGFloat = 64
 
     override func viewDidLoad() {
@@ -23,7 +35,9 @@ class ScheduleViewController: UIViewController {
         
         fact.viewController = self
         fact.handle(headerView: headerView)
-        fact.request(sno: "2021215154")
+        fact.request(priorities: nextRequestPriorities) { theFact in
+            theFact.scrollToNowWeek()
+        }
     }
     
     lazy var headerView: ScheduleHeaderView = {
@@ -38,4 +52,9 @@ class ScheduleViewController: UIViewController {
         collectionView.backgroundColor = view.backgroundColor
         return collectionView
     }()
+}
+
+extension ScheduleViewController {
+    
+    
 }

@@ -8,10 +8,22 @@
 
 import UIKit
 
+private weak var ssr_currentFirstResponder: AnyObject?
+
 extension UIResponder {
     
     var latestViewController: UIViewController? {
         (next as? UIViewController) ?? next?.latestViewController
+    }
+        
+    static var firstResponder: AnyObject? {
+        ssr_currentFirstResponder = nil
+        UIApplication.shared.sendAction(#selector(ssr_findFirstResponder(_:)), to: nil, from: nil, for: nil)
+        return ssr_currentFirstResponder
+    }
+    
+    @objc func ssr_findFirstResponder(_ sender: AnyObject) {
+        ssr_currentFirstResponder = self
     }
 }
 

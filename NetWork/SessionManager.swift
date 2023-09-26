@@ -117,7 +117,7 @@ extension DataRequest {
                       """)
             }
             
-            if let value = response.value, value["status"] == 10000 {
+            if let value = response.value {
                 completionHandler(.success(value))
             } else {
                 let error = NetError(request: response.request, response: response.response, error: response.error)
@@ -151,11 +151,6 @@ struct NetError: Error, CustomStringConvertible {
     
     var description: String {
         var description = "NetError "
-        if let code = error?.responseCode {
-            description += "[\(code)] "
-        } else {
-            description += "[未知响应] "
-        }
         
         if let url = response?.url {
             description += "\(url) "

@@ -14,7 +14,11 @@ class TabBar: UITabBar {
 
     var heightForMoreSpace: CGFloat = 58
     
-    var bezierPathSetColor: UIColor = .black
+    var bezierPathSetColor: UIColor = .black {
+        didSet {
+            line.backgroundColor = bezierPathSetColor
+        }
+    }
     
     var isHeaderViewHidden: Bool = false {
         didSet {

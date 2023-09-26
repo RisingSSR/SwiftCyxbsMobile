@@ -12,7 +12,7 @@ import UIKit
 
 extension ScheduleMaping {
     
-    enum Priority: Int, Comparable {
+    enum Priority: Int, Hashable{
         
         case mainly = 0
         
@@ -91,7 +91,9 @@ extension ScheduleMaping {
     func findCals(from collection: Collection) -> [ScheduleCalModel] {
         var cals = [collection.cal]
         for oldValue in self.oldValues {
-            if (oldValue.location ..< (oldValue.location + oldValue.lenth)).contains(collection.location) {
+            if oldValue.cal.inSection == collection.cal.inSection,
+            oldValue.cal.curriculum.inWeek == collection.cal.curriculum.inWeek,
+            (oldValue.location ..< (oldValue.location + oldValue.lenth)).contains(collection.location) {
                 cals.append(oldValue.cal)
             }
         }

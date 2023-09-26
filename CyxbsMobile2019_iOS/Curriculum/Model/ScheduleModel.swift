@@ -87,7 +87,7 @@ extension ScheduleModel {
 
 extension ScheduleModel {
     
-    static func request(snos: [String], handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
+    static func request(snos: Set<String>, handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
         
         let group = DispatchGroup()
         var modelAry = [ScheduleModel]()

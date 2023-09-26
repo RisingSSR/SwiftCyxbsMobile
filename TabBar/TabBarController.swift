@@ -16,9 +16,7 @@ open class TabBarController: UITabBarController {
         
         setupTabBar()
         setupViewControllers()
-        
-        Constants.mainSno = "2021215154"
-        reloadData()
+        setupLogin()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -26,21 +24,20 @@ open class TabBarController: UITabBarController {
         
         tabBar.ryTabBar?.headerView.handle_viewWillAppear()
     }
-    
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        reloadData()
-    }
 }
 
-// MARK: data
+// MARK: reload
 
 extension TabBarController {
     
+    /* 缓存请求法
+     会判断缓存，没缓存走请求法
+     */
     func reloadData() {
         if let sno = Constants.mainSno,
            var scheduleModel = ScheduleModel.getFromCache(sno: sno) {
 
-            let date = UserDefaultsManager.shared.latestRequest(sno: sno) ?? Date()
+            let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
             scheduleModel.nowWeek += days
 
@@ -50,12 +47,15 @@ extension TabBarController {
         }
     }
     
+    /* 直接请求法
+     一般来说不主动掉用
+     */
     func request() {
         if let sno = Constants.mainSno {
             ScheduleModel.request(sno: sno) { response in
                 switch response {
                 case .success(let model):
-                    UserDefaultsManager.shared.cache(latestRequest: Date(), sno: sno)
+                    UserDefaultsManager.shared.latestRequestDate = Date()
                     model.toCache()
                     self.reloadWith(scheduleModel: model)
                 case .failure(_):
@@ -65,6 +65,9 @@ extension TabBarController {
         }
     }
     
+    /* 根据数据源刷新
+     给定一个ScheduleModel进行刷新
+     */
     func reloadWith(scheduleModel: ScheduleModel) {
         let calModels = scheduleModel.calModels
         if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
@@ -74,6 +77,9 @@ extension TabBarController {
         }
     }
     
+    /* 直接赋值法
+     一般用于错误信息的时候可以直接赋值，不用掉用一堆API
+     */
     func reloadTabBarData(title: String?, time: String?, place: String?) {
         tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
     }
@@ -102,6 +108,20 @@ extension TabBarController {
             vcs[index].tabBarItem = tabBarItems[min(index, tabBarItems.count - 1)]
         }
         viewControllers = vcs
+    }
+    
+    func setupLogin() {
+        LoginViewController.check { shouldPresent, optionVC in
+            if shouldPresent, let vc = optionVC {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            } else {
+                self.reloadData()
+                if UserDefaultsManager.shared.presentScheduleWhenOpenApp {
+                    self.presentSchedule()
+                }
+            }
+        }
     }
 }
 
@@ -134,23 +154,15 @@ extension TabBarController {
         ]
     }
     
+    var finderViewController: UIViewController { createVC(root: FinderViewController()) }
     
+    var carnieViewController: UIViewController { createVC(root: CarnieViewController()) }
     
-    var finderViewController: UIViewController {
-        let vc = FinderViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        return nav
-    }
+    var mineViewController: UIViewController { createVC(root: MineViewController()) }
     
-    var carnieViewController: UIViewController {
-        let vc = CarnieViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        return nav
-    }
-    
-    var mineViewController: UIViewController {
-        let vc = MineViewController()
-        let nav = UINavigationController(rootViewController: vc)
+    func createVC(root: UIViewController) -> UIViewController {
+        let nav = UINavigationController(rootViewController: root)
+        nav.isNavigationBarHidden = true
         return nav
     }
     
@@ -228,13 +240,6 @@ extension TabBarController {
     }
 }
 
-extension UITabBarController {
-    
-    var ry_tabBar: TabBar? {
-        tabBar as? TabBar
-    }
-}
-
 // MARK: UITabBarDelegate
 
 extension TabBarController {
@@ -246,7 +251,15 @@ extension TabBarController {
     }
 }
 
-// MARK: extension
+// MARK: EX UITabBarController
+
+extension UITabBarController {
+    var ry_tabBar: TabBar? {
+        tabBar as? TabBar
+    }
+}
+
+// MARK: EX UIViewController
 
 extension UIViewController {
     var ryTabBarController: TabBarController? {

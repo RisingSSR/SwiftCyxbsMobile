@@ -52,6 +52,11 @@
 		148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56952ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift */; };
 		148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56972ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift */; };
 		148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */; };
+		14B46B692ABD7BC20068EB26 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B682ABD7BC20068EB26 /* LoginViewController.swift */; };
+		14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */; };
+		14B46B6D2ABE8D220068EB26 /* BaseAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */; };
+		14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */; };
+		14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B722AC127D60068EB26 /* MarkDownViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
@@ -123,6 +128,11 @@
 		148F56952ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		148F56972ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailMessageTableViewCell.swift; sourceTree = "<group>"; };
 		148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		14B46B682ABD7BC20068EB26 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFiledViewController.swift; sourceTree = "<group>"; };
+		14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAgreementView.swift; sourceTree = "<group>"; };
+		14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌上重邮用户协议.md"; sourceTree = "<group>"; };
+		14B46B722AC127D60068EB26 /* MarkDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDownViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +173,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14076D2A2AC2693200E2F1D0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				14B46B722AC127D60068EB26 /* MarkDownViewController.swift */,
+				14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		143F701B2AA16FE40048E264 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,10 +382,36 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		14B46B652ABD7A560068EB26 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				14B46B672ABD7A560068EB26 /* ViewController */,
+				14B46B662ABD7A560068EB26 /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		14B46B662ABD7A560068EB26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B46B672ABD7A560068EB26 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */,
+				14B46B682ABD7BC20068EB26 /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
 				14622DB72AA60FD700D8D1E1 /* 掌邮工具类.md */,
+				14076D2A2AC2693200E2F1D0 /* Common */,
 				14622DCE2AA6FA6100D8D1E1 /* Constants */,
 				14622DBB2AA6BE6600D8D1E1 /* NetWork */,
 				14622DD32AA825DB00D8D1E1 /* Cache */,
@@ -399,12 +444,14 @@
 				14622DC62AA6DC7400D8D1E1 /* Mine */,
 				14622DD62AA8287100D8D1E1 /* Curriculum */,
 				148F568E2ABB26C9002FFE8A /* Curriculum Details */,
+				14B46B652ABD7A560068EB26 /* Login */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				143F70192AA165C10048E264 /* AppDelegate.swift */,
 				14622E1F2AB2850800D8D1E1 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
 				14622DC22AA6CF4E00D8D1E1 /* LaunchScreen.storyboard */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				14B73F26281BE6C200D08ADD /* Assets.xcassets */,
+				14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
@@ -580,6 +627,7 @@
 				14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */,
 				14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */,
 				14622DC32AA6CF4E00D8D1E1 /* LaunchScreen.storyboard in Resources */,
+				14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +730,7 @@
 			files = (
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
 				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
+				14B46B692ABD7BC20068EB26 /* LoginViewController.swift in Sources */,
 				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
@@ -690,6 +739,7 @@
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
+				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
 				14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */,
@@ -704,6 +754,7 @@
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
 				14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
+				14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
 				148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */,
@@ -715,6 +766,7 @@
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
+				14B46B6D2ABE8D220068EB26 /* BaseAgreementView.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
@@ -905,7 +957,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -967,7 +1019,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

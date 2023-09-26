@@ -80,6 +80,37 @@ extension Constants {
     }
 }
 
+// MARK: custom
+
+extension Constants {
+    
+    /* !!!: 清理缓存
+       若下一个版本需要清理一下以前的缓存信息，则需要设置为true
+     */
+    static let cleanInNextVersion: Bool = true
+}
+
+extension Constants {
+    
+    /// 获得token
+    static var token: String? = {
+        UserDefaultsManager.shared.token
+    }() {
+        didSet {
+            UserDefaultsManager.shared.token = token
+        }
+    }
+    
+    /// 获得主学号
+    static var mainSno: String? = {
+        UserDefaultsManager.shared.mainStudentSno
+    }() {
+        didSet {
+            UserDefaultsManager.shared.mainStudentSno = mainSno
+        }
+    }
+}
+
 extension Constants {
     
     /* 获得开学的时间
@@ -103,16 +134,5 @@ extension Constants {
         currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
         // 计算当前日期与开始日期之间的周数差
         return calendar.dateComponents([.weekOfYear], from: start, to: currentDate).weekOfYear
-    }
-    
-    /* 获得主学号
-     作为常量存在内存中
-     */
-    static var mainSno: String? = {
-        UserDefaultsManager.shared.mainStudentSno
-    }() {
-        didSet {
-            UserDefaultsManager.shared.mainStudentSno = mainSno
-        }
     }
 }

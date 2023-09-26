@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/specs'
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 source 'https://github.com/aliyun/aliyun-specs.git'
 
-platform :ios,'11.0'
+platform :ios,'13.0'
 use_frameworks!
 
 inhibit_all_warnings!
@@ -19,8 +19,10 @@ target 'CyxbsMobile2019_iOS' do
 	# pod 'YBImageBrowser'
   # pod 'IQKeyboardManager'
 	pod 'SDWebImage'
-  pod 'MBProgressHUD'
+  pod 'ProgressHUD'
 	pod 'MJRefresh'
+  pod 'MarkdownKit'
+  pod 'TagListView'
   
   pod 'UMCommon'
   pod 'UMDevice'
@@ -40,7 +42,6 @@ target 'CyxbsMobile2019_iOS' do
   
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
-  pod 'TagListView'
   
   pod 'AlicloudHTTPDNS'
   pod 'AlicloudUtils'

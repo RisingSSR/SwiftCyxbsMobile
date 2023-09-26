@@ -19,12 +19,15 @@ class ScheduleInteractionFact: ScheduleFact {
     
     weak var headerView: ScheduleHeaderView?
     
+    var isCustomEditEnable: Bool = false
+    
+    var snoToPriority: [String: ScheduleMaping.Priority] = [:]
+    
     override func createCollectionView() -> UICollectionView {
         let collectionView = super.createCollectionView()
         
         let header = MJRefreshGifHeader {
             self.mappy.clean()
-            self.request(sno: "2021215154")
         }
         .autoChangeTransparency(true)
         .set_refresh_sports()
@@ -52,17 +55,43 @@ extension ScheduleInteractionFact {
         let pageWidth = collectionView.bounds.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) * CGFloat(visibleSection)
         collectionView.setContentOffset(CGPoint(x: pageWidth, y: collectionView.contentOffset.y), animated: true)
     }
+    
+    func scrollToNowWeek() {
+        self.scroll(to: self.mappy.nowWeek)
+    }
 }
 
 // MARK: request
 
 extension ScheduleInteractionFact {
     
-    func request(sno: String) {
+    func request(priorities: Set<ScheduleMaping.Priority>, complition: ((ScheduleInteractionFact) -> ())? = nil) {
+        
+        let requestSnos = Set(snoToPriority.compactMap {
+            ($0.value != .custom && priorities.contains($0.value)) ?
+            $0.key : nil
+        })
+        
+        ScheduleModel.request(snos: requestSnos) { response in
+            switch response {
+            case .success(let models):
+                for model in models {
+                    let priority = self.snoToPriority[model.sno] ?? .mainly
+                    self.mappy.maping(model, priority: priority)
+                }
+                self.collectionView.reloadData()
+                complition?(self)
+            case .failure(let netError):
+                print("error \(netError)")
+            }
+        }
+    }
+    
+    func request(sno: String, property: ScheduleMaping.Priority) {
         ScheduleModel.request(sno: sno) { response in
             switch response {
             case .success(let model):
-                self.mappy.maping(model)
+                self.mappy.maping(model, priority: property)
                 self.collectionView.reloadData()
             case .failure(let error):
                 print("error \(error)")
@@ -89,7 +118,7 @@ extension ScheduleInteractionFact {
             UIView.transition(from: headerView, to: selectView, duration: 0.3, options: .transitionCrossDissolve)
         }
         headerView.backBtnAction = { _ in
-            self.scroll(to: self.mappy.nowWeek)
+            self.scrollToNowWeek()
         }
         self.headerView = headerView
         self.headerView?.updateData(section: 0, isNowSection: false)
@@ -136,6 +165,7 @@ extension ScheduleInteractionFact {
 // MARK: JXSegmentedViewListContainer
 
 extension ScheduleInteractionFact: JXSegmentedViewListContainer {
+    
     var defaultSelectedIndex: Int {
         get { currentPage }
         set(newValue) {

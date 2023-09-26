@@ -18,6 +18,7 @@ class ScheduleDetailCollectionViewCell: UICollectionViewCell {
                 sno: "\(cal.stu?.name ?? "") \(cal.stu?.stunum ?? "")",
                 place: cal.curriculum.classRoom,
                 teacher: cal.curriculum.teacher)
+            tableHeaderView.isEditBtnShow = (cal.customType == .custom)
         }
     }
     

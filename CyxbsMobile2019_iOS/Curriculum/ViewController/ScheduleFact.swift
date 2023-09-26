@@ -28,7 +28,7 @@ extension ScheduleFact {
         layout.dataSource = self
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false 
         collectionView.showsHorizontalScrollIndicator = true
         collectionView.isDirectionalLockEnabled = true
         collectionView.dataSource = self
@@ -147,7 +147,7 @@ extension ScheduleFact: UICollectionViewDataSource {
 // MARK: ScheduleCollectionViewLayoutDataSource
 
 extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, columnOfItemAtIndexPath indexPath: IndexPath) -> Int {
         data(of: indexPath).cal.curriculum.inWeek
     }

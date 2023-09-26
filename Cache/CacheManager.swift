@@ -12,12 +12,10 @@ struct CacheManager {
     
     static let shared = CacheManager()
     
-    static let cleanInNextVersion: Bool = true
-    
     private init() {
         print("[document] \(RootPath.document.rawValue)")
         print("[widget] \(RootPath.widget.rawValue)")
-        if !CacheManager.cleanInNextVersion { return }
+        if !Constants.cleanInNextVersion { return }
         if let bundleShortVersion = UserDefaultsManager.shared.bundleShortVersion, bundleShortVersion == Constants.bundleShortVersion {
             return
         }

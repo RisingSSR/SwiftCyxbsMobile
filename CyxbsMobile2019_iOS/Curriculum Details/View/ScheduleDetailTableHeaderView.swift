@@ -39,6 +39,7 @@ class ScheduleDetailTableHeaderView: UIView {
     func setupUI() {
         toImgView.contentMode = .center
         placeLab.isUserInteractionEnabled = true
+        placeLab.numberOfLines = 2
         let tap = UITapGestureRecognizer(target: self, action: #selector(placeResponse(tap:)))
         placeLab.addGestureRecognizer(tap)
     }
@@ -132,14 +133,13 @@ extension ScheduleDetailTableHeaderView {
         snoLab.frame.origin = CGPoint(x: space, y: courseLab.frame.maxY + 6)
         snoLab.sizeToFit()
         
-        teacherLab.sizeToFit()
-        
         placeLab.frame.origin = CGPoint(x: space, y: snoLab.frame.maxY + 6)
-        placeLab.frame.size.width = bounds.width - teacherLab.bounds.width - 3 * space - 4
+        placeLab.frame.size.width = bounds.width / 3.0 * 2.0 - 2 * space
         placeLab.sizeToFit()
         
         toImgView.frame.origin = CGPoint(x: placeLab.frame.maxX + 4, y: placeLab.frame.minY + 3)
         
+        teacherLab.sizeToFit()
         teacherLab.frame.origin = CGPoint(x: toImgView.frame.maxX + space, y: placeLab.frame.minY)
     }
 }
