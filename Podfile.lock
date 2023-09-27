@@ -99,7 +99,7 @@ DEPENDENCIES:
   - LookinServer
   - MarkdownKit
   - MJRefresh
-  - ProgressHUD (from `https://github.com/relatedcode/ProgressHUD.git`)
+  - ProgressHUD
   - RYAngelWalker
   - RYTransitioningDelegateSwift
   - SDWebImage
@@ -130,6 +130,7 @@ SPEC REPOS:
     - LookinServer
     - MarkdownKit
     - MJRefresh
+    - ProgressHUD
     - RYAngelWalker
     - RYTransitioningDelegateSwift
     - SDWebImage
@@ -140,15 +141,6 @@ SPEC REPOS:
     - UMDevice
     - UMShare
     - UMVerify
-
-EXTERNAL SOURCES:
-  ProgressHUD:
-    :git: https://github.com/relatedcode/ProgressHUD.git
-
-CHECKOUT OPTIONS:
-  ProgressHUD:
-    :commit: f2718187912629234cde17dfb910311fdf364e60
-    :git: https://github.com/relatedcode/ProgressHUD.git
 
 SPEC CHECKSUMS:
   Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
@@ -178,6 +170,6 @@ SPEC CHECKSUMS:
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: 323f5c148e6a50bdb38bd61e9a8619cda159fd6f
+PODFILE CHECKSUM: 8360e22d54e96b1c4a3e5626bbef5beff625a37a
 
 COCOAPODS: 1.12.1

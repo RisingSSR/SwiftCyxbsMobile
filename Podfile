@@ -51,9 +51,16 @@ target 'CyxbsMobile2019_iOS' do
 
 end
 
+#target 'CyxbsWidgetExtension' do
+#  share_pods
+#end
+
 post_install do |installer|
+  puts "installer #{installer}"
   installer.pods_project.targets.each do |target|
+    puts "target #{target}"
     target.build_configurations.each do |config|
+      puts "config #{config}"
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
       config.build_settings['VALID_ARCHS'] = 'x86_64'
 #      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'

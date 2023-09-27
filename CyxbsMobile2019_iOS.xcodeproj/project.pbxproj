@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */; };
 		143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F70192AA165C10048E264 /* AppDelegate.swift */; };
 		143F701D2AA170030048E264 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F701C2AA170030048E264 /* TabBarController.swift */; };
 		143F702F2AA4980C0048E264 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F702E2AA4980C0048E264 /* TabBar.swift */; };
@@ -35,7 +36,7 @@
 		14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14622E1C2AB1F14600D8D1E1 /* AliyunEmasServices-Info.plist */; };
 		14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 14622E212AB2850900D8D1E1 /* AliyunConfig.m */; };
 		14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E232AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift */; };
-		14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */; };
+		14622E262AB2FE4000D8D1E1 /* SwiftEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E252AB2FE4000D8D1E1 /* SwiftEX.swift */; };
 		14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E2B2AB4295C00D8D1E1 /* PodEX.swift */; };
 		14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */; };
 		14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */; };
@@ -79,7 +80,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		14076D432AC2950500E2F1D0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		069EB06A9F0E97D05D881478 /* Pods-CyxbsWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsWidgetExtension/Pods-CyxbsWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		14076D302AC2950400E2F1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		14076D322AC2950400E2F1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsUIKit.swift; sourceTree = "<group>"; };
 		143F70192AA165C10048E264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143F701C2AA170030048E264 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		143F702E2AA4980C0048E264 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -111,7 +129,7 @@
 		14622E202AB2850900D8D1E1 /* AliyunConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunConfig.h; sourceTree = "<group>"; };
 		14622E212AB2850900D8D1E1 /* AliyunConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunConfig.m; sourceTree = "<group>"; };
 		14622E232AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInteractionFact.swift; sourceTree = "<group>"; };
-		14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationEX.swift; sourceTree = "<group>"; };
+		14622E252AB2FE4000D8D1E1 /* SwiftEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftEX.swift; sourceTree = "<group>"; };
 		14622E2B2AB4295C00D8D1E1 /* PodEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodEX.swift; sourceTree = "<group>"; };
 		14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnieViewController.swift; sourceTree = "<group>"; };
 		14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderHeaderView.swift; sourceTree = "<group>"; };
@@ -140,6 +158,8 @@
 		1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C6235D9C236ED093C954CF9 /* Pods-CyxbsWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CyxbsWidgetExtension/Pods-CyxbsWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		AA0DEF692668C88D00284112 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; usesTabs = 0; };
 		D09081D923F4571B00D5342D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上重邮.entitlements"; sourceTree = "<group>"; };
@@ -245,12 +265,9 @@
 			isa = PBXGroup;
 			children = (
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
+				14622E252AB2FE4000D8D1E1 /* SwiftEX.swift */,
 				148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */,
-				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
-				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
-				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
-				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
-				14622E252AB2FE4000D8D1E1 /* FoundationEX.swift */,
+				14E379CA2AC3B7DC002687E6 /* UIKitEX */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -407,6 +424,18 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		14E379CA2AC3B7DC002687E6 /* UIKitEX */ = {
+			isa = PBXGroup;
+			children = (
+				14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */,
+				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
+				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
+				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
+				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
+			);
+			path = UIKitEX;
+			sourceTree = "<group>";
+		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +507,9 @@
 			children = (
 				D09081D923F4571B00D5342D /* UserNotifications.framework */,
 				378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */,
+				14076D302AC2950400E2F1D0 /* WidgetKit.framework */,
+				14076D322AC2950400E2F1D0 /* SwiftUI.framework */,
+				701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -487,6 +519,8 @@
 			children = (
 				6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */,
 				F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
+				069EB06A9F0E97D05D881478 /* Pods-CyxbsWidgetExtension.debug.xcconfig */,
+				7C6235D9C236ED093C954CF9 /* Pods-CyxbsWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -513,6 +547,7 @@
 				81DCEEACD5150216D20A1471 /* [CP] Copy Pods Resources */,
 				5069A10D9BED088AE88BB0DB /* [CP] Embed Pods Frameworks */,
 				FE32057327EC902D003D4479 /* ShellScript */,
+				14076D432AC2950500E2F1D0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -568,6 +603,7 @@
 				KnownAssetTags = (
 					idsBinding,
 				);
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Redrock;
 				TargetAttributes = {
@@ -729,7 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14622DDB2AA8303800D8D1E1 /* CurriculumModel.swift in Sources */,
-				14622E262AB2FE4000D8D1E1 /* FoundationEX.swift in Sources */,
+				14622E262AB2FE4000D8D1E1 /* SwiftEX.swift in Sources */,
 				14B46B692ABD7BC20068EB26 /* LoginViewController.swift in Sources */,
 				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
@@ -747,6 +783,7 @@
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
+				14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */,
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
@@ -927,6 +964,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -965,6 +1003,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;

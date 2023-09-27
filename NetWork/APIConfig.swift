@@ -67,14 +67,21 @@ class APIConfig {
     
     func api(_ api: String) -> String {
         
+#if canImport(AliyunConfig)
+        
         // IP 直连
         if let ip = AliyunConfig.ip(byHost: environment.host) {
             ipToHost[ip] = environment.host
             return "https://" + ip + api
         }
+#endif
         
         // 原URL请求
         let url = environment.url + api
         return url
     }
 }
+
+
+
+
