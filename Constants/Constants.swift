@@ -13,6 +13,10 @@ struct Constants {
     private init() { }
     
     static let widgetGroupID: String = "group.com.mredrock.cyxbs.widget"
+    
+    static var bundleShortVersion: String? {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
 }
 
 

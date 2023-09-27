@@ -71,7 +71,4 @@ extension Constants {
         UIDevice.current.systemVersion
     }
     
-    static var bundleShortVersion: String? {
-        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    }
 }

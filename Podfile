@@ -51,9 +51,9 @@ target 'CyxbsMobile2019_iOS' do
 
 end
 
-#target 'CyxbsWidgetExtension' do
-#  share_pods
-#end
+target 'CyxbsWidgetExtension' do
+  share_pods
+end
 
 post_install do |installer|
   puts "installer #{installer}"
@@ -62,11 +62,14 @@ post_install do |installer|
     target.build_configurations.each do |config|
       puts "config #{config}"
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-      config.build_settings['VALID_ARCHS'] = 'x86_64'
-#      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-#      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      if target == 'Pods-CyxbsMobile2019_iOS'
+        config.build_settings['VALID_ARCHS'] = 'x86_64'
+      end
       config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+      config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+      config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
     end
   end
 end
