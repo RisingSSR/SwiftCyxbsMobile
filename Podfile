@@ -7,13 +7,10 @@ use_frameworks!
 
 inhibit_all_warnings!
 
-def share_pods
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
-end
+pod 'Alamofire'
+pod 'SwiftyJSON'
 
 target 'CyxbsMobile2019_iOS' do
-  share_pods
   
 	# pod 'TZImagePickerController'
 	# pod 'YBImageBrowser'
@@ -51,17 +48,10 @@ target 'CyxbsMobile2019_iOS' do
 
 end
 
-target 'CyxbsWidgetExtension' do
-  share_pods
-end
-
 post_install do |installer|
-  puts "installer #{installer}"
   installer.pods_project.targets.each do |target|
     puts "target #{target}"
     target.build_configurations.each do |config|
-      puts "config #{config}"
-      
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
       config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'

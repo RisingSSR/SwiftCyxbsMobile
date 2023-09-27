@@ -222,7 +222,9 @@ extension LoginViewController: MarkDownViewControllerDelegate {
     func mdViewControllerDidDown(_ controller: MarkDownViewController) {
         controller.dismiss(animated: true)
         UserDefaultsManager.shared.didReadUserAgreementBefore = true
-        agreementView.toggleCheckBtn()
+        if !agreementView.didCheckBtn {
+            agreementView.toggleCheckBtn()
+        }
     }
 }
 

@@ -20,6 +20,10 @@ class BaseTextFiledViewController: UIViewController {
         view.addSubview(contentView)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let _ = UIResponder.firstResponder?.resignFirstResponder()
+    }
+    
     lazy var contentView: UIView = {
         let view = UIView(frame: view.bounds)
         view.backgroundColor = .clear
