@@ -52,23 +52,3 @@ extension Constants {
         }
     }
 }
-
-extension Constants {
-    
-    static var isPad: Bool {
-        UIDevice.current.userInterfaceIdiom == .pad
-    }
-    
-    static var deviceUUID: String {
-        UIDevice.current.identifierForVendor?.uuidString ?? ""
-    }
-    
-    static var systemName: String {
-        UIDevice.current.systemName
-    }
-    
-    static var systemVersion: String {
-        UIDevice.current.systemVersion
-    }
-    
-}

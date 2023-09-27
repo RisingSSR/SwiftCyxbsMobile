@@ -45,7 +45,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>邮问上传图片，修改头像等可能需要使用相机，需要您允许。</string>
+	<string>掌邮需要您同意使用相机，用于拍摄图片并设置为头像等，需要您允许。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSLocationAlwaysUsageDescription</key>

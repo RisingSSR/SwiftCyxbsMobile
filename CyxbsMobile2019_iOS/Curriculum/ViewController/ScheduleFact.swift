@@ -69,7 +69,7 @@ extension ScheduleFact: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleCollectionViewCell.curriculumReuseIdentifier, for: indexPath) as! ScheduleCollectionViewCell
         
-        var drawType: ScheduleCollectionViewCell.DrawType.CurriculumType = .morning
+        var drawType: ScheduleDrawType.CurriculumType = .morning
         
         if data.location <= 4 {
             drawType = .morning

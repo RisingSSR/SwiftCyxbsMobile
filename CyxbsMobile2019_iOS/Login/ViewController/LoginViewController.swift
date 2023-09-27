@@ -231,20 +231,17 @@ extension LoginViewController: MarkDownViewControllerDelegate {
 extension LoginViewController {
     
     static func check(action: @escaping DismissAction) {
+        
         // 没有token，需要show
-        guard let refreshToken = UserDefaultsManager.shared.refreshToken else {
-            afterCallAction(true)
-            return
-        }
-        
+        guard Constants.mainSno != nil,
+        let refreshToken = UserDefaultsManager.shared.refreshToken,
+              
         // 新版本，需要show; 没读用户协议，需要show
-        guard let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead else {
-            afterCallAction(true)
-            return
-        }
-        
+        let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead,
+              
         // 上一次未打开App，需要show
-        guard let lastDate = UserDefaultsManager.shared.latestOpenApp else {
+        let lastDate = UserDefaultsManager.shared.latestOpenApp else {
+            
             afterCallAction(true)
             return
         }

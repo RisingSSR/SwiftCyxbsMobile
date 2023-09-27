@@ -85,6 +85,12 @@
 		14E379FE2AC3BC1A002687E6 /* SearchStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DDC2AA8411D00D8D1E1 /* SearchStudentModel.swift */; };
 		14E37A002AC3C363002687E6 /* sno2021215154.data in Resources */ = {isa = PBXBuildFile; fileRef = 14E379FF2AC3C363002687E6 /* sno2021215154.data */; };
 		14E37A042AC3DDDE002687E6 /* ScheduleSystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A032AC3DDDE002687E6 /* ScheduleSystemLarge.swift */; };
+		14E37A062AC3F59A002687E6 /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A052AC3F59A002687E6 /* ScheduleCollectionView.swift */; };
+		14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */; };
+		14E37A092AC3FBA9002687E6 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */; };
+		14E37A0A2AC3FEFE002687E6 /* ScheduleDrawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */; };
+		14E37A0D2AC409C6002687E6 /* ScheduleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A0B2AC409BD002687E6 /* ScheduleSupplementaryView.swift */; };
+		14EC920F2AC42E5100731149 /* ScheduleDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EC920E2AC42E5100731149 /* ScheduleDataFetch.swift */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
 		E6BCBAD5A1B29E5BE3DB7B6D /* Pods_CyxbsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */; };
@@ -200,6 +206,10 @@
 		14E379FF2AC3C363002687E6 /* sno2021215154.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sno2021215154.data; sourceTree = "<group>"; };
 		14E37A012AC3D163002687E6 /* CyxbsWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsWidgetExtension.entitlements; sourceTree = "<group>"; };
 		14E37A032AC3DDDE002687E6 /* ScheduleSystemLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSystemLarge.swift; sourceTree = "<group>"; };
+		14E37A052AC3F59A002687E6 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
+		14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDrawType.swift; sourceTree = "<group>"; };
+		14E37A0B2AC409BD002687E6 /* ScheduleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSupplementaryView.swift; sourceTree = "<group>"; };
+		14EC920E2AC42E5100731149 /* ScheduleDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataFetch.swift; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +266,7 @@
 			children = (
 				14B46B722AC127D60068EB26 /* MarkDownViewController.swift */,
 				14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */,
+				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -325,6 +336,7 @@
 				14622DCF2AA6FA8900D8D1E1 /* Constants.swift */,
 				14622E252AB2FE4000D8D1E1 /* SwiftEX.swift */,
 				148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */,
+				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
 				14E379CA2AC3B7DC002687E6 /* UIKitEX */,
 			);
 			path = Constants;
@@ -366,7 +378,6 @@
 				14622E922AB83F7800D8D1E1 /* ScheduleHeaderView.swift */,
 				148F568C2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift */,
 				14622E032AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift */,
-				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +398,7 @@
 			children = (
 				14622E0F2AB0478500D8D1E1 /* ScheduleMaping.swift */,
 				14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */,
+				14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -486,7 +498,6 @@
 			isa = PBXGroup;
 			children = (
 				14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */,
-				14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
@@ -516,6 +527,9 @@
 			isa = PBXGroup;
 			children = (
 				14E37A032AC3DDDE002687E6 /* ScheduleSystemLarge.swift */,
+				14E37A0B2AC409BD002687E6 /* ScheduleSupplementaryView.swift */,
+				14E37A052AC3F59A002687E6 /* ScheduleCollectionView.swift */,
+				14EC920E2AC42E5100731149 /* ScheduleDataFetch.swift */,
 			);
 			path = ScheduleSystemLarge;
 			sourceTree = "<group>";
@@ -524,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				14E37A012AC3D163002687E6 /* CyxbsWidgetExtension.entitlements */,
+				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				14622DB72AA60FD700D8D1E1 /* 掌邮工具类.md */,
 				14076D2A2AC2693200E2F1D0 /* Common */,
 				14622DCE2AA6FA6100D8D1E1 /* Constants */,
@@ -561,7 +576,6 @@
 				14622DD62AA8287100D8D1E1 /* Curriculum */,
 				148F568E2ABB26C9002FFE8A /* Curriculum Details */,
 				14B46B652ABD7A560068EB26 /* Login */,
-				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				143F70192AA165C10048E264 /* AppDelegate.swift */,
 				14622E1F2AB2850800D8D1E1 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
 				14622DC22AA6CF4E00D8D1E1 /* LaunchScreen.storyboard */,
@@ -910,6 +924,7 @@
 				14E379EC2AC3BB26002687E6 /* ScheduleProvider.swift in Sources */,
 				14E379E62AC3BB0D002687E6 /* CyxbsWidgetBundle.swift in Sources */,
 				14E379ED2AC3BB26002687E6 /* ScheduleWidgetEntryView.swift in Sources */,
+				14EC920F2AC42E5100731149 /* ScheduleDataFetch.swift in Sources */,
 				14E379FD2AC3BC17002687E6 /* CurriculumModel.swift in Sources */,
 				14E379EF2AC3BB26002687E6 /* ScheduleTimelineEntry.swift in Sources */,
 				14E379F32AC3BBC2002687E6 /* SwiftEX.swift in Sources */,
@@ -920,12 +935,16 @@
 				14E379E72AC3BB0D002687E6 /* CyxbsWidgetLiveActivity.swift in Sources */,
 				14E379F42AC3BBC4002687E6 /* UIImageExtensions.swift in Sources */,
 				14E379FC2AC3BC15002687E6 /* ScheduleModel.swift in Sources */,
+				14E37A0D2AC409C6002687E6 /* ScheduleSupplementaryView.swift in Sources */,
 				14E379F12AC3BBAE002687E6 /* CyxbsWidget.intentdefinition in Sources */,
+				14E37A092AC3FBA9002687E6 /* UIColor+Theme.swift in Sources */,
 				14E37A042AC3DDDE002687E6 /* ScheduleSystemLarge.swift in Sources */,
 				14E379F22AC3BBC0002687E6 /* Constants.swift in Sources */,
 				14E379FB2AC3BC12002687E6 /* ScheduleCalModel.swift in Sources */,
 				14E379F72AC3BBD2002687E6 /* SessionManager.swift in Sources */,
 				14E379F92AC3BBD7002687E6 /* APIConfig.swift in Sources */,
+				14E37A0A2AC3FEFE002687E6 /* ScheduleDrawType.swift in Sources */,
+				14E37A062AC3F59A002687E6 /* ScheduleCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,6 +992,7 @@
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
 				14B46B6D2ABE8D220068EB26 /* BaseAgreementView.swift in Sources */,
+				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,

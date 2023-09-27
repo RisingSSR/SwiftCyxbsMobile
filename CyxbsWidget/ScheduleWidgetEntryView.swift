@@ -13,6 +13,8 @@ struct ScheduleWidgetEntryView: View {
     
     let mappy: ScheduleMaping
     
+    let section: Int
+    
     @Environment(\.widgetFamily) var family
     
     @ViewBuilder
@@ -21,7 +23,7 @@ struct ScheduleWidgetEntryView: View {
 //        case .systemSmall:
 //            ScheduleSystemSmall()
         case .systemLarge:
-            ScheduleSystemLarge(mappy: mappy)
+            ScheduleSystemLarge(mappy: mappy, section: section)
             EmptyView()
         default:
             EmptyView()
@@ -29,10 +31,12 @@ struct ScheduleWidgetEntryView: View {
     }
     
     init(entry: ScheduleProvider.Entry) {
-        mappy = ScheduleMaping()
         
+        mappy = ScheduleMaping()
         for model in entry.models {
             mappy.maping(model)
         }
+        
+        section = entry.section ?? mappy.nowWeek
     }
 }

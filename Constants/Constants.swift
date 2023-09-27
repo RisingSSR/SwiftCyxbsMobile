@@ -14,12 +14,30 @@ struct Constants {
     
     static let widgetGroupID: String = "group.com.mredrock.cyxbs.widget"
     
+}
+
+extension Constants {
+    
+    static var isPad: Bool {
+        UIDevice.current.userInterfaceIdiom == .pad
+    }
+    
+    static var deviceUUID: String {
+        UIDevice.current.identifierForVendor?.uuidString ?? ""
+    }
+    
+    static var systemName: String {
+        UIDevice.current.systemName
+    }
+    
+    static var systemVersion: String {
+        UIDevice.current.systemVersion
+    }
+    
     static var bundleShortVersion: String? {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     }
 }
-
-
 
 // MARK: custom
 
@@ -44,10 +62,10 @@ extension Constants {
     
     /// 获得主学号
     static var mainSno: String? = {
-        UserDefaultsManager.shared.mainStudentSno
+        UserDefaultsManager.widget.mainStudentSno
     }() {
         didSet {
-            UserDefaultsManager.shared.mainStudentSno = mainSno
+            UserDefaultsManager.widget.mainStudentSno = mainSno
         }
     }
 }

@@ -35,7 +35,7 @@ extension TabBarController {
      */
     func reloadData() {
         if let sno = Constants.mainSno,
-           var scheduleModel = ScheduleModel.getFromCache(sno: sno) {
+           var scheduleModel = ScheduleModel.getFromCache(rootPath: .widget, sno: sno) {
 
             let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
@@ -56,7 +56,7 @@ extension TabBarController {
                 switch response {
                 case .success(let model):
                     UserDefaultsManager.shared.latestRequestDate = Date()
-                    model.toCache()
+                    model.toCache(rootPath: .widget)
                     self.reloadWith(scheduleModel: model)
                 case .failure(_):
                     self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")

@@ -15,35 +15,6 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
     static let curriculumReuseIdentifier = "CyxbsMobile2019_iOS.ScheduleCollectionViewCell.curriculum"
     static let supplementaryReuseIdentifier = "CyxbsMobile2019_iOS.ScheduleCollectionViewCell.supplementary"
     
-    // MARK: DrawType
-    
-    enum DrawType {
-        
-        enum CurriculumType {
-            
-            case morning
-            
-            case afternoon
-            
-            case night
-            
-            case others
-            
-            case custom
-        }
-        
-        enum SupplementaryType {
-            
-            case normal
-            
-            case select
-        }
-        
-        case curriculum(CurriculumType)
-        
-        case supplementary(SupplementaryType)
-    }
-    
     // MARK: init
 
     override init(frame: CGRect) {
@@ -65,7 +36,7 @@ class ScheduleCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    private(set) var drawType: DrawType = .curriculum(.morning)
+    private(set) var drawType: ScheduleDrawType = .curriculum(.morning)
     
     private(set) var isTitleOnly: Bool = false
     
@@ -139,7 +110,7 @@ extension ScheduleCollectionViewCell {
 
 extension ScheduleCollectionViewCell {
     
-    func set(curriculumType: DrawType.CurriculumType, title: String?, content: String?, isMultiple: Bool, isTitleOnly: Bool = false) {
+    func set(curriculumType: ScheduleDrawType.CurriculumType, title: String?, content: String?, isMultiple: Bool, isTitleOnly: Bool = false) {
         drawType = .curriculum(curriculumType)
         initCurriculum()
         self.isTitleOnly = isTitleOnly
@@ -147,58 +118,27 @@ extension ScheduleCollectionViewCell {
         titleLab.text = title
         contentLab.text = content
         backImgView.isHidden = (curriculumType != .custom)
-        switch curriculumType {
-            
-        case .morning:
-            contentView.backgroundColor = .ry(light: "#F9E7D8", dark: "#FFCCA126")
-            titleLab.textColor = .ry(light: "#FF8015", dark: "#F0F0F2CC")
-            contentLab.textColor = titleLab.textColor
-            multyView.backgroundColor = titleLab.textColor
-            
-        case .afternoon:
-            contentView.backgroundColor = .ry(light: "#F9E3E4", dark: "#FF979B26")
-            titleLab.textColor = .ry(light: "#FF6262", dark: "#F0F0F2CC")
-            contentLab.textColor = titleLab.textColor
-            multyView.backgroundColor = titleLab.textColor
-            
-        case .night:
-            contentView.backgroundColor = .ry(light: "#DDE3F8", dark: "#9BB2FB26")
-            titleLab.textColor = .ry(light: "#4066EA", dark: "#F0F0F2CC")
-            contentLab.textColor = titleLab.textColor
-            multyView.backgroundColor = titleLab.textColor
-            
-        case .others:
-            contentView.backgroundColor = .ry(light: "#DFF3FC", dark: "#90DBFB26")
-            titleLab.textColor = .ry(light: "#06A3FC", dark: "#F0F0F2CC")
-            contentLab.textColor = titleLab.textColor
-            multyView.backgroundColor = titleLab.textColor
-            
-        case .custom:
-            break
-        }
+        
+        contentView.backgroundColor = curriculumType.backgroundColor
+        titleLab.textColor = curriculumType.textColor
+        contentLab.textColor = titleLab.textColor
+        multyView.backgroundColor = titleLab.textColor
+        
         updateFrame()
     }
     
-    func set(supplementaryType: DrawType.SupplementaryType, title: String?, content: String?, isTitleOnly: Bool) {
+    func set(supplementaryType: ScheduleDrawType.SupplementaryType, title: String?, content: String?, isTitleOnly: Bool) {
         drawType = .supplementary(supplementaryType)
         initSupplementary()
         self.isTitleOnly = isTitleOnly
         self.isMultiple = false
         titleLab.text = title
         contentLab.text = content
-        switch supplementaryType {
-            
-        case .normal:
-            contentView.backgroundColor = .clear
-            titleLab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
-            contentLab.textColor = .ry(light: "#606E8A", dark: "#868686")
-            
-        case .select:
-            contentView.backgroundColor = .ry(light: "#2A4E84", dark: "#5A5A5ACC")
-            titleLab.textColor = .ry(light: "#FFFFFF", dark: "#F0F0F2")
-            contentLab.textColor = .ry(light: "#FFFFFF64", dark: "#868686")
-            
-        }
+        
+        contentView.backgroundColor = supplementaryType.backgroundColor
+        titleLab.textColor = supplementaryType.titleTextColor
+        contentLab.textColor = supplementaryType.contentTextColor
+        
         updateFrame()
     }
     
