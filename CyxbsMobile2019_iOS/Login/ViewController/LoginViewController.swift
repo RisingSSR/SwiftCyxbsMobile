@@ -148,14 +148,17 @@ extension LoginViewController {
             case .success(let model):
                 if let status = model["status"].string {
                     if status == "10000" {
-                        Constants.mainSno = snoText
-                        Constants.token = model["data"]["token"].string
-                        UserDefaultsManager.shared.refreshToken = model["data"]["refreshToken"].string
+                        
+                        let token = model["data"]["token"].stringValue
+                        let refreshToken = model["data"]["refreshToken"].stringValue
+                        
+                        Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
+                        
                         ProgressHUD.showSucceed("登录成功")
                         self.dismiss(animated: true) {
                             self.dismissAction?(false, self)
                         }
-                    } else if status == "20004" {
+                    } else { // status == "20004"
                         ProgressHUD.showError("账号或密码出错")
                     }
                 }
@@ -234,9 +237,8 @@ extension LoginViewController {
     
     static func check(action: @escaping DismissAction) {
         
-        // 没有token，需要show
-        guard Constants.mainSno != nil,
-        let refreshToken = UserDefaultsManager.shared.refreshToken,
+        // 没有tokenModel
+        guard let tokenModel = Constants.tokenModel,
               
         // 新版本，需要show; 没读用户协议，需要show
         let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead,
@@ -250,19 +252,23 @@ extension LoginViewController {
         
         // 不是一天，请求新的token
         if !Calendar.current.isDateInToday(lastDate) {
-            requestNewToken(refreshToken: refreshToken) { isSuccess in
+            
+            requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
                 afterCallAction(!isSuccess)
                 return
             }
         }
         
         func afterCallAction(_ shouldShow: Bool) {
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if shouldShow {
+                    
                     let vc = LoginViewController()
                     vc.dismissAction = action
                     action(true, vc)
                 } else {
+                    
                     action(false, nil)
                 }
             }
@@ -273,13 +279,46 @@ extension LoginViewController {
         HttpManager.shared.magipoke_token_refresh(refreshToken: refreshToken).ry_JSON { response in
             switch response {
             case .success(let model):
-                Constants.token = model["data"]["token"].string
-                UserDefaultsManager.shared.refreshToken = model["data"]["refreshToken"].string
-                success(true)
-                return
+                
+                if let status = model["status"].string {
+                    
+                    if status == "10000" {
+                        
+                        let token = model["data"]["token"].stringValue
+                        let refreshToken = model["data"]["refreshToken"].stringValue
+                        
+                        Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
+                        
+                        success(true)
+                    } else {
+                        
+                        if Constants.isTokenExpired {
+                            
+                            let alertVC = UIAlertController.normalType(title: "登录故障", content: "重新登录可以使得登录信息刷新，取消则会在下次打开App时再次询问", cancelText: "取消本次登录", sureText: "重新登录") { action in
+                                
+                                if action.title == "取消本次登录" {
+                                    success(true)
+                                } else {
+                                    success(false)
+                                }
+                            }
+                        } else {
+                            
+                            success(true)
+                        }
+                    }
+                }
                 
             case .failure(_):
-                success(false)
+                
+                if Constants.isTokenExpired {
+                    
+                    ProgressHUD.showFailed("网络出现异常，检查网络并重新打开App，使得重新检测登录状态")
+                    success(false)
+                } else {
+                    
+                    success(true)
+                }
                 return
             }
         }

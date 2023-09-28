@@ -52,3 +52,19 @@ extension Constants {
         }
     }
 }
+
+extension Constants {
+    
+    static var tokenModel: TokenModel? = {
+        .fromCache
+    }() {
+        didSet {
+            tokenModel?.toCache()
+        }
+    }
+    
+    static var isTokenExpired: Bool {
+        guard let tokenModel else { return true }
+        return tokenModel.exp - Date().timeIntervalSince1970 <= 0
+    }
+}

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */; };
+		141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D832AC4641B004BD3BC /* TokenModel.swift */; };
+		141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */; };
 		143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F70192AA165C10048E264 /* AppDelegate.swift */; };
 		143F701D2AA170030048E264 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F701C2AA170030048E264 /* TabBarController.swift */; };
 		143F702F2AA4980C0048E264 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F702E2AA4980C0048E264 /* TabBar.swift */; };
@@ -99,6 +101,8 @@
 		14076D302AC2950400E2F1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		14076D322AC2950400E2F1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsUIKit.swift; sourceTree = "<group>"; };
+		141A6D832AC4641B004BD3BC /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlterControllerFast.swift; sourceTree = "<group>"; };
 		143F70192AA165C10048E264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143F701C2AA170030048E264 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		143F702E2AA4980C0048E264 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -203,6 +207,14 @@
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		141A6D822AC4640D004BD3BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				141A6D832AC4641B004BD3BC /* TokenModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		143F701B2AA16FE40048E264 /* TabBar */ = {
@@ -408,6 +420,7 @@
 			children = (
 				14B46B672ABD7A560068EB26 /* ViewController */,
 				14B46B662ABD7A560068EB26 /* View */,
+				141A6D822AC4640D004BD3BC /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -435,6 +448,7 @@
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
+				141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */,
 			);
 			path = UIKitEX;
 			sourceTree = "<group>";
@@ -781,10 +795,12 @@
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
+				141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */,
 				14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */,
 				14622E0C2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift in Sources */,
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
+				141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
 				14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */,
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
