@@ -252,12 +252,14 @@ extension LoginViewController {
         
         // 不是一天，请求新的token
         if !Calendar.current.isDateInToday(lastDate) {
-            
             requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
+                
                 afterCallAction(!isSuccess)
                 return
             }
         }
+        
+        afterCallAction(false)
         
         func afterCallAction(_ shouldShow: Bool) {
             
