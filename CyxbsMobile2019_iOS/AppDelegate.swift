@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        setupEnd()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        setupEnd()
+    }
 }
 
 extension AppDelegate {
@@ -35,5 +43,9 @@ extension AppDelegate {
     func setupAlicloudSDK() {
         AliyunConfig.setup()
         AliyunConfig.ip(byHost: APIConfig.current.environment.host)
+    }
+    
+    func setupEnd() {
+        UserDefaultsManager.shared.latestOpenApp = Date()
     }
 }

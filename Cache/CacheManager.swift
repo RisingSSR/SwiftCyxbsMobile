@@ -12,12 +12,10 @@ struct CacheManager {
     
     static let shared = CacheManager()
     
-    static let cleanInNextVersion: Bool = true
-    
     private init() {
         print("[document] \(RootPath.document.rawValue)")
         print("[widget] \(RootPath.widget.rawValue)")
-        if !CacheManager.cleanInNextVersion { return }
+        if !Constants.cleanInNextVersion { return }
         if let bundleShortVersion = UserDefaultsManager.shared.bundleShortVersion, bundleShortVersion == Constants.bundleShortVersion {
             return
         }
@@ -110,6 +108,10 @@ extension CacheManager {
         let rawValue: String
 
         init(rootPath: RootPath, file: String) {
+            if file.count == 0 {
+                rawValue = rootPath.rawValue
+                return
+            }
             var file = file
             if file.prefix(1) != "/" {
                 file = "/" + file
@@ -137,6 +139,8 @@ extension CacheManager.RootPath {
         }
         return document
     }()
+    
+    static let bundle: Self = .init(Bundle.main.bundlePath)
 }
 
 /* not accessible, use Codable

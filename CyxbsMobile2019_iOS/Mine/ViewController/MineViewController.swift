@@ -13,6 +13,6 @@ class MineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .ry.backgroundColorForPlace_p1
+        view.backgroundColor = .ry(light: "#F2F3F8", dark: "#000000")
     }
 }

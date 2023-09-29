@@ -25,6 +25,7 @@ class TabBarHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        stop()
     }
     
     override func layoutSubviews() {
@@ -33,6 +34,11 @@ class TabBarHeaderView: UIView {
     }
     
     // MARK: Method
+    
+    func stop() {
+        titleLab.stop()
+        placeLab.stop()
+    }
     
     func handle_viewWillAppear() {
         titleLab.walk()
@@ -87,7 +93,7 @@ class TabBarHeaderView: UIView {
         bar.frame = CGRect(x: 0, y: 4, width: 27, height: 5)
         bar.center.x = bounds.width / 2
         bar.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
-        bar.backgroundColor = .ry.backgroundColorForPlace_p0
+        bar.backgroundColor = .ry(light: "#E2EDFB", dark: "#1D1D1D")
         bar.layer.cornerRadius = bar.bounds.height / 2;
         bar.clipsToBounds = true
         return bar
@@ -97,7 +103,7 @@ class TabBarHeaderView: UIView {
         let lab = TrotingLabel(frame: CGRect(x: spaceForItems, y: 16, width: bounds.width / 2 - 2 * spaceForItems, height: 22))
         lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
         lab.font = .systemFont(ofSize: 18, weight: .bold)
-        lab.textColor = .ry.titleColorForPlace_main
+        lab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
         lab.pause = 2
         lab.add("查找课表中...")
         return lab
@@ -112,12 +118,12 @@ class TabBarHeaderView: UIView {
     lazy var timeLab: UILabel = {
         let lab = UILabel()
         lab.text = "课程时间..."
-        lab.textColor = .ry.titleColorForPlace_main
+        lab.textColor = .ry(light: "#15315B", dark: "#FFFFFF")
         lab.font = .systemFont(ofSize: 12)
         lab.sizeToFit()
         lab.frame.origin.x = timeImgView.frame.minX + 3
         lab.center.y = bounds.height / 2
-        lab.size.width = bounds.width / 3 * 2 - lab.frame.minX - spaceForItems
+        lab.frame.size.width = bounds.width / 3 * 2 - lab.frame.minX - spaceForItems
         lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
         return lab
     }()
@@ -134,7 +140,7 @@ class TabBarHeaderView: UIView {
         let lab = TrotingLabel(frame: CGRect(x: x, y: 0, width: width, height: timeLab.bounds.height))
         lab.center.y = bounds.height / 2
         lab.font = .systemFont(ofSize: 12)
-        lab.textColor = .ry.titleColorForPlace_main
+        lab.textColor = .ry(light: "#15315B", dark: "#FFFFFF")
         lab.add("课程地点...")
         return lab
     }()

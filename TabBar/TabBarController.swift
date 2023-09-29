@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwifterSwift
 import RYTransitioningDelegateSwift
 
 open class TabBarController: UITabBarController {
@@ -17,9 +16,7 @@ open class TabBarController: UITabBarController {
         
         setupTabBar()
         setupViewControllers()
-        
-        Constants.mainSno = "2021215154"
-        reloadData()
+        setupLogin()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -27,21 +24,20 @@ open class TabBarController: UITabBarController {
         
         tabBar.ryTabBar?.headerView.handle_viewWillAppear()
     }
-    
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        reloadData()
-    }
 }
 
-// MARK: data
+// MARK: reload
 
 extension TabBarController {
     
+    /* 缓存请求法
+     会判断缓存，没缓存走请求法
+     */
     func reloadData() {
         if let sno = Constants.mainSno,
-           var scheduleModel = ScheduleModel.getFromCache(sno: sno) {
+           var scheduleModel = ScheduleModel.getFromCache(rootPath: .widget, sno: sno) {
 
-            let date = UserDefaultsManager.shared.latestRequest(sno: sno) ?? Date()
+            let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
             scheduleModel.nowWeek += days
 
@@ -51,13 +47,16 @@ extension TabBarController {
         }
     }
     
+    /* 直接请求法
+     一般来说不主动掉用
+     */
     func request() {
         if let sno = Constants.mainSno {
             ScheduleModel.request(sno: sno) { response in
                 switch response {
                 case .success(let model):
-                    UserDefaultsManager.shared.cache(latestRequest: Date(), sno: sno)
-                    model.toCache()
+                    UserDefaultsManager.shared.latestRequestDate = Date()
+                    model.toCache(rootPath: .widget)
                     self.reloadWith(scheduleModel: model)
                 case .failure(_):
                     self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")
@@ -66,6 +65,9 @@ extension TabBarController {
         }
     }
     
+    /* 根据数据源刷新
+     给定一个ScheduleModel进行刷新
+     */
     func reloadWith(scheduleModel: ScheduleModel) {
         let calModels = scheduleModel.calModels
         if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
@@ -75,6 +77,9 @@ extension TabBarController {
         }
     }
     
+    /* 直接赋值法
+     一般用于错误信息的时候可以直接赋值，不用掉用一堆API
+     */
     func reloadTabBarData(title: String?, time: String?, place: String?) {
         tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
     }
@@ -86,6 +91,8 @@ extension TabBarController {
     
     func setupTabBar() {
         let tabBar = TabBar()
+        tabBar.bezierPathSetColor = .ry(light: "#E2EDFB", dark: "#7C7C7C")
+        tabBar.backgroundColor = .ry(light: "#FFFFFF", dark: "2D2D2D")
         let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
         tabBar.headerView.addGestureRecognizer(pan)
         let tap = UITapGestureRecognizer(target: self, action: #selector(response(tap:)))
@@ -101,6 +108,20 @@ extension TabBarController {
             vcs[index].tabBarItem = tabBarItems[min(index, tabBarItems.count - 1)]
         }
         viewControllers = vcs
+    }
+    
+    func setupLogin() {
+        LoginViewController.check { shouldPresent, optionVC in
+            if shouldPresent, let vc = optionVC {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            } else {
+                self.reloadData()
+                if UserDefaultsManager.shared.presentScheduleWhenOpenApp {
+                    self.presentSchedule()
+                }
+            }
+        }
     }
 }
 
@@ -133,23 +154,15 @@ extension TabBarController {
         ]
     }
     
+    var finderViewController: UIViewController { createVC(root: FinderViewController()) }
     
+    var carnieViewController: UIViewController { createVC(root: CarnieViewController()) }
     
-    var finderViewController: UIViewController {
-        let vc = FinderViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        return nav
-    }
+    var mineViewController: UIViewController { createVC(root: MineViewController()) }
     
-    var carnieViewController: UIViewController {
-        let vc = CarnieViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        return nav
-    }
-    
-    var mineViewController: UIViewController {
-        let vc = MineViewController()
-        let nav = UINavigationController(rootViewController: vc)
+    func createVC(root: UIViewController) -> UIViewController {
+        let nav = UINavigationController(rootViewController: root)
+        nav.isNavigationBarHidden = true
         return nav
     }
     
@@ -157,8 +170,12 @@ extension TabBarController {
         let image = UIImage(named: imageName)?.scaled(toHeight: 25)?.withRenderingMode(.alwaysOriginal)
         let selectedImage = UIImage(named: selectedImageName)?.scaled(toHeight: 25)?.withRenderingMode(.alwaysOriginal)
         let tabBarItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
-        tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.ry.titleColorForTabBarUnselect], for: .normal)
-        tabBarItem.setTitleTextAttributes([.foregroundColor: UIColor.ry.titleColorForTabBarSelect], for: .selected)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.ry(light: "#AABCD8", dark: "#5A5A5A")
+        ], for: .normal)
+        tabBarItem.setTitleTextAttributes([
+            .foregroundColor: UIColor.hex("#2923D2")
+        ], for: .selected)
         tabBarItem.needMoreSpaceToShow = needMoreSpaceToShow
         return tabBarItem
     }
@@ -219,14 +236,12 @@ extension TabBarController {
         vc.tabBarFrame = tabBar.frame
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transitionDelegate
+        vc.scheduleVC.requestCallBack = { vc in
+            if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == Constants.mainSno })?.key {
+                self.reloadWith(scheduleModel: mainModel)
+            }
+        }
         present(vc, animated: true)
-    }
-}
-
-extension UITabBarController {
-    
-    var ry_tabBar: TabBar? {
-        tabBar as? TabBar
     }
 }
 
@@ -241,7 +256,15 @@ extension TabBarController {
     }
 }
 
-// MARK: extension
+// MARK: EX UITabBarController
+
+extension UITabBarController {
+    var ry_tabBar: TabBar? {
+        tabBar as? TabBar
+    }
+}
+
+// MARK: EX UIViewController
 
 extension UIViewController {
     var ryTabBarController: TabBarController? {

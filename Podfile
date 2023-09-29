@@ -2,25 +2,24 @@ source 'https://github.com/CocoaPods/specs'
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 source 'https://github.com/aliyun/aliyun-specs.git'
 
-platform :ios,'11.0'
+platform :ios, '13.0'
 use_frameworks!
 
 inhibit_all_warnings!
 
-def share_pods
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
-end
+pod 'Alamofire'
+pod 'SwiftyJSON'
 
 target 'CyxbsMobile2019_iOS' do
-  share_pods
   
 	# pod 'TZImagePickerController'
 	# pod 'YBImageBrowser'
   # pod 'IQKeyboardManager'
 	pod 'SDWebImage'
-  pod 'MBProgressHUD'
+  pod 'ProgressHUD'
 	pod 'MJRefresh'
+  pod 'MarkdownKit'
+  pod 'TagListView'
   
   pod 'UMCommon'
   pod 'UMDevice'
@@ -34,14 +33,12 @@ target 'CyxbsMobile2019_iOS' do
   pod 'JXPagingView'
   pod 'JXPageControl'
   
-  pod 'SwifterSwift/SwiftStdlib'
-  pod 'SwifterSwift/Foundation'
-  pod 'SwifterSwift/UIKit'
+  # pod 'SwifterSwift/SwiftStdlib'
+  # pod 'SwifterSwift/Foundation'
+  # pod 'SwifterSwift/UIKit'
   
 	pod 'Bugly'
 	pod 'LookinServer',           :configurations => ['Debug']
-  pod 'FluentDarkModeKit'
-  pod 'TagListView'
   
   pod 'AlicloudHTTPDNS'
   pod 'AlicloudUtils'
@@ -51,14 +48,24 @@ target 'CyxbsMobile2019_iOS' do
 
 end
 
+target 'CyxbsWidgetExtension' do
+  
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
+    puts "target #{target}"
     target.build_configurations.each do |config|
       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-#      config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-#      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-#      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-#      config.build_settings['IOS_DEPLOYMENT_TARGET'] = '11.0'
+      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
+      config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
+      config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
+      
+      if target == 'Pods-CyxbsMobile2019_iOS'
+        config.build_settings['VALID_ARCHS'] = 'x86_64'
+      end
     end
   end
 end

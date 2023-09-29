@@ -151,11 +151,6 @@ struct NetError: Error, CustomStringConvertible {
     
     var description: String {
         var description = "NetError "
-        if let code = error?.responseCode {
-            description += "[\(code)] "
-        } else {
-            description += "[未知响应] "
-        }
         
         if let url = response?.url {
             description += "\(url) "

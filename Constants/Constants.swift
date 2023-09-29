@@ -14,47 +14,6 @@ struct Constants {
     
     static let widgetGroupID: String = "group.com.mredrock.cyxbs.widget"
     
-    static let keyWindow: UIWindow? = {
-        if #available(iOS 13, *) {
-            return UIApplication.shared.connectedScenes.compactMap { scene in
-                guard let scene = (scene as? UIWindowScene), scene.activationState == .foregroundActive else { return nil }
-                return scene.windows.first { $0.isKeyWindow }
-            }.first
-        } else {
-            return UIApplication.shared.keyWindow
-        }
-    }()
-    
-    static var safeDistanceTop: CGFloat {
-        keyWindow?.safeAreaInsets.top ?? 0
-    }
-    
-    static var safeDistanceBottom: CGFloat {
-        keyWindow?.safeAreaInsets.bottom ?? 0
-    }
-    
-    static var statusBarHeight: CGFloat {
-        if #available(iOS 13.0, *) {
-            let scene = UIApplication.shared.connectedScenes.first
-            guard let windowScene = scene as? UIWindowScene else { return 0 }
-            guard let statusBarManager = windowScene.statusBarManager else { return 0 }
-            return statusBarManager.statusBarFrame.height
-        } else {
-            return UIApplication.shared.statusBarFrame.height
-        }
-    }
-    
-    static var isLandscape: Bool {
-        if #available(iOS 13.0, *) {
-            return UIApplication.shared.windows
-                .first?
-                .windowScene?
-                .interfaceOrientation
-                .isLandscape ?? false
-        } else {
-            return UIApplication.shared.statusBarOrientation.isLandscape
-        }
-    }
 }
 
 extension Constants {
@@ -77,6 +36,37 @@ extension Constants {
     
     static var bundleShortVersion: String? {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+}
+
+// MARK: custom
+
+extension Constants {
+    
+    /* !!!: 清理缓存
+       若下一个版本需要清理一下以前的缓存信息，则需要设置为true
+     */
+    static let cleanInNextVersion: Bool = true
+}
+
+extension Constants {
+    
+    /// 获得token
+    static var token: String? = {
+        UserDefaultsManager.shared.token
+    }() {
+        didSet {
+            UserDefaultsManager.shared.token = token
+        }
+    }
+    
+    /// 获得主学号
+    static var mainSno: String? = {
+        UserDefaultsManager.widget.mainStudentSno
+    }() {
+        didSet {
+            UserDefaultsManager.widget.mainStudentSno = mainSno
+        }
     }
 }
 
@@ -103,16 +93,5 @@ extension Constants {
         currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
         // 计算当前日期与开始日期之间的周数差
         return calendar.dateComponents([.weekOfYear], from: start, to: currentDate).weekOfYear
-    }
-    
-    /* 获得主学号
-     作为常量存在内存中
-     */
-    static var mainSno: String? = {
-        UserDefaultsManager.shared.mainStudentSno
-    }() {
-        didSet {
-            UserDefaultsManager.shared.mainStudentSno = mainSno
-        }
     }
 }

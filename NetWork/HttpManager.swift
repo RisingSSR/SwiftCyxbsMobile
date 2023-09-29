@@ -15,7 +15,18 @@ struct HttpManager {
     private init() { }
 }
 
-// MARK: 课表
+/* 接口模版
+ 
+ /// <#接口的作用#>
+ @discardableResult
+ func <#接口的简写#>(<#接口参数名列表1#>: <#接口参数类型列表1#> <#, ...#>) -> DataRequest {
+    let parameters: [String: String] = [
+        "<#接口参数名列表1#>": <#接口参数类型列表1#>
+    ]
+    return SessionManager.shared.ry_request(APIConfig.current.api("<#接口#>"), method: .<#请求方式#>, parameters: parameters)
+ }
+ 
+ */
 
 extension HttpManager {
     
@@ -35,5 +46,24 @@ extension HttpManager {
             "stu": stu
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-text/search/people"), parameters: parameters)
+    }
+    
+    /// 获取token
+    @discardableResult
+    func magipoke_token(stuNum: String, idNum: String) -> DataRequest {
+        let parameters: [String: String] = [
+            "stuNum": stuNum,
+            "idNum": idNum
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/token"), method: .post, parameters: parameters, encoding: JSONEncoding())
+    }
+    
+    /// 刷新token
+    @discardableResult
+    func magipoke_token_refresh(refreshToken: String) -> DataRequest {
+       let parameters: [String: String] = [
+           "refreshToken": refreshToken
+       ]
+       return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/token/refresh"), method: .post, parameters: parameters)
     }
 }
