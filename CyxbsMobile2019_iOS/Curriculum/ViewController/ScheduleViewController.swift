@@ -22,6 +22,8 @@ class ScheduleViewController: UIViewController {
         get { fact.snoToPriority }
     }
     
+    var requestCallBack: ((ScheduleViewController) -> ())?
+    
     var nextRequestPriorities: Set<ScheduleMaping.Priority> = [.mainly, .custom, .others]
     
     let heightForHeaderView: CGFloat = 64
@@ -37,6 +39,7 @@ class ScheduleViewController: UIViewController {
         fact.handle(headerView: headerView)
         fact.request(priorities: nextRequestPriorities) { theFact in
             theFact.scrollToNowWeek()
+            self.requestCallBack?(self)
         }
     }
     

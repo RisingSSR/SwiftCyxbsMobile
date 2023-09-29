@@ -68,7 +68,7 @@ class ScheduleMaping {
     var checkPriority: Bool = true
     
     // {2021215154, .system} -> .mainly
-    private var scheduleModelMap: [ScheduleModel: Priority] = [:]
+    private(set) var scheduleModelMap: [ScheduleModel: Priority] = [:]
     
     // (section, week) -> {ScheduleCalModel, ScheduleCalModel, nil, ...}
     private var mapTable: [IndexPath: [Collection?]] = [:]

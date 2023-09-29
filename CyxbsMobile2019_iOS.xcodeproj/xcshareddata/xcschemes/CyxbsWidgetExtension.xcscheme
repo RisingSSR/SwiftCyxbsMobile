@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "14E379CE2AC3B9EE002687E6"
+               BlueprintIdentifier = "141A6D8A2AC5280F004BD3BC"
                BuildableName = "CyxbsWidgetExtension.appex"
                BlueprintName = "CyxbsWidgetExtension"
                ReferencedContainer = "container:CyxbsMobile2019_iOS.xcodeproj">
@@ -61,7 +61,7 @@
          BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "14E379CE2AC3B9EE002687E6"
+            BlueprintIdentifier = "141A6D8A2AC5280F004BD3BC"
             BuildableName = "CyxbsWidgetExtension.appex"
             BlueprintName = "CyxbsWidgetExtension"
             ReferencedContainer = "container:CyxbsMobile2019_iOS.xcodeproj">
@@ -89,7 +89,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "_XCWidgetFamily"
-            value = "systemMedium"
+            value = "systemLarge"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

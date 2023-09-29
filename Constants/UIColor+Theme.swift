@@ -15,6 +15,8 @@ func hexStrToInt(_ str: String) -> CGFloat {
     return CGFloat(result)
 }
 
+
+
 extension UIColor {
     
     convenience init?(hexString: String) {

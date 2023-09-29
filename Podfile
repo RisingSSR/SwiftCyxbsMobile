@@ -48,6 +48,10 @@ target 'CyxbsMobile2019_iOS' do
 
 end
 
+target 'CyxbsWidgetExtension' do
+  
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     puts "target #{target}"

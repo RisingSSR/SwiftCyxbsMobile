@@ -236,6 +236,11 @@ extension TabBarController {
         vc.tabBarFrame = tabBar.frame
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transitionDelegate
+        vc.scheduleVC.requestCallBack = { vc in
+            if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == Constants.mainSno })?.key {
+                self.reloadWith(scheduleModel: mainModel)
+            }
+        }
         present(vc, animated: true)
     }
 }
