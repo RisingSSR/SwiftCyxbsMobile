@@ -43,6 +43,9 @@
 		141A6DC12AC52BD9004BD3BC /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */; };
 		141A6DC22AC52BDB004BD3BC /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */; };
 		141A6DC32AC52BDE004BD3BC /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DC02AA6C8C100D8D1E1 /* APIConfig.swift */; };
+		14396C722AC84FA300C21A2A /* FinderBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C712AC84FA300C21A2A /* FinderBannerView.swift */; };
+		14396C742AC8506000C21A2A /* FinderBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */; };
+		14396C772AC855C600C21A2A /* FinderBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C762AC855C600C21A2A /* FinderBannerModel.swift */; };
 		143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F70192AA165C10048E264 /* AppDelegate.swift */; };
 		143F701D2AA170030048E264 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F701C2AA170030048E264 /* TabBarController.swift */; };
 		143F702F2AA4980C0048E264 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F702E2AA4980C0048E264 /* TabBar.swift */; };
@@ -165,6 +168,9 @@
 		141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDataFetch.swift; sourceTree = "<group>"; };
 		141A6DAA2AC529EB004BD3BC /* ScheduleSystemLarge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSystemLarge.swift; sourceTree = "<group>"; };
 		141A6DAB2AC529EC004BD3BC /* ScheduleTimelineEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineEntry.swift; sourceTree = "<group>"; };
+		14396C712AC84FA300C21A2A /* FinderBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerView.swift; sourceTree = "<group>"; };
+		14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		14396C762AC855C600C21A2A /* FinderBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerModel.swift; sourceTree = "<group>"; };
 		143F70192AA165C10048E264 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143F701C2AA170030048E264 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		143F702E2AA4980C0048E264 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -324,6 +330,14 @@
 			path = ScheduleSystemLarge;
 			sourceTree = "<group>";
 		};
+		14396C752AC855B600C21A2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14396C762AC855C600C21A2A /* FinderBannerModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		143F701B2AA16FE40048E264 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +377,7 @@
 			children = (
 				14622DC92AA6DC7400D8D1E1 /* ViewController */,
 				14622DC82AA6DC7400D8D1E1 /* View */,
+				14396C752AC855B600C21A2A /* Model */,
 			);
 			path = Finder;
 			sourceTree = "<group>";
@@ -371,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */,
+				14396C712AC84FA300C21A2A /* FinderBannerView.swift */,
+				14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -986,6 +1003,7 @@
 				14622E262AB2FE4000D8D1E1 /* SwiftEX.swift in Sources */,
 				14B46B692ABD7BC20068EB26 /* LoginViewController.swift in Sources */,
 				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
+				14396C772AC855C600C21A2A /* FinderBannerModel.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
@@ -1017,10 +1035,12 @@
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
 				148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */,
 				14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */,
+				14396C722AC84FA300C21A2A /* FinderBannerView.swift in Sources */,
 				14622E0E2AAF1B9000D8D1E1 /* ScheduleFact.swift in Sources */,
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,
+				14396C742AC8506000C21A2A /* FinderBannerCollectionViewCell.swift in Sources */,
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,

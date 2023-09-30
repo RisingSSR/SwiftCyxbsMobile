@@ -49,7 +49,7 @@ extension TabBarController {
         if let vc = (selectedViewController as? UINavigationController)?
             .visibleViewController as? FinderViewController {
             
-            vc.request()
+            vc.reloadData()
         }
     }
     
@@ -75,6 +75,10 @@ extension TabBarController {
      给定一个ScheduleModel进行刷新
      */
     func reloadWith(scheduleModel: ScheduleModel) {
+        if scheduleModel.customType == .system {
+            Constants.start = scheduleModel.start
+        }
+        
         let calModels = scheduleModel.calModels
         if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
             reloadTabBarData(title: cur.curriculum.course, time: cur.time, place: cur.curriculum.classRoom)

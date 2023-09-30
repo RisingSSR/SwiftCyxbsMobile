@@ -263,9 +263,10 @@ extension LoginViewController {
                 afterCallAction(!isSuccess)
                 return
             }
+        } else {
+            
+            afterCallAction(false)
         }
-        
-        afterCallAction(false)
         
         func afterCallAction(_ shouldShow: Bool) {
             

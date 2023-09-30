@@ -72,4 +72,10 @@ extension HttpManager {
     func message_system_user_msgHasRead() -> DataRequest {
        return SessionManager.shared.ry_request(APIConfig.current.api("/message-system/user/msgHasRead"), method: .get)
     }
+    
+    /// 获取banner
+    @discardableResult
+    func magipoke_text_banner_get() -> DataRequest {
+       return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-text/banner/get"), method: .get)
+    }
 }
