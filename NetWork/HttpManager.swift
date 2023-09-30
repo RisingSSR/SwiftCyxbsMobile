@@ -66,4 +66,10 @@ extension HttpManager {
        ]
        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/token/refresh"), method: .post, parameters: parameters)
     }
+    
+    /// 查询是否有未读消息
+    @discardableResult
+    func message_system_user_msgHasRead() -> DataRequest {
+       return SessionManager.shared.ry_request(APIConfig.current.api("/message-system/user/msgHasRead"), method: .get)
+    }
 }

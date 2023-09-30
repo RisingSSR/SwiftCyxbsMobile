@@ -54,6 +54,7 @@ extension TokenModel {
         CacheManager.shared.cache(codable: self, in: .init(rootPath: .widget, file: "token_model"))
         Constants.mainSno = stuNum
         Constants.token = token
+        SessionManager.shared.token = token
         UserDefaultsManager.shared.refreshToken = refreshToken
     }
     

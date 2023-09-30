@@ -164,8 +164,7 @@ extension LoginViewController {
                 }
                 
             case .failure(let netError):
-                print("netError\(netError)")
-                ProgressHUD.show("网络异常")
+                ProgressHUD.showFailed("网络异常: \(netError)")
             }
         }
     }
@@ -237,6 +236,13 @@ extension LoginViewController {
     
     static func check(action: @escaping DismissAction) {
         
+        #if DEBUG
+            
+//            afterCallAction(true)
+//            return
+        
+        #endif
+        
         // 没有tokenModel
         guard let tokenModel = Constants.tokenModel,
               
@@ -304,6 +310,8 @@ extension LoginViewController {
                                     success(false)
                                 }
                             }
+                            
+                            Constants.keyWindow?.rootViewController?.present(alertVC, animated: true)
                         } else {
                             
                             success(true)

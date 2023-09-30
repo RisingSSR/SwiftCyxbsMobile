@@ -14,6 +14,9 @@ class FinderViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .ry(light: "#F2F3F8", dark: "#000000")
+        
+        view.addSubview(contentScrollView)
+        setupUI()
     }
     
     lazy var contentScrollView: UIScrollView = {
@@ -22,4 +25,23 @@ class FinderViewController: UIViewController {
         scrollView.backgroundColor = .clear
         return scrollView
     }()
+    
+    lazy var headerView: FinderHeaderView = {
+        let headerView = FinderHeaderView(frame: CGRect(x: marginSpaceForHorizontal, y: Constants.statusBarHeight, width: view.bounds.width - 2 * marginSpaceForHorizontal, height: 55))
+        return headerView
+    }()
+}
+
+extension FinderViewController {
+    
+    var marginSpaceForHorizontal: CGFloat { 16 }
+    
+    func setupUI() {
+        
+        contentScrollView.addSubview(headerView)
+    }
+    
+    func request() {
+        headerView.request()
+    }
 }

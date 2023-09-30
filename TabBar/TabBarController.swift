@@ -45,6 +45,12 @@ extension TabBarController {
         } else {
             request()
         }
+        
+        if let vc = (selectedViewController as? UINavigationController)?
+            .visibleViewController as? FinderViewController {
+            
+            vc.request()
+        }
     }
     
     /* 直接请求法

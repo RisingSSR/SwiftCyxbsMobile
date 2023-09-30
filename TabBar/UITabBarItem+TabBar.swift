@@ -11,9 +11,19 @@ import ObjectiveC
 
 extension UITabBarItem {
     
-    static var ry_needMoreSpaceToShow = "CyxbsMobile2019_iOS.UITabBarItem.ry_needMoreSpaceToShow"
+    struct Constants {
+        static var ry_needMoreSpaceToShow = "CyxbsMobile2019_iOS.UITabBarItem.ry_needMoreSpaceToShow"
+    }
+    
     var needMoreSpaceToShow: Bool {
-        get { objc_getAssociatedObject(self, &UITabBarItem.ry_needMoreSpaceToShow) as? Bool ?? true }
-        set { objc_setAssociatedObject(self, &UITabBarItem.ry_needMoreSpaceToShow, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+        get {
+            withUnsafePointer(to: &Constants.ry_needMoreSpaceToShow) {
+                objc_getAssociatedObject(self, $0)
+            } as? Bool ?? true
+        }
+        set {
+            withUnsafePointer(to: &Constants.ry_needMoreSpaceToShow) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)}
+        }
     }
 }
