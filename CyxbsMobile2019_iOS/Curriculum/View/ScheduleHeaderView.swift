@@ -142,15 +142,7 @@ extension ScheduleHeaderView {
         section > self.section ? .transitionFlipFromRight : .transitionFlipFromLeft
         self.section = section
         
-        var title = "整学期"
-        if section >= 1 {
-            let formatter = NumberFormatter()
-            formatter.locale = .cn
-            formatter.numberStyle = .spellOut
-            if let num = formatter.string(from: section as NSNumber) {
-                title = "第" + num + "周"
-            }
-        }
+        let title = ScheduleDataFetch.sectionString(withSection: section)
         let content = isNowSection ? "（本周）" : nil
         let sectionShow = create(title: title, content: content)
         

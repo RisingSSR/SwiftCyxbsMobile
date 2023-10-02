@@ -36,7 +36,7 @@ class ScheduleSelectSectionHeaderView: UIView {
 
     lazy var dataSource: JXSegmentedTitleDataSource = {
         let dataSource = JXSegmentedTitleDataSource()
-        dataSource.titles = titles
+        dataSource.titles = (0 ... 24).map(ScheduleDataFetch.sectionString(withSection:))
         dataSource.titleSelectedColor = .ry(light: "#15315B", dark: "#F0F0F2")
         dataSource.titleNormalColor = .ry(light: "#15315B", dark: "#F0F0F2")
         dataSource.titleNormalFont = UIFont.systemFont(ofSize: 14)
@@ -50,7 +50,9 @@ class ScheduleSelectSectionHeaderView: UIView {
         let imgView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 30, height: bounds.height)))
         imgView.center.y = bounds.height / 2
         imgView.frame.origin.x = bounds.width - imgView.bounds.width - space
-        let image = UIImage(named: "direction_left")?.scaled(toHeight: 18)
+        let image = UIImage(named: "direction_left")?
+            .tint(.ry(light: "#15315B", dark: "#F0F0F2"), blendMode: .destinationIn)
+            .scaled(toHeight: 18)
         imgView.image = image
         imgView.contentMode = .left
         imgView.isUserInteractionEnabled = true
@@ -67,26 +69,5 @@ extension ScheduleSelectSectionHeaderView {
     @objc
     func backResponseTap() {
         backTapAction?(self)
-    }
-}
-
-// MARK: data
-
-extension ScheduleSelectSectionHeaderView {
-    
-    var titles: [String] {
-        (0 ... 24).map(createTitle(section:))
-    }
-    
-    func createTitle(section: Int) -> String {
-        if section >= 1 {
-            let formatter = NumberFormatter()
-            formatter.locale = .cn
-            formatter.numberStyle = .spellOut
-            if let num = formatter.string(from: section as NSNumber) {
-                return "第" + num + "周"
-            }
-        }
-        return "整学期"
     }
 }

@@ -89,58 +89,92 @@ extension ScheduleModel {
     
     static func request(snos: Set<String>, handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
         
-        let group = DispatchGroup()
         var modelAry = [ScheduleModel]()
+        
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao.snos", attributes: .concurrent)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
         for sno in snos {
-            group.enter()
-            request(sno: sno) { response in
-                switch response {
-                case .success(let model):
-                    modelAry.append(model)
-                case .failure(let netError):
-                    handle(.failure(netError))
+            
+            que.async {
+                
+                request(sno: sno) { response in
+                    switch response {
+                    case .success(let model):
+                        modelAry.append(model)
+                    case .failure(let netError):
+                        handle(.failure(netError))
+                    }
+                    
+                    semaphore.signal()
                 }
-                group.leave()
             }
         }
         
-        group.notify(queue: .main) {
-            handle(.success(modelAry))
+        que.async(flags: .barrier) {
+            
+            for _ in snos {
+                
+                semaphore.wait()
+            }
+        }
+        
+        que.async {
+            
+            DispatchQueue.main.async {
+                
+                handle(.success(modelAry))
+            }
         }
     }
     
     static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
         
-        let group = DispatchGroup()
         var scheduleModel = ScheduleModel(sno: sno)
-        group.enter()
-        SearchStudentModel.request(info: sno) { response in
-            switch response {
-            case .success(let model):
-                scheduleModel.student = model.first
-            case .failure(let netError):
-                handle(.failure(netError))
-            }
-            group.leave()
-        }
         
-        group.enter()
-        HttpManager.shared.magipoke_jwzx_kebiao(stu_num: sno).ry_JSON { response in
-            switch response {
-            case .success(let json):
-                scheduleModel.sno = json["stuNum"].stringValue
-                scheduleModel.nowWeek = json["nowWeek"].intValue
-                if let ary = json["data"].array?.map(CurriculumModel.init(json:)) {
-                    scheduleModel.curriculum = ary
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", attributes: .concurrent)
+        
+        que.async {
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            
+            SearchStudentModel.request(info: sno) { response in
+                switch response {
+                case .success(let model):
+                    scheduleModel.student = model.first
+                case .failure(let netError):
+                    handle(.failure(netError))
                 }
-            case .failure(let netError):
-                handle(.failure(netError))
+                
+                semaphore.signal()
             }
-            group.leave()
+            
+            HttpManager.shared.magipoke_jwzx_kebiao(stu_num: sno).ry_JSON { response in
+                switch response {
+                case .success(let json):
+                    scheduleModel.sno = json["stuNum"].stringValue
+                    scheduleModel.nowWeek = json["nowWeek"].intValue
+                    if let ary = json["data"].array?.map(CurriculumModel.init(json:)) {
+                        scheduleModel.curriculum = ary
+                    }
+                case .failure(let netError):
+                    handle(.failure(netError))
+                }
+                
+                semaphore.signal()
+            }
+            
+            semaphore.wait()
+            semaphore.wait()
         }
         
-        group.notify(queue: .main) {
-            handle(.success(scheduleModel))
+        que.async(flags: .barrier) {
+            
+            DispatchQueue.main.async {
+                
+                handle(.success(scheduleModel))
+            }
         }
     }
 }

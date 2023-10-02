@@ -50,7 +50,7 @@ class FinderHeaderView: UIView {
         let btn = UIButton()
         btn.frame.size = CGSize(width: 40, height: 34)
         btn.autoresizingMask = [.flexibleLeftMargin]
-        btn.setImage(messageImage(read: false), for: .normal)
+        btn.setImage(messageImage(read: true), for: .normal)
         btn.addTarget(self, action: #selector(touchUpInside(messageBtn:)), for: .touchUpInside)
         return btn
     }()
@@ -113,11 +113,9 @@ extension FinderHeaderView {
         HttpManager.shared.message_system_user_msgHasRead().ry_JSON { response in
             
             if case .success(let model) = response {
-                if let status = model["status"].string {
-                    if status == "10000" {
-                        let hasMessage = model["data"]["has"].boolValue
-                        self.messageBtn.setImage(self.messageImage(read: !hasMessage), for: .normal)
-                    }
+                if let status = model["status"].int, status == 10000 {
+                    let hasMessage = model["data"]["has"].boolValue
+                    self.messageBtn.setImage(self.messageImage(read: !hasMessage), for: .normal)
                 }
             }
         }

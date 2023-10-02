@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */; };
+		1411F4052AC8FD1E005E0821 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 1411F4042AC8FD1E005E0821 /* FinderTools */; };
+		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
+		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
+		1411F40D2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40C2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift */; };
 		141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D832AC4641B004BD3BC /* TokenModel.swift */; };
 		141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */; };
 		141A6D8C2AC5280F004BD3BC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14076D302AC2950400E2F1D0 /* WidgetKit.framework */; };
@@ -101,6 +105,7 @@
 		14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */; };
 		14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D1CA2AC820E4006D7695 /* BaseButton.swift */; };
 		14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */; };
+		14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F948802ACA76F300B2C260 /* FinderToolsView.swift */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		AF384D00E7E0D2E22EE4A767 /* Pods_CyxbsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
@@ -149,6 +154,10 @@
 		14076D302AC2950400E2F1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		14076D322AC2950400E2F1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsUIKit.swift; sourceTree = "<group>"; };
+		1411F4042AC8FD1E005E0821 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
+		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
+		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
+		1411F40C2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		141A6D832AC4641B004BD3BC /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlterControllerFast.swift; sourceTree = "<group>"; };
 		141A6D8B2AC5280F004BD3BC /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +238,7 @@
 		14E060D82AC52E6A009C4F28 /* ViewEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEX.swift; sourceTree = "<group>"; };
 		14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDrawType.swift; sourceTree = "<group>"; };
 		14E6D1CA2AC820E4006D7695 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		14F948802ACA76F300B2C260 /* FinderToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderToolsView.swift; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,6 +301,26 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1411F4082ACA62F2005E0821 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				14396C712AC84FA300C21A2A /* FinderBannerView.swift */,
+				14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */,
+				14396C762AC855C600C21A2A /* FinderBannerModel.swift */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		1411F4092ACA6319005E0821 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				1411F4062ACA3343005E0821 /* FinderNewsView.swift */,
+				1411F40C2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift */,
+				1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		141A6D822AC4640D004BD3BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,14 +358,6 @@
 				141A6DA82AC529EB004BD3BC /* ScheduleCollectionView.swift */,
 			);
 			path = ScheduleSystemLarge;
-			sourceTree = "<group>";
-		};
-		14396C752AC855B600C21A2A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				14396C762AC855C600C21A2A /* FinderBannerModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		143F701B2AA16FE40048E264 /* TabBar */ = {
@@ -376,20 +398,20 @@
 			isa = PBXGroup;
 			children = (
 				14622DC92AA6DC7400D8D1E1 /* ViewController */,
-				14622DC82AA6DC7400D8D1E1 /* View */,
-				14396C752AC855B600C21A2A /* Model */,
+				14622DC82AA6DC7400D8D1E1 /* Header */,
+				1411F4082ACA62F2005E0821 /* Banner */,
+				1411F4092ACA6319005E0821 /* News */,
+				14F9487F2ACA76D800B2C260 /* Tools */,
 			);
 			path = Finder;
 			sourceTree = "<group>";
 		};
-		14622DC82AA6DC7400D8D1E1 /* View */ = {
+		14622DC82AA6DC7400D8D1E1 /* Header */ = {
 			isa = PBXGroup;
 			children = (
 				14622E4A2AB48B3E00D8D1E1 /* FinderHeaderView.swift */,
-				14396C712AC84FA300C21A2A /* FinderBannerView.swift */,
-				14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */,
 			);
-			path = View;
+			path = Header;
 			sourceTree = "<group>";
 		};
 		14622DC92AA6DC7400D8D1E1 /* ViewController */ = {
@@ -544,17 +566,9 @@
 			isa = PBXGroup;
 			children = (
 				14B46B672ABD7A560068EB26 /* ViewController */,
-				14B46B662ABD7A560068EB26 /* View */,
 				141A6D822AC4640D004BD3BC /* Model */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		14B46B662ABD7A560068EB26 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		14B46B672ABD7A560068EB26 /* ViewController */ = {
@@ -576,6 +590,15 @@
 				141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */,
 			);
 			path = UIKitEX;
+			sourceTree = "<group>";
+		};
+		14F9487F2ACA76D800B2C260 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				14F948802ACA76F300B2C260 /* FinderToolsView.swift */,
+				1411F4042AC8FD1E005E0821 /* FinderTools */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		1A9B765E235F50A600725937 = {
@@ -838,6 +861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */,
+				1411F4052AC8FD1E005E0821 /* FinderTools in Resources */,
 				14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */,
 				14622DC32AA6CF4E00D8D1E1 /* LaunchScreen.storyboard in Resources */,
 				14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */,
@@ -1005,10 +1029,12 @@
 				148F56982ABB279E002FFE8A /* ScheduleDetailMessageTableViewCell.swift in Sources */,
 				14396C772AC855C600C21A2A /* FinderBannerModel.swift in Sources */,
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
+				1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
+				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
@@ -1026,6 +1052,7 @@
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
+				1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
 				14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */,
@@ -1049,6 +1076,7 @@
 				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
+				1411F40D2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
@@ -1295,7 +1323,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1308,7 +1336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
@@ -1319,7 +1347,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1333,7 +1361,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1372,7 +1400,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.8;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
@@ -1382,7 +1410,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

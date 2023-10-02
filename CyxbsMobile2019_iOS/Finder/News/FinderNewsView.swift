@@ -1,23 +1,22 @@
 //
-//  FinderBannerView.swift
+//  FinderNewsView.swift
 //  CyxbsMobile2019_iOS
 //
-//  Created by SSR on 2023/9/30.
+//  Created by SSR on 2023/10/2.
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
 import UIKit
 import JXBanner
 
-class FinderBannerView: UIView {
+class FinderNewsView: UIView {
     
-    var models: [FinderBannerModel] = []
+    private(set) var models: [FinderNewsModel] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .hex("#3852DA")
-        layer.cornerRadius = 8
-        clipsToBounds = true
+        
+        addSubview(icon)
         addSubview(banner)
     }
     
@@ -25,8 +24,24 @@ class FinderBannerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var icon: UILabel = {
+        let icon = UILabel(frame: CGRect(x: 0, y: 0, width: 70, height: 20))
+        let maskPath = UIBezierPath(roundedRect: icon.bounds, byRoundingCorners: [.bottomLeft, .topRight], cornerRadii: CGSizeMake(10, 10))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = bounds
+        maskLayer.path = maskPath.cgPath
+        icon.layer.mask = maskLayer
+        icon.backgroundColor = .ry(light: "#AFD2FB", dark: "#5A5A5A")
+        icon.text = "教务在线"
+        icon.font = .systemFont(ofSize: 11, weight: .bold)
+        icon.textAlignment = .center
+        icon.textColor = .ry(light: "#FFFFFF", dark: "#000000")
+        return icon
+    }()
+    
     lazy var banner: JXBanner = {
-        let banner = JXBanner(frame: bounds)
+        let x = icon.frame.maxX + 14
+        let banner = JXBanner(frame: CGRect(x: x, y: 0, width: bounds.width - x, height: bounds.height))
         banner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         banner.dataSource = self
         banner.delegate = self
@@ -34,46 +49,23 @@ class FinderBannerView: UIView {
     }()
 }
 
-// MARK: request
-
-extension FinderBannerView {
-    
-    func request() {
-        HttpManager.shared.magipoke_text_banner_get().ry_JSON { response in
-            if case .success(let model) = response, model["status"].int == 10000 {
-                if let models = model["data"].array?.map(FinderBannerModel.init(json:)) {
-                    self.models = models
-                    self.banner.reloadView()
-                }
-            }
-        }
-    }
-}
-
 // MARK: JXBannerDataSource
 
-extension FinderBannerView: JXBannerDataSource {
+extension FinderNewsView: JXBannerDataSource {
     
     func jxBanner(numberOfItems banner: JXBannerType) -> Int {
         max(1, models.count)
     }
     
     func jxBanner(_ banner: JXBannerType) -> (JXBannerCellRegister) {
-        JXBannerCellRegister(type: FinderBannerCollectionViewCell.self, reuseIdentifier: FinderBannerCollectionViewCell.identifier)
+        JXBannerCellRegister(type: FinderNewsCollectionViewCell.self, reuseIdentifier: FinderNewsCollectionViewCell.identifier)
     }
     
     func jxBanner(_ banner: JXBannerType, cellForItemAt index: Int, cell: UICollectionViewCell) -> UICollectionViewCell {
         
-        guard let cell = cell as? FinderBannerCollectionViewCell else { return cell }
+        guard let cell = cell as? FinderNewsCollectionViewCell else { return cell }
         
-        let placeholder = UIImage(named: "finder_banner_placeholder")
-        
-        if index >= models.count {
-            cell.setImage(with: "", placeholder: placeholder)
-        } else {
-            let item = models[index]
-            cell.setImage(with: item.picture_url, placeholder: placeholder)
-        }
+        cell.title = "教务新闻功能暂时停止服务..."
         
         return cell
     }
@@ -86,10 +78,11 @@ extension FinderBannerView: JXBannerDataSource {
     }
     
     func jxBanner(_ banner: JXBannerType, layoutParams: JXBannerLayoutParams) -> JXBannerLayoutParams {
-        layoutParams
+        return layoutParams
             .minimumScale(0)
             .maximumAngle(0)
             .itemSpacing(0)
+            .scrollDirection(.vertical)
     }
     
     func jxBanner(pageControl banner: JXBannerType, numberOfPages: Int, coverView: UIView, builder: JXBannerPageControlBuilder) -> JXBannerPageControlBuilder {
@@ -99,7 +92,7 @@ extension FinderBannerView: JXBannerDataSource {
 
 // MARK: JXBannerDelegate
 
-extension FinderBannerView: JXBannerDelegate {
+extension FinderNewsView: JXBannerDelegate {
     
     func jxBanner(_ banner: JXBannerType, didSelectItemAt index: Int) {
         

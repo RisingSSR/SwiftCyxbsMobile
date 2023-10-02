@@ -38,6 +38,12 @@ class FinderViewController: UIViewController {
         let bannerView = FinderBannerView(frame: CGRect(x: marginSpaceForHorizontal, y: headerView.frame.maxY + 6, width: width, height: width / aspectRatio))
         return bannerView
     }()
+    
+    lazy var newsView: FinderNewsView = {
+        let width = view.bounds.width - 2 * marginSpaceForHorizontal
+        let newsView = FinderNewsView(frame: CGRect(x: marginSpaceForHorizontal, y: bannerView.frame.maxY + 15, width: width, height: 22))
+        return newsView
+    }()
 }
 
 extension FinderViewController {
@@ -47,6 +53,7 @@ extension FinderViewController {
     func setupUI() {
         contentScrollView.addSubview(headerView)
         contentScrollView.addSubview(bannerView)
+        contentScrollView.addSubview(newsView)
     }
     
     func reloadData() {

@@ -237,7 +237,8 @@ extension LoginViewController {
     static func check(action: @escaping DismissAction) {
         
         #if DEBUG
-            
+        
+//            如果想强制刷token，取消注释这两行
 //            afterCallAction(true)
 //            return
         
