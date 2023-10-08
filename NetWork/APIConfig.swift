@@ -43,7 +43,7 @@ class APIConfig {
     
     private init() { }
     
-    private(set) var ipToHost: [String: String] = [:]
+    var ipToHost: [String: String] = [:]
     
     var environment: Environment = {
         #if DEBUG
@@ -63,22 +63,6 @@ class APIConfig {
             }
             success(.BE_PROD)
         }
-    }
-    
-    func api(_ api: String) -> String {
-        
-#if canImport(AliyunConfig)
-        
-        // IP 直连
-        if let ip = AliyunConfig.ip(byHost: environment.host) {
-            ipToHost[ip] = environment.host
-            return "https://" + ip + api
-        }
-#endif
-        
-        // 原URL请求
-        let url = environment.url + api
-        return url
     }
 }
 

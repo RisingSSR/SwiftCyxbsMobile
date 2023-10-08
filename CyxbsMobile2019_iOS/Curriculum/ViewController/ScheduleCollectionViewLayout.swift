@@ -161,6 +161,8 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
         let lenthOfItem = dataSource.collectionView(ry_collectionView, layout: self, lenthOfItemAtIndexPath: indexPath)
         
         let attribute = itemAttributes[indexPath] ?? UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        
+        attribute.zIndex = 4
         attribute.frame = CGRect(
             x: CGFloat(indexPath.section) * ry_collectionView.bounds.width + widthForLeadingSupplementaryView + CGFloat(columnOfItem - 1) * (itemSize.width + columnSpacing),
             y: heightForHeaderSupplementaryView + CGFloat(lineOfItem - 1) * (itemSize.height + lineSpacing) + lineSpacing,
@@ -204,6 +206,8 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
             }
             
         case .leading:
+            attributes.zIndex = 6
+            
             attributes.frame = CGRect(
                 x: CGFloat(indexPath.section) * ry_collectionView.bounds.width,
                 y: heightForHeaderSupplementaryView + CGFloat(indexPath.item) * (lineSpacing + itemSize.height),
@@ -211,6 +215,8 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                 height: itemSize.height)
             
         case .placeHolder:
+            attributes.zIndex = 4
+            
             attributes.frame = CGRect(
                 x: CGFloat(indexPath.section) * pageWidth + widthForLeadingSupplementaryView,
                 y: ry_collectionView.contentOffset.y + heightForHeaderSupplementaryView,
@@ -218,6 +224,8 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                 height: ry_collectionView.bounds.height - heightForHeaderSupplementaryView)
             
         case .pointHolder:
+            attributes.zIndex = 8
+            
             let persent = dataSource?.collectionView(ry_collectionView, layout: self, persentOfPointAtIndexPath: indexPath) ?? 0
             print("todo")
         }

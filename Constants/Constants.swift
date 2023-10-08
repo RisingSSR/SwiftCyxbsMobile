@@ -87,11 +87,14 @@ extension Constants {
         var currentDate = Date()
         // 因为国外是以周日作为第一天，如果是周日，则要将日期向上一周移动一次
         if calendar.component(.weekday, from: start) == 1 {
-            currentDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentDate) ?? currentDate
+            currentDate = calendar.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? currentDate
         }
         // 然后将日期移动到当周的周一
         currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
         // 计算当前日期与开始日期之间的周数差
-        return calendar.dateComponents([.weekOfYear], from: start, to: currentDate).weekOfYear
+        if let weekOfYear = calendar.dateComponents([.weekOfYear], from: start, to: currentDate).weekOfYear {
+            return weekOfYear + 1
+        }
+        return nil
     }
 }

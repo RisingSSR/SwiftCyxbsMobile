@@ -22,3 +22,12 @@ extension View {
         }
     }
 }
+
+extension APIConfig {
+    
+    func api(_ api: String) -> String {
+        // 原URL请求
+        let url = environment.url + api
+        return url
+    }
+}

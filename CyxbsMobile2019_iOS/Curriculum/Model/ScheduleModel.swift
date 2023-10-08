@@ -41,7 +41,7 @@ struct ScheduleModel: Codable {
             // 然后将日期移动到当周的周一
             currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
             // 根据nowWeek增加一段时间
-            currentDate = calendar.date(byAdding: .weekOfYear, value: -nowWeek, to: currentDate, wrappingComponents: true) ?? currentDate
+            currentDate = calendar.date(byAdding: .weekOfYear, value: -(nowWeek - 1), to: currentDate, wrappingComponents: true) ?? currentDate
             start = currentDate
             
             Constants.start = start
@@ -91,7 +91,7 @@ extension ScheduleModel {
         
         var modelAry = [ScheduleModel]()
         
-        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao.snos", attributes: .concurrent)
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao.snos", qos: .default, attributes: .concurrent)
         
         let semaphore = DispatchSemaphore(value: 0)
         
@@ -133,11 +133,11 @@ extension ScheduleModel {
         
         var scheduleModel = ScheduleModel(sno: sno)
         
-        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", attributes: .concurrent)
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", qos: .unspecified, attributes: .concurrent)
+        
+        let semaphore = DispatchSemaphore(value: 0)
         
         que.async {
-            
-            let semaphore = DispatchSemaphore(value: 0)
             
             SearchStudentModel.request(info: sno) { response in
                 switch response {

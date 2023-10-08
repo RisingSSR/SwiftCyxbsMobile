@@ -15,6 +15,12 @@ class ScheduleFact: NSObject {
     private var scrollViewStartPosPoint: CGPoint = .zero
     
     private var scrollDirection: Int = 0
+    
+    lazy var currentBackgroundView: UIView = {
+        let bkView = UIView()
+        bkView.backgroundColor = .ry(light: "#E8F0FC", dark: "#000101")
+        return bkView
+    }()
 }
 
 extension ScheduleFact {
@@ -42,6 +48,8 @@ extension ScheduleFact {
         collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: .leading, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
         /* placeholder */
         collectionView.register(PlaceholderCollectionViewCell.self, forElementKindSection: .placeHolder, withReuseIdentifier: PlaceholderCollectionViewCell.identifier)
+        
+        collectionView.insertSubview(currentBackgroundView, at: 0)
         
         return collectionView
     }
@@ -96,7 +104,17 @@ extension ScheduleFact: UICollectionViewDataSource {
             
             let isTitleOnly = (indexPath.section == 0 || indexPath.item == 0 || mappy.start == nil)
             let currenDay = Calendar.current.date(byAdding: .day, value: (indexPath.section - 1) * 7 + indexPath.item - 1, to: startModay) ?? Date()
-            let isToday = Calendar.current.isDateInToday(currenDay)
+            let isToday = 
+            indexPath.section == mappy.nowWeek &&
+            indexPath.item != 0 &&
+            Calendar.current.isDateInToday(currenDay)
+            
+            if isToday {
+                collectionView.insertSubview(currentBackgroundView, at: 0)
+                currentBackgroundView.frame = cell.frame // x, width
+                currentBackgroundView.frame.origin.y = -collectionView.bounds.height / 2
+                currentBackgroundView.frame.size.height = collectionView.bounds.height * 2
+            }
             
             var title: String? = nil
             if indexPath.item == 0 {
@@ -196,6 +214,8 @@ extension ScheduleFact: UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        currentBackgroundView.frame.origin.y = scrollView.contentOffset.y - scrollView.bounds.height / 2
+        
         if scrollDirection == 0 {
             if abs(scrollViewStartPosPoint.x - scrollView.contentOffset.x) <
                 abs(scrollViewStartPosPoint.y - scrollView.contentOffset.y) {

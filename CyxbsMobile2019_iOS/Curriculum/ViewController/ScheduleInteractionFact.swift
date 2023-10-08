@@ -27,7 +27,9 @@ class ScheduleInteractionFact: ScheduleFact {
         let collectionView = super.createCollectionView()
         
         let header = MJRefreshGifHeader {
+            let priorities = self.mappy.scheduleModelMap.map { $0.value }
             self.mappy.clean()
+            self.request(priorities: Set(priorities))
         }
         .autoChangeTransparency(true)
         .set_refresh_sports()

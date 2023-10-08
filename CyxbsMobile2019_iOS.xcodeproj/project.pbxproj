@@ -12,6 +12,11 @@
 		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
 		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
 		1411F40D2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40C2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift */; };
+		1418099D2AD008CE00734569 /* CarnieEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418099C2AD008CE00734569 /* CarnieEntryView.swift */; };
+		1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1418099E2AD0F20300734569 /* CarnieHeaderView.swift */; };
+		141809A12AD1033F00734569 /* APIConfigEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141809A02AD1033F00734569 /* APIConfigEX.swift */; };
+		141809A42AD1060100734569 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141809A32AD1060100734569 /* PersonModel.swift */; };
+		141809A62AD10D1D00734569 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141809A52AD10D1D00734569 /* UserModel.swift */; };
 		141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D832AC4641B004BD3BC /* TokenModel.swift */; };
 		141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */; };
 		141A6D8C2AC5280F004BD3BC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14076D302AC2950400E2F1D0 /* WidgetKit.framework */; };
@@ -106,6 +111,8 @@
 		14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D1CA2AC820E4006D7695 /* BaseButton.swift */; };
 		14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */; };
 		14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F948802ACA76F300B2C260 /* FinderToolsView.swift */; };
+		14F948832ACB9F7C00B2C260 /* FinderToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F948822ACB9F7C00B2C260 /* FinderToolsModel.swift */; };
+		14F948852ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F948842ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		AF384D00E7E0D2E22EE4A767 /* Pods_CyxbsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
@@ -158,6 +165,11 @@
 		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
 		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
 		1411F40C2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		1418099C2AD008CE00734569 /* CarnieEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnieEntryView.swift; sourceTree = "<group>"; };
+		1418099E2AD0F20300734569 /* CarnieHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarnieHeaderView.swift; sourceTree = "<group>"; };
+		141809A02AD1033F00734569 /* APIConfigEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfigEX.swift; sourceTree = "<group>"; };
+		141809A32AD1060100734569 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		141809A52AD10D1D00734569 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		141A6D832AC4641B004BD3BC /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlterControllerFast.swift; sourceTree = "<group>"; };
 		141A6D8B2AC5280F004BD3BC /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +251,8 @@
 		14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDrawType.swift; sourceTree = "<group>"; };
 		14E6D1CA2AC820E4006D7695 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		14F948802ACA76F300B2C260 /* FinderToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderToolsView.swift; sourceTree = "<group>"; };
+		14F948822ACB9F7C00B2C260 /* FinderToolsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderToolsModel.swift; sourceTree = "<group>"; };
+		14F948842ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderToolsCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,6 +311,7 @@
 				14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */,
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 				14E6D1CA2AC820E4006D7695 /* BaseButton.swift */,
+				141809A52AD10D1D00734569 /* UserModel.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -319,6 +334,23 @@
 				1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		1418099B2AD0085E00734569 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1418099E2AD0F20300734569 /* CarnieHeaderView.swift */,
+				1418099C2AD008CE00734569 /* CarnieEntryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		141809A22AD105D500734569 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				141809A32AD1060100734569 /* PersonModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		141A6D822AC4640D004BD3BC /* Model */ = {
@@ -378,6 +410,7 @@
 				14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */,
 				14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */,
 				14622DC02AA6C8C100D8D1E1 /* APIConfig.swift */,
+				141809A02AD1033F00734569 /* APIConfigEX.swift */,
 				14622E202AB2850900D8D1E1 /* AliyunConfig.h */,
 				14622E212AB2850900D8D1E1 /* AliyunConfig.m */,
 				14622E1C2AB1F14600D8D1E1 /* AliyunEmasServices-Info.plist */,
@@ -500,7 +533,8 @@
 			isa = PBXGroup;
 			children = (
 				14622E482AB47D0B00D8D1E1 /* ViewController */,
-				14622E492AB47D0B00D8D1E1 /* View */,
+				1418099B2AD0085E00734569 /* View */,
+				141809A22AD105D500734569 /* Model */,
 			);
 			path = Carnie;
 			sourceTree = "<group>";
@@ -511,13 +545,6 @@
 				14622E462AB47CCC00D8D1E1 /* CarnieViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14622E492AB47D0B00D8D1E1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		147263372ABA866000FB9739 /* ViewController */ = {
@@ -596,6 +623,8 @@
 			isa = PBXGroup;
 			children = (
 				14F948802ACA76F300B2C260 /* FinderToolsView.swift */,
+				14F948842ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift */,
+				14F948822ACB9F7C00B2C260 /* FinderToolsModel.swift */,
 				1411F4042AC8FD1E005E0821 /* FinderTools */,
 			);
 			path = Tools;
@@ -1032,10 +1061,13 @@
 				1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
+				1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
+				1418099D2AD008CE00734569 /* CarnieEntryView.swift in Sources */,
 				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
+				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
@@ -1048,6 +1080,7 @@
 				141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
 				14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */,
+				141809A12AD1033F00734569 /* APIConfigEX.swift in Sources */,
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */,
@@ -1059,6 +1092,7 @@
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
+				14F948852ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
 				148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */,
 				14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */,
@@ -1076,8 +1110,10 @@
 				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,
+				141809A62AD10D1D00734569 /* UserModel.swift in Sources */,
 				1411F40D2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
+				14F948832ACB9F7C00B2C260 /* FinderToolsModel.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
 			);

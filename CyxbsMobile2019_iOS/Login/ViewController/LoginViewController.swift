@@ -156,7 +156,7 @@ extension LoginViewController {
                         
                         ProgressHUD.showSucceed("登录成功")
                         self.dismiss(animated: true) {
-                            self.dismissAction?(false, self)
+                            self.dismissAction?(false, nil)
                         }
                     } else { // status == "20004"
                         ProgressHUD.showError("账号或密码出错")
@@ -253,7 +253,7 @@ extension LoginViewController {
         // 上一次未打开App，需要show
         let lastDate = UserDefaultsManager.shared.latestOpenApp else {
             
-            afterCallAction(true)
+            afterCallAction(showVC: true)
             return
         }
         
@@ -261,15 +261,15 @@ extension LoginViewController {
         if !Calendar.current.isDateInToday(lastDate) {
             requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
                 
-                afterCallAction(!isSuccess)
+                afterCallAction(showVC: !isSuccess)
                 return
             }
         } else {
             
-            afterCallAction(false)
+            afterCallAction(showVC: false)
         }
         
-        func afterCallAction(_ shouldShow: Bool) {
+        func afterCallAction(showVC shouldShow: Bool) {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if shouldShow {

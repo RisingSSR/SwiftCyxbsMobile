@@ -69,9 +69,6 @@ extension UserDefaultsManager {
        set { set(newValue, forKey: "DID_READ_USERAGREEMENT_BEFOR") }
        get { get(key: "DID_READ_USERAGREEMENT_BEFOR") as? Bool }
     }
-}
-
-extension UserDefaultsManager {
     
     /// 获取token信息
     var token: String? {
@@ -90,9 +87,6 @@ extension UserDefaultsManager {
        set { set(newValue, forKey: "PRSENT_SCHEDULE_WHEN_OPEN_APP") }
        get { get(key: "PRSENT_SCHEDULE_WHEN_OPEN_APP") as? Bool ?? true }
     }
-}
-
-extension UserDefaultsManager {
     
     /// 主学生学号（用于一级缓存）
     var mainStudentSno: String? {
@@ -104,5 +98,11 @@ extension UserDefaultsManager {
     var latestRequestDate: Date? {
         set { set(newValue, forKey: "LATEST_REQUEST_DATE") }
         get { get(key: "LATEST_REQUEST_DATE") as? Date }
+    }
+    
+    /// 进入邮乐场的天数
+    var daysOfEntryCarnie: Int {
+       set { set(newValue, forKey: "DAYS_OF_ENTRY_CARNIE") }
+       get { get(key: "DAYS_OF_ENTRY_CARNIE") as? Int ?? 1 }
     }
 }

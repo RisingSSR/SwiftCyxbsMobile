@@ -44,6 +44,12 @@ class FinderViewController: UIViewController {
         let newsView = FinderNewsView(frame: CGRect(x: marginSpaceForHorizontal, y: bannerView.frame.maxY + 15, width: width, height: 22))
         return newsView
     }()
+    
+    lazy var toolsView: FinderToolsView = {
+        let width = view.bounds.width - 2 * marginSpaceForHorizontal
+        let toolsView = FinderToolsView(frame: CGRect(x: marginSpaceForHorizontal, y: newsView.frame.maxY + 20, width: width, height: 70))
+        return toolsView
+    }()
 }
 
 extension FinderViewController {
@@ -54,6 +60,7 @@ extension FinderViewController {
         contentScrollView.addSubview(headerView)
         contentScrollView.addSubview(bannerView)
         contentScrollView.addSubview(newsView)
+        contentScrollView.addSubview(toolsView)
     }
     
     func reloadData() {
