@@ -151,7 +151,7 @@ class TabBarHeaderView: UIView {
         imgView.center.y = bounds.height / 2
         imgView.contentMode = .center
         imgView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-        let image = UIImage(named: imageName)?.scaled(toHeight: 11)
+        let image = UIImage(named: imageName)?.scaled(toHeight: 11)?.withRenderingMode(.alwaysOriginal)
         imgView.image = image
         return imgView
     }

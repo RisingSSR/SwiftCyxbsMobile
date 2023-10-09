@@ -27,7 +27,7 @@ class FinderBannerView: UIView {
     
     lazy var banner: JXBanner = {
         let banner = JXBanner(frame: bounds)
-        banner.placeholderImgView.image = UIImage(named: "finder_banner_placeholder")
+        banner.placeholderImgView.image = UIImage(named: "finder_banner_placeholder")?.withRenderingMode(.alwaysOriginal)
         banner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         banner.dataSource = self
         banner.delegate = self

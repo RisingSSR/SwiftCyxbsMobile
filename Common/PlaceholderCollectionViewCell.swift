@@ -79,7 +79,7 @@ extension PlaceholderCollectionViewCell {
     
     func placeholder(_ imageName: ImageName, content: String?, spacing: CGFloat = 16) {
         self.spacing = spacing
-        let image = UIImage(named: imageName.rawValue)?.scaled(toWidth: 200)
+        let image = UIImage(named: imageName.rawValue)?.scaled(toWidth: 200)?.withRenderingMode(.alwaysOriginal)
         imageView.frame.size = image?.size ?? CGSize(width: 200, height: 130)
         imageView.image = image
         contentLab.text = content

@@ -82,6 +82,7 @@ extension ScheduleInteractionFact {
                     self.mappy.maping(model, priority: priority)
                 }
                 self.collectionView.reloadData()
+                self.collectionView.mj_header?.endRefreshing()
                 complition?(self)
             case .failure(let netError):
                 print("error \(netError)")

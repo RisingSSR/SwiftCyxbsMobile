@@ -24,6 +24,12 @@ open class TabBarController: UITabBarController {
         
         tabBar.ryTabBar?.headerView.handle_viewWillAppear()
     }
+    
+    lazy var finderVC = FinderViewController()
+    
+    lazy var carnieVC = CarnieViewController()
+    
+    lazy var mineVC = MineViewController()
 }
 
 // MARK: reload
@@ -39,18 +45,14 @@ extension TabBarController {
 
             let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
-            scheduleModel.nowWeek += days
+            scheduleModel.nowWeek += days / 7
 
             reloadWith(scheduleModel: scheduleModel)
         } else {
             request()
         }
         
-        if let vc = (selectedViewController as? UINavigationController)?
-            .visibleViewController as? FinderViewController {
-            
-            vc.reloadData()
-        }
+        reloadSubControllers()
     }
     
     /* 直接请求法
@@ -92,6 +94,10 @@ extension TabBarController {
      */
     func reloadTabBarData(title: String?, time: String?, place: String?) {
         tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
+    }
+    
+    func reloadSubControllers() {
+        finderVC.reloadData()
     }
 }
 
@@ -141,9 +147,9 @@ extension TabBarController {
     
     var viewControllersForTabBar: [UIViewController] {
         [
-            finderViewController,
-            carnieViewController,
-            mineViewController
+            createVC(root: finderVC),
+            createVC(root: carnieVC),
+            createVC(root: mineVC)
         ]
     }
     
@@ -164,12 +170,6 @@ extension TabBarController {
         ]
     }
     
-    var finderViewController: UIViewController { createVC(root: FinderViewController()) }
-    
-    var carnieViewController: UIViewController { createVC(root: CarnieViewController()) }
-    
-    var mineViewController: UIViewController { createVC(root: MineViewController()) }
-    
     func createVC(root: UIViewController) -> UIViewController {
         let nav = UINavigationController(rootViewController: root)
         nav.isNavigationBarHidden = true
@@ -184,7 +184,7 @@ extension TabBarController {
             .foregroundColor: UIColor.ry(light: "#AABCD8", dark: "#5A5A5A")
         ], for: .normal)
         tabBarItem.setTitleTextAttributes([
-            .foregroundColor: UIColor.hex("#2923D2")
+            .foregroundColor: UIColor.ry(light: "#2923D2", dark: "#465FFF")
         ], for: .selected)
         tabBarItem.needMoreSpaceToShow = needMoreSpaceToShow
         return tabBarItem
@@ -248,7 +248,9 @@ extension TabBarController {
         vc.transitioningDelegate = transitionDelegate
         vc.scheduleVC.requestCallBack = { vc in
             if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == Constants.mainSno })?.key {
+                mainModel.toCache(rootPath: .widget)
                 self.reloadWith(scheduleModel: mainModel)
+                self.reloadSubControllers()
             }
         }
         present(vc, animated: true)

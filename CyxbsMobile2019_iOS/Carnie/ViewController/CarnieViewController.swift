@@ -36,21 +36,50 @@ class CarnieViewController: UIViewController {
     }()
     
     lazy var foodEntryView: CarnieEntryView = {
-        let width = 168.0 / 375.0 * view.bounds.width
-        let height = 220.0 / 168.0 * width
+        let size = CGSize(width: 168, height: 220)
+        let width = size.width / UI_width * view.bounds.width
+        let height = size.height / size.width * width
         let entryView = CarnieEntryView(frame: CGRect(x: 17, y: headerView.frame.maxY + 17, width: width, height: height))
         entryView.setupData(imgName: "carnie_food", title: "美食资讯处")
         entryView.imgView.frame.size = CGSize(width: entryView.bounds.width, height: 210)
-        entryView.titleLab.frame.origin = CGPoint(x: 4, y: entryView.bounds.height - entryView.titleLab.bounds.height - 8)
+        entryView.titleLab.frame.origin = CGPoint(x: 4, y: entryView.bounds.height - entryView.titleLab.bounds.height)
+        return entryView
+    }()
+    
+    lazy var statementEntryView: CarnieEntryView = {
+        let size = CGSize(width: 154, height: 289)
+        let width = size.width / UI_width * view.bounds.width
+        let height = size.height / size.width * width
+        let left = 197.0 / UI_width * view.bounds.width
+        let entryView = CarnieEntryView(frame: CGRect(x: left, y: headerView.frame.maxY + 72, width: width, height: height))
+        entryView.setupData(imgName: "carnie_statement", title: "表态广场")
+        entryView.imgView.frame.size = entryView.bounds.size
+        entryView.titleLab.center.x = entryView.bounds.width / 2
+        entryView.titleLab.frame.origin.y = entryView.bounds.height - entryView.titleLab.bounds.height - 14
+        return entryView
+    }()
+    
+    lazy var eventEntryView: CarnieEntryView = {
+        let size = CGSize(width: 172, height: 188)
+        let width = size.width / UI_width * view.bounds.width
+        let height = size.height / size.width * width
+        let entryView = CarnieEntryView(frame: CGRect(x: 37, y: headerView.frame.maxY + 343, width: width, height: height))
+        entryView.setupData(imgName: "carnie_event", title: "活动布告栏")
+        entryView.imgView.frame.size = CGSize(width: entryView.bounds.width, height: 171)
+        entryView.titleLab.frame.origin = CGPoint(x: 8, y: entryView.bounds.height - entryView.titleLab.bounds.height)
         return entryView
     }()
 }
 
 extension CarnieViewController {
     
+    var UI_width: CGFloat { 375 }
+    
     func setupUI() {
         contentScrollView.addSubview(headerView)
         contentScrollView.addSubview(foodEntryView)
+        contentScrollView.addSubview(statementEntryView)
+        contentScrollView.addSubview(eventEntryView)
     }
     
     func request() {

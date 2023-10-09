@@ -56,6 +56,7 @@ extension TokenModel {
         Constants.token = token
         SessionManager.shared.token = token
         UserDefaultsManager.shared.refreshToken = refreshToken
+        UserModel.defualt.token = self
     }
     
     static var fromCache: Self? {

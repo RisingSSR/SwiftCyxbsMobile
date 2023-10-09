@@ -6,7 +6,6 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-import Foundation
 import WidgetKit
 import Intents
 

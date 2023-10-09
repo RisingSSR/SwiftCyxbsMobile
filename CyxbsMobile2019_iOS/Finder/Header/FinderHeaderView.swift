@@ -59,7 +59,7 @@ class FinderHeaderView: UIView {
         let btn = UIButton()
         btn.frame.size = CGSize(width: 40, height: 34)
         btn.autoresizingMask = [.flexibleLeftMargin]
-        btn.setImage(UIImage(named: "finder_attendance")?.scaled(toHeight: 22), for: .normal)
+        btn.setImage(UIImage(named: "finder_attendance")?.scaled(toHeight: 22)?.withRenderingMode(.alwaysOriginal), for: .normal)
         btn.addTarget(self, action: #selector(touchUpInside(attendanceBtn:)), for: .touchUpInside)
         return btn
     }()
@@ -71,7 +71,8 @@ extension FinderHeaderView {
         (read ?
         UIImage(named: "finder_message_read") :
         UIImage(named: "finder_message_unread"))?
-            .scaled(toHeight: 20)
+            .scaled(toHeight: 20)?
+            .withRenderingMode(.alwaysOriginal)
     }
     
     func setupUI() {
@@ -111,11 +112,13 @@ extension FinderHeaderView {
     
     func request() {
         HttpManager.shared.message_system_user_msgHasRead().ry_JSON { response in
-            
             if case .success(let model) = response {
                 if let status = model["status"].int, status == 10000 {
                     let hasMessage = model["data"]["has"].boolValue
                     self.messageBtn.setImage(self.messageImage(read: !hasMessage), for: .normal)
+                    
+                    let tabBarVC = Constants.keyWindow?.rootViewController as? UITabBarController
+                    tabBarVC?.viewControllers?.last?.tabBarItem.needShowBadgePoint = hasMessage
                 }
             }
         }
