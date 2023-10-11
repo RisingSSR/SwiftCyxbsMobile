@@ -100,6 +100,10 @@ extension HTTPHeader {
     static func host(_ value: String) -> HTTPHeader {
         HTTPHeader(name: "Host", value: value)
     }
+    
+    static func appViersion(_ value: String) -> HTTPHeader {
+        HTTPHeader(name: "App-Version", value: value)
+    }
 }
 
 // MARK: DataRequest

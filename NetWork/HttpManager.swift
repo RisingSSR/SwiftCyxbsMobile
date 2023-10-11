@@ -27,14 +27,14 @@ struct HttpManager {
 
 /* 接口模版
  
- /// <#接口的作用#>
- @discardableResult
- func <#接口的简写#>(<#接口参数名列表1#>: <#接口参数类型列表1#> <#, ...#>) -> DataRequest {
+/// <#接口的作用#>
+@discardableResult
+func <#接口的简写#>(<#接口参数名列表1#>: <#接口参数类型列表1#> <#, ...#>) -> DataRequest {
     let parameters: [String: Any] = [
         "<#接口参数名列表1#>": <#接口参数类型列表1#>
     ]
     return SessionManager.shared.ry_request(APIConfig.current.api("<#接口#>"), method: .<#请求方式#>, parameters: parameters)
- }
+}
  
  */
 
@@ -71,37 +71,74 @@ extension HttpManager {
     /// 刷新token
     @discardableResult
     func magipoke_token_refresh(refreshToken: String) -> DataRequest {
-       let parameters: [String: Any] = [
-           "refreshToken": refreshToken
-       ]
-       return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/token/refresh"), method: .post, parameters: parameters)
+        let parameters: [String: Any] = [
+            "refreshToken": refreshToken
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/token/refresh"), method: .post, parameters: parameters)
     }
     
     /// 查询是否有未读消息
     @discardableResult
     func message_system_user_msgHasRead() -> DataRequest {
-       return SessionManager.shared.ry_request(APIConfig.current.api("/message-system/user/msgHasRead"), method: .get)
+        return SessionManager.shared.ry_request(APIConfig.current.api("/message-system/user/msgHasRead"), method: .get)
     }
     
     /// 获取banner
     @discardableResult
     func magipoke_text_banner_get() -> DataRequest {
-       return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-text/banner/get"), method: .get)
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-text/banner/get"), method: .get)
     }
     
     /// 查找个人信息
     @discardableResult
     func magipoke_Person_Search(stuNum: String? = nil, idNum: String? = nil) -> DataRequest {
-       let parameters: [String: Any?] = [
+        let parameters: [String: Any?] = [
            "stuNum": stuNum,
            "idNum": idNum
-       ]
-       return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/Person/Search"), method: .post, parameters: excludeOptionalParameter(parameters))
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/Person/Search"), method: .post, parameters: excludeOptionalParameter(parameters))
     }
     
     /// 获取中心登录天数
     @discardableResult
     func magipoke_playground_center_days() -> DataRequest {
-        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-playground/center/days"), method: .get)
+            return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-playground/center/days"), method: .get)
+    }
+    
+    /// 添加事项
+    @discardableResult
+    func magipoke_reminder_Person_addTransaction(begin_lesson: Int, period: Int, day: Int, week: [Int], time: String = "5", title: String, content: String) -> DataRequest {
+        let dateItem: [String: Any] = [
+                "begin_lesson": begin_lesson,
+                "period": period,
+                "day": day,
+                "week": week
+        ]
+        
+        let dateData = (try? JSONSerialization.data(withJSONObject: dateItem)) ?? Data()
+        let dateItemStr = "[" + (String(data: dateData, encoding: .utf8) ?? "") + "]"
+        
+        let parameters: [String: Any] = [
+            "date": dateItemStr,
+            "time": time,
+            "title": title,
+            "content": content
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-reminder/Person/addTransaction"), method: .post, parameters: parameters, headers: [.appViersion("74")])
+    }
+    
+    /// 获得事项
+    @discardableResult
+    func magipoke_reminder_Person_getTransaction() -> DataRequest {
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-reminder/Person/getTransaction"), method: .post, headers: [.appViersion("74")])
+    }
+    
+    /// 删除事项
+    @discardableResult
+    func magipoke_reminder_Person_deleteTransaction(id: Int) -> DataRequest {
+        let parameters: [String: Any] = [
+            "id": id
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-reminder/Person/deleteTransaction"), method: .post, parameters: parameters)
     }
 }

@@ -17,6 +17,13 @@ open class TabBarController: UITabBarController {
         setupTabBar()
         setupViewControllers()
         setupLogin()
+        
+        HttpManager.shared.magipoke_reminder_Person_deleteTransaction(id: 300491).ry_JSON { response in
+            print(response)
+        }
+        HttpManager.shared.magipoke_reminder_Person_deleteTransaction(id: 300473).ry_JSON { response in
+            print(response)
+        }
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -191,7 +198,7 @@ extension TabBarController {
     }
 }
 
-// MARK: interaction
+// MARK: interactive
 
 extension TabBarController {
     

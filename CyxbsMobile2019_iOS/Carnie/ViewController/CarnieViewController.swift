@@ -43,6 +43,7 @@ class CarnieViewController: UIViewController {
         entryView.setupData(imgName: "carnie_food", title: "美食资讯处")
         entryView.imgView.frame.size = CGSize(width: entryView.bounds.width, height: 210)
         entryView.titleLab.frame.origin = CGPoint(x: 4, y: entryView.bounds.height - entryView.titleLab.bounds.height)
+        entryView.addTarget(self, action: #selector(tapFoodEntry), for: .touchUpInside)
         return entryView
     }()
     
@@ -56,6 +57,7 @@ class CarnieViewController: UIViewController {
         entryView.imgView.frame.size = entryView.bounds.size
         entryView.titleLab.center.x = entryView.bounds.width / 2
         entryView.titleLab.frame.origin.y = entryView.bounds.height - entryView.titleLab.bounds.height - 14
+        entryView.addTarget(self, action: #selector(tapStatementEntry), for: .touchUpInside)
         return entryView
     }()
     
@@ -67,9 +69,12 @@ class CarnieViewController: UIViewController {
         entryView.setupData(imgName: "carnie_event", title: "活动布告栏")
         entryView.imgView.frame.size = CGSize(width: entryView.bounds.width, height: 171)
         entryView.titleLab.frame.origin = CGPoint(x: 8, y: entryView.bounds.height - entryView.titleLab.bounds.height)
+        entryView.addTarget(self, action: #selector(tapEventEntry), for: .touchUpInside)
         return entryView
     }()
 }
+
+// MARK: data
 
 extension CarnieViewController {
     
@@ -110,4 +115,25 @@ extension CarnieViewController {
     func setupData(person: PersonModel) {
         headerView.update(imgURL: person.photo_src, title: "Hi~，\(person.nickname)（\(person.username)）", days: UserDefaultsManager.shared.daysOfEntryCarnie)
     }
+}
+
+// MARK: interactive
+
+extension CarnieViewController {
+    
+    @objc
+    func tapFoodEntry() {
+        
+    }
+    
+    @objc
+    func tapStatementEntry() {
+        
+    }
+    
+    @objc
+    func tapEventEntry() {
+        
+    }
+    
 }

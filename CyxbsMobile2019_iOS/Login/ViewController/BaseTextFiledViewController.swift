@@ -21,7 +21,7 @@ class BaseTextFiledViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let _ = UIResponder.firstResponder?.resignFirstResponder()
+        view.endEditing(true)
     }
     
     lazy var contentView: UIView = {
@@ -91,7 +91,7 @@ extension BaseTextFiledViewController {
     
 }
 
-// MARK: intereactor
+// MARK: interactive
 
 extension BaseTextFiledViewController {
     

@@ -83,18 +83,10 @@ extension Constants {
     static var nowWeek: Int? {
         guard let start = start else { return nil }
         
-        let calendar = Calendar.current
-        var currentDate = Date()
-        // 因为国外是以周日作为第一天，如果是周日，则要将日期向上一周移动一次
-        if calendar.component(.weekday, from: start) == 1 {
-            currentDate = calendar.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? currentDate
-        }
-        // 然后将日期移动到当周的周一
-        currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
-        // 计算当前日期与开始日期之间的周数差
-        if let weekOfYear = calendar.dateComponents([.weekOfYear], from: start, to: currentDate).weekOfYear {
-            return weekOfYear + 1
-        }
-        return nil
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let days = calendar.dateComponents([.day], from: start, to: Date()).day ?? 0
+        
+        return days / 7 + 1
     }
 }

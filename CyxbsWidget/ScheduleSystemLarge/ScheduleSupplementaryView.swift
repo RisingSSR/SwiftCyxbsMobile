@@ -22,7 +22,7 @@ struct ScheduleSupplementaryView: View {
         
         ZStack {
             
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .foregroundColor(Color(drawType.backgroundColor))
             
             VStack {

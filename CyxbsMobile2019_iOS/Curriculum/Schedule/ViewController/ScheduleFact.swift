@@ -19,6 +19,7 @@ class ScheduleFact: NSObject {
     lazy var currentBackgroundView: UIView = {
         let bkView = UIView()
         bkView.backgroundColor = .ry(light: "#E8F0FC", dark: "#000101")
+        bkView.isUserInteractionEnabled = false
         return bkView
     }()
 }
@@ -35,7 +36,7 @@ extension ScheduleFact {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false 
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isDirectionalLockEnabled = true
         collectionView.dataSource = self
         collectionView.delegate = self

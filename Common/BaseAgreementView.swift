@@ -56,7 +56,7 @@ class BaseAgreementView: UIView {
     }()
 }
 
-// MARK: intereactor
+// MARK: interactive
 
 extension BaseAgreementView {
     

@@ -59,6 +59,10 @@
 		143F701D2AA170030048E264 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F701C2AA170030048E264 /* TabBarController.swift */; };
 		143F702F2AA4980C0048E264 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F702E2AA4980C0048E264 /* TabBar.swift */; };
 		143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */; };
+		145193A42AD4198900C1BD14 /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193A32AD4198900C1BD14 /* ScheduleEditViewController.swift */; };
+		145193A62AD42A3500C1BD14 /* ScheduleCustomEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193A52AD42A3500C1BD14 /* ScheduleCustomEditView.swift */; };
+		145193AB2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */; };
+		145193AC2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */; };
 		14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */; };
 		14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */; };
 		14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */; };
@@ -196,6 +200,9 @@
 		143F701C2AA170030048E264 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		143F702E2AA4980C0048E264 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		143F70302AA4B9AE0048E264 /* TabBarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarHeaderView.swift; sourceTree = "<group>"; };
+		145193A32AD4198900C1BD14 /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
+		145193A52AD42A3500C1BD14 /* ScheduleCustomEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCustomEditView.swift; sourceTree = "<group>"; };
+		145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		14622DB72AA60FD700D8D1E1 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; };
 		14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -404,6 +411,43 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		1451939F2AD4192700C1BD14 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				14622DD92AA8287200D8D1E1 /* ViewController */,
+				14622DD82AA8287200D8D1E1 /* View */,
+				14622DE42AA8567B00D8D1E1 /* Filter */,
+				14622DD72AA8287200D8D1E1 /* Model */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		145193A02AD4195F00C1BD14 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				145193A22AD4195F00C1BD14 /* ViewController */,
+				145193A12AD4195F00C1BD14 /* View */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		145193A12AD4195F00C1BD14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				145193A52AD42A3500C1BD14 /* ScheduleCustomEditView.swift */,
+				145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		145193A22AD4195F00C1BD14 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				145193A32AD4198900C1BD14 /* ScheduleEditViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		14622DBB2AA6BE6600D8D1E1 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,10 +523,9 @@
 		14622DD62AA8287100D8D1E1 /* Curriculum */ = {
 			isa = PBXGroup;
 			children = (
-				14622DD92AA8287200D8D1E1 /* ViewController */,
-				14622DD82AA8287200D8D1E1 /* View */,
-				14622DE42AA8567B00D8D1E1 /* Filter */,
-				14622DD72AA8287200D8D1E1 /* Model */,
+				1451939F2AD4192700C1BD14 /* Schedule */,
+				148F568E2ABB26C9002FFE8A /* Details */,
+				145193A02AD4195F00C1BD14 /* Edit */,
 			);
 			path = Curriculum;
 			sourceTree = "<group>";
@@ -562,13 +605,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		148F568E2ABB26C9002FFE8A /* Curriculum Details */ = {
+		148F568E2ABB26C9002FFE8A /* Details */ = {
 			isa = PBXGroup;
 			children = (
 				148F56902ABB26C9002FFE8A /* ViewController */,
 				148F568F2ABB26C9002FFE8A /* View */,
 			);
-			path = "Curriculum Details";
+			path = Details;
 			sourceTree = "<group>";
 		};
 		148F568F2ABB26C9002FFE8A /* View */ = {
@@ -669,7 +712,6 @@
 				14622E422AB47C3D00D8D1E1 /* Carnie */,
 				14622DC62AA6DC7400D8D1E1 /* Mine */,
 				14622DD62AA8287100D8D1E1 /* Curriculum */,
-				148F568E2ABB26C9002FFE8A /* Curriculum Details */,
 				14B46B652ABD7A560068EB26 /* Login */,
 				143F70192AA165C10048E264 /* AppDelegate.swift */,
 				14622E1F2AB2850800D8D1E1 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
@@ -1043,6 +1085,7 @@
 				141A6DC02AC52BCE004BD3BC /* UserDefualtsManager.swift in Sources */,
 				141A6DAE2AC529EC004BD3BC /* ScheduleWidgetEntryView.swift in Sources */,
 				141A6D902AC5280F004BD3BC /* CyxbsWidgetBundle.swift in Sources */,
+				145193AC2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
 				141A6DBB2AC52A20004BD3BC /* ScheduleDrawType.swift in Sources */,
 				141A6DB62AC529FF004BD3BC /* SwiftEX.swift in Sources */,
 			);
@@ -1071,6 +1114,7 @@
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
+				145193AB2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
 				141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */,
 				14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */,
@@ -1084,6 +1128,7 @@
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */,
+				145193A42AD4198900C1BD14 /* ScheduleEditViewController.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
@@ -1113,6 +1158,7 @@
 				141809A62AD10D1D00734569 /* UserModel.swift in Sources */,
 				1411F40D2ACA63FF005E0821 /* FinderNewsCollectionViewCell.swift in Sources */,
 				14622DFE2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift in Sources */,
+				145193A62AD42A3500C1BD14 /* ScheduleCustomEditView.swift in Sources */,
 				14F948832ACB9F7C00B2C260 /* FinderToolsModel.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,

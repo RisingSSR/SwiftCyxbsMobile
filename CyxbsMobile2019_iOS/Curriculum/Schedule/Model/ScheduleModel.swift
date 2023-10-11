@@ -31,19 +31,20 @@ struct ScheduleModel: Codable {
     
     var nowWeek: Int = 0 {
         didSet {
-            if customType == .custom { return }
-            let calendar = Calendar.current
-            var currentDate = Date()
-            // 因为国外是以周日作为第一天，如果是周日，则要将日期向上一周移动一次
-            if calendar.component(.weekday, from: currentDate) == 1 {
-                currentDate = calendar.date(byAdding: .weekOfYear, value: -1, to: currentDate) ?? currentDate
-            }
-            // 然后将日期移动到当周的周一
-            currentDate = calendar.date(bySetting: .weekday, value: 2, of: currentDate) ?? currentDate
-            // 根据nowWeek增加一段时间
-            currentDate = calendar.date(byAdding: .weekOfYear, value: -(nowWeek - 1), to: currentDate, wrappingComponents: true) ?? currentDate
-            start = currentDate
+            var calculateWeek = nowWeek
+            if calculateWeek == 0 { calculateWeek = 1 }
             
+            if customType == .custom { return }
+            let calendar = Calendar(identifier: .gregorian)
+            let currentDate = Date()
+            
+            var todayWeekDay = calendar.dateComponents([.weekday], from: currentDate).weekday ?? 2
+            if todayWeekDay == 1 { todayWeekDay = 8 }
+            todayWeekDay -= 1
+            
+            let start = calendar.date(byAdding: .day, value: -((calculateWeek - 1) * 7 + todayWeekDay - 1), to: currentDate) ?? currentDate
+            
+            self.start = start
             Constants.start = start
         }
     }
@@ -78,8 +79,9 @@ extension ScheduleModel {
         CacheManager.shared.getCodable(self, in: filePath(rootPath: rootPath, sno: sno))
     }
     
-    func toCache(rootPath: CacheManager.RootPath = .document) {
-        CacheManager.shared.cache(codable: self, in: ScheduleModel.filePath(rootPath: rootPath, sno: sno))
+    func toCache(rootPath: CacheManager.RootPath = .document, specialName: String? = nil) {
+        let specialName = specialName ?? sno
+        CacheManager.shared.cache(codable: self, in: ScheduleModel.filePath(rootPath: rootPath, sno: specialName))
     }
 }
 
@@ -174,6 +176,19 @@ extension ScheduleModel {
             DispatchQueue.main.async {
                 
                 handle(.success(scheduleModel))
+            }
+        }
+    }
+    
+    static func requestCustom(handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
+        HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
+            switch response {
+            case .success(let model):
+                
+                print("model \(model)")
+                
+            case .failure(let netError):
+                print("error \(netError)")
             }
         }
     }

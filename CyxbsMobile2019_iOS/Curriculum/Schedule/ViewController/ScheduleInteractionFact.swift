@@ -41,6 +41,10 @@ class ScheduleInteractionFact: ScheduleFact {
             collectionView.collectionViewLayout.finalizeLayoutTransition()
         }
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(collectionViewEmpty(tap:)))
+        tap.delegate = self
+        collectionView.addGestureRecognizer(tap)
+        
         self.collectionView = collectionView
         return collectionView
     }
@@ -88,6 +92,10 @@ extension ScheduleInteractionFact {
                 print("error \(netError)")
             }
         }
+        
+        if priorities.contains(.custom) {
+            requestCustom()
+        }
     }
     
     func request(sno: String, property: ScheduleMaping.Priority) {
@@ -100,6 +108,12 @@ extension ScheduleInteractionFact {
                 print("error \(error)")
             }
             self.collectionView.mj_header?.endRefreshing()
+        }
+    }
+    
+    func requestCustom() {
+        ScheduleModel.requestCustom { response in
+            
         }
     }
 }
@@ -133,14 +147,16 @@ extension ScheduleInteractionFact {
     }
 }
 
-// MARK: UICollectionViewDelegate
+// MARK: interactive
 
 extension ScheduleInteractionFact {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let data = data(of: indexPath)
-        let cals = mappy.findCals(from: data)
-        
+    @objc
+    func collectionViewEmpty(tap: UITapGestureRecognizer) {
+        presentScheduleEdit(tap: tap)
+    }
+    
+    func presentScheduleDetails(cals: [ScheduleCalModel]) {
         let transisionDelegate = RYTransitioningDelegate()
         transisionDelegate.present = { transition in
             transition.heightForPresented = 260
@@ -152,6 +168,32 @@ extension ScheduleInteractionFact {
         
         viewController?.present(vc, animated: true)
     }
+    
+    func presentScheduleEdit(tap: UITapGestureRecognizer) {
+        guard let layout = collectionView.ry_layout else { return }
+        let idxPath = layout.indexPath(at: tap.location(in: collectionView))
+        
+        let transisionDelegate = RYTransitioningDelegate()
+        transisionDelegate.supportedTapOutsideBackWhenPresent = false
+        
+        let vc = ScheduleEditViewController(sections: [idxPath[0]], inWeek: idxPath[1], location: idxPath[2])
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = transisionDelegate
+        
+        viewController?.present(vc, animated: true)
+    }
+}
+
+// MARK: UICollectionViewDelegate
+
+extension ScheduleInteractionFact {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = data(of: indexPath)
+        let cals = mappy.findCals(from: data)
+        
+        presentScheduleDetails(cals: cals)
+    }
 }
 
 // MARK: UIScrollViewDelegate
@@ -162,6 +204,15 @@ extension ScheduleInteractionFact {
         super.scrollViewDidScroll(scrollView)
         scrollView.mj_header?.frame.origin.x = scrollView.contentOffset.x
         reloadHeaderView()
+    }
+}
+
+// MARK: UIGestureRecognizerDelegate
+
+extension ScheduleInteractionFact: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        touch.view is UICollectionView
     }
 }
 

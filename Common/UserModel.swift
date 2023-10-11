@@ -17,4 +17,13 @@ struct UserModel: Codable {
     var person: PersonModel?
     
     var token: TokenModel?
+    
+    lazy var customSchedule: ScheduleModel = {
+        ScheduleModel.getFromCache(sno: "custom") ??
+            .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
+    }() {
+        didSet {
+            customSchedule.toCache(specialName: "custom")
+        }
+    }
 }
