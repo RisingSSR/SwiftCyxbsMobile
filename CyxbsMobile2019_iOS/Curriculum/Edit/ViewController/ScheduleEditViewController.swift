@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ScheduleEditViewController: UIViewController {
     
@@ -154,34 +155,74 @@ extension ScheduleEditViewController {
         if isAppending {
             requestToAppending()
         } else {
-            
+            requestToChangging()
         }
     }
     
-    func deleteCourse() {
-        
-    }
-    
     func requestToAppending() {
+        ProgressHUD.show("正在添加事项")
         
-        HttpManager.shared.magipoke_reminder_Person_addTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count - 1, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), title: modelCalculate.course, content: modelCalculate.jsonStr).ry_JSON { response in
+        HttpManager.shared.magipoke_reminder_Person_addTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), title: modelCalculate.course, content: modelCalculate.jsonStr).ry_JSON { response in
             switch response {
             case .success(let model):
                 let status = model["state"].intValue
                 if status == 10000 {
                     self.modelCalculate.courseID = "\(model["id"].intValue)"
+                    ProgressHUD.showSuccess("云端已更新")
                 }
                 fallthrough
+                
             case .failure(_):
-                
                 UserModel.defualt.customSchedule.curriculum.append(self.modelCalculate)
-                
-                break
             }
+            ProgressHUD.showSucceed("添加事项成功")
+        }
+    }
+    
+    func deleteCourse() {
+        ProgressHUD.show("正在删除事项")
+        
+        let id = Int(modelCalculate.courseID ?? "") ?? 0
+        HttpManager.shared.magipoke_reminder_Person_deleteTransaction(id: id).ry_JSON { response in
+            switch response {
+            case .success(let model):
+                let status = model["state"].intValue
+                if status == 10000 {
+                    ProgressHUD.showSuccess("云端已删除")
+                }
+                fallthrough
+                
+            case .failure(_):
+                if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
+                    UserModel.defualt.customSchedule.curriculum.remove(at: index)
+                }
+            }
+            ProgressHUD.showSucceed("删除事项成功")
         }
     }
     
     func requestToChangging() {
+        ProgressHUD.show("正在修改事项")
         
+        HttpManager.shared.magipoke_reminder_Person_editTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), id: Int(modelCalculate.courseID ?? "") ?? 0, title: modelCalculate.course, content: modelCalculate.jsonStr).ry_JSON { response in
+            switch response {
+            case .success(let model):
+                let status = model["state"].intValue
+                if status == 10000 {
+                    self.modelCalculate.courseID = "\(model["id"].intValue)"
+                    ProgressHUD.showSuccess("云端修改成功")
+                }
+                fallthrough
+                
+            case .failure(_):
+                if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
+                    UserModel.defualt.customSchedule.curriculum[index] = self.modelCalculate
+                    ProgressHUD.showSucceed("本地修改成功")
+                } else {
+                    ProgressHUD.showError("未找到本地事项")
+                    self.requestToAppending()
+                }
+            }
+        }
     }
 }

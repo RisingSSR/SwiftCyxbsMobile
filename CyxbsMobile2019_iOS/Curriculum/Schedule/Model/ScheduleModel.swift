@@ -89,6 +89,8 @@ extension ScheduleModel {
 
 extension ScheduleModel {
     
+    // MARK: snos
+    
     static func request(snos: Set<String>, handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
         
         var modelAry = [ScheduleModel]()
@@ -130,6 +132,8 @@ extension ScheduleModel {
             }
         }
     }
+    
+    // MARK: sno
     
     static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
         
@@ -180,19 +184,65 @@ extension ScheduleModel {
         }
     }
     
+    // MARK: custom
+    
     static func requestCustom(handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
-        HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
-            switch response {
-            case .success(let model):
+        
+        var scheduleModel = UserModel.defualt.customSchedule
+        
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_reminder_Person_getTransaction", qos: .unspecified, attributes: .concurrent)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        que.async {
+            
+            SearchStudentModel.request(info: UserModel.defualt.person?.stunum ?? "") { response in
+                switch response {
+                case .success(let model):
+                    scheduleModel.student = model.first
+                case .failure(let netError):
+                    handle(.failure(netError))
+                }
                 
-                print("model \(model)")
+                semaphore.signal()
+            }
+            
+            HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
+                switch response {
+                case .success(let model):
+                    
+                    scheduleModel.sno = model["stuNum"].stringValue
+                    scheduleModel.nowWeek = Constants.nowWeek ?? 0
+                    let ary: [CurriculumModel] = model["data"].arrayValue.compactMap {
+                        guard let data = $0["content"].stringValue.data(using: .utf8) else { return nil }
+                        return CurriculumModel(json: JSON(data))
+                    }
+                    scheduleModel.curriculum = ary
+                    
+                    fallthrough
+                case .failure(_):
+                    
+                    UserModel.defualt.customSchedule = scheduleModel
+                }
                 
-            case .failure(let netError):
-                print("error \(netError)")
+                semaphore.signal()
+            }
+            
+            semaphore.wait()
+            semaphore.wait()
+        }
+        
+        que.async(flags: .barrier) {
+            
+            DispatchQueue.main.async {
+                
+                handle(.success(scheduleModel))
             }
         }
     }
 }
+
+// MARK: cals
 
 extension ScheduleModel {
     

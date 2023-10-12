@@ -11,11 +11,7 @@ import ProgressHUD
 
 class LoginViewController: BaseTextFiledViewController {
     
-    typealias DismissAction = (_ shouldPresent: Bool, _ optionalVC: LoginViewController?) -> ()
-    
     static let agreementURL = Bundle.main.url(forResource: "掌上重邮用户协议", withExtension: "md")!
-    
-    var dismissAction: DismissAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -253,7 +249,7 @@ extension LoginViewController {
         // 上一次未打开App，需要show
         let lastDate = UserDefaultsManager.shared.latestOpenApp else {
             
-            afterCallAction(showVC: true)
+            afterCallAction(showVC: true, action: action)
             return
         }
         
@@ -261,27 +257,12 @@ extension LoginViewController {
         if !Calendar.current.isDateInToday(lastDate) {
             requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
                 
-                afterCallAction(showVC: !isSuccess)
+                afterCallAction(showVC: !isSuccess, action: action)
                 return
             }
         } else {
             
-            afterCallAction(showVC: false)
-        }
-        
-        func afterCallAction(showVC shouldShow: Bool) {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if shouldShow {
-                    
-                    let vc = LoginViewController()
-                    vc.dismissAction = action
-                    action(true, vc)
-                } else {
-                    
-                    action(false, nil)
-                }
-            }
+            afterCallAction(showVC: false, action: action)
         }
     }
     

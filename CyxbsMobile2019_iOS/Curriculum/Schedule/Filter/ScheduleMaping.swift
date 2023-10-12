@@ -6,7 +6,7 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 // MARK: ~.Priority
 
@@ -118,16 +118,16 @@ extension ScheduleMaping {
         for cal in cals {
             for idx in cal.curriculum.period {
                 let pointCal = Collection(cal: cal, location: idx, priority: priority)
-                map(pCal: pointCal, in: idx)
+                map(pCal: pointCal)
             }
         }
     }
     
-    private func map(pCal: Collection, in location: Int) {
+    private func map(pCal: Collection) {
         let indexPath = IndexPath(indexes: [pCal.cal.inSection, pCal.cal.curriculum.inWeek])
         var ary = mapTable[indexPath] ?? []
-        if ary.count <= location {
-            for _ in ary.count ... location {
+        if ary.count <= pCal.location {
+            for _ in ary.count ... pCal.location {
                 ary.append(nil)
             }
         }
@@ -141,7 +141,7 @@ extension ScheduleMaping {
         
         // if is old exist
         
-        guard let old = ary[location] else {
+        guard let old = ary[pCal.location] else {
             abandon_the_old_for_the_new()
             return
         }
@@ -160,7 +160,7 @@ extension ScheduleMaping {
             }
         }
         
-        firm_and_unshakable(old: &ary[location]!)
+        firm_and_unshakable(old: &ary[pCal.location]!)
         
         func abandon_the_old_for_the_new(old: Collection? = nil) {
             var new = pCal
@@ -168,13 +168,38 @@ extension ScheduleMaping {
                 oldValues.append(old)
                 new.count += 1
             }
-            ary[location] = new
+            ary[pCal.location] = new
             mapTable[indexPath] = ary
         }
         
         func firm_and_unshakable(old: inout Collection) {
             oldValues.append(pCal)
             old.count += 1
+        }
+    }
+}
+
+// MARK: delete
+
+extension ScheduleMaping {
+    
+    func delete(pCal: Collection) {
+        didFinished = false
+        var pCal = pCal
+        pCal.count = 1
+        let indexPath = IndexPath(indexes: [pCal.cal.inSection, pCal.cal.curriculum.inWeek])
+        guard var ary = mapTable[indexPath] else { return }
+        ary[pCal.location] = nil
+        
+        for i in 0 ..< oldValues.count {
+            let oldValue = oldValues[i]
+            if oldValue.cal.inSection == pCal.cal.inSection &&
+                oldValue.cal.curriculum.inWeek == pCal.cal.curriculum.inWeek &&
+                oldValue.location == pCal.location {
+                
+                oldValues.remove(at: i)
+                map(pCal: oldValue)
+            }
         }
     }
 }

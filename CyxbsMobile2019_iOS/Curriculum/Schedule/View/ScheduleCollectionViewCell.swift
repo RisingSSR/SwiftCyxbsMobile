@@ -144,6 +144,7 @@ extension ScheduleCollectionViewCell {
     
     func updateFrame() {
         multyView.isHidden = !isMultiple
+        backImgView.frame.size = bounds.size
         switch drawType {
         case .curriculum(_):
             let space: CGFloat = 8

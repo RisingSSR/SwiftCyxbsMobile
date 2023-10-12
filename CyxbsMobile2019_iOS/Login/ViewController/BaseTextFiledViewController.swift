@@ -10,6 +10,10 @@ import UIKit
 
 class BaseTextFiledViewController: UIViewController {
     
+    typealias DismissAction = (_ shouldPresent: Bool, _ optionalVC: BaseTextFiledViewController?) -> ()
+    
+    var dismissAction: DismissAction?
+    
     var heightForItem: CGFloat { 48 }
     var marginSpaceForHorizontal: CGFloat { 27 }
 
@@ -34,6 +38,21 @@ class BaseTextFiledViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }()
+    
+    static func afterCallAction(showVC shouldShow: Bool, action: @escaping DismissAction) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if shouldShow {
+                
+                let vc = LoginViewController()
+                vc.dismissAction = action
+                action(true, vc)
+            } else {
+                
+                action(false, nil)
+            }
+        }
+    }
 }
 
 // MARK: fact
@@ -67,9 +86,27 @@ extension BaseTextFiledViewController {
         return textField
     }
     
-    func createForgotTypeTextFiled(placeholder: String?, leftImgName: String) -> UITextField {
-        let textField = UITextField()
+    func createForgotTypeTextFiled(placeholder: String?, leftImgName: String?) -> UITextField {
+        let textField = UITextField(frame: CGRect(x: marginSpaceForHorizontal, y: 0, width: view.bounds.width - 2 * marginSpaceForHorizontal, height: heightForItem))
+        textField.layer.cornerRadius = 15
+        textField.backgroundColor = .ry(light: "#F2F3F7", dark: "#2D2D2D")
+        textField.font = .systemFont(ofSize: 18, weight: .semibold)
+        textField.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
+        textField.placeholder = placeholder
         
+        let leftBackView = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: 0))
+        textField.leftView = leftBackView
+        textField.leftViewMode = .always
+        if let leftImgName {
+            view.frame.size.width = 40
+            let leftImgView = UIImageView(frame: leftBackView.bounds)
+            leftImgView.autoresizingMask = [.flexibleHeight]
+            leftImgView.contentMode = .left
+            leftImgView.image = UIImage(named: leftImgName)?.scaled(toWidth: 20)
+            leftBackView.addSubview(leftImgView)
+        }
+        
+        textField.delegate = self
         return textField
     }
     

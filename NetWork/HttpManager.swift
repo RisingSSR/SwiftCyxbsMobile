@@ -93,8 +93,8 @@ extension HttpManager {
     @discardableResult
     func magipoke_Person_Search(stuNum: String? = nil, idNum: String? = nil) -> DataRequest {
         let parameters: [String: Any?] = [
-           "stuNum": stuNum,
-           "idNum": idNum
+            "stuNum": stuNum,
+            "idNum": idNum
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke/Person/Search"), method: .post, parameters: excludeOptionalParameter(parameters))
     }
@@ -102,17 +102,17 @@ extension HttpManager {
     /// 获取中心登录天数
     @discardableResult
     func magipoke_playground_center_days() -> DataRequest {
-            return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-playground/center/days"), method: .get)
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-playground/center/days"), method: .get)
     }
     
-    /// 添加事项
+    /// 添加事项（TODO）
     @discardableResult
     func magipoke_reminder_Person_addTransaction(begin_lesson: Int, period: Int, day: Int, week: [Int], time: String = "5", title: String, content: String) -> DataRequest {
         let dateItem: [String: Any] = [
-                "begin_lesson": begin_lesson,
-                "period": period,
-                "day": day,
-                "week": week
+            "begin_lesson": begin_lesson,
+            "period": period,
+            "day": day,
+            "week": week
         ]
         
         let dateData = (try? JSONSerialization.data(withJSONObject: dateItem)) ?? Data()
@@ -141,4 +141,37 @@ extension HttpManager {
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-reminder/Person/deleteTransaction"), method: .post, parameters: parameters)
     }
+    
+    /// 修改事项（TODO）
+    @discardableResult
+    func magipoke_reminder_Person_editTransaction(begin_lesson: Int, period: Int, day: Int, week: [Int], id: Int, time: String = "5", title: String, content: String) -> DataRequest {
+        let dateItem: [String: Any] = [
+            "begin_lesson": begin_lesson,
+            "period": period,
+            "day": day,
+            "week": week
+        ]
+        
+        let dateData = (try? JSONSerialization.data(withJSONObject: dateItem)) ?? Data()
+        let dateItemStr = "[" + (String(data: dateData, encoding: .utf8) ?? "") + "]"
+        
+        let parameters: [String: Any] = [
+            "date": dateItemStr,
+            "id": id,
+            "time": time,
+            "title": title,
+            "content": content
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-reminder/Person/editTransaction"), method: .post, parameters: parameters)
+    }
+    
+    /// 是否绑定密保&邮箱信息
+    @discardableResult
+    func user_secret_user_bind_is(stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/is"), method: .post, parameters: parameters)
+    }
+    
 }

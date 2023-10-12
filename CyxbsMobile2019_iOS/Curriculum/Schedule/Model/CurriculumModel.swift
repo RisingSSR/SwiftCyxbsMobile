@@ -42,8 +42,8 @@ extension CurriculumModel {
         }
         
         let location = json["begin_lesson"].intValue
-        let lenth = json["period"].intValue
-        period = location...(location + lenth - 1)
+        let lenth = max(1, json["period"].intValue)
+        period = location ... (location + lenth - 1)
         
         course = json["course"].stringValue
         classRoom = json["classroom"].stringValue

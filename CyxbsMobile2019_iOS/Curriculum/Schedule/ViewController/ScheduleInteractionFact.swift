@@ -113,7 +113,14 @@ extension ScheduleInteractionFact {
     
     func requestCustom() {
         ScheduleModel.requestCustom { response in
-            
+            switch response {
+            case .success(let model):
+                self.mappy.maping(model, priority: .custom)
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print("error \(error)")
+            }
+            self.collectionView.mj_header?.endRefreshing()
         }
     }
 }

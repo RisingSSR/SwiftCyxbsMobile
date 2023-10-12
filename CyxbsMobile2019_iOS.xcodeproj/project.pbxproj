@@ -63,6 +63,10 @@
 		145193A62AD42A3500C1BD14 /* ScheduleCustomEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193A52AD42A3500C1BD14 /* ScheduleCustomEditView.swift */; };
 		145193AB2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */; };
 		145193AC2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */; };
+		145193AD2AD6CA1900C1BD14 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141809A52AD10D1D00734569 /* UserModel.swift */; };
+		145193AE2AD6CA1F00C1BD14 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6D832AC4641B004BD3BC /* TokenModel.swift */; };
+		145193AF2AD6CA3100C1BD14 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141809A32AD1060100734569 /* PersonModel.swift */; };
+		145193B12AD7977300C1BD14 /* EmailBidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145193B02AD7977300C1BD14 /* EmailBidingViewController.swift */; };
 		14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */; };
 		14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */; };
 		14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */; };
@@ -203,6 +207,7 @@
 		145193A32AD4198900C1BD14 /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
 		145193A52AD42A3500C1BD14 /* ScheduleCustomEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCustomEditView.swift; sourceTree = "<group>"; };
 		145193AA2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditSectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		145193B02AD7977300C1BD14 /* EmailBidingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailBidingViewController.swift; sourceTree = "<group>"; };
 		14622DB12AA5ED1D00D8D1E1 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		14622DB72AA60FD700D8D1E1 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; };
 		14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -646,6 +651,7 @@
 			children = (
 				14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */,
 				14B46B682ABD7BC20068EB26 /* LoginViewController.swift */,
+				145193B02AD7977300C1BD14 /* EmailBidingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1078,14 +1084,17 @@
 				141A6DB22AC529EC004BD3BC /* ScheduleDataFetch.swift in Sources */,
 				141A6DB82AC52A04004BD3BC /* UIColor+Theme.swift in Sources */,
 				141A6D922AC5280F004BD3BC /* CyxbsWidgetLiveActivity.swift in Sources */,
+				145193AD2AD6CA1900C1BD14 /* UserModel.swift in Sources */,
 				141A6DBC2AC52A23004BD3BC /* ScheduleModel.swift in Sources */,
 				141A6DB52AC529FC004BD3BC /* Constants.swift in Sources */,
 				141A6DC22AC52BDB004BD3BC /* HttpManager.swift in Sources */,
+				145193AF2AD6CA3100C1BD14 /* PersonModel.swift in Sources */,
 				14E060DA2AC52EBA009C4F28 /* ViewEX.swift in Sources */,
 				141A6DC02AC52BCE004BD3BC /* UserDefualtsManager.swift in Sources */,
 				141A6DAE2AC529EC004BD3BC /* ScheduleWidgetEntryView.swift in Sources */,
 				141A6D902AC5280F004BD3BC /* CyxbsWidgetBundle.swift in Sources */,
 				145193AC2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
+				145193AE2AD6CA1F00C1BD14 /* TokenModel.swift in Sources */,
 				141A6DBB2AC52A20004BD3BC /* ScheduleDrawType.swift in Sources */,
 				141A6DB62AC529FF004BD3BC /* SwiftEX.swift in Sources */,
 			);
@@ -1113,6 +1122,7 @@
 				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
+				145193B12AD7977300C1BD14 /* EmailBidingViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
 				145193AB2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
@@ -1207,6 +1217,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069EB06A9F0E97D05D881478 /* Pods-CyxbsWidgetExtension.debug.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1234,11 +1245,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1246,6 +1260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C6235D9C236ED093C954CF9 /* Pods-CyxbsWidgetExtension.release.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -1272,10 +1287,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -1405,7 +1423,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1443,7 +1461,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";

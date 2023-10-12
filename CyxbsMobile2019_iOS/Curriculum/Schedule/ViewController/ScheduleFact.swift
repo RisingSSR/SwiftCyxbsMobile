@@ -80,12 +80,16 @@ extension ScheduleFact: UICollectionViewDataSource {
         
         var drawType: ScheduleDrawType.CurriculumType = .morning
         
-        if data.location <= 4 {
-            drawType = .morning
-        } else if data.location <= 8 {
-            drawType = .afternoon
+        if data.priority == .custom {
+            drawType = .custom
         } else {
-            drawType = .night
+            if data.location <= 4 {
+                drawType = .morning
+            } else if data.location <= 8 {
+                drawType = .afternoon
+            } else {
+                drawType = .night
+            }
         }
         cell.set(curriculumType: drawType, title: data.cal.curriculum.course, content: data.cal.curriculum.classRoom, isMultiple: data.count > 1)
         

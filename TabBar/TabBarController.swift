@@ -18,11 +18,8 @@ open class TabBarController: UITabBarController {
         setupViewControllers()
         setupLogin()
         
-        HttpManager.shared.magipoke_reminder_Person_deleteTransaction(id: 300491).ry_JSON { response in
-            print(response)
-        }
-        HttpManager.shared.magipoke_reminder_Person_deleteTransaction(id: 300473).ry_JSON { response in
-            print(response)
+        EmailBidingViewController.isBiding { response in
+            
         }
     }
     
