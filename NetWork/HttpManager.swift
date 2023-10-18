@@ -174,4 +174,89 @@ extension HttpManager {
         return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/is"), method: .post, parameters: parameters)
     }
     
+    /// 获取Email验证码（此接口用于绑定邮箱时向此邮箱发送验证码）
+    @discardableResult
+    func user_secret_user_bind_email_code(email: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "email": email
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/email/code"), method: .post, parameters: parameters)
+    }
+    
+    /// 验证Email验证码（此接口用于绑定邮箱时验证验证码是否正确）
+    @discardableResult
+    func user_secret_user_bind_email(email: String, code: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "email": email,
+            "code": code
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/email"), method: .post, parameters: parameters)
+    }
+    
+    /// 获取学生邮箱信息
+    @discardableResult
+    func user_secret_user_bind_email_detail(stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/email/detail"), method: .post, parameters: parameters)
+    }
+    
+    /// 获取所有保密问题
+    @discardableResult
+    func user_secret_user_question() -> DataRequest {
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/question"), method: .get)
+    }
+    
+    /// 学生获取绑定的密保信息
+    @discardableResult
+    func user_secret_user_bind_question_detail(stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/bind/question/detail"), method: .post, parameters: parameters)
+    }
+    
+    /// 向绑定的邮箱发送找回密码用的验证码
+    @discardableResult
+    func user_secret_user_valid_email_code(stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/valid/email/code"), method: .post, parameters: parameters)
+    }
+    
+    /// 向绑定的邮箱发送找回密码用的验证码
+    @discardableResult
+    func user_secret_user_valid_question(question_id: String, content: String, stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "question_id": question_id,
+            "content": content,
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/valid/question"), method: .post, parameters: parameters)
+    }
+    
+    /// 验证邮箱验证码是否正确
+    @discardableResult
+    func user_secret_user_valid_email(code: String, email: String, stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "code": code,
+            "email": email,
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/valid/email"), method: .post, parameters: parameters)
+    }
+    
+    /// 修改密码/找回密码（需要验证码）
+    @discardableResult
+    func user_secret_user_password_valid(new_password: String, code: String, stu_num: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "new_password": new_password,
+            "code": code,
+            "stu_num": stu_num
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/password/valid"), method: .post, parameters: parameters)
+    }
 }
+

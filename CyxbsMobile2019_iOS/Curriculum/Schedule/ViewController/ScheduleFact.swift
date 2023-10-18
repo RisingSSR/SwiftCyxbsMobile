@@ -18,7 +18,7 @@ class ScheduleFact: NSObject {
     
     lazy var currentBackgroundView: UIView = {
         let bkView = UIView()
-        bkView.backgroundColor = .ry(light: "#E8F0FC", dark: "#000101")
+        bkView.backgroundColor = .ry(light: "#E8F0FC", dark: "#00000040")
         bkView.isUserInteractionEnabled = false
         return bkView
     }()

@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: setup
+
 extension AppDelegate {
     
     func setupWindow() {

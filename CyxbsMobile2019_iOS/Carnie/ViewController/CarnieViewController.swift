@@ -85,6 +85,8 @@ extension CarnieViewController {
         contentScrollView.addSubview(foodEntryView)
         contentScrollView.addSubview(statementEntryView)
         contentScrollView.addSubview(eventEntryView)
+        
+        contentScrollView.contentSize.height = eventEntryView.frame.maxY + 20
     }
     
     func request() {

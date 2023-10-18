@@ -17,10 +17,6 @@ open class TabBarController: UITabBarController {
         setupTabBar()
         setupViewControllers()
         setupLogin()
-        
-        EmailBidingViewController.isBiding { response in
-            
-        }
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -133,8 +129,9 @@ extension TabBarController {
     func setupLogin() {
         LoginViewController.check { shouldPresent, optionVC in
             if shouldPresent, let vc = optionVC {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
+                let nav = self.createVC(root: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
             } else {
                 self.reloadData()
                 if UserDefaultsManager.shared.presentScheduleWhenOpenApp {

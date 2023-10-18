@@ -16,37 +16,22 @@ class LoginViewController: BaseTextFiledViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        contentView.addSubview(loginLab)
-        contentView.addSubview(welcomeLab)
+        contentView.addSubview(titleLab)
+        contentView.addSubview(contentLab)
         contentView.addSubview(snoTextField)
         contentView.addSubview(pwdTextField)
+        
+        contentView.addSubview(forgotBtn)
         contentView.addSubview(tipLab)
         contentView.addSubview(sureBtn)
         contentView.addSubview(agreementView)
         
+        setupUI()
         updateFrame()
         showAgreementIfNeeded()
     }
     
     // MARK: lazy
-    
-    lazy var loginLab: UILabel = {
-        let lab = UILabel()
-        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        lab.text = "登录"
-        lab.textColor = UIColor.ry(light: "#15315B", dark: "#F0F0F0")
-        lab.font = .systemFont(ofSize: 34, weight: .semibold)
-        return lab
-    }()
-    
-    lazy var welcomeLab: UILabel = {
-        let lab = UILabel()
-        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        lab.text = "你好，欢迎来到掌上重邮！"
-        lab.textColor = UIColor.ry(light: "#6C809B", dark: "#909090")
-        lab.font = .systemFont(ofSize: 18, weight: .semibold)
-        return lab
-    }()
     
     lazy var snoTextField: UITextField = {
         let textField = createLoginTypeTextFiled(placeholder: "请输入学号", leftImgName: "login_sno_large")
@@ -58,6 +43,11 @@ class LoginViewController: BaseTextFiledViewController {
         let textField = createLoginTypeTextFiled(placeholder: "身份证/统一认证码后6位", leftImgName: "login_authentication")
         textField.keyboardType = .asciiCapable
         return textField
+    }()
+    
+    lazy var forgotBtn: UIButton = {
+        let btn = createDetailBtn(title: "找回密码", touchUpInsideAction: #selector(touchUpInside(forgotBtn:)))
+        return btn
     }()
     
     lazy var tipLab: UILabel = {
@@ -98,14 +88,20 @@ class LoginViewController: BaseTextFiledViewController {
 
 extension LoginViewController {
     
+    func setupUI() {
+        titleLab.text = "登录"
+        titleLab.sizeToFit()
+        
+        contentLab.text = "你好，欢迎来到掌上重邮！"
+        contentLab.sizeToFit()
+    }
+    
     func updateFrame() {
-        loginLab.sizeToFit()
-        loginLab.frame.origin = CGPoint(x: 15, y: 80 + Constants.statusBarHeight)
+        titleLab.frame.origin = CGPoint(x: 15, y: 80 + Constants.statusBarHeight)
         
-        welcomeLab.sizeToFit()
-        welcomeLab.frame.origin = CGPoint(x: loginLab.frame.minX, y: loginLab.frame.maxY + 8)
+        contentLab.frame.origin = CGPoint(x: titleLab.frame.minX, y: titleLab.frame.maxY + 8)
         
-        snoTextField.frame.origin.y = welcomeLab.frame.maxY + 32
+        snoTextField.frame.origin.y = contentLab.frame.maxY + 32
         
         pwdTextField.frame.origin.y = snoTextField.frame.maxY + 32
         
@@ -113,11 +109,13 @@ extension LoginViewController {
         tipLab.sizeToFit()
         tipLab.frame.origin = CGPoint(x: pwdTextField.frame.minX, y: pwdTextField.frame.maxY + 14)
         
-        sureBtn.frame.origin.y = tipLab.frame.maxY + 72
-        sureBtn.center.x = view.bounds.width / 2
+        forgotBtn.frame.origin = CGPoint(x: pwdTextField.frame.maxY - forgotBtn.bounds.width - 10, y: tipLab.frame.maxY + 17)
         
         agreementView.frame.origin.y = view.bounds.height - agreementView.bounds.height - 53
         agreementView.center.x = view.bounds.width / 2
+        
+        sureBtn.frame.origin.y = agreementView.frame.minY - sureBtn.bounds.height - 72
+        sureBtn.center.x = view.bounds.width / 2
     }
 }
 
@@ -129,6 +127,13 @@ extension LoginViewController {
     func clickSureBtn(btn: UIButton) {
         loginIfNeeded()
     }
+    
+    @objc
+    func touchUpInside(forgotBtn: UIButton) {
+        forgotPassword()
+    }
+    
+    // login
     
     func loginIfNeeded() {
         guard let snoText = snoTextField.text, snoText.count > 2,
@@ -151,19 +156,36 @@ extension LoginViewController {
                         Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
                         
                         ProgressHUD.showSucceed("登录成功")
-                        self.dismiss(animated: true) {
-                            self.dismissAction?(false, nil)
-                        }
+                        
+                        self.checktoutEmailBiding()
+                        
                     } else { // status == "20004"
                         ProgressHUD.showError("账号或密码出错")
                     }
                 }
                 
-            case .failure(let netError):
-                ProgressHUD.showFailed("网络异常: \(netError)")
+            case .failure(_):
+                ProgressHUD.showFailed("网络异常，请检查您网络")
             }
         }
     }
+    
+    func checktoutEmailBiding() {
+        EmailBidingViewController.isBiding { response in
+            if let response {
+                if !response.email {
+                    let vc = EmailBidingViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    self.dismiss(animated: true) {
+                        self.dismissAction?(false, nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    // agreement
     
     func showAgreementIfNeeded() {
         guard let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead else {
@@ -181,6 +203,50 @@ extension LoginViewController {
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
     }
+    
+    // forgot
+    
+    func forgotPassword() {
+        let vc = UIAlertController(title: "忘记密码？", message: "输入你的学号，找回你的密码！", preferredStyle: .alert)
+        vc.addTextField { textField in
+            textField.keyboardType = .asciiCapable
+            textField.placeholder = "输入你的学号"
+            textField.text = self.snoTextField.text
+        }
+        let cancel = UIAlertAction(title: "取消", style: .cancel)
+        let sure = UIAlertAction(title: "确定", style: .default) { _ in
+            let text = vc.textFields?.first?.text
+            self.requestToForgot(sno: text)
+        }
+        vc.addAction(cancel)
+        vc.addAction(sure)
+        present(vc, animated: true)
+    }
+    
+    func requestToForgot(sno: String?) {
+        ProgressHUD.show("正在查找学号")
+        EmailBidingViewController.isBiding(sno: sno) { bidingType in
+            guard let bidingType else {
+                ProgressHUD.showError("学号有误！！！")
+                return
+            }
+            
+            if bidingType.email == false && bidingType.question == false {
+                ProgressHUD.dismiss()
+                self.askToQQGroup()
+                return
+            }
+            
+            ProgressHUD.dismiss()
+            let vc = ForgotViewController(sno: sno, bidingType: bidingType)
+            if !bidingType.email {
+                vc.retrieveWay = .question
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
 }
 
 // MARK: BaseAgreementViewDelegate
@@ -203,7 +269,7 @@ extension LoginViewController: BaseAgreementViewDelegate {
             sureBtn.backgroundColor = .hex("#4A45DC")
         } else {
             sureBtn.isEnabled = false
-            sureBtn.backgroundColor = .ry(light: "#ABBCD8", dark: "#AFBAD6")
+            sureBtn.backgroundColor = .ry(light: "#C2CBFE", dark: "#AFBAD6")
         }
     }
 }
@@ -235,8 +301,8 @@ extension LoginViewController {
         #if DEBUG
         
 //            如果想强制刷token，取消注释这两行
-//            afterCallAction(true)
-//            return
+            afterCallAction(showVC: true, action: action)
+            return
         
         #endif
         

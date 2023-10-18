@@ -15,7 +15,6 @@ extension UITabBarItem {
     
     struct Constants {
         static var ry_needMoreSpaceToShow = "CyxbsMobile2019_iOS.UITabBarItem.ry_needMoreSpaceToShow"
-        static var ry_needShowBadgePoint = "CyxbsMobile2019_iOS.UITabBarItem.ry_needShowBadgePoint"
     }
     
     var needMoreSpaceToShow: Bool {
@@ -43,12 +42,11 @@ extension UITabBarItem {
                 
                 guard
                 let badgeViewClass = NSClassFromString("_UIBadgeView"),
-                (view.subviews.last?.isKind(of: badgeViewClass) ?? false) else {
-                    return
-                }
+                (view.subviews.last?.isKind(of: badgeViewClass) ?? false)
+                else { return }
                 
+                guard let imgView = view.subviews.first(where: { $0 is UIImageView }) else { return }
                 view.subviews.last?.removeFromSuperview()
-                let imgView = view.subviews[1]
                 let width: CGFloat = 7
                 
                 let customBadge = UIView(frame: CGRect(x: imgView.frame.maxX - width, y: imgView.frame.minY, width: width, height: width))

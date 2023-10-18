@@ -10,21 +10,59 @@ import UIKit
 
 class BaseTextFiledViewController: UIViewController {
     
-    typealias DismissAction = (_ shouldPresent: Bool, _ optionalVC: BaseTextFiledViewController?) -> ()
+    static let forgotQQGroup = "570919844"
     
+    // MARK: use
+    
+    /* DismissAction
+     when you dismiss, use dismiss action
+     */
+    typealias DismissAction = (_ shouldPresent: Bool, _ optionalVC: BaseTextFiledViewController?) -> ()
     var dismissAction: DismissAction?
     
+    /* space
+     the space for each TextFiled
+     */
     var heightForItem: CGFloat { 48 }
     var marginSpaceForHorizontal: CGFloat { 27 }
+    
+    /* count Down
+     something for countDown
+     */
+    open var countDownPromptText: String { "重新发送" }
+    open func shouldCountDown() -> Bool { true }
+    
+    // MARK: lazyvar
+    
+    lazy var titleLab: UILabel = {
+        let lab = UILabel()
+        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+        lab.text = " "
+        lab.textColor = UIColor.ry(light: "#15315B", dark: "#F0F0F0")
+        lab.font = .systemFont(ofSize: 34, weight: .semibold)
+        return lab
+    }()
+    
+    lazy var contentLab: UILabel = {
+        let lab = UILabel()
+        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+        lab.text = " "
+        lab.textColor = UIColor.ry(light: "#6C809B", dark: "#909090")
+        lab.font = .systemFont(ofSize: 18, weight: .semibold)
+        return lab
+    }()
+    
+    // MARK: 不用管
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .ry(light: "#F2F3F8", dark: "#000000")
+        view.backgroundColor = .ry(light: "#F8F9FC", dark: "#000000")
         view.addSubview(contentView)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
     
@@ -38,6 +76,11 @@ class BaseTextFiledViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }()
+}
+
+// MARK: useable
+
+extension BaseTextFiledViewController {
     
     static func afterCallAction(showVC shouldShow: Bool, action: @escaping DismissAction) {
         
@@ -52,6 +95,13 @@ class BaseTextFiledViewController: UIViewController {
                 action(false, nil)
             }
         }
+    }
+    
+    func askToQQGroup() {
+        let vc = UIAlertController(title: "无法找回密码", message: "你从未绑定过你的邮箱，也未绑定过问题，请添加我们的QQ群，联系相关人员进行找回。QQ群:" + LoginViewController.forgotQQGroup, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "确定", style: .cancel)
+        vc.addAction(cancel)
+        present(vc, animated: true)
     }
 }
 
@@ -86,7 +136,7 @@ extension BaseTextFiledViewController {
         return textField
     }
     
-    func createForgotTypeTextFiled(placeholder: String?, leftImgName: String?) -> UITextField {
+    func createForgotTypeTextFiled(placeholder: String?, leftImgName: String?, countDown: Bool = false) -> UITextField {
         let textField = UITextField(frame: CGRect(x: marginSpaceForHorizontal, y: 0, width: view.bounds.width - 2 * marginSpaceForHorizontal, height: heightForItem))
         textField.layer.cornerRadius = 15
         textField.backgroundColor = .ry(light: "#F2F3F7", dark: "#2D2D2D")
@@ -106,6 +156,24 @@ extension BaseTextFiledViewController {
             leftBackView.addSubview(leftImgView)
         }
         
+        if countDown {
+            let rightView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: textField.bounds.height))
+            
+            let btn = UIButton(frame: rightView.bounds)
+            btn.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            btn.setTitle(countDownPromptText, for: .normal)
+            btn.setTitleColor(.label, for: .normal)
+            btn.titleLabel?.textAlignment = .center
+            btn.titleLabel?.font = .systemFont(ofSize: 14)
+            btn.addTarget(self, action: #selector(openCountdown(btn:)), for: .touchUpInside)
+            btn.setTitleColor(.hex("#3C3C3C"), for: .normal)
+            
+            rightView.addSubview(btn)
+            
+            textField.rightView = rightView
+            textField.rightViewMode = .always
+        }
+        
         textField.delegate = self
         return textField
     }
@@ -121,16 +189,75 @@ extension BaseTextFiledViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         btn.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        btn.backgroundColor = .ry(light: "#ABBCD8", dark: "#AFBAD6")
+        btn.backgroundColor = .ry(light: "#C2CBFE", dark: "#AFBAD6")
         btn.addTarget(self, action: touchUpInside, for: .touchUpInside)
         return btn
     }
     
+    func createSmallBtn(title: String?, touchUpInsideAction action: Selector) -> UIButton {
+        let btn = UIButton()
+        btn.setTitle(title, for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 14)
+        btn.setTitleColor(.hex("#4841E2"), for: .normal)
+        btn.sizeToFit()
+        btn.frame.origin = CGPoint(x: view.bounds.width - 17, y: Constants.statusBarHeight + 10)
+        btn.backgroundColor = .ry(light: "#F2F3F8", dark: "#000000").withAlphaComponent(0.6)
+        btn.layer.cornerRadius = 5
+        btn.clipsToBounds = true
+        btn.addTarget(self, action: action, for: .touchUpInside)
+        return btn
+    }
+    
+    func createDetailBtn(title: String?, touchUpInsideAction action: Selector) -> UIButton {
+        let btn = UIButton()
+        btn.setTitle(title, for: .normal)
+        btn.setTitleColor(.gray, for: .normal)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        btn.addTarget(self, action: action, for: .touchUpInside)
+        btn.sizeToFit()
+        return btn
+    }
 }
 
 // MARK: interactive
 
 extension BaseTextFiledViewController {
+    
+    // 倒计时
+    @objc
+    func openCountdown(btn: UIButton) {
+        
+        if !shouldCountDown() { return }
+        
+        var time = 59 // 倒计时时间
+        weak var timerBtn = btn // 防止btn没了，但timer还在
+        let queue = DispatchQueue.global(qos: .default)
+        let timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.schedule(deadline: .now(), repeating: .seconds(1))
+
+        timer.setEventHandler {
+            if time <= 0 { // 倒计时结束，关闭
+                timer.cancel()
+                DispatchQueue.main.async {
+                    // 设置按钮的样式
+                    timerBtn?.setTitle(self.countDownPromptText, for: .normal)
+                    timerBtn?.setTitleColor(.hex("#3C3C3C"), for: .normal)
+                    timerBtn?.isUserInteractionEnabled = true
+                }
+            } else {
+                let seconds = time % 60
+                DispatchQueue.main.async {
+                    // 设置按钮显示读秒效果
+                    timerBtn?.setTitle(String(format: self.countDownPromptText + "(%.2d)", seconds), for: .normal)
+                    timerBtn?.setTitleColor(.hex("#979797"), for: .normal)
+                    timerBtn?.isUserInteractionEnabled = false
+                }
+                time -= 1
+            }
+        }
+
+        timer.resume()
+    }
     
     @objc
     func keyboardWillShowNotification(_ notification: Notification) {

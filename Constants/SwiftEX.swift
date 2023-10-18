@@ -9,7 +9,10 @@
 import Foundation
 
 extension Locale {
-    static let cn: Self = .init(identifier: "zh_CN")
+    static let cn: Self = {
+        let cnLocale = Locale(identifier: "zh_CN")
+        return cnLocale
+    }()
 }
 
 extension Date {

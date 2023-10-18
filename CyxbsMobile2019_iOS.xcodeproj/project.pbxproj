@@ -115,6 +115,8 @@
 		14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B722AC127D60068EB26 /* MarkDownViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
 		14E060DA2AC52EBA009C4F28 /* ViewEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E060D82AC52E6A009C4F28 /* ViewEX.swift */; };
+		14E0BB7E2AD9668A00C39889 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0BB7D2AD9668A00C39889 /* ForgotViewController.swift */; };
+		14E0BB922ADD4BB700C39889 /* ConfidentialityQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0BB912ADD4BB700C39889 /* ConfidentialityQuestionModel.swift */; };
 		14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */; };
 		14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D1CA2AC820E4006D7695 /* BaseButton.swift */; };
 		14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */; };
@@ -260,6 +262,8 @@
 		14B46B722AC127D60068EB26 /* MarkDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDownViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14E060D82AC52E6A009C4F28 /* ViewEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEX.swift; sourceTree = "<group>"; };
+		14E0BB7D2AD9668A00C39889 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		14E0BB912ADD4BB700C39889 /* ConfidentialityQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidentialityQuestionModel.swift; sourceTree = "<group>"; };
 		14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDrawType.swift; sourceTree = "<group>"; };
 		14E6D1CA2AC820E4006D7695 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		14F948802ACA76F300B2C260 /* FinderToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderToolsView.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				141A6D832AC4641B004BD3BC /* TokenModel.swift */,
+				14E0BB912ADD4BB700C39889 /* ConfidentialityQuestionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */,
 				14B46B682ABD7BC20068EB26 /* LoginViewController.swift */,
 				145193B02AD7977300C1BD14 /* EmailBidingViewController.swift */,
+				14E0BB7D2AD9668A00C39889 /* ForgotViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1115,6 +1121,7 @@
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
+				14E0BB7E2AD9668A00C39889 /* ForgotViewController.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
 				1418099D2AD008CE00734569 /* CarnieEntryView.swift in Sources */,
 				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
@@ -1171,6 +1178,7 @@
 				145193A62AD42A3500C1BD14 /* ScheduleCustomEditView.swift in Sources */,
 				14F948832ACB9F7C00B2C260 /* FinderToolsModel.swift in Sources */,
 				14622DFC2AA8B64100D8D1E1 /* UserDefualtsManager.swift in Sources */,
+				14E0BB922ADD4BB700C39889 /* ConfidentialityQuestionModel.swift in Sources */,
 				14622DE12AA844B100D8D1E1 /* ScheduleModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1430,7 +1438,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "掌上重邮";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1438,6 +1446,7 @@
 				);
 				MARKETING_VERSION = 6.4.8;
 				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1448,6 +1457,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1494,7 +1504,7 @@
 				);
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "掌上重邮";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1511,6 +1521,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
