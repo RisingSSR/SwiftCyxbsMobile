@@ -301,8 +301,8 @@ extension LoginViewController {
         #if DEBUG
         
 //            如果想强制刷token，取消注释这两行
-            afterCallAction(showVC: true, action: action)
-            return
+//            afterCallAction(showVC: true, action: action)
+//            return
         
         #endif
         

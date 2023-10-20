@@ -11,7 +11,7 @@ import WidgetKit
 
 struct ScheduleWidget: Widget {
     
-    let kind: String = Constants.widgetGroupID
+    let kind: String = CyxbsWidgetKind.schedule
 
     var body: some WidgetConfiguration {
         

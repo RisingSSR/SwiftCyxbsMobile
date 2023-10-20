@@ -114,6 +114,8 @@
 		14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */; };
 		14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B722AC127D60068EB26 /* MarkDownViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
+		14DFD4442AE00333009EF9F8 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFD4432AE00333009EF9F8 /* CyxbsWidgetKind.swift */; };
+		14DFD4452AE00387009EF9F8 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DFD4432AE00333009EF9F8 /* CyxbsWidgetKind.swift */; };
 		14E060DA2AC52EBA009C4F28 /* ViewEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E060D82AC52E6A009C4F28 /* ViewEX.swift */; };
 		14E0BB7E2AD9668A00C39889 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0BB7D2AD9668A00C39889 /* ForgotViewController.swift */; };
 		14E0BB922ADD4BB700C39889 /* ConfidentialityQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E0BB912ADD4BB700C39889 /* ConfidentialityQuestionModel.swift */; };
@@ -261,6 +263,7 @@
 		14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌上重邮用户协议.md"; sourceTree = "<group>"; };
 		14B46B722AC127D60068EB26 /* MarkDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDownViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14DFD4432AE00333009EF9F8 /* CyxbsWidgetKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetKind.swift; sourceTree = "<group>"; };
 		14E060D82AC52E6A009C4F28 /* ViewEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEX.swift; sourceTree = "<group>"; };
 		14E0BB7D2AD9668A00C39889 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		14E0BB912ADD4BB700C39889 /* ConfidentialityQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidentialityQuestionModel.swift; sourceTree = "<group>"; };
@@ -381,6 +384,7 @@
 		141A6D8E2AC5280F004BD3BC /* CyxbsWidget */ = {
 			isa = PBXGroup;
 			children = (
+				14DFD4432AE00333009EF9F8 /* CyxbsWidgetKind.swift */,
 				141A6D8F2AC5280F004BD3BC /* CyxbsWidgetBundle.swift */,
 				141A6D912AC5280F004BD3BC /* CyxbsWidgetLiveActivity.swift */,
 				141A6D932AC5280F004BD3BC /* CyxbsWidget.swift */,
@@ -1097,6 +1101,7 @@
 				145193AF2AD6CA3100C1BD14 /* PersonModel.swift in Sources */,
 				14E060DA2AC52EBA009C4F28 /* ViewEX.swift in Sources */,
 				141A6DC02AC52BCE004BD3BC /* UserDefualtsManager.swift in Sources */,
+				14DFD4452AE00387009EF9F8 /* CyxbsWidgetKind.swift in Sources */,
 				141A6DAE2AC529EC004BD3BC /* ScheduleWidgetEntryView.swift in Sources */,
 				141A6D902AC5280F004BD3BC /* CyxbsWidgetBundle.swift in Sources */,
 				145193AC2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
@@ -1145,6 +1150,7 @@
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
 				14E6D1CB2AC820E4006D7695 /* BaseButton.swift in Sources */,
+				14DFD4442AE00333009EF9F8 /* CyxbsWidgetKind.swift in Sources */,
 				145193A42AD4198900C1BD14 /* ScheduleEditViewController.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
 				1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */,
@@ -1253,8 +1259,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1295,8 +1301,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;

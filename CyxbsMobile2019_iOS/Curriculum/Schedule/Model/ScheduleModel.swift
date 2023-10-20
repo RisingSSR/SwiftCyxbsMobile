@@ -19,6 +19,13 @@ extension ScheduleModel {
         
         case custom
     }
+    
+    struct UniqueID: Hashable {
+        
+        let sno: String
+        
+        let customType: CustomType
+    }
 }
 
 // MARK: ScheduleModel
@@ -28,6 +35,10 @@ struct ScheduleModel: Codable {
     var sno: String
     
     var customType: CustomType = .system
+    
+    var uuid: UniqueID {
+        UniqueID(sno: sno, customType: customType)
+    }
     
     var nowWeek: Int = 0 {
         didSet {
@@ -95,7 +106,7 @@ extension ScheduleModel {
         
         var modelAry = [ScheduleModel]()
         
-        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao.snos", qos: .default, attributes: .concurrent)
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao.snos", qos: .userInteractive, attributes: .concurrent)
         
         let semaphore = DispatchSemaphore(value: 0)
         
@@ -139,7 +150,7 @@ extension ScheduleModel {
         
         var scheduleModel = ScheduleModel(sno: sno)
         
-        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", qos: .unspecified, attributes: .concurrent)
+        let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", qos: .default, attributes: .concurrent)
         
         let semaphore = DispatchSemaphore(value: 0)
         
@@ -196,7 +207,7 @@ extension ScheduleModel {
         
         que.async {
             
-            SearchStudentModel.request(info: UserModel.defualt.person?.stunum ?? "") { response in
+            SearchStudentModel.request(info: Constants.mainSno ?? "") { response in
                 switch response {
                 case .success(let model):
                     scheduleModel.student = model.first
@@ -208,21 +219,12 @@ extension ScheduleModel {
             }
             
             HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
-                switch response {
-                case .success(let model):
-                    
+                if case .success(let model) = response {
                     scheduleModel.sno = model["stuNum"].stringValue
                     scheduleModel.nowWeek = Constants.nowWeek ?? 0
-                    let ary: [CurriculumModel] = model["data"].arrayValue.compactMap {
-                        guard let data = $0["content"].stringValue.data(using: .utf8) else { return nil }
-                        return CurriculumModel(json: JSON(data))
+                    if let ary = model["data"].array?.map(CurriculumModel.init(cus:)) {
+                        scheduleModel.curriculum = ary
                     }
-                    scheduleModel.curriculum = ary
-                    
-                    fallthrough
-                case .failure(_):
-                    
-                    UserModel.defualt.customSchedule = scheduleModel
                 }
                 
                 semaphore.signal()
@@ -233,9 +235,8 @@ extension ScheduleModel {
         }
         
         que.async(flags: .barrier) {
-            
+            UserModel.defualt.customSchedule = scheduleModel
             DispatchQueue.main.async {
-                
                 handle(.success(scheduleModel))
             }
         }

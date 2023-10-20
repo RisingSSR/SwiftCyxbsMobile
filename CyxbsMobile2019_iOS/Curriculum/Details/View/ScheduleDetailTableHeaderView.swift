@@ -8,13 +8,6 @@
 
 import UIKit
 
-protocol ScheduleDetailTableHeaderViewDelegate: AnyObject {
-    
-    func tableHeaderView(_ tableHeaderView: ScheduleDetailTableHeaderView, responsePlaceTap tap: UITapGestureRecognizer)
-    
-    func tableHeaderView(_ tableHeaderView: ScheduleDetailTableHeaderView, touchUpInsideEditButton btn: UIButton)
-}
-
 class ScheduleDetailTableHeaderView: UIView {
     
     private let space: CGFloat = 16
@@ -34,7 +27,8 @@ class ScheduleDetailTableHeaderView: UIView {
         super.init(coder: coder)
     }
 
-    weak var delegate: ScheduleDetailTableHeaderViewDelegate? = nil
+    var editBtnTapAction: ((ScheduleDetailTableHeaderView, UIButton) -> ())?
+    var placeTapAction: ((ScheduleDetailTableHeaderView, UITapGestureRecognizer) -> ())?
     
     func setupUI() {
         toImgView.contentMode = .center
@@ -85,13 +79,12 @@ extension ScheduleDetailTableHeaderView {
     
     @objc
     func editTouchUpInside(btn: UIButton) {
-        
+        editBtnTapAction?(self, btn)
     }
-    
     
     @objc
     func placeResponse(tap: UITapGestureRecognizer) {
-        
+        placeTapAction?(self, tap)
     }
 }
 

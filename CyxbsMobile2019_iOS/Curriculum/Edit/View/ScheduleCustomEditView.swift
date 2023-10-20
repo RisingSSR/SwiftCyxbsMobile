@@ -173,7 +173,7 @@ extension ScheduleCustomEditView {
     
     var sections: IndexSet {
         IndexSet(
-            sectionCollectionView.indexPathsForSelectedItems?.map { $0.item - 1 } ?? []
+            sectionCollectionView.indexPathsForSelectedItems?.map { $0.item + 1 } ?? []
         )
     }
     
@@ -195,7 +195,7 @@ extension ScheduleCustomEditView {
         titleTextField.text = title
         placeTextField.text = place
         for section in sections {
-            sectionCollectionView.selectItem(at: IndexPath(item: section, section: 0), animated: true, scrollPosition: .right)
+            sectionCollectionView.selectItem(at: IndexPath(item: max(0, section - 1), section: 0), animated: true, scrollPosition: .right)
         }
         let inWeek = min(max(1, inWeek), 7)
         periodPicker.selectRow(inWeek - 1, inComponent: 0, animated: true)

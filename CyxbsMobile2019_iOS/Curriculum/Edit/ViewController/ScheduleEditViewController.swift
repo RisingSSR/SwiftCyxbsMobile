@@ -11,7 +11,9 @@ import ProgressHUD
 
 class ScheduleEditViewController: UIViewController {
     
-    private var isAppending: Bool
+    var dismissAction: ((ScheduleEditViewController) -> ())?
+    
+    private(set) var isAppending: Bool
     
     init(curriculum: CurriculumModel) {
         modelCalculate = curriculum
@@ -162,7 +164,7 @@ extension ScheduleEditViewController {
     func requestToAppending() {
         ProgressHUD.show("正在添加事项")
         
-        HttpManager.shared.magipoke_reminder_Person_addTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), title: modelCalculate.course, content: modelCalculate.jsonStr).ry_JSON { response in
+        HttpManager.shared.magipoke_reminder_Person_addTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), title: modelCalculate.course, content: modelCalculate.classRoom).ry_JSON { response in
             switch response {
             case .success(let model):
                 let status = model["state"].intValue
@@ -176,6 +178,7 @@ extension ScheduleEditViewController {
                 UserModel.defualt.customSchedule.curriculum.append(self.modelCalculate)
             }
             ProgressHUD.showSucceed("添加事项成功")
+            self.dismiss(animated: true)
         }
     }
     
@@ -198,13 +201,14 @@ extension ScheduleEditViewController {
                 }
             }
             ProgressHUD.showSucceed("删除事项成功")
+            self.dismiss(animated: true)
         }
     }
     
     func requestToChangging() {
         ProgressHUD.show("正在修改事项")
         
-        HttpManager.shared.magipoke_reminder_Person_editTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), id: Int(modelCalculate.courseID ?? "") ?? 0, title: modelCalculate.course, content: modelCalculate.jsonStr).ry_JSON { response in
+        HttpManager.shared.magipoke_reminder_Person_editTransaction(begin_lesson: modelCalculate.period.lowerBound, period: modelCalculate.period.count, day: modelCalculate.inWeek - 1, week: Array(modelCalculate.inSections), id: Int(modelCalculate.courseID ?? "") ?? 0, title: modelCalculate.course, content: modelCalculate.classRoom).ry_JSON { response in
             switch response {
             case .success(let model):
                 let status = model["state"].intValue
@@ -218,6 +222,7 @@ extension ScheduleEditViewController {
                 if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
                     UserModel.defualt.customSchedule.curriculum[index] = self.modelCalculate
                     ProgressHUD.showSucceed("本地修改成功")
+                    self.dismiss(animated: true)
                 } else {
                     ProgressHUD.showError("未找到本地事项")
                     self.requestToAppending()

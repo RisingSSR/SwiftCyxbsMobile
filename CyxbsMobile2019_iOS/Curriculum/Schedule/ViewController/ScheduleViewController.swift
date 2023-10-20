@@ -17,9 +17,9 @@ class ScheduleViewController: UIViewController {
         get { fact.isCustomEditEnable }
     }
     
-    var snoToPriority: [String: ScheduleMaping.Priority] {
-        set { fact.snoToPriority = newValue }
-        get { fact.snoToPriority }
+    var uuidToPriority: [ScheduleModel.UniqueID: ScheduleMaping.Priority] {
+        set { fact.uuidToPriority = newValue }
+        get { fact.uuidToPriority }
     }
     
     var requestCallBack: ((ScheduleViewController) -> ())?
@@ -55,9 +55,4 @@ class ScheduleViewController: UIViewController {
         collectionView.backgroundColor = view.backgroundColor
         return collectionView
     }()
-}
-
-extension ScheduleViewController {
-    
-    
 }

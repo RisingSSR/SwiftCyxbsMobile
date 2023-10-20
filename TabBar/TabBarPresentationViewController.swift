@@ -39,8 +39,9 @@ class TabBarPresentationViewController: UIViewController {
     lazy var scheduleVC: ScheduleViewController = {
         let vc = ScheduleViewController()
         if let mainSno = Constants.mainSno {
-            vc.snoToPriority = [
-                mainSno: .mainly
+            vc.uuidToPriority = [
+                .init(sno: mainSno, customType: .system): .mainly,
+                .init(sno: mainSno, customType: .custom): .custom
             ]
         }
         return vc

@@ -55,21 +55,34 @@ extension CurriculumModel {
         lesson = json["lesson"].string
     }
     
-    var jsonStr: String {
-        let dic: [String : Any] = [
-            "hash_day": inWeek,
-            "week": Array(inSections),
-            "begin_lesson": period.lowerBound,
-            "period": period.count - 1,
-            "course": course,
-            "classroom": classRoom,
-            "type": type,
-            "course_num": courseID ?? "cyxbs\(Date().timeIntervalSince1970)\(arc4random())",
-            "rawWeek": rawWeek ?? "",
-            "teacher": teacher ?? "",
-            "lesson": lesson ?? ""
-        ]
-        guard let data = try? JSONSerialization.data(withJSONObject: dic, options: [.prettyPrinted]) else { return "" }
-        return String(data: data, encoding: .utf8) ?? ""
+    init(cus json: JSON) {
+        guard let date = json["date"].arrayValue.first else { return }
+        
+        inWeek = date["day"].intValue + 1
+        
+        date["week"].arrayValue.forEach { eachWeek in
+            inSections.insert(eachWeek.intValue)
+        }
+        
+        let location = date["begin_lesson"].intValue
+        let lenth = max(1, date["period"].intValue)
+        period = location ... (location + lenth - 1)
+        
+        course = json["title"].stringValue
+        classRoom = json["content"].stringValue
+        
+        type = "事务"
+        courseID = json["id"].string
+        teacher = "自定义"
+       
+        commitCus()
+    }
+    
+    mutating func commitCus() {
+        rawWeek = inSections.rangeView.map { "\($0.lowerBound)-\($0.upperBound - 1)" }.joined(separator: ", ") + "周"
+        let formatter = NumberFormatter()
+        formatter.locale = .cn
+        formatter.numberStyle = .spellOut
+        lesson = period.map { formatter.string(from: $0 as NSNumber) ?? "" }.joined() + "节"
     }
 }

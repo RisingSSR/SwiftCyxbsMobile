@@ -21,15 +21,13 @@ class ScheduleInteractionFact: ScheduleFact {
     
     var isCustomEditEnable: Bool = false
     
-    var snoToPriority: [String: ScheduleMaping.Priority] = [:]
+    var uuidToPriority: [ScheduleModel.UniqueID: ScheduleMaping.Priority] = [:]
     
     override func createCollectionView() -> UICollectionView {
         let collectionView = super.createCollectionView()
         
         let header = MJRefreshGifHeader {
-            let priorities = self.mappy.scheduleModelMap.map { $0.value }
-            self.mappy.clean()
-            self.request(priorities: Set(priorities))
+            self.cleanAndReload()
         }
         .autoChangeTransparency(true)
         .set_refresh_sports()
@@ -71,56 +69,59 @@ extension ScheduleInteractionFact {
 
 extension ScheduleInteractionFact {
     
+    func cleanAndReload() {
+        let priorities = self.mappy.scheduleModelMap.map { $0.value }
+        self.mappy.clean()
+        self.request(priorities: Set(priorities))
+    }
+    
     func request(priorities: Set<ScheduleMaping.Priority>, complition: ((ScheduleInteractionFact) -> ())? = nil) {
         
-        let requestSnos = Set(snoToPriority.compactMap {
+        let requestSnos = Set(uuidToPriority.compactMap {
             ($0.value != .custom && priorities.contains($0.value)) ?
-            $0.key : nil
+            $0.key.sno : nil
         })
         
-        ScheduleModel.request(snos: requestSnos) { response in
-            switch response {
-            case .success(let models):
-                for model in models {
-                    let priority = self.snoToPriority[model.sno] ?? .mainly
-                    self.mappy.maping(model, priority: priority)
+        var models = [ScheduleModel]()
+        
+        let que = DispatchQueue(label: "ScheduleModel.request.priorities", qos: .unspecified, attributes: .concurrent)
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        que.async {
+            
+            ScheduleModel.request(snos: requestSnos) { response in
+                if case .success(let model) = response {
+                    models += model
                 }
+                semaphore.signal()
+            }
+            
+            if priorities.contains(.custom) {
+                
+                ScheduleModel.requestCustom { response in
+                    if case .success(let model) = response {
+                        models += [model]
+                    }
+                    semaphore.signal()
+                }
+                
+                semaphore.wait()
+            }
+            
+            semaphore.wait()
+        }
+        
+        que.async(flags: .barrier) {
+            for model in models {
+                let priority = self.uuidToPriority[model.uuid] ?? .mainly
+                self.mappy.maping(model, priority: priority)
+            }
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.collectionView.mj_header?.endRefreshing()
                 complition?(self)
-            case .failure(let netError):
-                print("error \(netError)")
             }
-        }
-        
-        if priorities.contains(.custom) {
-            requestCustom()
-        }
-    }
-    
-    func request(sno: String, property: ScheduleMaping.Priority) {
-        ScheduleModel.request(sno: sno) { response in
-            switch response {
-            case .success(let model):
-                self.mappy.maping(model, priority: property)
-                self.collectionView.reloadData()
-            case .failure(let error):
-                print("error \(error)")
-            }
-            self.collectionView.mj_header?.endRefreshing()
-        }
-    }
-    
-    func requestCustom() {
-        ScheduleModel.requestCustom { response in
-            switch response {
-            case .success(let model):
-                self.mappy.maping(model, priority: .custom)
-                self.collectionView.reloadData()
-            case .failure(let error):
-                print("error \(error)")
-            }
-            self.collectionView.mj_header?.endRefreshing()
         }
     }
 }
@@ -170,6 +171,7 @@ extension ScheduleInteractionFact {
         }
         
         let vc = ScheduleDetailsViewController(cals: cals)
+        vc.delegate = self
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transisionDelegate
         
@@ -186,6 +188,9 @@ extension ScheduleInteractionFact {
         let vc = ScheduleEditViewController(sections: [idxPath[0]], inWeek: idxPath[1], location: idxPath[2])
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transisionDelegate
+        vc.dismissAction = { aVC in
+            self.cleanAndReload()
+        }
         
         viewController?.present(vc, animated: true)
     }
@@ -211,6 +216,34 @@ extension ScheduleInteractionFact {
         super.scrollViewDidScroll(scrollView)
         scrollView.mj_header?.frame.origin.x = scrollView.contentOffset.x
         reloadHeaderView()
+    }
+}
+
+// MARK: ScheduleDetailTableHeaderViewDelegate
+
+extension ScheduleInteractionFact: ScheduleDetailCollectionViewCellDelegate {
+    
+    func collectionViewCell(_ collectionViewCell: ScheduleDetailCollectionViewCell, responseEditBtn: UIButton) {
+        
+        collectionViewCell.latestViewController?.dismiss(animated: true)
+        
+        guard let curriculum = collectionViewCell.cal?.curriculum else { return }
+        
+        let transisionDelegate = RYTransitioningDelegate()
+        transisionDelegate.supportedTapOutsideBackWhenPresent = false
+        
+        let vc = ScheduleEditViewController(curriculum: curriculum)
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = transisionDelegate
+        vc.dismissAction = { aVC in
+            self.cleanAndReload()
+        }
+        
+        viewController?.present(vc, animated: true)
+    }
+    
+    func collectionViewCell(_ collectionViewCell: ScheduleDetailCollectionViewCell, responsePlaceTap: UITapGestureRecognizer) {
+        
     }
 }
 

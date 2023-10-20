@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RYTransitioningDelegateSwift
 
 class ScheduleDetailsViewController: UIViewController {
     
     let cals: [ScheduleCalModel]
+    
+    weak var delegate: ScheduleDetailCollectionViewCellDelegate?
     
     init(cals: [ScheduleCalModel]) {
         self.cals = cals
@@ -84,7 +87,7 @@ extension ScheduleDetailsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleDetailCollectionViewCell.identifier, for: indexPath) as! ScheduleDetailCollectionViewCell
         
         cell.cal = cals[indexPath.item]
-        cell.delegate = self
+        cell.delegate = delegate
         
         return cell
     }
@@ -109,18 +112,5 @@ extension ScheduleDetailsViewController: UIScrollViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    }
-}
-
-// MARK: ScheduleDetailTableHeaderViewDelegate
-
-extension ScheduleDetailsViewController: ScheduleDetailTableHeaderViewDelegate {
-    
-    func tableHeaderView(_ tableHeaderView: ScheduleDetailTableHeaderView, responsePlaceTap tap: UITapGestureRecognizer) {
-        
-    }
-    
-    func tableHeaderView(_ tableHeaderView: ScheduleDetailTableHeaderView, touchUpInsideEditButton btn: UIButton) {
-        
     }
 }

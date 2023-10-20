@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol ScheduleDetailCollectionViewCellDelegate: AnyObject {
+    func collectionViewCell(_ collectionViewCell: ScheduleDetailCollectionViewCell, responseEditBtn: UIButton)
+    func collectionViewCell(_ collectionViewCell: ScheduleDetailCollectionViewCell, responsePlaceTap: UITapGestureRecognizer)
+}
+
 class ScheduleDetailCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: ScheduleDetailCollectionViewCellDelegate?
     
     var cal: ScheduleCalModel? {
         didSet {
@@ -34,11 +41,6 @@ class ScheduleDetailCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    weak var delegate: ScheduleDetailTableHeaderViewDelegate? {
-        set { tableHeaderView.delegate = newValue }
-        get { tableHeaderView.delegate }
-    }
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: contentView.bounds, style: .plain)
         tableView.backgroundColor = .clear
@@ -58,6 +60,12 @@ class ScheduleDetailCollectionViewCell: UICollectionViewCell {
     
     lazy var tableHeaderView: ScheduleDetailTableHeaderView = {
         let headerView = ScheduleDetailTableHeaderView(frame: CGRect(origin: .zero, size: CGSizeMake(contentView.bounds.width, 110)))
+        headerView.editBtnTapAction = { _, btn in
+            self.delegate?.collectionViewCell(self, responseEditBtn: btn)
+        }
+        headerView.placeTapAction = { _, tap in
+            self.delegate?.collectionViewCell(self, responsePlaceTap: tap)
+        }
         return headerView
     }()
 }

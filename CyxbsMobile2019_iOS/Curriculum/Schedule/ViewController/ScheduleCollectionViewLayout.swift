@@ -228,7 +228,6 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                 height: itemSize.height)
             
         case .placeHolder:
-            attributes.zIndex = 4
             
             attributes.frame = CGRect(
                 x: CGFloat(indexPath.section) * pageWidth + widthForLeadingSupplementaryView,
