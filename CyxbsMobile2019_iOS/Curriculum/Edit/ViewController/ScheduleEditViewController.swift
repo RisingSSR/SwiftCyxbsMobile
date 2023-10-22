@@ -178,7 +178,7 @@ extension ScheduleEditViewController {
                 UserModel.defualt.customSchedule.curriculum.append(self.modelCalculate)
             }
             ProgressHUD.showSucceed("添加事项成功")
-            self.dismiss(animated: true)
+            self.dismissTodo()
         }
     }
     
@@ -201,7 +201,7 @@ extension ScheduleEditViewController {
                 }
             }
             ProgressHUD.showSucceed("删除事项成功")
-            self.dismiss(animated: true)
+            self.dismissTodo()
         }
     }
     
@@ -222,12 +222,17 @@ extension ScheduleEditViewController {
                 if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
                     UserModel.defualt.customSchedule.curriculum[index] = self.modelCalculate
                     ProgressHUD.showSucceed("本地修改成功")
-                    self.dismiss(animated: true)
+                    self.dismissTodo()
                 } else {
                     ProgressHUD.showError("未找到本地事项")
                     self.requestToAppending()
                 }
             }
         }
+    }
+    
+    func dismissTodo() {
+        dismissAction?(self)
+        dismiss(animated: true)
     }
 }

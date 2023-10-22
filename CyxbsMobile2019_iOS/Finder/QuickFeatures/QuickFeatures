@@ -1,0 +1,18 @@
+[
+    {
+        "name": "邮子清单",
+        "url": "TodoList"
+    },
+    {
+        "name": "电费查询",
+        "url": "ElectricCharge"
+    },
+    {
+        "name": "体育打卡",
+        "url": "SportsRun"
+    },
+    {
+        "name": "志愿服务",
+        "url": "VolunteerService"
+    }
+]

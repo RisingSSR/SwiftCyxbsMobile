@@ -72,7 +72,7 @@ extension CurriculumModel {
         classRoom = json["content"].stringValue
         
         type = "事务"
-        courseID = json["id"].string
+        courseID = json["id"].stringValue
         teacher = "自定义"
        
         commitCus()

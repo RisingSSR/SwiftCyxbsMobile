@@ -52,6 +52,10 @@
 		141A6DC12AC52BD9004BD3BC /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBC2AA6BF0100D8D1E1 /* SessionManager.swift */; };
 		141A6DC22AC52BDB004BD3BC /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DBE2AA6C3C900D8D1E1 /* HttpManager.swift */; };
 		141A6DC32AC52BDE004BD3BC /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14622DC02AA6C8C100D8D1E1 /* APIConfig.swift */; };
+		142B50EE2AE37DFF0022D463 /* QuickFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50ED2AE37DFF0022D463 /* QuickFeaturesView.swift */; };
+		142B50F02AE37FF80022D463 /* QuickFeatures in Resources */ = {isa = PBXBuildFile; fileRef = 142B50EF2AE37FF80022D463 /* QuickFeatures */; };
+		142B50F22AE3803B0022D463 /* QuickFeaturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F12AE3803B0022D463 /* QuickFeaturesModel.swift */; };
+		142B50F52AE383240022D463 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F42AE383240022D463 /* TodoListView.swift */; };
 		14396C722AC84FA300C21A2A /* FinderBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C712AC84FA300C21A2A /* FinderBannerView.swift */; };
 		14396C742AC8506000C21A2A /* FinderBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */; };
 		14396C772AC855C600C21A2A /* FinderBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C762AC855C600C21A2A /* FinderBannerModel.swift */; };
@@ -201,6 +205,10 @@
 		141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDataFetch.swift; sourceTree = "<group>"; };
 		141A6DAA2AC529EB004BD3BC /* ScheduleSystemLarge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleSystemLarge.swift; sourceTree = "<group>"; };
 		141A6DAB2AC529EC004BD3BC /* ScheduleTimelineEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineEntry.swift; sourceTree = "<group>"; };
+		142B50ED2AE37DFF0022D463 /* QuickFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFeaturesView.swift; sourceTree = "<group>"; };
+		142B50EF2AE37FF80022D463 /* QuickFeatures */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QuickFeatures; sourceTree = "<group>"; };
+		142B50F12AE3803B0022D463 /* QuickFeaturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFeaturesModel.swift; sourceTree = "<group>"; };
+		142B50F42AE383240022D463 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		14396C712AC84FA300C21A2A /* FinderBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerView.swift; sourceTree = "<group>"; };
 		14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		14396C762AC855C600C21A2A /* FinderBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerModel.swift; sourceTree = "<group>"; };
@@ -413,6 +421,24 @@
 			path = ScheduleSystemLarge;
 			sourceTree = "<group>";
 		};
+		142B50EC2AE37DDD0022D463 /* QuickFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				142B50ED2AE37DFF0022D463 /* QuickFeaturesView.swift */,
+				142B50F12AE3803B0022D463 /* QuickFeaturesModel.swift */,
+				142B50EF2AE37FF80022D463 /* QuickFeatures */,
+			);
+			path = QuickFeatures;
+			sourceTree = "<group>";
+		};
+		142B50F32AE382F80022D463 /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				142B50F42AE383240022D463 /* TodoListView.swift */,
+			);
+			path = TodoList;
+			sourceTree = "<group>";
+		};
 		143F701B2AA16FE40048E264 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +519,8 @@
 				1411F4082ACA62F2005E0821 /* Banner */,
 				1411F4092ACA6319005E0821 /* News */,
 				14F9487F2ACA76D800B2C260 /* Tools */,
+				142B50EC2AE37DDD0022D463 /* QuickFeatures */,
+				142B50F32AE382F80022D463 /* TodoList */,
 			);
 			path = Finder;
 			sourceTree = "<group>";
@@ -948,6 +976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */,
+				142B50F02AE37FF80022D463 /* QuickFeatures in Resources */,
 				1411F4052AC8FD1E005E0821 /* FinderTools in Resources */,
 				14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */,
 				14622DC32AA6CF4E00D8D1E1 /* LaunchScreen.storyboard in Resources */,
@@ -1125,6 +1154,7 @@
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */,
+				142B50F22AE3803B0022D463 /* QuickFeaturesModel.swift in Sources */,
 				143F702F2AA4980C0048E264 /* TabBar.swift in Sources */,
 				14E0BB7E2AD9668A00C39889 /* ForgotViewController.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
@@ -1132,6 +1162,7 @@
 				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
 				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
+				142B50EE2AE37DFF0022D463 /* QuickFeaturesView.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				145193B12AD7977300C1BD14 /* EmailBidingViewController.swift in Sources */,
@@ -1144,6 +1175,7 @@
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
 				141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */,
+				142B50F52AE383240022D463 /* TodoListView.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
 				14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */,
 				141809A12AD1033F00734569 /* APIConfigEX.swift in Sources */,
@@ -1242,6 +1274,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1259,7 +1292,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -1284,6 +1317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1301,7 +1335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1437,7 +1471,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -1477,7 +1511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
