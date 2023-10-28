@@ -32,18 +32,3 @@ extension FinderToolsModel {
         web_available = json["web_available"].boolValue
     }
 }
-
-extension FinderToolsModel {
-    
-    static let tools: [FinderToolsModel] = {
-        CacheManager.shared.getCodable([FinderToolsModel].self, in: .init(rootPath: .bundle, file: "FinderTools")) ?? []
-    }()
-    
-    static var threeToolsInFinder: [FinderToolsModel] = {
-        CacheManager.shared.getCodable([FinderToolsModel].self, in: .init(rootPath: .document, file: "ThreeToolsInFinder")) ?? Array(tools[0 ..< 3])
-    }() {
-        didSet {
-            CacheManager.shared.cache(codable: threeToolsInFinder, in: .init(rootPath: .document, file: "ThreeToolsInFinder"))
-        }
-    }
-}

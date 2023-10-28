@@ -56,6 +56,9 @@
 		142B50F02AE37FF80022D463 /* QuickFeatures in Resources */ = {isa = PBXBuildFile; fileRef = 142B50EF2AE37FF80022D463 /* QuickFeatures */; };
 		142B50F22AE3803B0022D463 /* QuickFeaturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F12AE3803B0022D463 /* QuickFeaturesModel.swift */; };
 		142B50F52AE383240022D463 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F42AE383240022D463 /* TodoListView.swift */; };
+		142B50F72AE55FAF0022D463 /* UNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F62AE55FAF0022D463 /* UNManager.swift */; };
+		142B50F92AE60A680022D463 /* ScheduleCalModel+EX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50F82AE60A680022D463 /* ScheduleCalModel+EX.swift */; };
+		142B50FB2AE64C4D0022D463 /* TodoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B50FA2AE64C4D0022D463 /* TodoDataModel.swift */; };
 		14396C722AC84FA300C21A2A /* FinderBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C712AC84FA300C21A2A /* FinderBannerView.swift */; };
 		14396C742AC8506000C21A2A /* FinderBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */; };
 		14396C772AC855C600C21A2A /* FinderBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14396C762AC855C600C21A2A /* FinderBannerModel.swift */; };
@@ -209,6 +212,9 @@
 		142B50EF2AE37FF80022D463 /* QuickFeatures */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QuickFeatures; sourceTree = "<group>"; };
 		142B50F12AE3803B0022D463 /* QuickFeaturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFeaturesModel.swift; sourceTree = "<group>"; };
 		142B50F42AE383240022D463 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		142B50F62AE55FAF0022D463 /* UNManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNManager.swift; sourceTree = "<group>"; };
+		142B50F82AE60A680022D463 /* ScheduleCalModel+EX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCalModel+EX.swift"; sourceTree = "<group>"; };
+		142B50FA2AE64C4D0022D463 /* TodoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDataModel.swift; sourceTree = "<group>"; };
 		14396C712AC84FA300C21A2A /* FinderBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerView.swift; sourceTree = "<group>"; };
 		14396C732AC8506000C21A2A /* FinderBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		14396C762AC855C600C21A2A /* FinderBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderBannerModel.swift; sourceTree = "<group>"; };
@@ -435,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				142B50F42AE383240022D463 /* TodoListView.swift */,
+				142B50FA2AE64C4D0022D463 /* TodoDataModel.swift */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -558,6 +565,7 @@
 			children = (
 				14622DD42AA825F300D8D1E1 /* CacheManager.swift */,
 				14622DFB2AA8B64100D8D1E1 /* UserDefualtsManager.swift */,
+				142B50F62AE55FAF0022D463 /* UNManager.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -608,6 +616,7 @@
 			children = (
 				14622E0F2AB0478500D8D1E1 /* ScheduleMaping.swift */,
 				14622DE62AA8569C00D8D1E1 /* ScheduleCalModel.swift */,
+				142B50F82AE60A680022D463 /* ScheduleCalModel+EX.swift */,
 				14E37A072AC3FB82002687E6 /* ScheduleDrawType.swift */,
 				141A6DA92AC529EB004BD3BC /* ScheduleDataFetch.swift */,
 			);
@@ -1152,6 +1161,7 @@
 				14622E062AAC05B500D8D1E1 /* ScheduleViewController.swift in Sources */,
 				1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
+				142B50F72AE55FAF0022D463 /* UNManager.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */,
 				142B50F22AE3803B0022D463 /* QuickFeaturesModel.swift in Sources */,
@@ -1197,7 +1207,9 @@
 				148F56942ABB2758002FFE8A /* ScheduleDetailTableHeaderView.swift in Sources */,
 				14622E102AB0478500D8D1E1 /* ScheduleMaping.swift in Sources */,
 				14396C722AC84FA300C21A2A /* FinderBannerView.swift in Sources */,
+				142B50F92AE60A680022D463 /* ScheduleCalModel+EX.swift in Sources */,
 				14622E0E2AAF1B9000D8D1E1 /* ScheduleFact.swift in Sources */,
+				142B50FB2AE64C4D0022D463 /* TodoDataModel.swift in Sources */,
 				14622DD52AA825F300D8D1E1 /* CacheManager.swift in Sources */,
 				14622DD02AA6FA8900D8D1E1 /* Constants.swift in Sources */,
 				143F701D2AA170030048E264 /* TabBarController.swift in Sources */,

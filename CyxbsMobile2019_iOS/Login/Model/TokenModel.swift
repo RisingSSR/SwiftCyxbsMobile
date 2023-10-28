@@ -51,6 +51,7 @@ extension TokenModel {
 extension TokenModel {
     
     func toCache() {
+        if stuNum.count == 0 { return }
         CacheManager.shared.cache(codable: self, in: .init(rootPath: .widget, file: "token_model"))
         Constants.mainSno = stuNum
         Constants.token = token

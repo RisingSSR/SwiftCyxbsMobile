@@ -41,7 +41,7 @@ extension TabBarController {
      */
     func reloadData() {
         if let sno = Constants.mainSno,
-           var scheduleModel = ScheduleModel.getFromCache(rootPath: .widget, sno: sno) {
+           var scheduleModel = CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: sno)) {
 
             let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
             let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
@@ -60,13 +60,11 @@ extension TabBarController {
      */
     func request() {
         if let sno = Constants.mainSno {
-            ScheduleModel.request(sno: sno) { response in
-                switch response {
-                case .success(let model):
+            ScheduleModel.request(sno: sno) { model in
+                if let model {
                     UserDefaultsManager.shared.latestRequestDate = Date()
-                    model.toCache(rootPath: .widget)
                     self.reloadWith(scheduleModel: model)
-                case .failure(_):
+                } else {
                     self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")
                 }
             }
@@ -249,7 +247,6 @@ extension TabBarController {
         vc.transitioningDelegate = transitionDelegate
         vc.scheduleVC.requestCallBack = { vc in
             if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == Constants.mainSno })?.key {
-                mainModel.toCache(rootPath: .widget)
                 self.reloadWith(scheduleModel: mainModel)
                 self.reloadSubControllers()
             }

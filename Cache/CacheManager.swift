@@ -30,6 +30,8 @@ struct CacheManager {
     }
 }
 
+// MARK: CRUD
+
 extension CacheManager {
     
     func fileExists(file: FilePath) -> Bool {
@@ -57,6 +59,8 @@ extension CacheManager {
         }
     }
 }
+
+// MARK: cache/get cache
 
 extension CacheManager {
     
@@ -92,6 +96,8 @@ extension CacheManager {
     }
 }
 
+// MARK: - RootPath/FilePath
+
 extension CacheManager {
     
     struct RootPath {
@@ -106,7 +112,7 @@ extension CacheManager {
     struct FilePath {
         
         let rawValue: String
-
+        
         init(rootPath: RootPath, file: String) {
             if file.count == 0 {
                 rawValue = rootPath.rawValue
@@ -119,28 +125,6 @@ extension CacheManager {
             rawValue = rootPath.rawValue + file
         }
     }
-}
-
-extension CacheManager.RootPath {
-    
-    func append(fileName: String) -> String {
-        var file = fileName
-        if file.prefix(1) != "/" {
-            file = "/" + file
-        }
-        return rawValue + file
-    }
-    
-    static let document: Self = .init(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "")
-    
-    static let widget: Self = {
-        if let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.widgetGroupID)?.path {
-            return .init(path)
-        }
-        return document
-    }()
-    
-    static let bundle: Self = .init(Bundle.main.bundlePath)
 }
 
 /* not accessible, use Codable
@@ -179,3 +163,56 @@ extension CacheManager {
     }
 }
  */
+
+// MARK: RootPaths
+
+extension CacheManager.RootPath {
+    
+    func append(fileName: String) -> String {
+        var file = fileName
+        if file.prefix(1) != "/" {
+            file = "/" + file
+        }
+        return rawValue + file
+    }
+    
+    static let document: Self = .init(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "")
+    
+    static let widget: Self = {
+        if let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Constants.widgetGroupID)?.path {
+            return .init(path)
+        }
+        return document
+    }()
+    
+    static let bundle: Self = .init(Bundle.main.bundlePath)
+}
+
+// MARK: FilePaths
+
+extension CacheManager.FilePath {
+    
+    static func searchStudent(sno: String) -> Self {
+        .init(rootPath: .widget, file: "search/\(sno)")
+    }
+    
+    static func schedule(sno: String) -> Self {
+        .init(rootPath: .widget, file: "schedule/\(sno)")
+    }
+    
+    static var toolsFromBundle: Self {
+        .init(rootPath: .bundle, file: "FinderTools")
+    }
+    
+    static var threeTools: Self {
+        .init(rootPath: .document, file: "tools/three")
+    }
+    
+    static var featuresFromBundle: Self {
+        .init(rootPath: .bundle, file: "QuickFeatures")
+    }
+    
+    static var features: Self {
+        .init(rootPath: .document, file: "features/cus_sort")
+    }
+}

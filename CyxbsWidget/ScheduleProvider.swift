@@ -38,22 +38,19 @@ struct ScheduleProvider: IntentTimelineProvider {
             let currentDate = Date()
             var entries: [ScheduleTimelineEntry] = []
             
-            switch response {
-            case .success(let model):
-                
+            if let response {
                 for hourOffset in 0 ..< 12 {
                     let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate) ?? currentDate
                     
                     var entry = ScheduleTimelineEntry(date: entryDate, configuration: configuration)
-                    entry.models.append(model)
+                    entry.models.append(response)
                     
                     entries.append(entry)
                 }
                 
-            case .failure(let netError):
-                
+            } else {
                 var entry = ScheduleTimelineEntry(date: currentDate, configuration: configuration)
-                entry.error = netError
+                entry.errorMsg = "请求有问题"
                 entries.append(entry)
             }
             

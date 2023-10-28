@@ -25,7 +25,7 @@ struct ScheduleTimelineEntry: TimelineEntry {
     
     var models: [ScheduleModel]
     
-    var error: NetError?
+    var errorMsg: String?
     
     init(date: Date, configuration: ScheduleWidgetConfiguration = .init()) {
         self.date = date

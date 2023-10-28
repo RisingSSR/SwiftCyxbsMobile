@@ -91,9 +91,7 @@ extension ScheduleInteractionFact {
         que.async {
             
             ScheduleModel.request(snos: requestSnos) { response in
-                if case .success(let model) = response {
-                    models += model
-                }
+                models += response
                 semaphore.signal()
             }
             

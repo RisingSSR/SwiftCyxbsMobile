@@ -47,7 +47,17 @@ extension FinderToolsView {
     
     var getFinderTools: [FinderToolsModel] {
         let model = FinderToolsModel(name: "更多功能", icon: "finder_tool_more", describe: "更多功能敬请期待", api_available: false, web_available: false)
-        return FinderToolsModel.threeToolsInFinder + [model]
+        if let threeTools = CacheManager.shared.getCodable([FinderToolsModel].self, in: .threeTools) {
+            return threeTools + [model]
+        } else {
+            if let allTools = CacheManager.shared.getCodable([FinderToolsModel].self, in: .toolsFromBundle) {
+                let threeTools = Array(allTools[0 ..< 3])
+                CacheManager.shared.cache(codable: threeTools, in: .threeTools)
+                return threeTools + [model]
+            } else {
+                return []
+            }
+        }
     }
 }
 

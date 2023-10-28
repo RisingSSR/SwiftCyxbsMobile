@@ -36,6 +36,17 @@ func <#接口的简写#>(<#接口参数名列表1#>: <#接口参数类型列表1
     return SessionManager.shared.ry_request(APIConfig.current.api("<#接口#>"), method: .<#请求方式#>, parameters: parameters)
 }
  
+-- option parameters
+ 
+/// <#接口的作用#>
+@discardableResult
+func <#接口的简写#>(<#接口参数名列表1#>: <#接口参数类型列表1#> <#, ...#>) -> DataRequest {
+    let parameters: [String: Any?] = [
+        "<#接口参数名列表1#>": <#接口参数类型列表1#>
+    ]
+    return SessionManager.shared.ry_request(APIConfig.current.api("<#接口#>"), method: .<#请求方式#>, parameters: excludeOptionalParameter(parameters))
+}
+ 
  */
 
 extension HttpManager {
@@ -258,5 +269,12 @@ extension HttpManager {
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/user-secret/user/password/valid"), method: .post, parameters: parameters)
     }
+    
+    /// 获取全部todo
+    @discardableResult
+    func magipoke_todo_list() -> DataRequest {
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-todo/list"), method: .get)
+    }
+    
+    //
 }
-

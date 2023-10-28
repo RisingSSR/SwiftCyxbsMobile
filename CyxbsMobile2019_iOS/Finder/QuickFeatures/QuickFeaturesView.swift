@@ -10,7 +10,20 @@ import UIKit
 
 class QuickFeaturesView: UIView {
     
-    lazy var datas =  QuickFeaturesModel.features
+    lazy var datas: [QuickFeaturesModel] = {
+        if let cache = CacheManager.shared.getCodable([QuickFeaturesModel].self, in: .features) {
+            return cache
+        }
+        if let fromBundle = CacheManager.shared.getCodable([QuickFeaturesModel].self, in: .toolsFromBundle) {
+            CacheManager.shared.cache(codable: fromBundle, in: .features)
+            return fromBundle
+        }
+        return []
+    }() {
+        didSet {
+            CacheManager.shared.cache(codable: datas, in: .features)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

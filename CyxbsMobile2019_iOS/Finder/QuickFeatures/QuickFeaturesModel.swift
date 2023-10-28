@@ -23,14 +23,3 @@ extension QuickFeaturesModel {
         url = json["url"].stringValue
     }
 }
-
-extension QuickFeaturesModel {
-    
-    static var features: [QuickFeaturesModel] = {
-        CacheManager.shared.getCodable([QuickFeaturesModel].self, in: .init(rootPath: .bundle, file: "QuickFeatures")) ?? []
-    }() {
-        didSet {
-            CacheManager.shared.cache(codable: features, in: .init(rootPath: .document, file: "QuickFeatures"))
-        }
-    }
-}

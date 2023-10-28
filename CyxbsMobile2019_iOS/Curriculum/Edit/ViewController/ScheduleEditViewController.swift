@@ -79,13 +79,13 @@ class ScheduleEditViewController: UIViewController {
     }()
     
     lazy var cancelBtn: UIButton = {
-        let btn = createBtn(title: " 取消 ", touchUpInsideAction: #selector(touchUpInside(cancelBtn:)))
+        let btn = createBtn(title: "  取消  ", touchUpInsideAction: #selector(touchUpInside(cancelBtn:)))
         btn.frame.origin = CGPoint(x: view.bounds.width - btn.bounds.width - 17, y: Constants.statusBarHeight + 10)
         return btn
     }()
     
     lazy var deleteBtn: UIButton = {
-        let btn = createBtn(title: " 删除 ", touchUpInsideAction: #selector(touchUpInside(deleteBtn:)))
+        let btn = createBtn(title: "  删除  ", touchUpInsideAction: #selector(touchUpInside(deleteBtn:)))
         btn.frame.origin = CGPoint(x: cancelBtn.frame.minX - btn.bounds.width - 10, y: cancelBtn.frame.minY)
         return btn
     }()

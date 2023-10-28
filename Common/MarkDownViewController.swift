@@ -6,6 +6,20 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
+/* 展示 MarkDown 语法的VC
+ 设置 url 为 Bundle/Document，会从中读取文本进行加载
+ 一般来说，我们会使用这个VC和 Navigation 一起使用
+ 代理不会主动 dismiss，业务方自行决定
+ 
+ ```Swift
+ let vc = MarkDownViewController()
+ vc.delegate = self
+ vc.url = url ?? LoginViewController.agreementURL
+ let nav = UINavigationController(rootViewController: vc)
+ present(nav, animated: true)
+ ```
+ */
+
 import UIKit
 import MarkdownKit
 

@@ -6,6 +6,15 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
+/* 用户同意
+ 才用一个 button 和一个 textView
+ 设置代理，可以得到url的单击事件和button的事件
+ 
+ 调用下面这个方法为这个 View 设置普通文字和 url 文字
+ set(leadingText:agreementText:agreemntURL:speacialFont:)
+ 
+ */
+
 import UIKit
 
 // MARK: BaseAgreementViewDelegate

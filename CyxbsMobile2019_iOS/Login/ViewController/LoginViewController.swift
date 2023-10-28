@@ -172,14 +172,12 @@ extension LoginViewController {
     
     func checktoutEmailBiding() {
         EmailBidingViewController.isBiding { response in
-            if let response {
-                if !response.email {
-                    let vc = EmailBidingViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.dismiss(animated: true) {
-                        self.dismissAction?(false, nil)
-                    }
+            if let response, !response.email {
+                let vc = EmailBidingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                self.dismiss(animated: true) {
+                    self.dismissAction?(false, nil)
                 }
             }
         }
@@ -312,73 +310,48 @@ extension LoginViewController {
         // 新版本，需要show; 没读用户协议，需要show
         let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead,
               
-        // 上一次未打开App，需要show
-        let lastDate = UserDefaultsManager.shared.latestOpenApp else {
+        // 颁发时间过半去刷token
+        (Date().timeIntervalSince1970 - tokenModel.iat) <= (tokenModel.exp - tokenModel.iat) / 2 else {
             
             afterCallAction(showVC: true, action: action)
             return
         }
         
-        // 不是一天，请求新的token
-        if !Calendar.current.isDateInToday(lastDate) {
-            requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
-                
-                afterCallAction(showVC: !isSuccess, action: action)
-                return
-            }
-        } else {
+        requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
             
-            afterCallAction(showVC: false, action: action)
+            afterCallAction(showVC: !isSuccess, action: action)
+            return
         }
     }
     
     static func requestNewToken(refreshToken: String, success: @escaping (Bool) -> ()) {
         HttpManager.shared.magipoke_token_refresh(refreshToken: refreshToken).ry_JSON { response in
-            switch response {
-            case .success(let model):
+            
+            if case .success(let model) = response, model["status"].intValue == 10000 {
+                let token = model["data"]["token"].stringValue
+                let refreshToken = model["data"]["refreshToken"].stringValue
                 
-                if let status = model["status"].string {
+                Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
+                
+                success(true)
+                
+            } else {
+                
+                if !Constants.isTokenExpired {
+                    success(true)
+                    return
+                }
+                
+                let alertVC = UIAlertController.normalType(title: "登录故障", content: "重新登录可以使得登录信息刷新，取消则会在下次打开App时再次询问", cancelText: "取消本次登录", sureText: "重新登录") { action in
                     
-                    if status == "10000" {
-                        
-                        let token = model["data"]["token"].stringValue
-                        let refreshToken = model["data"]["refreshToken"].stringValue
-                        
-                        Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
-                        
+                    if action.title == "取消本次登录" {
                         success(true)
                     } else {
-                        
-                        if Constants.isTokenExpired {
-                            
-                            let alertVC = UIAlertController.normalType(title: "登录故障", content: "重新登录可以使得登录信息刷新，取消则会在下次打开App时再次询问", cancelText: "取消本次登录", sureText: "重新登录") { action in
-                                
-                                if action.title == "取消本次登录" {
-                                    success(true)
-                                } else {
-                                    success(false)
-                                }
-                            }
-                            
-                            Constants.keyWindow?.rootViewController?.present(alertVC, animated: true)
-                        } else {
-                            
-                            success(true)
-                        }
+                        success(false)
                     }
                 }
                 
-            case .failure(_):
-                
-                if Constants.isTokenExpired {
-                    
-                    ProgressHUD.showFailed("网络出现异常，检查网络并重新打开App，使得重新检测登录状态")
-                    success(false)
-                } else {
-                    
-                    success(true)
-                }
-                return
+                Constants.keyWindow?.rootViewController?.present(alertVC, animated: true)
             }
         }
     }

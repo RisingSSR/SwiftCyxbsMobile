@@ -15,6 +15,24 @@ extension UIResponder {
     var latestViewController: UIViewController? {
         (next as? UIViewController) ?? next?.latestViewController
     }
+    
+    var latestNavigationController: UINavigationController? {
+        let latestViewController = latestViewController
+        if let nav = latestViewController?.navigationController {
+            return nav
+        }
+        if let subs = (latestViewController as? UITabBarController)?.viewControllers {
+            for sub in subs {
+                return sub.latestNavigationController
+            }
+        }
+        if let subs = (latestViewController as? UISplitViewController)?.viewControllers {
+            for sub in subs {
+                return sub.latestNavigationController
+            }
+        }
+        return nil
+    }
         
     static var firstResponder: AnyObject? {
         ssr_currentFirstResponder = nil

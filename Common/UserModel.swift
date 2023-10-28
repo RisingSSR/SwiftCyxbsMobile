@@ -19,11 +19,11 @@ struct UserModel: Codable {
     var token: TokenModel?
     
     lazy var customSchedule: ScheduleModel = {
-        ScheduleModel.getFromCache(sno: "custom") ??
-            .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
+        CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: "custom"))
+        ?? .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
     }() {
         didSet {
-            customSchedule.toCache(specialName: "custom")
+            CacheManager.shared.cache(codable: customSchedule, in: .schedule(sno: "custom"))
         }
     }
 }

@@ -80,29 +80,13 @@ extension ScheduleModel: Hashable {
     }
 }
 
-extension ScheduleModel {
-    
-    static func filePath(rootPath: CacheManager.RootPath = .document, sno: String) -> CacheManager.FilePath {
-        .init(rootPath: rootPath, file: "ScheduleModel/sno\(sno).data")
-    }
-    
-    static func getFromCache(rootPath: CacheManager.RootPath = .document, sno: String) -> Self? {
-        CacheManager.shared.getCodable(self, in: filePath(rootPath: rootPath, sno: sno))
-    }
-    
-    func toCache(rootPath: CacheManager.RootPath = .document, specialName: String? = nil) {
-        let specialName = specialName ?? sno
-        CacheManager.shared.cache(codable: self, in: ScheduleModel.filePath(rootPath: rootPath, sno: specialName))
-    }
-}
-
 // MARK: request
 
 extension ScheduleModel {
     
     // MARK: snos
     
-    static func request(snos: Set<String>, handle: @escaping (NetResponse<[ScheduleModel]>) -> Void) {
+    static func request(snos: Set<String>, handle: @escaping ([ScheduleModel]) -> Void) {
         
         var modelAry = [ScheduleModel]()
         
@@ -114,15 +98,10 @@ extension ScheduleModel {
             
             que.async {
                 
-                request(sno: sno) { response in
-                    switch response {
-                    case .success(let model):
-                        modelAry.append(model)
-                    case .failure(let netError):
-                        handle(.failure(netError))
+                request(sno: sno) { scheduleModel in
+                    if let scheduleModel {
+                        modelAry.append(scheduleModel)
                     }
-                    
-                    semaphore.signal()
                 }
             }
         }
@@ -139,16 +118,17 @@ extension ScheduleModel {
             
             DispatchQueue.main.async {
                 
-                handle(.success(modelAry))
+                handle(modelAry)
             }
         }
     }
     
     // MARK: sno
     
-    static func request(sno: String, handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
+    static func request(sno: String, handle: @escaping (ScheduleModel?) -> Void) {
         
         var scheduleModel = ScheduleModel(sno: sno)
+        var requsetKebiao = false
         
         let que = DispatchQueue(label: "ScheduleModel.magipoke_jwzx_kebiao", qos: .default, attributes: .concurrent)
         
@@ -157,28 +137,21 @@ extension ScheduleModel {
         que.async {
             
             SearchStudentModel.request(info: sno) { response in
-                switch response {
-                case .success(let model):
+                if case .success(let model) = response {
                     scheduleModel.student = model.first
-                case .failure(let netError):
-                    handle(.failure(netError))
                 }
-                
                 semaphore.signal()
             }
             
             HttpManager.shared.magipoke_jwzx_kebiao(stu_num: sno).ry_JSON { response in
-                switch response {
-                case .success(let json):
+                if case .success(let json) = response, json["status"].intValue == 10000 {
+                    requsetKebiao = true
                     scheduleModel.sno = json["stuNum"].stringValue
                     scheduleModel.nowWeek = json["nowWeek"].intValue
                     if let ary = json["data"].array?.map(CurriculumModel.init(json:)) {
                         scheduleModel.curriculum = ary
                     }
-                case .failure(let netError):
-                    handle(.failure(netError))
                 }
-                
                 semaphore.signal()
             }
             
@@ -190,7 +163,22 @@ extension ScheduleModel {
             
             DispatchQueue.main.async {
                 
-                handle(.success(scheduleModel))
+                if !requsetKebiao {
+                    if let codable = CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: sno)) {
+                        scheduleModel = codable
+                        requsetKebiao = true
+                    }
+                }
+                
+                if requsetKebiao {
+                    if scheduleModel.student == nil {
+                        scheduleModel.student = CacheManager.shared.getCodable(SearchStudentModel.self, in: .searchStudent(sno: sno))
+                    }
+                    CacheManager.shared.cache(codable: scheduleModel, in: .schedule(sno: sno))
+                    handle(scheduleModel)
+                } else {
+                    handle(nil)
+                }
             }
         }
     }
