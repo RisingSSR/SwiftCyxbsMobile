@@ -89,7 +89,7 @@ extension FinderHeaderView {
 extension FinderHeaderView {
     
     func reloadData() {
-        if let nowWeek = Constants.nowWeek {
+        if let nowWeek = UserModel.defualt.nowWeek() {
             
             if nowWeek >= 0 {
                 

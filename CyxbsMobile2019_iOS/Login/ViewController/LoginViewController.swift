@@ -66,19 +66,15 @@ class LoginViewController: BaseTextFiledViewController {
         return btn
     }()
     
-    lazy var agreementView: BaseAgreementView = {
-        let agreementView = BaseAgreementView()
+    lazy var agreementView: RYAgreementView = {
         let url = LoginViewController.agreementURL
-        agreementView.set(leadingText: "请阅读并同意", agreementText: "《掌上重邮用户协议》", agreemntURL: url)
-        let selectedImg = UIImage(named: "check")?
-            .tint(.white, blendMode: .destinationIn)
-            .tint(.hex("#4841E2"), blendMode: .destinationOut)
-        agreementView.set(normalImg: nil, selectedImg: selectedImg)
-        agreementView.updateFrame()
-        agreementView.checkBtn.layer.cornerRadius = agreementView.checkBtn.bounds.height / 2
-        agreementView.checkBtn.layer.borderWidth = 1
-        agreementView.checkBtn.layer.borderColor = UIColor.gray.cgColor
-        agreementView.checkBtn.clipsToBounds = true
+        let agreementView = RYAgreementView()
+        agreementView.frame.origin = CGPoint(x: 10, y: 80)
+        agreementView.add(normalTip: "请阅读并同意")
+        agreementView.add(urlTip: "《掌上重邮用户协议》", url: url)
+        agreementView.checkoutControl.frame.size = CGSize(width: 15, height: 15)
+        agreementView.checkoutControl.center.y = agreementView.bounds.height / 2
+        agreementView.sizeToFit()
         agreementView.delegate = self
         return agreementView
     }()
@@ -139,7 +135,7 @@ extension LoginViewController {
         guard let snoText = snoTextField.text, snoText.count > 2,
         let pwdText = pwdTextField.text, pwdText.count > 0
         else {
-            ProgressHUD.show("需要同时填写账号/密码", icon: .failed, delay: 0.8)
+            ProgressHUD.showFailed("需要同时填写账号/密码")
             return
         }
         
@@ -153,7 +149,7 @@ extension LoginViewController {
                         let token = model["data"]["token"].stringValue
                         let refreshToken = model["data"]["refreshToken"].stringValue
                         
-                        Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
+                        UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
                         
                         ProgressHUD.showSucceed("登录成功")
                         
@@ -249,20 +245,19 @@ extension LoginViewController {
 
 // MARK: BaseAgreementViewDelegate
 
-extension LoginViewController: BaseAgreementViewDelegate {
+extension LoginViewController: RYAgreementViewDelegate {
     
-    func agreementView(_ agreementView: BaseAgreementView, interactWith URL: URL) {
+    func agreementView(_ agreementView: RYAgreementView, interactWith URL: URL, interaction: UITextItemInteraction) {
         showAgreement(url: URL)
     }
     
-    func agreementView(_ agreementView: BaseAgreementView, touchedUpInsideCheckButton btn: UIButton) {
+    func agreementView(_ agreementView: RYAgreementView, didToggle control: UIControl) {
         guard let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead else {
             self.showAgreement()
             return
         }
         
-        btn.isSelected.toggle()
-        if btn.isSelected {
+        if control.isSelected {
             sureBtn.isEnabled = true
             sureBtn.backgroundColor = .hex("#4A45DC")
         } else {
@@ -284,8 +279,8 @@ extension LoginViewController: MarkDownViewControllerDelegate {
     func mdViewControllerDidDown(_ controller: MarkDownViewController) {
         controller.dismiss(animated: true)
         UserDefaultsManager.shared.didReadUserAgreementBefore = true
-        if !agreementView.didCheckBtn {
-            agreementView.toggleCheckBtn()
+        if !agreementView.isSelected {
+            agreementView.toggleControl()
         }
     }
 }
@@ -305,7 +300,7 @@ extension LoginViewController {
         #endif
         
         // 没有tokenModel
-        guard let tokenModel = Constants.tokenModel,
+        guard let tokenModel = UserModel.defualt.token,
               
         // 新版本，需要show; 没读用户协议，需要show
         let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead,
@@ -331,13 +326,12 @@ extension LoginViewController {
                 let token = model["data"]["token"].stringValue
                 let refreshToken = model["data"]["refreshToken"].stringValue
                 
-                Constants.tokenModel = TokenModel(token: token, refreshToken: refreshToken)
+                UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
                 
                 success(true)
                 
             } else {
-                
-                if !Constants.isTokenExpired {
+                if let old = UserModel.defualt.token, old.isTokenExpired {
                     success(true)
                     return
                 }

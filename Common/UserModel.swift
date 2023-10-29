@@ -14,16 +14,55 @@ struct UserModel: Codable {
     
     private init() { }
     
-    var person: PersonModel?
+    lazy var start: Date? = {
+        UserDefaultsManager.widget.dateForSemester
+    }() {
+        didSet {
+            if let start {
+                UserDefaultsManager.widget.dateForSemester = start
+            }
+        }
+    }
     
-    var token: TokenModel?
+    mutating func nowWeek() -> Int? {
+        
+        guard let start else { return nil }
+        
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let days = calendar.dateComponents([.day], from: start, to: Date()).day ?? 0
+        
+        return days / 7 + 1
+    }
+    
+    lazy var person: PersonModel? = {
+        CacheManager.shared.getCodable(PersonModel.self, in: .currentPerson)
+    }() {
+        didSet {
+            if let person {
+                CacheManager.shared.cache(codable: person, in: .currentPerson)
+            }
+        }
+    }
+    
+    lazy var token: TokenModel? = {
+        CacheManager.shared.getCodable(TokenModel.self, in: .token)
+    }() {
+        didSet {
+            if let token {
+                CacheManager.shared.cache(codable: token, in: .token)
+            }
+        }
+    }
     
     lazy var customSchedule: ScheduleModel = {
-        CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: "custom"))
+        CacheManager.shared.getCodable(ScheduleModel.self, in: .customSchedule)
         ?? .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
     }() {
         didSet {
-            CacheManager.shared.cache(codable: customSchedule, in: .schedule(sno: "custom"))
+            CacheManager.shared.cache(codable: customSchedule, in: .customSchedule)
         }
     }
+    
+    
 }

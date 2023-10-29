@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */; };
+		140A70FE2AEE095500680781 /* ConstantsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A70FD2AEE095500680781 /* ConstantsMain.swift */; };
+		140A71002AEE1EEA00680781 /* RYAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A70FF2AEE1EEA00680781 /* RYAgreementView.swift */; };
 		1411F4052AC8FD1E005E0821 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 1411F4042AC8FD1E005E0821 /* FinderTools */; };
 		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
 		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
@@ -117,7 +118,6 @@
 		148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */; };
 		14B46B692ABD7BC20068EB26 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B682ABD7BC20068EB26 /* LoginViewController.swift */; };
 		14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */; };
-		14B46B6D2ABE8D220068EB26 /* BaseAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */; };
 		14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */; };
 		14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B46B722AC127D60068EB26 /* MarkDownViewController.swift */; };
 		14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* Assets.xcassets */; };
@@ -179,7 +179,8 @@
 		069EB06A9F0E97D05D881478 /* Pods-CyxbsWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsWidgetExtension/Pods-CyxbsWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		14076D302AC2950400E2F1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		14076D322AC2950400E2F1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsUIKit.swift; sourceTree = "<group>"; };
+		140A70FD2AEE095500680781 /* ConstantsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsMain.swift; sourceTree = "<group>"; };
+		140A70FF2AEE1EEA00680781 /* RYAgreementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYAgreementView.swift; sourceTree = "<group>"; };
 		1411F4042AC8FD1E005E0821 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
 		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
 		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
@@ -273,7 +274,6 @@
 		148F56992ABBF2CF002FFE8A /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		14B46B682ABD7BC20068EB26 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		14B46B6A2ABDA84C0068EB26 /* BaseTextFiledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextFiledViewController.swift; sourceTree = "<group>"; };
-		14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAgreementView.swift; sourceTree = "<group>"; };
 		14B46B702AC1278A0068EB26 /* 掌上重邮用户协议.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌上重邮用户协议.md"; sourceTree = "<group>"; };
 		14B46B722AC127D60068EB26 /* MarkDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkDownViewController.swift; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				14B46B722AC127D60068EB26 /* MarkDownViewController.swift */,
-				14B46B6C2ABE8D220068EB26 /* BaseAgreementView.swift */,
+				140A70FF2AEE1EEA00680781 /* RYAgreementView.swift */,
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 				14E6D1CA2AC820E4006D7695 /* BaseButton.swift */,
 				141809A52AD10D1D00734569 /* UserModel.swift */,
@@ -706,7 +706,7 @@
 		14E379CA2AC3B7DC002687E6 /* UIKitEX */ = {
 			isa = PBXGroup;
 			children = (
-				14076D482AC295E800E2F1D0 /* ConstantsUIKit.swift */,
+				140A70FD2AEE095500680781 /* ConstantsMain.swift */,
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
@@ -1169,6 +1169,7 @@
 				14E0BB7E2AD9668A00C39889 /* ForgotViewController.swift in Sources */,
 				14622E472AB47CCC00D8D1E1 /* CarnieViewController.swift in Sources */,
 				1418099D2AD008CE00734569 /* CarnieEntryView.swift in Sources */,
+				140A70FE2AEE095500680781 /* ConstantsMain.swift in Sources */,
 				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
 				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
@@ -1187,7 +1188,6 @@
 				141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */,
 				142B50F52AE383240022D463 /* TodoListView.swift in Sources */,
 				14622E2C2AB4295C00D8D1E1 /* PodEX.swift in Sources */,
-				14076D492AC295E800E2F1D0 /* ConstantsUIKit.swift in Sources */,
 				141809A12AD1033F00734569 /* APIConfigEX.swift in Sources */,
 				14622E042AAB57A000D8D1E1 /* ScheduleCollectionViewCell.swift in Sources */,
 				148F56962ABB2789002FFE8A /* ScheduleDetailCollectionViewCell.swift in Sources */,
@@ -1195,6 +1195,7 @@
 				14DFD4442AE00333009EF9F8 /* CyxbsWidgetKind.swift in Sources */,
 				145193A42AD4198900C1BD14 /* ScheduleEditViewController.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
+				140A71002AEE1EEA00680781 /* RYAgreementView.swift in Sources */,
 				1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
@@ -1217,7 +1218,6 @@
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
-				14B46B6D2ABE8D220068EB26 /* BaseAgreementView.swift in Sources */,
 				14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */,
 				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,

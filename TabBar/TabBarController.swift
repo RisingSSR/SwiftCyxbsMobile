@@ -40,7 +40,7 @@ extension TabBarController {
      会判断缓存，没缓存走请求法
      */
     func reloadData() {
-        if let sno = Constants.mainSno,
+        if let sno = UserModel.defualt.token?.stuNum,
            var scheduleModel = CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: sno)) {
 
             let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
@@ -59,7 +59,7 @@ extension TabBarController {
      一般来说不主动掉用
      */
     func request() {
-        if let sno = Constants.mainSno {
+        if let sno = UserModel.defualt.token?.stuNum {
             ScheduleModel.request(sno: sno) { model in
                 if let model {
                     UserDefaultsManager.shared.latestRequestDate = Date()
@@ -76,7 +76,7 @@ extension TabBarController {
      */
     func reloadWith(scheduleModel: ScheduleModel) {
         if scheduleModel.customType == .system {
-            Constants.start = scheduleModel.start
+            UserModel.defualt.start = scheduleModel.start
         }
         
         let calModels = scheduleModel.calModels
@@ -246,7 +246,7 @@ extension TabBarController {
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transitionDelegate
         vc.scheduleVC.requestCallBack = { vc in
-            if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == Constants.mainSno })?.key {
+            if let mainModel = vc.fact.mappy.scheduleModelMap.first(where: { $0.key.sno == UserModel.defualt.token?.stuNum })?.key {
                 self.reloadWith(scheduleModel: mainModel)
                 self.reloadSubControllers()
             }

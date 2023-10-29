@@ -1,92 +1,140 @@
 //
-//  Constants.swift
-//  CyxbsMobile2019_iOS
+//  RYConstants.swift
+//  RYBaseKit
 //
-//  Created by SSR on 2023/9/5.
-//  Copyright © 2023 Redrock. All rights reserved.
+//  Created by SSR on 2023/10/23.
 //
 
-import UIKit
+import Foundation
 
-struct Constants {
+public var Constants = _constants.shared
+
+public struct _constants {
+    
+    public static let shared = _constants()
     
     private init() { }
-    
-    static let widgetGroupID: String = "group.com.mredrock.cyxbs.widget"
-    
 }
 
-extension Constants {
+// MARK: Bundle.main.infoDictionary
+
+public extension _constants {
     
-    static var isPad: Bool {
+    enum BundleInfoKey: String {
+        
+        case name = "CFBundleName" // 应用程序的名称
+        
+        case identifier = "CFBundleIdentifier" // 应用程序的唯一标识符
+        
+        case version = "CFBundleVersion" // 应用程序的版本号
+        
+        case shortVersionString = "CFBundleShortVersionString" // 应用程序的短版本号
+        
+        case executable = "CFBundleExecutable" // 应用程序的可执行文件的名称
+        
+        case developmentRegion = "CFBundleDevelopmentRegion" // 应用程序的开发区域设置
+        
+        case packageType = "CFBundlePackageType" // 应用程序的包类型
+        
+        case signature = "CFBundleSignature" // 应用程序的签名
+        
+        case infoDictionaryVersion = "CFBundleInfoDictionaryVersion" // 信息字典的版本
+        
+        case supportedPlatforms = "CFBundleSupportedPlatforms" // 应用程序支持的平台
+        
+        case applicationCategoryType = "LSApplicationCategoryType" // 应用程序的类别类型
+        
+        case requiredDeviceCapabilities = "UIRequiredDeviceCapabilities" // 应用程序所需的设备功能
+        
+        case supportedInterfaceOrientations = "UISupportedInterfaceOrientations" // 应用程序支持的界面方向
+        
+        case mainStoryboardFile = "NSMainStoryboardFile" // 应用程序的主故事板文件名
+        
+        case principalClass = "NSPrincipalClass" // 应用程序的主要类
+    }
+    
+    func value(for key: BundleInfoKey) -> String? {
+        Bundle.main.infoDictionary?[key.rawValue] as? String
+    }
+}
+
+#if canImport(UIKit)
+import UIKit
+
+public extension _constants {
+    
+    var isPhone: Bool {
+        UIDevice.current.userInterfaceIdiom == .phone
+    }
+    
+    var isPad: Bool {
         UIDevice.current.userInterfaceIdiom == .pad
     }
     
-    static var deviceUUID: String {
-        UIDevice.current.identifierForVendor?.uuidString ?? ""
-    }
-    
-    static var systemName: String {
+    var systemName: String {
         UIDevice.current.systemName
     }
     
-    static var systemVersion: String {
+    var systemVersion: String {
         UIDevice.current.systemVersion
     }
+}
+
+
+#endif
+
+// MARK: ObjectiveC
+
+#if canImport(ObjectiveC)
+import ObjectiveC
+
+public extension _constants {
     
-    static var bundleShortVersion: String? {
-        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    enum AssociationPolicy: UInt {
+    
+        case assign = 0
+        
+        case retain_nonatomic = 1
+        
+        case copy_nonatomic = 3
+        
+        case retain = 769
+        
+        case copy = 771
     }
-}
-
-// MARK: custom
-
-extension Constants {
     
-    /* !!!: 清理缓存
-       若下一个版本需要清理一下以前的缓存信息，则需要设置为true
-     */
-    static let cleanInNextVersion: Bool = true
-}
-
-extension Constants {
-    
-    /// 获得token
-    static var token: String? = {
-        UserDefaultsManager.shared.token
-    }() {
-        didSet {
-            UserDefaultsManager.shared.token = token
+    func setAssociatedObject(_ object: Any, _ key: UnsafeRawPointer, _ value: Any?, _ policy: AssociationPolicy) {
+        guard let objc_policy = objc_AssociationPolicy(rawValue: policy.rawValue) else { return }
+        if #available(iOS 13.0, *) {
+            withUnsafePointer(to: key) {
+                objc_setAssociatedObject(self, $0, value, objc_policy)
+            }
+        } else {
+            objc_setAssociatedObject(self, key, value, objc_policy)
         }
     }
     
-    /// 获得主学号
-    static var mainSno: String? = {
-        UserDefaultsManager.widget.mainStudentSno
-    }() {
-        didSet {
-            UserDefaultsManager.widget.mainStudentSno = mainSno
+    func getAssociatedObject(_ object: Any, _ key: UnsafeRawPointer) -> Any? {
+        if #available(iOS 13.0, *) {
+            withUnsafePointer(to: key) {
+                objc_getAssociatedObject(self, $0)
+            }
+        } else {
+            objc_getAssociatedObject(self, key)
         }
     }
 }
 
-extension Constants {
+#endif
+
+
+// MARK: CYXBS
+
+extension _constants {
     
-    /* 获得开学的时间
-     在 ScheduleModel.nowWeek.didSet 中赋值
-     */
-    static var start: Date? = nil
+    var cleanInNextVersion: Bool { true }
     
-    /* 获取当前周（可负）
-     在设置了 start 过后得到
-     */
-    static var nowWeek: Int? {
-        guard let start = start else { return nil }
-        
-        let calendar = Calendar(identifier: .gregorian)
-        
-        let days = calendar.dateComponents([.day], from: start, to: Date()).day ?? 0
-        
-        return days / 7 + 1
+    var widgetGroupID: String {
+        "group.com.mredrock.cyxbs.widget"
     }
 }

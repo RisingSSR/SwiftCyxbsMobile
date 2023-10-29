@@ -105,4 +105,10 @@ extension UserDefaultsManager {
        set { set(newValue, forKey: "DAYS_OF_ENTRY_CARNIE") }
        get { get(key: "DAYS_OF_ENTRY_CARNIE") as? Int ?? 1 }
     }
+    
+    /// 开学的时间
+    var dateForSemester: Date? {
+        set { set(newValue, forKey: "DATE_FOR_SEMESTER") }
+        get { get(key: "DATE_FOR_SEMESTER") as? Date }
+    }
 }

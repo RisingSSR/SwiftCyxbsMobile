@@ -97,6 +97,8 @@ extension FinderBannerView: JXBannerDataSource {
 extension FinderBannerView: JXBannerDelegate {
     
     func jxBanner(_ banner: JXBannerType, didSelectItemAt index: Int) {
-        
+        let model = models[index]
+        guard let url = URL(string: model.picture_goto_url) else { return }
+        UIApplication.shared.open(url)
     }
 }

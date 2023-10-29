@@ -15,8 +15,10 @@ struct CacheManager {
     private init() {
         print("[document] \(RootPath.document.rawValue)")
         print("[widget] \(RootPath.widget.rawValue)")
-        if !Constants.cleanInNextVersion { return }
-        if let bundleShortVersion = UserDefaultsManager.shared.bundleShortVersion, bundleShortVersion == Constants.bundleShortVersion {
+        guard Constants.cleanInNextVersion,
+            let shortVersionString = Constants.value(for: .shortVersionString)
+            else { return }
+        if let bundleShortVersion = UserDefaultsManager.shared.bundleShortVersion, bundleShortVersion == shortVersionString {
             return
         }
         delete(path: FilePath(rootPath: .document, file: ""))
@@ -26,7 +28,7 @@ struct CacheManager {
             return
         }
         UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
-        UserDefaultsManager.shared.bundleShortVersion = Constants.bundleShortVersion
+        UserDefaultsManager.shared.bundleShortVersion = shortVersionString
     }
 }
 
@@ -214,5 +216,17 @@ extension CacheManager.FilePath {
     
     static var features: Self {
         .init(rootPath: .document, file: "features/cus_sort")
+    }
+    
+    static var customSchedule: Self {
+        .init(rootPath: .widget, file: "schedule/custom")
+    }
+    
+    static var token: Self {
+        .init(rootPath: .widget, file: "user/token")
+    }
+    
+    static var currentPerson: Self {
+        .init(rootPath: .widget, file: "user/person")
     }
 }

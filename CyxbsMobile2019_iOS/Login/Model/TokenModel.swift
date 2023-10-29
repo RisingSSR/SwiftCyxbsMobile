@@ -50,26 +50,7 @@ extension TokenModel {
 
 extension TokenModel {
     
-    func toCache() {
-        if stuNum.count == 0 { return }
-        CacheManager.shared.cache(codable: self, in: .init(rootPath: .widget, file: "token_model"))
-        Constants.mainSno = stuNum
-        Constants.token = token
-        SessionManager.shared.token = token
-        UserDefaultsManager.shared.refreshToken = refreshToken
-        UserModel.defualt.token = self
-    }
-    
-    static var fromCache: Self? {
-        if let tokenModel = CacheManager.shared.getCodable(TokenModel.self, in: .init(rootPath: .widget, file: "token_model")) {
-            return tokenModel
-        }
-        
-        if let token = Constants.token,
-            let refreshToken = UserDefaultsManager.shared.refreshToken {
-            return TokenModel(token: token, refreshToken: refreshToken)
-        }
-        
-        return nil
+    var isTokenExpired: Bool {
+        return exp - Date().timeIntervalSince1970 <= 0
     }
 }

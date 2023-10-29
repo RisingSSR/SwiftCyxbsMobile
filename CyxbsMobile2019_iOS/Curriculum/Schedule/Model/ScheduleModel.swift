@@ -56,7 +56,7 @@ struct ScheduleModel: Codable {
             let start = calendar.date(byAdding: .day, value: -((calculateWeek - 1) * 7 + todayWeekDay - 1), to: currentDate) ?? currentDate
             
             self.start = start
-            Constants.start = start
+            UserModel.defualt.start = start
         }
     }
     
@@ -195,7 +195,7 @@ extension ScheduleModel {
         
         que.async {
             
-            SearchStudentModel.request(info: Constants.mainSno ?? "") { response in
+            SearchStudentModel.request(info: UserModel.defualt.token?.stuNum ?? "") { response in
                 switch response {
                 case .success(let model):
                     scheduleModel.student = model.first
@@ -209,7 +209,7 @@ extension ScheduleModel {
             HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
                 if case .success(let model) = response {
                     scheduleModel.sno = model["stuNum"].stringValue
-                    scheduleModel.nowWeek = Constants.nowWeek ?? 0
+                    scheduleModel.nowWeek = UserModel.defualt.nowWeek() ?? 0
                     if let ary = model["data"].array?.map(CurriculumModel.init(cus:)) {
                         scheduleModel.curriculum = ary
                     }

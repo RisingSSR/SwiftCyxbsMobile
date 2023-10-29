@@ -61,6 +61,7 @@ class ForgotViewController: BaseTextFiledViewController {
             .tint(.white, blendMode: .destinationIn)
             .scaled(toHeight: 20)
         btn.setImage(img, for: .normal)
+        btn.addTarget(self, action: #selector(touchUpInside(backBtn:)), for: .touchUpInside)
         return btn
     }()
     
@@ -216,6 +217,11 @@ extension ForgotViewController {
 // MARK: interactive
 
 extension ForgotViewController {
+    
+    @objc
+    func touchUpInside(backBtn: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
     
     func sendCode() {
         ProgressHUD.show("发送验证码...")
