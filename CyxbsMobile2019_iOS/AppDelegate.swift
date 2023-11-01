@@ -43,7 +43,6 @@ extension AppDelegate {
     }
     
     func setupAlicloudSDK() {
-        AliyunConfig.setup()
         AliyunConfig.ip(byHost: APIConfig.current.environment.host)
     }
     

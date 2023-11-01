@@ -143,21 +143,20 @@ extension LoginViewController {
         HttpManager.shared.magipoke_token(stuNum: snoText, idNum: pwdText).ry_JSON { response in
             switch response {
             case .success(let model):
-                if let status = model["status"].string {
-                    if status == "10000" {
-                        
-                        let token = model["data"]["token"].stringValue
-                        let refreshToken = model["data"]["refreshToken"].stringValue
-                        
-                        UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
-                        
-                        ProgressHUD.showSucceed("登录成功")
-                        
-                        self.checktoutEmailBiding()
-                        
-                    } else { // status == "20004"
-                        ProgressHUD.showError("账号或密码出错")
-                    }
+                let status = model["status"].intValue
+                if status == 10000 {
+                    
+                    let token = model["data"]["token"].stringValue
+                    let refreshToken = model["data"]["refreshToken"].stringValue
+                    
+                    UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
+                    
+                    ProgressHUD.showSucceed("登录成功")
+                    
+                    self.checktoutEmailBiding()
+                    
+                } else { // status == "20004"
+                    ProgressHUD.showError("账号或密码出错")
                 }
                 
             case .failure(_):
@@ -299,24 +298,23 @@ extension LoginViewController {
         
         #endif
         
-        // 没有tokenModel
-        guard let tokenModel = UserModel.defualt.token,
-              
-        // 新版本，需要show; 没读用户协议，需要show
-        let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead,
-              
-        // 颁发时间过半去刷token
-        (Date().timeIntervalSince1970 - tokenModel.iat) <= (tokenModel.exp - tokenModel.iat) / 2 else {
-            
-            afterCallAction(showVC: true, action: action)
-            return
+        if let tokenModel = UserModel.defualt.token {
+            if let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead {
+                if (Date().timeIntervalSince1970 - tokenModel.iat) <= (tokenModel.exp - tokenModel.iat) / 2 {
+                    
+                    afterCallAction(showVC: false, action: action)
+                    return
+                }
+                
+                requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
+                    afterCallAction(showVC: !isSuccess, action: action)
+                    return
+                }
+                return
+            }
         }
         
-        requestNewToken(refreshToken: tokenModel.refreshToken) { isSuccess in
-            
-            afterCallAction(showVC: !isSuccess, action: action)
-            return
-        }
+        afterCallAction(showVC: true, action: action)
     }
     
     static func requestNewToken(refreshToken: String, success: @escaping (Bool) -> ()) {

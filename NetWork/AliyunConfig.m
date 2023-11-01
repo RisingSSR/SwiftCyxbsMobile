@@ -9,23 +9,27 @@
 #import "AliyunConfig.h"
 #import <AlicloudHttpDNS/AlicloudHttpDNS.h>
 
+static HttpDnsService *httpdns = nil;
+
 @implementation AliyunConfig
 
-+ (void)setup {
-    HttpDnsService *httpdns = [[HttpDnsService alloc] autoInit];
-#if DEBUG
-    [httpdns setLogEnabled:YES];
-#endif
-    [httpdns setExpiredIPEnabled:YES];
-    [httpdns setPreResolveHosts:@[
-        @"redrock.cqupt.edu.cn"
-    ]];
++ (NSString *)ipByHost:(NSString *)host {
+    NSString *res = [[AliyunConfig getHttpDNS] getIpByHostAsyncInURLFormat:host];
+    return res;
 }
 
-+ (NSString *)ipByHost:(NSString *)host {
-    HttpDnsService *httpdns = HttpDnsService.sharedInstance;
-    NSString *res = [httpdns getIpByHostAsyncInURLFormat:host];
-    return res;
++ (HttpDnsService *)getHttpDNS {
+    if (httpdns == nil) {
+        httpdns = [[HttpDnsService alloc] autoInit];
+#if DEBUG
+        [httpdns setLogEnabled:YES];
+#endif
+        [httpdns setExpiredIPEnabled:YES];
+        [httpdns setPreResolveHosts:@[
+            @"redrock.cqupt.edu.cn"
+        ]];
+    }
+    return httpdns;
 }
 
 @end

@@ -13,8 +13,9 @@ extension APIConfig {
     func api(_ api: String) -> String {
         
         // IP 直连
-        if let ip = AliyunConfig.ip(byHost: environment.host) {
-            ipToHost[ip] = environment.host
+        let host = environment.host
+        if let ip = AliyunConfig.ip(byHost: host) {
+            ipToHost[ip] = host
             return "https://" + ip + api
         }
         

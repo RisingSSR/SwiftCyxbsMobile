@@ -102,6 +102,8 @@ extension ScheduleModel {
                     if let scheduleModel {
                         modelAry.append(scheduleModel)
                     }
+                    
+                    semaphore.signal()
                 }
             }
         }
@@ -144,7 +146,7 @@ extension ScheduleModel {
             }
             
             HttpManager.shared.magipoke_jwzx_kebiao(stu_num: sno).ry_JSON { response in
-                if case .success(let json) = response, json["status"].intValue == 10000 {
+                if case .success(let json) = response, json["status"].intValue == 200 {
                     requsetKebiao = true
                     scheduleModel.sno = json["stuNum"].stringValue
                     scheduleModel.nowWeek = json["nowWeek"].intValue

@@ -14,6 +14,39 @@ struct UserModel: Codable {
     
     private init() { }
     
+    // token
+    lazy var token: TokenModel? = {
+        CacheManager.shared.getCodable(TokenModel.self, in: .token)
+    }() {
+        didSet {
+            if let token {
+                CacheManager.shared.cache(codable: token, in: .token)
+                SessionManager.shared.token = token.token
+            }
+        }
+    }
+    
+    // person
+    lazy var person: PersonModel? = {
+        CacheManager.shared.getCodable(PersonModel.self, in: .currentPerson)
+    }() {
+        didSet {
+            if let person {
+                CacheManager.shared.cache(codable: person, in: .currentPerson)
+            }
+        }
+    }
+    
+    // custom
+    lazy var customSchedule: ScheduleModel = {
+        CacheManager.shared.getCodable(ScheduleModel.self, in: .customSchedule)
+        ?? .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
+    }() {
+        didSet {
+            CacheManager.shared.cache(codable: customSchedule, in: .customSchedule)
+        }
+    }
+    
     lazy var start: Date? = {
         UserDefaultsManager.widget.dateForSemester
     }() {
@@ -34,35 +67,4 @@ struct UserModel: Codable {
         
         return days / 7 + 1
     }
-    
-    lazy var person: PersonModel? = {
-        CacheManager.shared.getCodable(PersonModel.self, in: .currentPerson)
-    }() {
-        didSet {
-            if let person {
-                CacheManager.shared.cache(codable: person, in: .currentPerson)
-            }
-        }
-    }
-    
-    lazy var token: TokenModel? = {
-        CacheManager.shared.getCodable(TokenModel.self, in: .token)
-    }() {
-        didSet {
-            if let token {
-                CacheManager.shared.cache(codable: token, in: .token)
-            }
-        }
-    }
-    
-    lazy var customSchedule: ScheduleModel = {
-        CacheManager.shared.getCodable(ScheduleModel.self, in: .customSchedule)
-        ?? .init(sno: token?.stuNum ?? "临时学生", customType: .custom)
-    }() {
-        didSet {
-            CacheManager.shared.cache(codable: customSchedule, in: .customSchedule)
-        }
-    }
-    
-    
 }

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		140A70FE2AEE095500680781 /* ConstantsMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A70FD2AEE095500680781 /* ConstantsMain.swift */; };
 		140A71002AEE1EEA00680781 /* RYAgreementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A70FF2AEE1EEA00680781 /* RYAgreementView.swift */; };
+		140A71022AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71012AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift */; };
+		140A712F2AF12EB200680781 /* GiveMeJSModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A712E2AF12EB200680781 /* GiveMeJSModel.swift */; };
+		140A71312AF12EBF00680781 /* GiveMeJSFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71302AF12EBF00680781 /* GiveMeJSFilter.swift */; };
+		140A71332AF12F6D00680781 /* GiveMeJSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */; };
+		140A71372AF1F8AD00680781 /* GiveMeJSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71362AF1F8AD00680781 /* GiveMeJSView.swift */; };
+		140A71392AF2295900680781 /* GiveMeJSHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */; };
 		1411F4052AC8FD1E005E0821 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 1411F4042AC8FD1E005E0821 /* FinderTools */; };
 		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
 		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
@@ -181,6 +187,12 @@
 		14076D322AC2950400E2F1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		140A70FD2AEE095500680781 /* ConstantsMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsMain.swift; sourceTree = "<group>"; };
 		140A70FF2AEE1EEA00680781 /* RYAgreementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYAgreementView.swift; sourceTree = "<group>"; };
+		140A71012AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsSegmentedIndicatorLineView.swift; sourceTree = "<group>"; };
+		140A712E2AF12EB200680781 /* GiveMeJSModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSModel.swift; sourceTree = "<group>"; };
+		140A71302AF12EBF00680781 /* GiveMeJSFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSFilter.swift; sourceTree = "<group>"; };
+		140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSViewController.swift; sourceTree = "<group>"; };
+		140A71362AF1F8AD00680781 /* GiveMeJSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSView.swift; sourceTree = "<group>"; };
+		140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSHeaderView.swift; sourceTree = "<group>"; };
 		1411F4042AC8FD1E005E0821 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
 		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
 		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
@@ -347,6 +359,50 @@
 				141809A52AD10D1D00734569 /* UserModel.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		140A712B2AF12EA000680781 /* GiveMeJS */ = {
+			isa = PBXGroup;
+			children = (
+				140A71352AF1F87E00680781 /* ViewController */,
+				140A71342AF1F87E00680781 /* View */,
+				140A712D2AF12EA000680781 /* Filter */,
+				140A712C2AF12EA000680781 /* Model */,
+			);
+			path = GiveMeJS;
+			sourceTree = "<group>";
+		};
+		140A712C2AF12EA000680781 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				140A712E2AF12EB200680781 /* GiveMeJSModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		140A712D2AF12EA000680781 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				140A71302AF12EBF00680781 /* GiveMeJSFilter.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		140A71342AF1F87E00680781 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */,
+				140A71362AF1F8AD00680781 /* GiveMeJSView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		140A71352AF1F87E00680781 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		1411F4082ACA62F2005E0821 /* Banner */ = {
@@ -710,6 +766,7 @@
 				14622DD12AA70C8800D8D1E1 /* UIButton+Cyxbs.swift */,
 				14622DFD2AA9FB8D00D8D1E1 /* UIView+Cyxbs.swift */,
 				14622E2B2AB4295C00D8D1E1 /* PodEX.swift */,
+				140A71012AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift */,
 				141A6D852AC517DE004BD3BC /* UIAlterControllerFast.swift */,
 			);
 			path = UIKitEX;
@@ -761,6 +818,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				140A712B2AF12EA000680781 /* GiveMeJS */,
 				14622DC72AA6DC7400D8D1E1 /* Finder */,
 				14622E422AB47C3D00D8D1E1 /* Carnie */,
 				14622DC62AA6DC7400D8D1E1 /* Mine */,
@@ -1175,6 +1233,7 @@
 				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
 				142B50EE2AE37DFF0022D463 /* QuickFeaturesView.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
+				140A71372AF1F8AD00680781 /* GiveMeJSView.swift in Sources */,
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				145193B12AD7977300C1BD14 /* EmailBidingViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
@@ -1183,6 +1242,7 @@
 				141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */,
 				14622E242AB2AB5600D8D1E1 /* ScheduleInteractionFact.swift in Sources */,
 				14622E0C2AAEEA7F00D8D1E1 /* ScheduleCollectionViewLayout.swift in Sources */,
+				140A71332AF12F6D00680781 /* GiveMeJSViewController.swift in Sources */,
 				14622DB22AA5ED1D00D8D1E1 /* UIColor+Theme.swift in Sources */,
 				14622DBD2AA6BF0100D8D1E1 /* SessionManager.swift in Sources */,
 				141A6D842AC4641B004BD3BC /* TokenModel.swift in Sources */,
@@ -1195,11 +1255,14 @@
 				14DFD4442AE00333009EF9F8 /* CyxbsWidgetKind.swift in Sources */,
 				145193A42AD4198900C1BD14 /* ScheduleEditViewController.swift in Sources */,
 				14622DDD2AA8411D00D8D1E1 /* SearchStudentModel.swift in Sources */,
+				140A71392AF2295900680781 /* GiveMeJSHeaderView.swift in Sources */,
 				140A71002AEE1EEA00680781 /* RYAgreementView.swift in Sources */,
 				1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */,
 				143F701A2AA165C10048E264 /* AppDelegate.swift in Sources */,
 				14622E4D2AB7E3ED00D8D1E1 /* TabBarPresentationViewController.swift in Sources */,
 				14622E4B2AB48B3E00D8D1E1 /* FinderHeaderView.swift in Sources */,
+				140A71312AF12EBF00680781 /* GiveMeJSFilter.swift in Sources */,
+				140A71022AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
@@ -1219,6 +1282,7 @@
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
 				14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */,
+				140A712F2AF12EB200680781 /* GiveMeJSModel.swift in Sources */,
 				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,

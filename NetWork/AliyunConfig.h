@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AliyunConfig : NSObject
 
-+ (void)setup;
-
 + (nullable NSString *)ipByHost:(nonnull NSString *)host;
 
 @end

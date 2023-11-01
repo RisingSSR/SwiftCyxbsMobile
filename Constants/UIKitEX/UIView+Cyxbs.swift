@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension NSCoding {
+    
+    var copyByKeyedArchiver: Self? {
+        let archiver = NSKeyedArchiver(requiringSecureCoding: false)
+        archiver.encode(self, forKey: "ry_copyed")
+        let data = archiver.encodedData
+        let unArchiver = try? NSKeyedUnarchiver(forReadingFrom: data)
+        unArchiver?.requiresSecureCoding = false
+        return unArchiver?.decodeObject(forKey: "ry_copyed") as? Self
+    }
+}
+
 private weak var ssr_currentFirstResponder: AnyObject?
 
 extension UIResponder {
@@ -48,15 +60,6 @@ extension UIResponder {
 extension UIView {
     
     static var identifier: String { "CyxbsMobile2019_iOS.\(self)" }
-    
-    var copyByKeyedArchiver: UIView? {
-        let archiver = NSKeyedArchiver(requiringSecureCoding: false)
-        archiver.encode(self, forKey: "view")
-        let data = archiver.encodedData
-        let unArchiver = try? NSKeyedUnarchiver(forReadingFrom: data)
-        unArchiver?.requiresSecureCoding = false
-        return unArchiver?.decodeObject(forKey: "view") as? UIView
-    }
 }
 
 extension UIScrollView {
