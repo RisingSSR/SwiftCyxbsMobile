@@ -276,5 +276,13 @@ extension HttpManager {
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-todo/list"), method: .get)
     }
     
-    //
+    /// 查询电表
+    @discardableResult
+    func magipoke_elecquery_getElectric(building: String, room: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "building": building,
+            "room": room
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-elecquery/getElectric"), method: .post, parameters: parameters, headers: [.xxx_form_urlencoded])
+    }
 }

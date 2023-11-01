@@ -104,6 +104,10 @@ extension HTTPHeader {
     static func appViersion(_ value: String) -> HTTPHeader {
         HTTPHeader(name: "App-Version", value: value)
     }
+    
+    static var xxx_form_urlencoded: HTTPHeader {
+        .contentType("application/x-www-form-urlencoded")
+    }
 }
 
 // MARK: DataRequest
