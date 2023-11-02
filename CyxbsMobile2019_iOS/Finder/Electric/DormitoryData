@@ -1,0 +1,192 @@
+//
+//  DormitoryData.swift
+//  CyxbsMobile2019_iOS
+//
+//  Created by 白鑫 on 2023/11/2.
+//  Copyright © 2023 Redrock. All rights reserved.
+//
+
+[
+    {
+      "name":"知行苑",
+      "buidings": [
+        {
+          "name": "1栋",
+          "building_id": "1"
+        },
+        {
+          "name": "2栋",
+          "building_id": "2"
+        },
+        {
+          "name": "3栋",
+          "building_id": "3"
+        },
+        {
+          "name": "4栋",
+          "building_id": "4"
+        },
+        {
+          "name": "5栋",
+          "building_id": "5"
+        },
+        {
+          "name": "6栋",
+          "building_id": "6"
+        },
+        {
+          "name": "7栋",
+          "building_id": "15"
+        },
+        {
+          "name": "8栋",
+          "building_id": "16"
+        }
+      ]
+    },
+    
+     {
+      "name":"兴业苑",
+      "buidings": [
+        {
+          "name": "1栋",
+          "building_id": "17"
+        },
+        {
+          "name": "2栋",
+          "building_id": "18"
+        },
+        {
+          "name": "3栋",
+          "building_id": "19"
+        },
+        {
+          "name": "4栋",
+          "building_id": "20"
+        },
+        {
+          "name": "5栋",
+          "building_id": "21"
+        },
+        {
+          "name": "6栋",
+          "building_id": "22"
+        },
+        {
+          "name": "7栋",
+          "building_id": "23A"
+        },
+        {
+          "name": "8栋",
+          "building_id": "23B"
+        }
+      ]
+    },
+    
+     {
+      "name":"四海苑",
+      "buidings": [
+        {
+          "name": "1栋",
+          "building_id": "36"
+        },
+        {
+          "name": "2栋",
+          "building_id": "37"
+        }
+      ]
+    },
+    
+     {
+      "name":"宁静苑",
+      "buidings": [
+        {
+          "name": "1栋",
+          "building_id": "8"
+        },
+        {
+          "name": "2栋",
+          "building_id": "9"
+        },
+        {
+          "name": "3栋",
+          "building_id": "10"
+        },
+        {
+          "name": "4栋",
+          "building_id": "11"
+        },
+        {
+          "name": "5栋",
+          "building_id": "12"
+        },
+        {
+          "name": "6栋",
+          "building_id": "32"
+        },
+        {
+          "name": "7栋",
+          "building_id": "33"
+        },
+        {
+          "name": "8栋",
+          "building_id": "34"
+        },
+        {
+          "name": "9栋",
+          "building_id": "35"
+        },
+        {
+          "name": "10栋",
+          "building_id": "40"
+        }
+    
+      ]
+    },
+    
+     {
+      "name":"明理苑",
+      "buidings": [
+        {
+          "name": "1栋",
+          "building_id": "24"
+        },
+        {
+          "name": "2栋",
+          "building_id": "25"
+        },
+        {
+          "name": "3栋",
+          "building_id": "26"
+        },
+        {
+          "name": "4栋",
+          "building_id": "27"
+        },
+        {
+          "name": "5栋",
+          "building_id": "28"
+        },
+        {
+          "name": "6栋",
+          "building_id": "29"
+        },
+        {
+          "name": "7栋",
+          "building_id": "30"
+        },
+        {
+          "name": "8栋",
+          "building_id": "31"
+        },
+        {
+          "name": "9栋",
+          "building_id": "39"
+        }
+    
+      ]
+    }
+    
+   
+  ]
+
