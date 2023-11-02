@@ -15,6 +15,7 @@
 		140A71332AF12F6D00680781 /* GiveMeJSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */; };
 		140A71372AF1F8AD00680781 /* GiveMeJSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71362AF1F8AD00680781 /* GiveMeJSView.swift */; };
 		140A71392AF2295900680781 /* GiveMeJSHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */; };
+		140A713B2AF33BD600680781 /* DormitoryData in Resources */ = {isa = PBXBuildFile; fileRef = 140A713A2AF33BD600680781 /* DormitoryData */; };
 		1411F4052AC8FD1E005E0821 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 1411F4042AC8FD1E005E0821 /* FinderTools */; };
 		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
 		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
@@ -144,7 +145,6 @@
 		EF04316F2AF284F30035F54B /* FinderElectricChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04316E2AF284F30035F54B /* FinderElectricChargeView.swift */; };
 		EF0431712AF285940035F54B /* FinderElectricChargeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */; };
 		EF0431732AF285DB0035F54B /* FinderElectricChargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */; };
-		EFD0B3AA2AF31D9F00F6D403 /* DormitoryData in Sources */ = {isa = PBXBuildFile; fileRef = EFD0B3A92AF31D9F00F6D403 /* DormitoryData */; };
 		EFD0B3AC2AF31F0700F6D403 /* DormitoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +198,7 @@
 		140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSViewController.swift; sourceTree = "<group>"; };
 		140A71362AF1F8AD00680781 /* GiveMeJSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSView.swift; sourceTree = "<group>"; };
 		140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSHeaderView.swift; sourceTree = "<group>"; };
+		140A713A2AF33BD600680781 /* DormitoryData */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DormitoryData; sourceTree = "<group>"; };
 		1411F4042AC8FD1E005E0821 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
 		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
 		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
@@ -317,7 +318,6 @@
 		EF04316E2AF284F30035F54B /* FinderElectricChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeView.swift; sourceTree = "<group>"; };
 		EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeViewModel.swift; sourceTree = "<group>"; };
 		EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeModel.swift; sourceTree = "<group>"; };
-		EFD0B3A92AF31D9F00F6D403 /* DormitoryData */ = {isa = PBXFileReference; lastKnownFileType = text; path = DormitoryData; sourceTree = "<group>"; };
 		EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DormitoryModel.swift; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -901,7 +901,7 @@
 				EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */,
 				EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */,
 				EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */,
-				EFD0B3A92AF31D9F00F6D403 /* DormitoryData */,
+				140A713A2AF33BD600680781 /* DormitoryData */,
 			);
 			path = Electric;
 			sourceTree = "<group>";
@@ -1070,6 +1070,7 @@
 				1411F4052AC8FD1E005E0821 /* FinderTools in Resources */,
 				14B73F27281BE6C200D08ADD /* Assets.xcassets in Resources */,
 				14622DC32AA6CF4E00D8D1E1 /* LaunchScreen.storyboard in Resources */,
+				140A713B2AF33BD600680781 /* DormitoryData in Resources */,
 				14B46B712AC1278A0068EB26 /* 掌上重邮用户协议.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1290,7 +1291,6 @@
 				140A71022AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */,
-				EFD0B3AA2AF31D9F00F6D403 /* DormitoryData in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
 				14F948852ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,

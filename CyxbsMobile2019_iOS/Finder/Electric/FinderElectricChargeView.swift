@@ -13,35 +13,17 @@ import SnapKit
 import SwiftyJSON
 
 class FinderElectricChargeView: UIView{
-    
    
     var viewModel: FinderElectricChargeViewModel!
     private let disposeBag = DisposeBag()
     
-    private(set) lazy var dormitories: [Dormitory] = getDormitory
-    
-    var getDormitory: [Dormitory] {
-        print("获取寝室数据")
-        if let cache = CacheManager.shared.getCodable([Dormitory].self, in: .dormitory) {
-            return cache
-        }
-        print("无缓存")
-        if let fromBundle = CacheManager.shared.getCodable([Dormitory].self, in: .dormitoryFromBundle) {
-            CacheManager.shared.cache(codable: fromBundle, in: .dormitory)
-            return fromBundle
-        }
-        print("无存储")
-        return []
-    }
-    
-    
-   
-    
-    
+    lazy var dormitories: [Dormitory] = {
+        CacheManager.shared.getCodable([Dormitory].self, in: .dormitoryFromBundle)
+        ?? []
+    }()
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        print("点击picker")
-        
+  
         
         let alert = UIAlertController(title: "寝室选择测试", message: "\n\n\n\n\n\n", preferredStyle: .alert)
         let pickerFrame = UIPickerView(frame: CGRect(x: 5, y: 20, width: 250, height: 140))
@@ -222,35 +204,37 @@ class FinderElectricChargeView: UIView{
         return lab
     }()
     
-   
-    
-    
-    
-    
-    
-    
 }
 
 
-extension FinderElectricChargeView:  UIPickerViewDataSource, UIPickerViewDelegate{
-    
-    
+extension FinderElectricChargeView: UIPickerViewDataSource {
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
+        return 2
+    }
 
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return self.dormitories.flatMap { $0.buildings }.count
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return dormitories.count
+        } else {
+            return dormitories[component].buildings.count
         }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return dormitories[row].name
+        } else {
+            return dormitories[component].buildings[row].name
+        }
+    }
+}
 
+extension FinderElectricChargeView: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedBuildingId = self.dormitories.flatMap { $0.buildings }[row].building_id
         
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return self.dormitories.flatMap { $0.buildings }[row].name
-        }
-
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            let selectedBuildingId = self.dormitories.flatMap { $0.buildings }[row].building_id
-            
-            // self.viewModel.buildingId = selectedBuildingId
-        }
+        // self.viewModel.buildingId = selectedBuildingId
+    }
 }

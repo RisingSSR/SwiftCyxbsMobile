@@ -7,12 +7,17 @@
 //
 
 import Foundation
-struct Dormitory: Codable {
-    let name: String
-    let buildings: [Building]
-}
 
-struct Building: Codable {
+struct Dormitory: Codable {
+    
+    struct Building: Codable {
+        
+        let name: String
+        
+        let building_id: String
+    }
+    
     let name: String
-    let building_id: String
+    
+    let buildings: [Building]
 }
