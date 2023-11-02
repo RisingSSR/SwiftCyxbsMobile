@@ -130,7 +130,7 @@ SPEC REPOS:
     - AlicloudUTDID
     - AlicloudUtils
     - EMASRest
-  https://github.com/CocoaPods/specs:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Bugly
     - JXBanner
@@ -190,4 +190,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ab1b5f79508bc8ef252b844da46daebb03ec00cf
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.12.1
