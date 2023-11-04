@@ -12,13 +12,26 @@ class GiveMeJSView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        addSubview(titleLab)
+        addSubview(titleTextField)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var titleLab: UILabel = {
+        let lab = createTitleStyleLab(title: "标题")
+        lab.frame.origin = CGPoint(x: 15, y: 5)
+        return lab
+    }()
+    
+    lazy var titleTextField: UITextField = {
+        let textField = createTextField(placeholder: "设置标题区别你的JS用途")
+        textField.frame.size.width = bounds.width - titleLab.frame.maxX - 30
+        textField.frame.origin.x = titleLab.frame.maxX + 15
+        return textField
+    }()
 }
 
 extension GiveMeJSView {
@@ -47,10 +60,10 @@ extension GiveMeJSView {
     }
     
     func createTextField(placeholder: String?, leftSpace: CGFloat = 16) -> UITextField {
-        let textField = UITextField(frame: CGRect(x: leftSpace, y: 0, width: bounds.width - 2 * leftSpace, height: 50))
-        textField.layer.cornerRadius = 15
+        let textField = UITextField(frame: CGRect(x: leftSpace, y: 0, width: bounds.width - 2 * leftSpace, height: 24))
+        textField.layer.cornerRadius = 5
         textField.backgroundColor = .ry(light: "#F2F3F7", dark: "#2D2D2D")
-        textField.font = .systemFont(ofSize: 18, weight: .semibold)
+        textField.font = .systemFont(ofSize: 14, weight: .semibold)
         textField.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
         textField.placeholder = placeholder
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: 0))

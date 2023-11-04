@@ -15,6 +15,7 @@
 		140A71332AF12F6D00680781 /* GiveMeJSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */; };
 		140A71372AF1F8AD00680781 /* GiveMeJSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71362AF1F8AD00680781 /* GiveMeJSView.swift */; };
 		140A71392AF2295900680781 /* GiveMeJSHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */; };
+		140A713D2AF3D87600680781 /* BaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140A713C2AF3D87600680781 /* BaseHeaderView.swift */; };
 		1411F4052AC8FD1E005E0821 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 1411F4042AC8FD1E005E0821 /* FinderTools */; };
 		1411F4072ACA3343005E0821 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F4062ACA3343005E0821 /* FinderNewsView.swift */; };
 		1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */; };
@@ -193,6 +194,7 @@
 		140A71322AF12F6D00680781 /* GiveMeJSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSViewController.swift; sourceTree = "<group>"; };
 		140A71362AF1F8AD00680781 /* GiveMeJSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSView.swift; sourceTree = "<group>"; };
 		140A71382AF2295900680781 /* GiveMeJSHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveMeJSHeaderView.swift; sourceTree = "<group>"; };
+		140A713C2AF3D87600680781 /* BaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHeaderView.swift; sourceTree = "<group>"; };
 		1411F4042AC8FD1E005E0821 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
 		1411F4062ACA3343005E0821 /* FinderNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
 		1411F40A2ACA6327005E0821 /* FinderNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 				14E6D1CA2AC820E4006D7695 /* BaseButton.swift */,
 				141809A52AD10D1D00734569 /* UserModel.swift */,
+				140A713C2AF3D87600680781 /* BaseHeaderView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1237,6 +1240,7 @@
 				14B46B732AC127D60068EB26 /* MarkDownViewController.swift in Sources */,
 				145193B12AD7977300C1BD14 /* EmailBidingViewController.swift in Sources */,
 				14622DD22AA70C8800D8D1E1 /* UIButton+Cyxbs.swift in Sources */,
+				140A713D2AF3D87600680781 /* BaseHeaderView.swift in Sources */,
 				145193AB2AD63A2700C1BD14 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
 				143F70312AA4B9AE0048E264 /* TabBarHeaderView.swift in Sources */,
 				141A6D862AC517DE004BD3BC /* UIAlterControllerFast.swift in Sources */,
