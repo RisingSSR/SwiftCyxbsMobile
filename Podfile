@@ -45,6 +45,9 @@ target 'CyxbsMobile2019_iOS' do
   
   pod 'RYTransitioningDelegateSwift'
   pod 'RYAngelWalker'
+  pod 'RxSwift', '6.6.0'
+  pod 'RxCocoa', '6.6.0'
+  pod 'SnapKit', '~> 5.6.0'
 
 end
 
