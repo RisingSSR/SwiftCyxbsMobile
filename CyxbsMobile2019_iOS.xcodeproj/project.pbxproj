@@ -141,6 +141,14 @@
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		AF384D00E7E0D2E22EE4A767 /* Pods_CyxbsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701221C72D1D0714CBC99B62 /* Pods_CyxbsWidgetExtension.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
+		EF0248012AF8859900EBFF5C /* DormitoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0248002AF8859900EBFF5C /* DormitoryPickerView.swift */; };
+		EF0248032AF8B6A000EBFF5C /* BaseToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0248022AF8B6A000EBFF5C /* BaseToast.swift */; };
+		EF04316F2AF284F30035F54B /* FinderElectricChargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF04316E2AF284F30035F54B /* FinderElectricChargeView.swift */; };
+		EF0431712AF285940035F54B /* FinderElectricChargeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */; };
+		EF0431732AF285DB0035F54B /* FinderElectricChargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */; };
+		EFD0B3AA2AF31D9F00F6D403 /* DormitoryData in Sources */ = {isa = PBXBuildFile; fileRef = EFD0B3A92AF31D9F00F6D403 /* DormitoryData */; };
+		EFD0B3AC2AF31F0700F6D403 /* DormitoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */; };
+		EFD0B3AD2AF37AA800F6D403 /* DormitoryData in Resources */ = {isa = PBXBuildFile; fileRef = EFD0B3A92AF31D9F00F6D403 /* DormitoryData */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +317,13 @@
 		AA0DEF692668C88D00284112 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; usesTabs = 0; };
 		D09081D923F4571B00D5342D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上重邮.entitlements"; sourceTree = "<group>"; };
+		EF0248002AF8859900EBFF5C /* DormitoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DormitoryPickerView.swift; sourceTree = "<group>"; };
+		EF0248022AF8B6A000EBFF5C /* BaseToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseToast.swift; sourceTree = "<group>"; };
+		EF04316E2AF284F30035F54B /* FinderElectricChargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeView.swift; sourceTree = "<group>"; };
+		EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeViewModel.swift; sourceTree = "<group>"; };
+		EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderElectricChargeModel.swift; sourceTree = "<group>"; };
+		EFD0B3A92AF31D9F00F6D403 /* DormitoryData */ = {isa = PBXFileReference; lastKnownFileType = text; path = DormitoryData; sourceTree = "<group>"; };
+		EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DormitoryModel.swift; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,6 +372,7 @@
 				14622E4E2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift */,
 				14E6D1CA2AC820E4006D7695 /* BaseButton.swift */,
 				141809A52AD10D1D00734569 /* UserModel.swift */,
+				EF0248022AF8B6A000EBFF5C /* BaseToast.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -577,6 +593,7 @@
 		14622DC72AA6DC7400D8D1E1 /* Finder */ = {
 			isa = PBXGroup;
 			children = (
+				EF04316D2AF284C60035F54B /* Electric */,
 				14622DC92AA6DC7400D8D1E1 /* ViewController */,
 				14622DC82AA6DC7400D8D1E1 /* Header */,
 				1411F4082ACA62F2005E0821 /* Banner */,
@@ -883,6 +900,19 @@
 			name = Introduction;
 			sourceTree = "<group>";
 		};
+		EF04316D2AF284C60035F54B /* Electric */ = {
+			isa = PBXGroup;
+			children = (
+				EF04316E2AF284F30035F54B /* FinderElectricChargeView.swift */,
+				EF0431702AF285940035F54B /* FinderElectricChargeViewModel.swift */,
+				EF0431722AF285DB0035F54B /* FinderElectricChargeModel.swift */,
+				EFD0B3AB2AF31F0700F6D403 /* DormitoryModel.swift */,
+				EF0248002AF8859900EBFF5C /* DormitoryPickerView.swift */,
+				EFD0B3A92AF31D9F00F6D403 /* DormitoryData */,
+			);
+			path = Electric;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1042,6 +1072,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD0B3AD2AF37AA800F6D403 /* DormitoryData in Resources */,
 				14622E1E2AB1F15D00D8D1E1 /* AliyunEmasServices-Info.plist in Resources */,
 				142B50F02AE37FF80022D463 /* QuickFeatures in Resources */,
 				1411F4052AC8FD1E005E0821 /* FinderTools in Resources */,
@@ -1220,6 +1251,7 @@
 				1411F40B2ACA6327005E0821 /* FinderNewsModel.swift in Sources */,
 				14622E932AB83F7800D8D1E1 /* ScheduleHeaderView.swift in Sources */,
 				142B50F72AE55FAF0022D463 /* UNManager.swift in Sources */,
+				EF04316F2AF284F30035F54B /* FinderElectricChargeView.swift in Sources */,
 				14622DCD2AA6DDFC00D8D1E1 /* UITabBarItem+TabBar.swift in Sources */,
 				1418099F2AD0F20300734569 /* CarnieHeaderView.swift in Sources */,
 				142B50F22AE3803B0022D463 /* QuickFeaturesModel.swift in Sources */,
@@ -1229,7 +1261,9 @@
 				1418099D2AD008CE00734569 /* CarnieEntryView.swift in Sources */,
 				140A70FE2AEE095500680781 /* ConstantsMain.swift in Sources */,
 				14F948812ACA76F300B2C260 /* FinderToolsView.swift in Sources */,
+				EF0248012AF8859900EBFF5C /* DormitoryPickerView.swift in Sources */,
 				14622DC12AA6C8C100D8D1E1 /* APIConfig.swift in Sources */,
+				EF0431732AF285DB0035F54B /* FinderElectricChargeModel.swift in Sources */,
 				141809A42AD1060100734569 /* PersonModel.swift in Sources */,
 				142B50EE2AE37DFF0022D463 /* QuickFeaturesView.swift in Sources */,
 				14622DCB2AA6DC9100D8D1E1 /* FinderViewController.swift in Sources */,
@@ -1265,6 +1299,7 @@
 				140A71022AEE753200680781 /* CyxbsSegmentedIndicatorLineView.swift in Sources */,
 				14622DE72AA8569C00D8D1E1 /* ScheduleCalModel.swift in Sources */,
 				14B46B6B2ABDA84C0068EB26 /* BaseTextFiledViewController.swift in Sources */,
+				EFD0B3AA2AF31D9F00F6D403 /* DormitoryData in Sources */,
 				148F568D2ABAD13C002FFE8A /* ScheduleSelectSectionHeaderView.swift in Sources */,
 				14F948852ACBC76800B2C260 /* FinderToolsCollectionViewCell.swift in Sources */,
 				14622DBF2AA6C3C900D8D1E1 /* HttpManager.swift in Sources */,
@@ -1281,8 +1316,11 @@
 				14622E4F2AB81EE500D8D1E1 /* PlaceholderCollectionViewCell.swift in Sources */,
 				148F56922ABB26F1002FFE8A /* ScheduleDetailsViewController.swift in Sources */,
 				148F569A2ABBF2CF002FFE8A /* UIImageExtensions.swift in Sources */,
+				EFD0B3AC2AF31F0700F6D403 /* DormitoryModel.swift in Sources */,
 				14E6D1CC2AC8245D006D7695 /* ScheduleDataFetch.swift in Sources */,
+				EF0431712AF285940035F54B /* FinderElectricChargeViewModel.swift in Sources */,
 				140A712F2AF12EB200680781 /* GiveMeJSModel.swift in Sources */,
+				EF0248032AF8B6A000EBFF5C /* BaseToast.swift in Sources */,
 				14E37A082AC3FB82002687E6 /* ScheduleDrawType.swift in Sources */,
 				1472633A2ABA867000FB9739 /* MineViewController.swift in Sources */,
 				14622E222AB2850900D8D1E1 /* AliyunConfig.m in Sources */,

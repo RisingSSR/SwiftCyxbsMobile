@@ -57,11 +57,18 @@ PODS:
   - MarkdownKit (1.7.1)
   - MJRefresh (3.7.5)
   - ProgressHUD (13.7.2)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
   - RYAngelWalker (0.1.0)
   - RYTransitioningDelegateSwift (0.2.0)
   - SDWebImage (5.18.2):
     - SDWebImage/Core (= 5.18.2)
   - SDWebImage/Core (5.18.2)
+  - SnapKit (5.6.0)
   - SwiftyJSON (5.0.1)
   - TagListView (1.4.1)
   - UMCCommonLog (2.0.2)
@@ -100,9 +107,12 @@ DEPENDENCIES:
   - MarkdownKit
   - MJRefresh
   - ProgressHUD
+  - RxCocoa (= 6.6.0)
+  - RxSwift (= 6.6.0)
   - RYAngelWalker
   - RYTransitioningDelegateSwift
   - SDWebImage
+  - SnapKit (~> 5.6.0)
   - SwiftyJSON
   - TagListView
   - UMCCommonLog
@@ -120,7 +130,7 @@ SPEC REPOS:
     - AlicloudUTDID
     - AlicloudUtils
     - EMASRest
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/specs:
     - Alamofire
     - Bugly
     - JXBanner
@@ -131,9 +141,13 @@ SPEC REPOS:
     - MarkdownKit
     - MJRefresh
     - ProgressHUD
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - RYAngelWalker
     - RYTransitioningDelegateSwift
     - SDWebImage
+    - SnapKit
     - SwiftyJSON
     - TagListView
     - UMCCommonLog
@@ -159,9 +173,13 @@ SPEC CHECKSUMS:
   MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   ProgressHUD: 093d24ca970f191744017bee2649e37d0cd1c5b9
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   RYAngelWalker: cb74daf62cf628394e7f843ba91d44e23de0aaf0
   RYTransitioningDelegateSwift: aff6f8cc0567cb4b4596cf7cf1d9bc2477a2459d
   SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
   UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
@@ -170,6 +188,6 @@ SPEC CHECKSUMS:
   UMShare: 8a1030a9793941d1129a82d5bc02cd97df5ae210
   UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
 
-PODFILE CHECKSUM: 49e726f99092dcec3cadcead5f0bcbea6336faad
+PODFILE CHECKSUM: ab1b5f79508bc8ef252b844da46daebb03ec00cf
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

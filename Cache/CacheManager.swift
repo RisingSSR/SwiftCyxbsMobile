@@ -229,4 +229,11 @@ extension CacheManager.FilePath {
     static var currentPerson: Self {
         .init(rootPath: .widget, file: "user/person")
     }
+    
+    static var dormitoryFromBundle: Self {
+        .init(rootPath: .bundle, file: "DormitoryData")
+    }
+    static var dormitory: Self {
+        .init(rootPath: .document, file: "dormitory/data")
+    }
 }
