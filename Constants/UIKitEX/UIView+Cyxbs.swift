@@ -60,6 +60,26 @@ extension UIResponder {
 extension UIView {
     
     static var identifier: String { "CyxbsMobile2019_iOS.\(self)" }
+    
+    @discardableResult
+    func mix(fillColor: UIColor? = nil, path: UIBezierPath, shadowColor: UIColor, shadowOpacity: CGFloat = 1, shadowOffset: CGSize = CGSize(width: 0, height: -3)) -> CAShapeLayer {
+        let fillColor = fillColor ?? backgroundColor ?? .clear
+        backgroundColor = nil
+        
+        layer.shadowPath = path.cgPath
+        layer.shadowColor = shadowColor.cgColor
+        layer.shadowOpacity = Float(shadowOpacity)
+        layer.shadowOffset = shadowOffset
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.frame = bounds
+        shapeLayer.path = path.cgPath
+        shapeLayer.fillColor = fillColor.cgColor
+        
+        layer.addSublayer(shapeLayer)
+        
+        return shapeLayer
+    }
 }
 
 extension UIScrollView {

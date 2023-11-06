@@ -88,7 +88,9 @@ extension FinderToolsView: UICollectionViewDataSource {
 extension FinderToolsView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let anotherVC = UIViewController()
+        let sourceVC = latestViewController
+        sourceVC?.present(anotherVC, animated: true)
     }
 }
 
